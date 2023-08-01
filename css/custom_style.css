@@ -89,4 +89,12 @@ body {
   display: table;
 }
 
+/* Collapsible Measures */
+@media (max-width: 600px) {
+  .row-covering {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
 /*# sourceMappingURL=custom_style.css.map */
