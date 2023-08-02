@@ -15,13 +15,32 @@ body {
     background-size: cover;
 }
 
+.container:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
 .container {
     width: 100%;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
     border-radius: 24px;
     background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(5px);
-    border: 2px solid rgba(255, 255, 255, 0.25);
+    // border: 2px solid rgba(255, 255, 255, 0.25);
+    display: block;
+    justify-content: center;
+    align-items: middle
+}
+
+.col-default-padding {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.row-default-padding {
+    // padding-top: 8px;
+    // padding-bottom: 8px;
 }
 
 /* responsive */
@@ -64,8 +83,10 @@ body {
 
 [class*="col-"] {
     float: left;
-    padding: 8px;
-    @media (min-width: $min-width) {padding: 16px;}
+}
+
+.float-right {
+    float: right;
 }
 
 .row::after {
