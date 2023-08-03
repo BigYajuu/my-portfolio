@@ -1,8 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 * {
   box-sizing: border-box;
 }
 
 body {
+  font-family: "Muli", sans-serif;
   margin-left: 2%;
   margin-right: 2%;
   background: url(https://images.unsplash.com/photo-1544306094-e2dcf9479da3) no-repeat;
@@ -13,12 +16,6 @@ body {
     margin-left: 8.33%;
     margin-right: 8.33%;
   }
-}
-
-.container:after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 .container {
@@ -35,6 +32,11 @@ body {
 .col-default-padding {
   padding-left: 8px;
   padding-right: 8px;
+}
+
+.row-default-padding {
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 /* responsive */
@@ -92,12 +94,6 @@ body {
 
 .float-right {
   float: right;
-}
-
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
 }
 
 /* Collapsible Measures */
