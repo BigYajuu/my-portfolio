@@ -26,8 +26,6 @@ body {
     background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(5px);
     display: block;
-    justify-content: center;
-    align-items: middle
 }
 
 .col-default-padding {
@@ -86,11 +84,6 @@ body {
     float: right;
 }
 
-// .row::after {
-//     content: "";
-//     clear: both;
-//     display: table;
-// }
 
 /* Collapsible Measures */
 @media (max-width: $min-width) {
