@@ -11,7 +11,7 @@ body {
   background: url(https://images.unsplash.com/photo-1544306094-e2dcf9479da3) no-repeat;
   background-size: cover;
 }
-@media (min-width: 600px) {
+@media (min-width: 1000px) {
   body {
     margin-left: 8.33%;
     margin-right: 8.33%;
@@ -108,7 +108,7 @@ p {
 }
 
 /* Collapsible Measures */
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .row-covering {
     width: 100%;
     flex-wrap: wrap;
