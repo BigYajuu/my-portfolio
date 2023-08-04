@@ -26,19 +26,39 @@ body {
     background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(5px);
     display: block;
+    padding: 16px;
+    margin: 8px;    // For horizontal margin only
+    overflow: initial;
 }
 
 .col-default-padding {
+    // For vertical padding only
     padding-left: 8px;
     padding-right: 8px;
 }
 
-.row-default-padding {
-    padding-top: 8px;
-    padding-bottom: 8px;
+// (Temporarily depricated)
+// .row-default-padding {
+//     padding-top: 8px;
+//     padding-bottom: 8px;
+// }
+
+.row:after{
+    content: " ";
+    clear: both;
+    display: table;
 }
 
-/* responsive */
+/* Set All Text Margin to Zero */
+h1 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+/* Responsive Col */
 .col-1 {
     width: 8.33%;
 }
