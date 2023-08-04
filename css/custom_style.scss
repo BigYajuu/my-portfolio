@@ -1,17 +1,72 @@
-$min-width: 1000px;
-
-@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+$viewport-min-width: 1000px;
 
 * {
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'BauPro';
+    src: url('./fonts/woff/BauPro.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BauPro';
+    src: url('./fonts/woff/BauPro-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'BauPro';
+    src: url('./fonts/woff/BauPro-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BauPro';
+    src: url('./fonts/woff/BauPro-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'BauPro';
+    src: url('./fonts/woff/BauPro-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BauPro';
+    src: url('./fonts/woff/BauPro-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'BauPro-Super';
+    src: url('./fonts/woff/BauPro-Super.woff') format('woff');
+    font-weight: bolder;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BauPro-SuperItalic';
+    src: url('./fonts/woff/BauPro-SuperItalic.woff') format('woff');
+    font-weight: bolder;
+    font-style: italic;
+}
+
 body {
-    font-family: 'Muli', sans-serif;
+    font-family: 'BauPro';
+    font-weight: normal;
+    font-style: normal;
     margin-left: 2%;
     margin-right: 2%;
-    @media (min-width: $min-width) {
+    @media (min-width: $viewport-min-width) {
         margin-left: 8.33%;
         margin-right: 8.33%;
     }
@@ -106,7 +161,7 @@ p {
 
 
 /* Collapsible Measures */
-@media (max-width: $min-width) {
+@media (max-width: $viewport-min-width) {
     .row-covering {
         width: 100%;
         flex-wrap: wrap;
