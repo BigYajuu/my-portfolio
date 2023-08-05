@@ -1,4 +1,6 @@
 $viewport-min-width: 1000px;
+$page-margin-desktop: 8.33%;
+$page-margin-mobile: 2%;
 
 * {
     box-sizing: border-box;
@@ -8,11 +10,21 @@ body {
     font-family: 'BauPro', Helvetica, Arial, sans-serif;
     font-weight: normal;
     font-style: normal;
-    padding-left: 2%;
-    padding-right: 2%;
+}
+
+.header {
+    width: 100%;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(5px);
+    display: block;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: calc($page-margin-mobile + 24px);
+    padding-right: calc($page-margin-mobile + 24px);
     @media (min-width: $viewport-min-width) {
-        padding-left: 8.33%;
-        padding-right: 8.33%;
+        padding-left: calc($page-margin-desktop + 24px);
+        padding-right: calc($page-margin-desktop + 24px);
     }
 }
 
@@ -39,6 +51,18 @@ body {
 //     padding-top: 8px;
 //     padding-bottom: 8px;
 // }
+
+.section{
+    width: 100%;
+    &-default-page-margin {
+        margin-left: $page-margin-mobile;    // For side margins of the entire page
+        margin-right: $page-margin-mobile;
+        @media (min-width: $viewport-min-width) {
+            margin-left: $page-margin-desktop;
+            margin-right: $page-margin-desktop;
+        }
+    }
+}
 
 .row:after{
     content: " ";

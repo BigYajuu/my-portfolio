@@ -6,13 +6,23 @@ body {
   font-family: "BauPro", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
-  padding-left: 2%;
-  padding-right: 2%;
+}
+
+.header {
+  width: 100%;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(5px);
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: calc(2% + 24px);
+  padding-right: calc(2% + 24px);
 }
 @media (min-width: 1000px) {
-  body {
-    padding-left: 8.33%;
-    padding-right: 8.33%;
+  .header {
+    padding-left: calc(8.33% + 24px);
+    padding-right: calc(8.33% + 24px);
   }
 }
 
@@ -31,6 +41,20 @@ body {
 .col-default-padding {
   padding-left: 8px;
   padding-right: 8px;
+}
+
+.section {
+  width: 100%;
+}
+.section-default-page-margin {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+@media (min-width: 1000px) {
+  .section-default-page-margin {
+    margin-left: 8.33%;
+    margin-right: 8.33%;
+  }
 }
 
 .row:after {
