@@ -71,17 +71,18 @@ body {
   display: table;
 }
 
-/* Text Styles */
+/* Text Styles and Paragraphs */
 /* Set All Text Margin to Zero */
 h1 {
   margin: 0;
 }
-h1.paragraph-margin {
-  margin-top: 24px;
-}
 
 p {
   margin: 0;
+}
+
+.paragraph-margin {
+  margin-top: 24px;
 }
 
 /* Background Colour Schemes */
