@@ -36,10 +36,11 @@ body {
   border-radius: 24px;
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(5px);
-  display: block;
+  display: inline-block;
   padding: 16px;
   margin-top: 8px;
   margin-bottom: 8px;
+  overflow-wrap: normal;
 }
 
 .col-default-padding {
@@ -157,8 +158,18 @@ p {
   width: 100%;
 }
 
+.col-abs-width {
+  width: 400px;
+}
+
 [class*=col-] {
-  float: left;
+  display: inline-block;
+}
+
+.y-scrollable {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 
 .float-right {

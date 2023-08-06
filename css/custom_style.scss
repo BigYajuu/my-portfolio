@@ -43,10 +43,11 @@ body {
     border-radius: $border-radius-standard;
     background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(5px);
-    display: block;
+    display: inline-block;
     padding: $container-padding;
     margin-top: $container-margin;    // For vertical margin only
     margin-bottom: $container-margin;
+    overflow-wrap: normal;
 }
 
 .col-default-padding {
@@ -54,12 +55,6 @@ body {
     padding-left: $container-margin;
     padding-right: $container-margin;
 }
-
-// (Temporarily depricated)
-// .row-default-padding {
-//     padding-top: 8px;
-//     padding-bottom: 8px;
-// }
 
 .section{
     width: 100%;
@@ -158,9 +153,18 @@ p {
 .col-12 {
     width: 100%;
 }
+.col-abs-width {
+    width: 400px;
+}
 
 [class*="col-"] {
-    float: left;
+    display: inline-block;
+}
+
+.y-scrollable {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
 }
 
 .float-right {
