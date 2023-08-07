@@ -163,7 +163,12 @@ p {
 }
 
 [class*=col-] {
-  display: inline-block;
+  float: left;
+}
+
+.y-scrollable [class*=col-] {
+  float: none;
+  display: inline-flex;
 }
 
 .y-scrollable {
