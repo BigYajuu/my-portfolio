@@ -168,12 +168,12 @@ p {
   float: left;
 }
 
-.y-scrollable [class*=col-] {
+.x-scrollable [class*=col-] {
   float: none;
   display: inline-flex;
 }
 
-.y-scrollable {
+.x-scrollable {
   overflow-x: auto;
   white-space: nowrap;
 }
