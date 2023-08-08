@@ -164,7 +164,7 @@ p {
 .col-page-margin {
     width: $page-margin-mobile;
     @media (min-width: $viewport-min-width) {
-        width: calc($page-margin-desktop);
+        width: $page-margin-desktop;
     }
 }
 
