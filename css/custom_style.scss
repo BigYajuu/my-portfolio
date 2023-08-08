@@ -8,8 +8,6 @@ $element-offset-left: 24px;
 $border-radius-standard: 24px;
 $container-margin: 8px;
 $container-padding: 16px;
-/* Paragraphs and Text */
-$paragraph-margin-top: 24px;
 
 * {
     box-sizing: border-box;
@@ -91,7 +89,12 @@ p {
 }
 
 .paragraph-margin {
-    margin-top: $paragraph-margin-top;
+    margin-top: 24px;
+}
+
+.section-margin {
+    margin-top: 48px;
+    margin-bottom: 12px;
 }
 
 /* Background Colour Schemes */
@@ -158,6 +161,12 @@ p {
 .col-abs-width {
     width: 400px;
 }
+.col-page-margin {
+    width: $page-margin-mobile;
+    @media (min-width: $viewport-min-width) {
+        width: calc($page-margin-desktop);
+    }
+}
 
 [class*="col-"] {
     float: left;
@@ -171,8 +180,10 @@ p {
 .x-scrollable {
     overflow-x: auto;
     white-space: nowrap;
-    // padding-top: 5px;
-    // padding-bottom: 5px;
+    padding-left: $page-margin-desktop;
+    @media (max-width: $viewport-min-width) {
+        padding-left: $page-margin-mobile;
+    }
 }
 
 .float-right {
