@@ -4,9 +4,6 @@
 ### Node.js and Chocolatey
 Install Node.js and Chocolatey
 
-### Angular
-Run `npm install -g @angular/cli`.
-
 ### Sass
 Install Sass as a functional augmentation to classic CSS.
 

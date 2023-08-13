@@ -22,16 +22,19 @@
   <link rel="stylesheet" href="css/custom_style.css">
 
   <meta name="theme-color" content="#fafafa">
+  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/jquery-3.7.0.min.js"></script>
+  <!-- Advanced Animation Components -->
+  <script src="js/ui-components/animated-x-scrollable.js"></script>
 </head>
 
 <body class="dynamic-bg">
 
   <header>
   </header>
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
-
+  
+  
   <div class="entire-window dynamic-bg">  <!-- Operates the background -->
     <div class="header"> 
       <h1>Chuyue Wu</h1>
@@ -46,33 +49,11 @@
     </div>
 
     <div class="section" id="section-projects-items">
-
-      <div class="row x-scrollable">
-        
-        <div class="col-abs-width col-default-padding">
-          <div class="container">
-            <h1>Item 1</h1>
-            <p>Item 1</p>
-            <p>Item 1</p>
-          </div>
-        </div>
-    
-        <div class="col-abs-width col-default-padding">
-          <div class="container">
-            <h1>Item 2</h1>
-            <p>Item 2</p>
-          </div>
-        </div>
-
-        <div class="col-abs-width col-default-padding">
-          <div class="container">
-            <h1>Item 3</h1>
-            <p>Item 3</p>
-          </div>
-        </div>
-        
-      </div>
-    
+      <script>
+        $(document).ready(function() {
+          new AnimatedXScrollable().build("#section-projects-items");
+        });
+      </script>
     </div>
 
     <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
@@ -85,7 +66,10 @@
         </div>
       </div>
     </div>
-      
+    
+    
+  
+
   </div>
 
   
