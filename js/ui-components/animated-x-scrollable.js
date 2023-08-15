@@ -30,14 +30,14 @@ class AnimatedXScrollable {
 
     _buildScrollChevronLeft = function (height) {
         return `
-                <div class="chevron-style-left" style="height: ${height}px">
+                <div class="scroll-chevron-left" style="height: ${height}px">
                 </div>
                 `;
     }
 
     _buildScrollChevronRight = function (height) {
         return `
-                <div class="chevron-style-right" style="height: ${height}px">
+                <div class="scroll-chevron-right" style="height: ${height}px">
                 </div>
                 `;
     }
