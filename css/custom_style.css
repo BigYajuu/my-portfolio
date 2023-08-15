@@ -115,6 +115,30 @@ p {
   bottom: 0;
 }
 
+.chevron-style-left {
+  position: fixed;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Height is detected by JQuery's outerHeight() */
+  width: 20%;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.75) 25%, rgba(0, 0, 0, 0) 100%);
+  z-index: 1;
+}
+
+.chevron-style-right {
+  position: fixed;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Height is detected by JQuery's outerHeight() */
+  width: 20%;
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.75) 25%, rgba(0, 0, 0, 0) 100%);
+  z-index: 1;
+}
+
 /* Responsive Col */
 .col-1 {
   width: 8.33%;
@@ -187,6 +211,7 @@ p {
 }
 
 .x-scrollable {
+  position: relative;
   overflow-x: auto;
   white-space: nowrap;
   padding-left: 8.33%;
