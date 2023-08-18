@@ -38,13 +38,13 @@ class AnimatedXScrollable {
             $(`#${scrollChevronRightID}`).on('mouseenter', function() {
                 // self.scrollSpeed = 0;
                 self.movementIntervalHandler = setInterval(function() {
-                    if (self.scrollSpeed < 10) {
+                    if (self.scrollSpeed < 12) {
                         self.scrollSpeed += 1;
                     }
                     // console.log(self.scrollSpeed);
                     self.scrollPosition = $(`#${scrollableID}`).scrollLeft() + self.scrollSpeed;
                     $(`#${scrollableID}`).scrollLeft(self.scrollPosition);       
-                }, 20);
+                }, 15);
             }).on('mouseleave', function(){
                 clearInterval(self.movementIntervalHandler);
                 self.accelerationIntervalHandler = setInterval(function() {
@@ -56,7 +56,7 @@ class AnimatedXScrollable {
                     } else {
                         self.scrollSpeed -= 1;
                     }
-                }, 20)
+                }, 15)
             });
         });
     }
