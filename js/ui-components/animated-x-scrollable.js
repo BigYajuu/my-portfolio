@@ -41,25 +41,24 @@ class AnimatedXScrollable {
             );
             // 2) Get height of scrollable div
             height = $(`#${selector}`).outerHeight();
-            // 3) Recreate scrollable div and chevrons w/ corrent heights
-            let scrollableID = `${selector}-scrollable` // For the scrollable div encompassing the containers
-            let scrollChevronLeftID = `${selector}-scroll-chevron-left` // Chevron on the left
-            let scrollChevronRightID = `${selector}-scroll-chevron-right`   // Chevron on the right
-            $(`#${selector}`).html(
-                `
-                <div class="row x-scrollable" id="${scrollableID}">
-                    ${self._buildScrollChevronLeft(height, scrollChevronLeftID)}
-                    ${self._buildScrollChevronRight(height, scrollChevronRightID)}
-                    ${content}
-                </div>
-                `
-            );
-            // 4) Setup Mouse Scroll Events
             if (!jQuery.browser.mobile) {
+                // 3) Recreate scrollable div and chevrons w/ corrent heights
+                let scrollableID = `${selector}-scrollable` // For the scrollable div encompassing the containers
+                let scrollChevronLeftID = `${selector}-scroll-chevron-left` // Chevron on the left
+                let scrollChevronRightID = `${selector}-scroll-chevron-right`   // Chevron on the right
+                $(`#${selector}`).html(
+                    `
+                    <div class="row x-scrollable" id="${scrollableID}">
+                        ${self._buildScrollChevronLeft(height, scrollChevronLeftID)}
+                        ${self._buildScrollChevronRight(height, scrollChevronRightID)}
+                        ${content}
+                    </div>
+                    `
+                );
+                // 4) Setup Mouse Scroll Events
                 self._setupScrollMouseEvent(scrollChevronLeftID, scrollableID, ScrollDirection.LEFT);
                 self._setupScrollMouseEvent(scrollChevronRightID, scrollableID, ScrollDirection.RIGHT);
             }
-            
         });
     }
 
