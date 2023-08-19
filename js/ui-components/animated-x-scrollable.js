@@ -3,6 +3,21 @@ const ScrollDirection = {
     RIGHT: 'right'
 };
 
+const ScrollChevronRightBlankStyle = {
+    opacity: '0.75',
+    width: '0%'
+};
+
+const ScrollChevronRightAvailableStyle = {
+    opacity: '0.75',
+    width: '15%'
+}
+
+const ScrollChevronRightHoveringStyle = {
+    opacity: '1',
+    width: '20%'
+}
+
 class AnimatedXScrollable {
 
     constructor() {
@@ -60,9 +75,18 @@ class AnimatedXScrollable {
     }
 
     _setupScrollMouseEvent = function (scrollChevronID, scrollableID, direction) {
+        function customAnimation(scrollChevronID, scrollChevronStyle) {
+            $(`#${scrollChevronID}`).animate(scrollChevronStyle, 150);
+        }
         let self = this;
+        // Set Chevron to Blank/Available state depending on scroll position
+        customAnimation(scrollChevronID, ScrollChevronRightAvailableStyle);
         $(`#${scrollChevronID}`).on('mouseenter', function() {
             clearInterval(self.accelerationIntervalHandler);
+            // Set Chevron to Hovering state
+            $(`#${scrollChevronID}`).stop();
+            customAnimation(scrollChevronID, ScrollChevronRightHoveringStyle);
+            // Set scroll accel animation
             self.movementIntervalHandler = setInterval(function() {
                 if (self.scrollSpeed < 12) {
                     self.scrollSpeed += 1;
@@ -77,6 +101,10 @@ class AnimatedXScrollable {
             }, 15);
         }).on('mouseleave', function(){
             clearInterval(self.movementIntervalHandler);
+            // Set Chevron to Blank/Available state
+            $(`#${scrollChevronID}`).stop();
+            customAnimation(scrollChevronID, ScrollChevronRightAvailableStyle);
+            // Set scroll de-accel animation
             self.accelerationIntervalHandler = setInterval(function() {
                 if (direction === ScrollDirection.LEFT) {
                     self.scrollPosition = $(`#${scrollableID}`).scrollLeft() - self.scrollSpeed;
