@@ -53,8 +53,6 @@ class AnimatedXScrollable {
     }
 
     _buildScrollChevronRight = function (height, id) {
-
-        
         return `
                 <div class="scroll-chevron-right" id="${id}" style="height: ${height}px">
                 </div>
@@ -64,18 +62,17 @@ class AnimatedXScrollable {
     _setupScrollMouseEvent = function (scrollChevronID, scrollableID, direction) {
         let self = this;
         $(`#${scrollChevronID}`).on('mouseenter', function() {
-            // self.scrollSpeed = 0;
+            clearInterval(self.accelerationIntervalHandler);
             self.movementIntervalHandler = setInterval(function() {
                 if (self.scrollSpeed < 12) {
                     self.scrollSpeed += 1;
+                    console.log(self.scrollSpeed);
                 }
-                // console.log(self.scrollSpeed);
                 if (direction === ScrollDirection.LEFT) {
                     self.scrollPosition = $(`#${scrollableID}`).scrollLeft() - self.scrollSpeed;
                 } else if (direction === ScrollDirection.RIGHT) {
                     self.scrollPosition = $(`#${scrollableID}`).scrollLeft() + self.scrollSpeed;
                 }
-                console.log(self.scrollPosition);
                 $(`#${scrollableID}`).scrollLeft(self.scrollPosition);       
             }, 15);
         }).on('mouseleave', function(){
