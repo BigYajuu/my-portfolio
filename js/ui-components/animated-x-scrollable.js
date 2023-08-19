@@ -55,8 +55,11 @@ class AnimatedXScrollable {
                 `
             );
             // 4) Setup Mouse Scroll Events
-            self._setupScrollMouseEvent(scrollChevronLeftID, scrollableID, ScrollDirection.LEFT);
-            self._setupScrollMouseEvent(scrollChevronRightID, scrollableID, ScrollDirection.RIGHT);
+            if (!jQuery.browser.mobile) {
+                self._setupScrollMouseEvent(scrollChevronLeftID, scrollableID, ScrollDirection.LEFT);
+                self._setupScrollMouseEvent(scrollChevronRightID, scrollableID, ScrollDirection.RIGHT);
+            }
+            
         });
     }
 
