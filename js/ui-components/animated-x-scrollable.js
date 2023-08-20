@@ -3,6 +3,11 @@ const ScrollDirection = {
     RIGHT: 'right'
 };
 
+const ScrollChevronMouseState = {
+    ALONE: 'alone',
+    HOVERING: 'hovering'
+}
+
 const ScrollChevronRightBlankStyle = {
     opacity: '0.75',
     width: '0%'
@@ -25,6 +30,8 @@ class AnimatedXScrollable {
         this.scrollSpeed = 0;
         this.movementIntervalHandler;
         this.accelerationIntervalHandler;
+        this.scrollChevronMouseStateLeft = ScrollChevronMouseState.ALONE;
+        this.scrollChevronMouseStateRight = ScrollChevronMouseState.ALONE;
     }
 
     build = function (selector, content) {
@@ -77,12 +84,43 @@ class AnimatedXScrollable {
     }
 
     _setupScrollMouseEvent = function (scrollChevronID, scrollableID, direction) {
+        let self = this;
+        let scrollAnimationStopper = true;
         function customAnimation(scrollChevronID, scrollChevronStyle) {
             $(`#${scrollChevronID}`).animate(scrollChevronStyle, 150);
         }
-        let self = this;
+        function scrollEdgeResponse() {
+            if (direction == ScrollDirection.RIGHT && self.scrollChevronMouseStateRight == ScrollChevronMouseState.ALONE) {
+                if ($(`#${scrollableID}`).scrollLeft().toFixed() == ($(`#${scrollableID}`).prop('scrollWidth') - $(window).width())
+                || $(`#${scrollableID}`).scrollLeft().toFixed() + 1 == ($(`#${scrollableID}`).prop('scrollWidth') - $(window).width())) {
+                    $(`#${scrollChevronID}`).stop();
+                    customAnimation(scrollChevronID, ScrollChevronRightBlankStyle);
+                } else {
+                    if (scrollAnimationStopper == true) {
+                        $(`#${scrollChevronID}`).stop();
+                        customAnimation(scrollChevronID, ScrollChevronRightAvailableStyle);
+                        scrollAnimationStopper = false;
+                    }
+                } // Right Chevron edge detection
+            } else if (direction == ScrollDirection.LEFT && self.scrollChevronMouseStateLeft == ScrollChevronMouseState.ALONE) {
+                if ($(`#${scrollableID}`).scrollLeft() == (0)) {
+                    $(`#${scrollChevronID}`).stop();
+                    customAnimation(scrollChevronID, ScrollChevronRightBlankStyle);
+                } else {
+                    if (scrollAnimationStopper == true) {
+                        $(`#${scrollChevronID}`).stop();
+                        customAnimation(scrollChevronID, ScrollChevronRightAvailableStyle);
+                        scrollAnimationStopper = false;
+                    }
+                } // Left Chevron edge detection
+            }
+        }
         // Set Chevron to Blank/Available state depending on scroll position
-        customAnimation(scrollChevronID, ScrollChevronRightAvailableStyle);
+        scrollEdgeResponse();
+        $(`#${scrollableID}`).scroll(function () {
+            // Set Chevron to Blank/Available state if no mouse is hovering
+            scrollEdgeResponse();
+        });
         $(`#${scrollChevronID}`).on('mouseenter', function() {
             clearInterval(self.accelerationIntervalHandler);
             // Set Chevron to Hovering state
@@ -92,20 +130,21 @@ class AnimatedXScrollable {
             self.movementIntervalHandler = setInterval(function() {
                 if (self.scrollSpeed < 12) {
                     self.scrollSpeed += 1;
-                    console.log(self.scrollSpeed);
                 }
                 if (direction === ScrollDirection.LEFT) {
                     self.scrollPosition = $(`#${scrollableID}`).scrollLeft() - self.scrollSpeed;
                 } else if (direction === ScrollDirection.RIGHT) {
                     self.scrollPosition = $(`#${scrollableID}`).scrollLeft() + self.scrollSpeed;
                 }
-                $(`#${scrollableID}`).scrollLeft(self.scrollPosition);       
+                $(`#${scrollableID}`).scrollLeft(self.scrollPosition);
             }, 15);
+            if (direction === ScrollDirection.LEFT) {
+                self.scrollChevronMouseStateLeft = ScrollChevronMouseState.HOVERING;
+            } else if (direction === ScrollDirection.RIGHT) {
+                self.scrollChevronMouseStateRight = ScrollChevronMouseState.HOVERING;
+            }
         }).on('mouseleave', function(){
             clearInterval(self.movementIntervalHandler);
-            // Set Chevron to Blank/Available state
-            $(`#${scrollChevronID}`).stop();
-            customAnimation(scrollChevronID, ScrollChevronRightAvailableStyle);
             // Set scroll de-accel animation
             self.accelerationIntervalHandler = setInterval(function() {
                 if (direction === ScrollDirection.LEFT) {
@@ -117,10 +156,20 @@ class AnimatedXScrollable {
     
                 if (self.scrollSpeed <= 0) {
                     clearInterval(self.accelerationIntervalHandler);
+                    if (direction === ScrollDirection.LEFT) {
+                        self.scrollChevronMouseStateLeft = ScrollChevronMouseState.ALONE;
+                    } else if (direction === ScrollDirection.RIGHT) {
+                        self.scrollChevronMouseStateRight = ScrollChevronMouseState.ALONE;
+                    }
+                    scrollAnimationStopper = true;
+                    scrollEdgeResponse();
                 } else {
                     self.scrollSpeed -= 1;
                 }
             }, 15);
+            console.log($(`#${scrollableID}`).scrollLeft().toFixed());
+            console.log($(`#${scrollableID}`).prop('scrollWidth') - $(window).width());
         });
+        
     }
 }
