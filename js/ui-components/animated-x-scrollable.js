@@ -85,7 +85,7 @@ class AnimatedXScrollable {
 
     _setupScrollMouseEvent = function (scrollChevronID, scrollableID, direction) {
         let self = this;
-        let currentScrollAnimationStyle = ScrollChevronRightAvailableStyle;
+        let currentScrollAnimationStyle;
         function customAnimation(scrollChevronID, scrollChevronStyle) {
             if (currentScrollAnimationStyle != scrollChevronStyle) {
                 $(`#${scrollChevronID}`).stop();
@@ -113,6 +113,7 @@ class AnimatedXScrollable {
         }
         // Set Chevron's initial responses
         scrollEdgeResponse();
+        
         $(`#${scrollableID}`).scroll(function () {
             scrollEdgeResponse();
         })

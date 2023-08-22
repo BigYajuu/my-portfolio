@@ -122,8 +122,8 @@ p {
   justify-content: center;
   align-items: center;
   /* Height is detected by JQuery's outerHeight() */
-  width: 15%;
-  opacity: 0.75;
+  width: 0%;
+  opacity: 0.2;
   z-index: 1;
   left: 0;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 100%);
@@ -134,8 +134,8 @@ p {
   justify-content: center;
   align-items: center;
   /* Height is detected by JQuery's outerHeight() */
-  width: 15%;
-  opacity: 0.75;
+  width: 0%;
+  opacity: 0.2;
   z-index: 1;
   right: 0;
   background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 100%);
