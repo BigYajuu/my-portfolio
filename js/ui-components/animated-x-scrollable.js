@@ -9,7 +9,7 @@ const ScrollChevronMouseState = {
 }
 
 const ScrollChevronRightBlankStyle = {
-    opacity: '0.75',
+    opacity: '0.2',
     width: '0%'
 };
 
