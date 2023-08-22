@@ -120,7 +120,7 @@ class AnimatedXScrollable {
         $(window).on('resize', function() {
             scrollEdgeResponse();
         });
-        $(`#${scrollChevronID}`).on('mouseenter', function() {
+        $(`#${scrollChevronID}`).on('mouseenter', function() {  // When mouse enters chevron
             clearInterval(self.accelerationIntervalHandler);
             // Set Chevron to Hovering state and animate
             customAnimation(scrollChevronID, ScrollChevronRightHoveringStyle);
@@ -141,7 +141,7 @@ class AnimatedXScrollable {
                 }
                 $(`#${scrollableID}`).scrollLeft(self.scrollPosition);
             }, 15);
-        }).on('mouseleave', function() {
+        }).on('mouseleave', function() {    // When mouse leaves chevron
             clearInterval(self.movementIntervalHandler);
             // Set Chevron to Alone state
             if (direction === ScrollDirection.LEFT) {
@@ -158,8 +158,7 @@ class AnimatedXScrollable {
                 }
                 $(`#${scrollableID}`).scrollLeft(self.scrollPosition);
     
-                if (self.scrollSpeed <= 0) {
-                } else {
+                if (self.scrollSpeed > 0) {
                     self.scrollSpeed -= 1;
                 }
             }, 15);
