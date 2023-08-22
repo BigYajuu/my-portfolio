@@ -111,9 +111,9 @@ class AnimatedXScrollable {
                 } // Left Chevron edge detection
             }
         }
-        // Set Chevron's initial responses
+        // Set Chevron's initial state
         scrollEdgeResponse();
-        
+        // Update Chevron's state whenever scroll is triggered
         $(`#${scrollableID}`).scroll(function () {
             scrollEdgeResponse();
         })
