@@ -8,17 +8,17 @@ const ScrollChevronMouseState = {
     HOVERING: 'hovering'
 }
 
-const ScrollChevronRightBlankStyle = {
-    opacity: '0.2',
+const ScrollChevronBlankStyle = {
+    opacity: '0',
     width: '0%'
 };
 
-const ScrollChevronRightAvailableStyle = {
-    opacity: '0.75',
+const ScrollChevronAvailableStyle = {
+    opacity: '0.5',
     width: '15%'
 }
 
-const ScrollChevronRightHoveringStyle = {
+const ScrollChevronHoveringStyle = {
     opacity: '1',
     width: '20%'
 }
@@ -72,6 +72,7 @@ class AnimatedXScrollable {
     _buildScrollChevronLeft = function (height, id) {
         return `
                 <div class="scroll-chevron-left" id="${id}" style="height: ${height}px">
+                    <i class="fa-solid fa-arrow-left fa-fade fa-3x" style="color: #000000"></i>
                 </div>
                 `;
     }
@@ -79,6 +80,7 @@ class AnimatedXScrollable {
     _buildScrollChevronRight = function (height, id) {
         return `
                 <div class="scroll-chevron-right" id="${id}" style="height: ${height}px">
+                    <i class="fa-solid fa-arrow-right fa-fade fa-3x" style="color: #000000"></i>
                 </div>
                 `;
     }
@@ -99,15 +101,15 @@ class AnimatedXScrollable {
                 if (Math.round($(`#${scrollableID}`).scrollLeft()) == ($(`#${scrollableID}`).prop('scrollWidth') - $(window).width())
                 || Math.round($(`#${scrollableID}`).scrollLeft()) - 1 == ($(`#${scrollableID}`).prop('scrollWidth') - $(window).width())
                 || Math.ceil($(`#${scrollableID}`).scrollLeft()) + 1 == ($(`#${scrollableID}`).prop('scrollWidth') - $(window).width())) {
-                    customAnimation(scrollChevronID, ScrollChevronRightBlankStyle);
+                    customAnimation(scrollChevronID, ScrollChevronBlankStyle);
                 } else {
-                    customAnimation(scrollChevronID, ScrollChevronRightAvailableStyle);
+                    customAnimation(scrollChevronID, ScrollChevronAvailableStyle);
                 } // Right Chevron edge detection
             } else if (direction == ScrollDirection.LEFT && self.scrollChevronMouseStateLeft == ScrollChevronMouseState.ALONE) {
                 if ($(`#${scrollableID}`).scrollLeft() == (0)) {
-                    customAnimation(scrollChevronID, ScrollChevronRightBlankStyle);
+                    customAnimation(scrollChevronID, ScrollChevronBlankStyle);
                 } else {
-                    customAnimation(scrollChevronID, ScrollChevronRightAvailableStyle);
+                    customAnimation(scrollChevronID, ScrollChevronAvailableStyle);
                 } // Left Chevron edge detection
             }
         }
@@ -124,7 +126,7 @@ class AnimatedXScrollable {
         $(`#${scrollChevronID}`).on('mouseenter', function() {  // When mouse enters chevron
             clearInterval(self.accelerationIntervalHandler);
             // Set Chevron to Hovering state and animate
-            customAnimation(scrollChevronID, ScrollChevronRightHoveringStyle);
+            customAnimation(scrollChevronID, ScrollChevronHoveringStyle);
             if (direction === ScrollDirection.LEFT) {
                 self.scrollChevronMouseStateLeft = ScrollChevronMouseState.HOVERING;
             } else if (direction === ScrollDirection.RIGHT) {

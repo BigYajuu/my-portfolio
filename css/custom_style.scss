@@ -130,7 +130,7 @@ p {
         align-items: center;
         /* Height is detected by JQuery's outerHeight() */
         width: 0%;
-        opacity: 0.2;
+        opacity: 0;
         z-index: 1;
         left: 0;
         background-image: linear-gradient(to right, rgba(0, 0, 0, 0.70) 25%, rgba(0, 0, 0, 0) 100%);
@@ -142,7 +142,7 @@ p {
         align-items: center;
         /* Height is detected by JQuery's outerHeight() */
         width: 0%;
-        opacity: 0.2;
+        opacity: 0;
         z-index: 1;
         right: 0;
         background-image: linear-gradient(to left, rgba(0, 0, 0, 0.70) 25%, rgba(0, 0, 0, 0) 100%);
