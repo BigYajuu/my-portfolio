@@ -97,18 +97,18 @@ class AnimatedXScrollable {
         }
         function scrollEdgeResponse() {
             // Set Chevron's state to available/blank depending on whether the edge is reached on either side.
-            if (direction == ScrollDirection.RIGHT && self.scrollChevronMouseStateRight == ScrollChevronMouseState.ALONE) {
+            if (direction == ScrollDirection.RIGHT) {
                 if (Math.round($(`#${scrollableID}`).scrollLeft()) == ($(`#${scrollableID}`).prop('scrollWidth') - $(window).width())
                 || Math.round($(`#${scrollableID}`).scrollLeft()) - 1 == ($(`#${scrollableID}`).prop('scrollWidth') - $(window).width())
                 || Math.ceil($(`#${scrollableID}`).scrollLeft()) + 1 == ($(`#${scrollableID}`).prop('scrollWidth') - $(window).width())) {
                     customAnimation(scrollChevronID, ScrollChevronBlankStyle);
-                } else {
+                } else if (self.scrollChevronMouseStateRight == ScrollChevronMouseState.ALONE) {
                     customAnimation(scrollChevronID, ScrollChevronAvailableStyle);
                 } // Right Chevron edge detection
-            } else if (direction == ScrollDirection.LEFT && self.scrollChevronMouseStateLeft == ScrollChevronMouseState.ALONE) {
+            } else if (direction == ScrollDirection.LEFT) {
                 if ($(`#${scrollableID}`).scrollLeft() == (0)) {
                     customAnimation(scrollChevronID, ScrollChevronBlankStyle);
-                } else {
+                } else if (self.scrollChevronMouseStateLeft == ScrollChevronMouseState.ALONE) {
                     customAnimation(scrollChevronID, ScrollChevronAvailableStyle);
                 } // Left Chevron edge detection
             }
