@@ -4,6 +4,16 @@
 ### Node.js and Chocolatey
 Install Node.js and Chocolatey
 
+### TypeScript
+Install TypeScript compiler using `npm install typescript --save-dev`.
+
+### TypeScript Save-To-Compile
+The automated script `"tsc_autosave"` in package.json allows save detections and automatically compiles changed .ts into .js files.
+
+To compile manually - Upon finishing making changes to any .ts files, run `npx tsc` to compile them into .js files.
+
+Make sure these files are linked with the `<script>` tag in all relevant html pages.
+
 ### Sass
 Install Sass as a functional augmentation to classic CSS.
 
