@@ -141,6 +141,24 @@ p {
   background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 100%);
 }
 
+/* 3D Transitions */
+.scene {
+  overflow: hidden;
+  perspective: 90em;
+}
+
+.x-axis {
+  animation: cubeTransition 0.5s ease 0s infinite alternate;
+}
+
+@keyframes cubeTransition {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: translate3d(0, 50%, -480px) rotateX(-90deg);
+  }
+}
 /* Responsive Col */
 .col-1 {
   width: 8.33%;

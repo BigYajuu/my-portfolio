@@ -149,29 +149,24 @@ p {
     }
 }
 
-// .chevron-style-left {
-//     position: fixed;
-//     left: 0;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     /* Height is detected by JQuery's outerHeight() */
-//     width: 20%;
-//     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.70) 25%, rgba(0, 0, 0, 0) 100%);
-//     z-index: 1;
-// }
+/* 3D Transitions */
+.scene{
+    overflow: hidden;
+    perspective: 90em;
+}
 
-// .chevron-style-right {
-//     position: fixed;
-//     right: 0;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     /* Height is detected by JQuery's outerHeight() */
-//     width: 20%;
-//     background-image: linear-gradient(to left, rgba(0, 0, 0, 0.70) 25%, rgba(0, 0, 0, 0) 100%);
-//     z-index: 1;
-// }
+.x-axis {
+    animation: cubeTransition 0.5s ease 0s infinite alternate;
+}
+
+@keyframes cubeTransition {
+    0% {
+      transform: rotateX(0deg);
+    }
+    100% {
+      transform: translate3d(0, 50%, -480px) rotateX(-90deg);
+    }
+}
 
 /* Responsive Col */
 .col-1 {
@@ -242,7 +237,6 @@ p {
 .float-right {
     float: right;
 }
-
 
 /* Collapsible Measures */
 @media (max-width: $viewport-min-width) {
