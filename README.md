@@ -1,6 +1,5 @@
 ## Prerequisites
 
-
 ### Node.js and Chocolatey
 Install Node.js and Chocolatey
 
