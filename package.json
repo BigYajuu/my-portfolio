@@ -14,6 +14,9 @@
     "tsc_autosave": "tsc -w"
   },
   "devDependencies": {
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.11",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
     "parcel-bundler": "^1.12.4",
     "typescript": "^5.2.2"
   },

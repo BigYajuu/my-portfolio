@@ -145,7 +145,7 @@ p {
 
 /* 3D Transitions */
 .scene {
-  perspective: 1000px;
+  perspective: 200vh;
   position: relative;
 }
 
@@ -155,7 +155,7 @@ p {
 
 .pan {
   transform-style: preserve-3d;
-  animation: moveCube 10s infinite;
+  animation: moveCube 0.7s ease infinite;
 }
 
 #cube {
@@ -163,7 +163,7 @@ p {
   height: 100%;
   position: absolute;
   transform-style: preserve-3d;
-  animation: rotateCube 10s infinite;
+  animation: rotateCube 0.7s ease infinite;
 }
 
 @keyframes moveCube {
@@ -180,6 +180,14 @@ p {
   }
   100% {
     transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg);
+  }
+}
+@keyframes rotateCubeScrollUp {
+  0% {
+    transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
   }
 }
 #cube .front {

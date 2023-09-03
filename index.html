@@ -27,304 +27,285 @@
   <script src="js/jquery/jquery-3.7.0.min.js"></script>
   <script src="js/jquery/detectmobilebrowser.js"></script>
   <!-- FontAwesome -->
-  <script src="https://kit.fontawesome.com/33c5cad846.js" crossorigin="anonymous"></script>
+  <!-- <script src="https://kit.fontawesome.com/33c5cad846.js" crossorigin="anonymous"></script> -->
   <!-- Advanced Animation Components -->
   <script src="js/ui-components/animated-x-scrollable.js"></script>
   <!-- ./ts -->
-  <script src="ts/page-management.js"></script>
+  <script type="module" src="ts/page-management.js"></script>
+  <script type="module" src="ts/page.js"></script>
+  <script type="module" src="ts/cubic-x-axis-transition.js"></script>
 </head>
 
 <body class="dynamic-bg">
 
   <header>
   </header>
-  <div class="scene">
-    <div class="pan">
-      <div id="cube">
-        <div class="front">
-          <div class="entire-window dynamic-bg">  <!-- Operates the background -->
-            <div class="header"> 
-              <h1>Chuyue Wu</h1>
-            </div>
-        
-            <div class="section-default-page-margin" id="section-projects"> <!-- Section 1 - Projects -->
-              <div class="row">
-                <div class="section-text">
-                  <h1 class="section-margin">Projects Projects Projects Projects Projects Projects Projects</h1>
-                </div>
-              </div>
-            </div>
-        
-            <div class="section" id="section-projects-items">
-              <script>
-                $(document).ready(function() {
-                  new AnimatedXScrollable().build("section-projects-items", `
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 1</h1>
-                            <p>Item 1</p>
-                            <p>Item 1</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-        
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-        
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-        
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-        
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-        
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 3</h1>
-                            <p>Item 3</p>
-                        </div>
-                    </div>`);
-                  }
-                );
-              </script>
-            </div>
-        
-            <div class="section" id="section-projects-items-2">
-              <script>
-                $(document).ready(function() {
-                  new AnimatedXScrollable().build("section-projects-items-2", `
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 1</h1>
-                            <p>Item 1</p>
-                            <p>Item 1</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 3</h1>
-                            <p>Item 3</p>
-                        </div>
-                    </div>`);
-                  }
-                );
-              </script>
-            </div>
-        
-            <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
-              <div class="row">
-                <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                    <h1>Item 3</h1>
-                    <p>Item 3</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div class="entire-window dynamic-bg" id="page-1">  <!-- Operates the background -->
+    <div class="header"> 
+      <h1>Chuyue Wu</h1>
+    </div>
 
-            <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
-              <div class="row">
-                <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                    <h1>Item 3</h1>
-                    <p>Item 3</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
-              <div class="row">
-                <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                    <h1>Item 3</h1>
-                    <p>Item 3</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
-              <div class="row">
-                <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                    <h1>Item 3</h1>
-                    <p>Item 3</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="section-default-page-margin" id="section-projects"> <!-- Section 1 - Projects -->
+      <div class="row">
+        <div class="section-text">
+          <h1 class="section-margin">Projects Projects Projects Projects Projects Projects Projects</h1>
         </div>
+      </div>
+    </div>
 
-        
-        <div class="bottom">
-          <div class="entire-window dynamic-bg">  <!-- Operates the background -->
-            <div class="header"> 
-              <h1>Chuyue Wu</h1>
-            </div>
-        
-            <div class="section-default-page-margin" id="section-projects"> <!-- Section 1 - Projects -->
-              <div class="row">
-                <div class="section-text">
-                  <h1 class="section-margin">Projects Projects Projects Projects Projects Projects Projects</h1>
+    <div class="section" id="section-projects-items">
+      <script>
+        $(document).ready(function() {
+          new AnimatedXScrollable().build("section-projects-items", `
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 1</h1>
+                    <p>Item 1</p>
+                    <p>Item 1</p>
                 </div>
-              </div>
             </div>
-        
-            <div class="section" id="section-projects-items">
-              <script>
-                $(document).ready(function() {
-                  new AnimatedXScrollable().build("section-projects-items", `
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 1</h1>
-                            <p>Item 1</p>
-                            <p>Item 1</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-        
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-        
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-        
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-        
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-        
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 3</h1>
-                            <p>Item 3</p>
-                        </div>
-                    </div>`);
-                  }
-                );
-              </script>
+            
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 2</h1>
+                    <p>Item 2</p>
+                </div>
             </div>
-        
-            <div class="section" id="section-projects-items-2">
-              <script>
-                $(document).ready(function() {
-                  new AnimatedXScrollable().build("section-projects-items-2", `
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 1</h1>
-                            <p>Item 1</p>
-                            <p>Item 1</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 2</h1>
-                            <p>Item 2</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-abs-width col-default-padding">
-                        <div class="container">
-                            <h1>Item 3</h1>
-                            <p>Item 3</p>
-                        </div>
-                    </div>`);
-                  }
-                );
-              </script>
+
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 2</h1>
+                    <p>Item 2</p>
+                </div>
             </div>
-        
-            <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
-              <div class="row">
-                <div class="col-abs-width col-default-padding">
-                  <div class="container">
+
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 2</h1>
+                    <p>Item 2</p>
+                </div>
+            </div>
+
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 2</h1>
+                    <p>Item 2</p>
+                </div>
+            </div>
+            
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
                     <h1>Item 3</h1>
                     <p>Item 3</p>
-                  </div>
                 </div>
-              </div>
+            </div>`);
+          }
+        );
+      </script>
+    </div>
+
+    <div class="section" id="section-projects-items-2">
+      <script>
+        $(document).ready(function() {
+          new AnimatedXScrollable().build("section-projects-items-2", `
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 1</h1>
+                    <p>Item 1</p>
+                    <p>Item 1</p>
+                </div>
             </div>
+            
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 2</h1>
+                    <p>Item 2</p>
+                </div>
+            </div>
+            
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 3</h1>
+                    <p>Item 3</p>
+                </div>
+            </div>`);
+          }
+        );
+      </script>
+    </div>
+
+    <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
+      <div class="row">
+        <div class="col-abs-width col-default-padding">
+          <div class="container">
+            <h1>Item 3</h1>
+            <p>Item 3</p>
           </div>
         </div>
       </div>
-      
+    </div>
+
+    <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
+      <div class="row">
+        <div class="col-abs-width col-default-padding">
+          <div class="container">
+            <h1>Item 3</h1>
+            <p>Item 3</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
+      <div class="row">
+        <div class="col-abs-width col-default-padding">
+          <div class="container">
+            <h1>Item 3</h1>
+            <p>Item 3</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
+      <div class="row">
+        <div class="col-abs-width col-default-padding">
+          <div class="container">
+            <h1>Item 3</h1>
+            <p>Item 3</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="entire-window dynamic-bg" id="page-2">  <!-- Operates the background -->
+    <div class="header"> 
+      <h1>Chuyue Wu</h1>
+    </div>
+
+    <div class="section-default-page-margin" id="section-projects"> <!-- Section 1 - Projects -->
+      <div class="row">
+        <div class="section-text">
+          <h1 class="section-margin">Projects Projects Projects Projects Projects Projects Projects</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="section-projects-items">
+      <script>
+        $(document).ready(function() {
+          new AnimatedXScrollable().build("section-projects-items", `
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 1</h1>
+                    <p>Item 1</p>
+                    <p>Item 1</p>
+                </div>
+            </div>
+            
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 2</h1>
+                    <p>Item 2</p>
+                </div>
+            </div>
+
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 2</h1>
+                    <p>Item 2</p>
+                </div>
+            </div>
+
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 2</h1>
+                    <p>Item 2</p>
+                </div>
+            </div>
+
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 2</h1>
+                    <p>Item 2</p>
+                </div>
+            </div>
+
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 2</h1>
+                    <p>Item 2</p>
+                </div>
+            </div>
+
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 2</h1>
+                    <p>Item 2</p>
+                </div>
+            </div>
+            
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 3</h1>
+                    <p>Item 3</p>
+                </div>
+            </div>`);
+          }
+        );
+      </script>
+    </div>
+
+    <div class="section" id="section-projects-items-2">
+      <script>
+        $(document).ready(function() {
+          new AnimatedXScrollable().build("section-projects-items-2", `
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 1</h1>
+                    <p>Item 1</p>
+                    <p>Item 1</p>
+                </div>
+            </div>
+            
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 2</h1>
+                    <p>Item 2</p>
+                </div>
+            </div>
+            
+            <div class="col-abs-width col-default-padding">
+                <div class="container">
+                    <h1>Item 3</h1>
+                    <p>Item 3</p>
+                </div>
+            </div>`);
+          }
+        );
+      </script>
+    </div>
+
+    <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
+      <div class="row">
+        <div class="col-abs-width col-default-padding">
+          <div class="container">
+            <h1>Item 3</h1>
+            <p>Item 3</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-
+  <script  type="module">
+    import {Page} from "/ts/page.js";
+    import {PageManagement} from "/ts/page-management.js";
+    import {CubicXAxisTransition} from "/ts/cubic-x-axis-transition.js";
+    var page1 = new Page("page-1", new CubicXAxisTransition());
+    var page2 = new Page("page-2", new CubicXAxisTransition());
+    var pageManagement = new PageManagement([page1, page2]);
+  </script>
   
-
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
     window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
