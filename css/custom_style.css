@@ -155,7 +155,7 @@ p {
 
 .pan {
   transform-style: preserve-3d;
-  animation: moveCube 0.7s ease infinite;
+  animation: moveCube 0.7s ease;
 }
 
 #cube {
@@ -163,7 +163,7 @@ p {
   height: 100%;
   position: absolute;
   transform-style: preserve-3d;
-  animation: rotateCube 0.7s ease infinite;
+  animation: rotateCube 0.7s ease;
 }
 
 @keyframes moveCube {

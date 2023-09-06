@@ -31,9 +31,9 @@
   <!-- Advanced Animation Components -->
   <script src="js/ui-components/animated-x-scrollable.js"></script>
   <!-- ./ts -->
-  <script type="module" src="ts/page-management.js"></script>
+  <!-- <script type="module" src="ts/page-management.js"></script>
   <script type="module" src="ts/page.js"></script>
-  <script type="module" src="ts/cubic-x-axis-transition.js"></script>
+  <script type="module" src="ts/cubic-x-axis-transition.js"></script> -->
 </head>
 
 <body class="dynamic-bg">
@@ -301,6 +301,7 @@
     import {Page} from "/ts/page.js";
     import {PageManagement} from "/ts/page-management.js";
     import {CubicXAxisTransition} from "/ts/cubic-x-axis-transition.js";
+
     var page1 = new Page("page-1", new CubicXAxisTransition());
     var page2 = new Page("page-2", new CubicXAxisTransition());
     var pageManagement = new PageManagement([page1, page2]);

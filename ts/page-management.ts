@@ -1,12 +1,9 @@
-import {Page} from "./page"
+import {Page} from "./page.js"
 
 export class PageManagement {
     pages: Page[];
     constructor(pages: Page[]) {
         this.pages = pages;
-    }
-
-    _buildPages() {
         this._initializePages();
     }
 

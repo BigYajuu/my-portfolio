@@ -1,8 +1,6 @@
 export class PageManagement {
     constructor(pages) {
         this.pages = pages;
-    }
-    _buildPages() {
         this._initializePages();
     }
     _initializePages() {

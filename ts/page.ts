@@ -1,4 +1,5 @@
-import {Transition} from "./transition"
+import {Transition} from "./transition.js"
+import {Utility} from "./utility.js";
 
 export class Page {
     _id: string;
@@ -13,8 +14,17 @@ export class Page {
         this._transitionScrollDown = scrollTransition;
     }
 
-    getElement() {
-        return document.getElementById(this._id);
+    getId() {
+        return this._id;
+    }
+
+    getNode() {
+        const element = document.getElementById(this._id);
+        var node;
+        jQuery(
+            node = $(`#${this.getId()}`).clone(true, true)
+        )
+        return node;
     }
 
     setNeighbouringPages(pageNext: Page | null, pagePrev: Page | null) {
@@ -33,7 +43,17 @@ export class Page {
     }
 
     _addOverscrollEventListener(overscrollTopCallback: Function, overscrollBottomCallback: Function) {
-
+        const scrollableDiv = document.getElementById(this._id)!
+        scrollableDiv.addEventListener("scroll", function () {
+            console.log(`scrolling! DIV: ${scrollableDiv.id}, scrollTop: ${scrollableDiv.scrollTop}`);
+            if (scrollableDiv.scrollTop === 0) {
+              overscrollTopCallback();
+              console.log(`overscroll UP! DIV: ${scrollableDiv.id}, scrollTop: ${scrollableDiv.scrollTop}, scrollHeight: ${scrollableDiv.scrollHeight}, clientHeight: ${scrollableDiv.clientHeight}`);
+            } else if (Utility.isScrollToPosition(scrollableDiv.scrollTop + scrollableDiv.clientHeight, scrollableDiv.scrollHeight)) {
+              overscrollBottomCallback();
+              console.log(`overscroll DWN! DIV: ${scrollableDiv.id}, clientHeight: ${scrollableDiv.clientHeight}`);
+            }
+          });
     }
 }
 
