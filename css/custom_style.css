@@ -153,7 +153,7 @@ p {
   display: none;
 }
 
-.pan {
+#pan {
   transform-style: preserve-3d;
   animation: moveCube 0.7s ease;
 }

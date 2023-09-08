@@ -11,7 +11,7 @@ export class CubicXAxisTransition extends Transition {
     }
     executeScrollDown(pageAtTop, pageAtBottom) {
         /* <div class="scene">
-            <div class="pan">
+            <div id="pan">
                 <div id="cube">
                     <div class="front">
                     <div class="bottom"> */
@@ -22,8 +22,8 @@ export class CubicXAxisTransition extends Transition {
             var divFront = document.createElement('div');
             var divBottom = document.createElement('div');
             divScene.classList.add('scene');
-            divPan.classList.add('pan');
-            divCube.classList.add('cube');
+            divPan.id = 'pan';
+            divCube.id = 'cube';
             divFront.classList.add('front');
             divBottom.classList.add('bottom');
             // Assign pages to faces
@@ -36,9 +36,9 @@ export class CubicXAxisTransition extends Transition {
             divScene.appendChild(divPan);
             // Save current body state and scroll page to the next marking
             var divBody = document.getElementById('page-management-container').cloneNode(true);
-            //
             // divCube.addEventListener("animationend", (event) => {
-            //     document.body.replaceWith(divBody);
+            //     divScene.replaceWith(divBody);
+            //     console.log('animation ends');
             //     const targetToScroll = document.getElementById(pageAtBottom.getId());
             //     targetToScroll?.scrollIntoView();
             // });
