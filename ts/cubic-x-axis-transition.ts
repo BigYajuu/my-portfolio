@@ -1,6 +1,5 @@
 import {Transition} from "./transition.js"
 import {Page} from "./page.js"
-import $ from "jquery"; 
 
 export class CubicXAxisTransition extends Transition {
     
@@ -33,15 +32,15 @@ export class CubicXAxisTransition extends Transition {
             divFront.classList.add('front');
             divBottom.classList.add('bottom');
             // Assign pages to faces
-            divFront.appendChild(pageAtTop.getNode()![0]);
-            divBottom.appendChild(pageAtBottom.getNode()![0]);
+            divFront.appendChild(pageAtTop.getNode());
+            divBottom.appendChild(pageAtBottom.getNode());
             // Form Scene Complex
             divCube.appendChild(divFront);
             divCube.appendChild(divBottom);
             divPan.appendChild(divCube);
             divScene.appendChild(divPan);
             // Save current body state and scroll page to the next marking
-            var divBody = document.body.cloneNode(true);
+            var divBody = document.getElementById('page-management-container')!.cloneNode(true);
             //
             // divCube.addEventListener("animationend", (event) => {
             //     document.body.replaceWith(divBody);
@@ -50,9 +49,8 @@ export class CubicXAxisTransition extends Transition {
             // });
             
             // Body replaced by Cube Animation
-            document.body.replaceWith(divScene);
+            document.getElementById('page-management-container')!.replaceWith(divScene);
         });
-        
     }
 }
 

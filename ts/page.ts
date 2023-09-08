@@ -19,16 +19,14 @@ export class Page {
     }
 
     getNode() {
-        const element = document.getElementById(this._id);
-        var node;
-        jQuery(
-            node = $(`#${this.getId()}`).clone(true, true)
-        )
-        return node;
+        const originalElement = document.getElementById(this.getId())!;
+        const clonedElement = $(`#${this.getId()}`).clone(true, true)[0];
+        // this._copyComputedStyles(originalElement, clonedElement);
+        return clonedElement;
     }
 
     setNeighbouringPages(pageNext: Page | null, pagePrev: Page | null) {
-        var self = this;
+        const self = this;
         this._pageNext = pageNext;
         this._pagePrev = pagePrev;
         this._addOverscrollEventListener(function () {
@@ -54,6 +52,17 @@ export class Page {
               console.log(`overscroll DWN! DIV: ${scrollableDiv.id}, clientHeight: ${scrollableDiv.clientHeight}`);
             }
           });
+    }
+
+    _copyComputedStyles(source: HTMLElement, target: HTMLElement) {
+        const computedStyles = window.getComputedStyle(source);
+    
+        for (let i = 0; i < computedStyles.length; i++) {
+            const property = computedStyles[i];
+            const value = computedStyles.getPropertyValue(property);
+            console.log(`property: ${property}, value: ${value}`);
+            (target.style as any)[property] = value;
+        }
     }
 }
 
