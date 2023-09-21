@@ -24,7 +24,7 @@ export class Page {
             }
         }, function () {
             if (self._pageNext) {
-                self._transitionScrollDown.executeScrollDown(pageNext, self);
+                self._transitionScrollDown.executeScrollDown(self, pageNext);
             }
         });
     }

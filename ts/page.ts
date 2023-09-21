@@ -35,7 +35,7 @@ export class Page {
             }
         }, function () {
             if (self._pageNext) {
-                self._transitionScrollDown.executeScrollDown(pageNext!, self);
+                self._transitionScrollDown.executeScrollDown(self, pageNext!);
             }
         });
     }
@@ -45,11 +45,11 @@ export class Page {
         scrollableDiv.addEventListener("scroll", function () {
             console.log(`scrolling! DIV: ${scrollableDiv.id}, scrollTop: ${scrollableDiv.scrollTop}`);
             if (scrollableDiv.scrollTop === 0) {
-              overscrollTopCallback();
-              console.log(`overscroll UP! DIV: ${scrollableDiv.id}, scrollTop: ${scrollableDiv.scrollTop}, scrollHeight: ${scrollableDiv.scrollHeight}, clientHeight: ${scrollableDiv.clientHeight}`);
+                overscrollTopCallback();
+                console.log(`overscroll UP! DIV: ${scrollableDiv.id}, scrollTop: ${scrollableDiv.scrollTop}, scrollHeight: ${scrollableDiv.scrollHeight}, clientHeight: ${scrollableDiv.clientHeight}`);
             } else if (Utility.isScrollToPosition(scrollableDiv.scrollTop + scrollableDiv.clientHeight, scrollableDiv.scrollHeight)) {
-              overscrollBottomCallback();
-              console.log(`overscroll DWN! DIV: ${scrollableDiv.id}, clientHeight: ${scrollableDiv.clientHeight}`);
+                overscrollBottomCallback();
+                console.log(`overscroll DWN! DIV: ${scrollableDiv.id}, clientHeight: ${scrollableDiv.clientHeight}`);
             }
           });
     }

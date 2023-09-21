@@ -41,13 +41,12 @@ export class CubicXAxisTransition extends Transition {
             divScene.appendChild(divPan);
             // Save current body state and scroll page to the next marking
             var divBody = document.getElementById('page-management-container')!.cloneNode(true);
-            
-            // divCube.addEventListener("animationend", (event) => {
-            //     divScene.replaceWith(divBody);
-            //     console.log('animation ends');
-            //     const targetToScroll = document.getElementById(pageAtBottom.getId());
-            //     targetToScroll?.scrollIntoView();
-            // });
+            divCube.addEventListener("animationend", (event) => {
+                divScene.replaceWith(divBody);
+                console.log('animation ends');
+                const targetToScroll = document.getElementById(pageAtBottom.getId());
+                targetToScroll?.scrollIntoView();
+            });
             
             // Body replaced by Cube Animation
             document.getElementById('page-management-container')!.replaceWith(divScene);
