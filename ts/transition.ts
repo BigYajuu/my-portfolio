@@ -9,7 +9,7 @@ export abstract class Transition {
 
     abstract animationStyleScrollDown(): void;
 
-    abstract executeScrollUp(pageAtTop: Page, pageAtBottom: Page): void;
+    abstract executeScrollUp(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void;
     
     abstract executeScrollDown(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void;
 }

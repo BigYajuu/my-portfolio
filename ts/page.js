@@ -21,7 +21,7 @@ export class Page {
         const self = this;
         this._addOverscrollEventListeners(function () {
             if (self._pagePrev) {
-                self._transitionScrollUp.executeScrollUp(self._pagePrev, self);
+                self._transitionScrollUp.executeScrollUp(self._pagePrev, self, pageManagement);
             }
         }, function () {
             if (self._pageNext) {
