@@ -155,7 +155,6 @@ p {
 
 #pan {
   transform-style: preserve-3d;
-  animation: moveCube 0.7s ease;
 }
 
 #cube {
@@ -163,6 +162,14 @@ p {
   height: 100%;
   position: absolute;
   transform-style: preserve-3d;
+}
+
+.panScrollUp {
+  animation: moveCubeScrollUp 0.7s ease;
+}
+
+.panScrollDown {
+  animation: moveCubeScrollDown 0.7s ease;
 }
 
 .rotateCubeScrollUp {
@@ -173,7 +180,15 @@ p {
   animation: rotateCubeScrollDown 0.7s ease;
 }
 
-@keyframes moveCube {
+@keyframes moveCubeScrollUp {
+  0% {
+    transform: translateZ(0);
+  }
+  100% {
+    transform: translateY(200vh) translateZ(100vh);
+  }
+}
+@keyframes moveCubeScrollDown {
   0% {
     transform: translateZ(0);
   }

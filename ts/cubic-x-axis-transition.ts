@@ -29,9 +29,10 @@ export class CubicXAxisTransition extends Transition {
             divScene.classList.add('scene');
             divPan.id = 'pan';
             divCube.id = 'cube';
+            divPan.classList.add('panScrollUp')
             divCube.classList.add('rotateCubeScrollUp');
-            divTop.classList.add('front');
-            divFront.classList.add('bottom');
+            divTop.classList.add('top');
+            divFront.classList.add('front');
             // Assign pages to faces
             divTop.appendChild(pageAtTop.getNode());
             divFront.appendChild(pageAtBottom.getNode());
@@ -66,6 +67,7 @@ export class CubicXAxisTransition extends Transition {
             divScene.classList.add('scene');
             divPan.id = 'pan';
             divCube.id = 'cube';
+            divPan.classList.add('panScrollDown')
             divCube.classList.add('rotateCubeScrollDown');
             divFront.classList.add('front');
             divBottom.classList.add('bottom');
