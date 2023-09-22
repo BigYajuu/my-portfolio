@@ -1,5 +1,6 @@
 import {Transition} from "./transition.js"
 import {Page} from "./page.js"
+import PageManagement from "./page-management.js";
 
 export class CubicXAxisTransition extends Transition {
     
@@ -13,7 +14,7 @@ export class CubicXAxisTransition extends Transition {
     executeScrollUp(pageAtTop: Page, pageAtBottom: Page): void {
         throw new Error("Method not implemented.");
     }
-    executeScrollDown(pageAtTop: Page, pageAtBottom: Page): void {
+    executeScrollDown(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void {
         /* <div class="scene">
             <div id="pan">
                 <div id="cube">
@@ -40,12 +41,13 @@ export class CubicXAxisTransition extends Transition {
             divPan.appendChild(divCube);
             divScene.appendChild(divPan);
             // Save current body state and scroll page to the next marking
-            var divBody = document.getElementById('page-management-container')!.cloneNode(true);
+            var divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
             divCube.addEventListener("animationend", (event) => {
                 divScene.replaceWith(divBody);
                 console.log('animation ends');
                 const targetToScroll = document.getElementById(pageAtBottom.getId());
                 targetToScroll?.scrollIntoView();
+                pageManagement?.updatePageEvents();
             });
             
             // Body replaced by Cube Animation

@@ -9,7 +9,7 @@ export class CubicXAxisTransition extends Transition {
     executeScrollUp(pageAtTop, pageAtBottom) {
         throw new Error("Method not implemented.");
     }
-    executeScrollDown(pageAtTop, pageAtBottom) {
+    executeScrollDown(pageAtTop, pageAtBottom, pageManagement) {
         /* <div class="scene">
             <div id="pan">
                 <div id="cube">
@@ -35,12 +35,13 @@ export class CubicXAxisTransition extends Transition {
             divPan.appendChild(divCube);
             divScene.appendChild(divPan);
             // Save current body state and scroll page to the next marking
-            var divBody = document.getElementById('page-management-container').cloneNode(true);
+            var divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
             divCube.addEventListener("animationend", (event) => {
                 divScene.replaceWith(divBody);
                 console.log('animation ends');
                 const targetToScroll = document.getElementById(pageAtBottom.getId());
                 targetToScroll === null || targetToScroll === void 0 ? void 0 : targetToScroll.scrollIntoView();
+                pageManagement === null || pageManagement === void 0 ? void 0 : pageManagement.updatePageEvents();
             });
             // Body replaced by Cube Animation
             document.getElementById('page-management-container').replaceWith(divScene);

@@ -1,4 +1,5 @@
 import {Page} from "./page"
+import PageManagement from "./page-management";
 
 export abstract class Transition {
     constructor() {
@@ -10,7 +11,7 @@ export abstract class Transition {
 
     abstract executeScrollUp(pageAtTop: Page, pageAtBottom: Page): void;
     
-    abstract executeScrollDown(pageAtTop: Page, pageAtBottom: Page): void;
+    abstract executeScrollDown(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void;
 }
 
 export default Transition;

@@ -8,10 +8,17 @@ export class PageManagement {
             var pagePrev = i - 1 >= 0 ? this.pages[i - 1] : null;
             var pageNext = i + 1 < this.pages.length ? this.pages[i + 1] : null;
             this.pages[i].setNeighbouringPages(pageNext, pagePrev);
+            this.pages[i].setDefaultOverscrollEventListeners(this);
         }
     }
     _addPage(page) {
         this.pages.push(page);
+    }
+    updatePageEvents() {
+        const self = this;
+        for (let i = 0; i < this.pages.length; i++) {
+            this.pages[i].setDefaultOverscrollEventListeners(this);
+        }
     }
 }
 export default PageManagement;
