@@ -2,12 +2,19 @@ import PageManagement from "./page-management.js";
 import {Transition} from "./transition.js"
 import {Utility} from "./utility.js";
 
+enum ScrollEdgeDetection {
+    AT_TOP,
+    AT_BOTTOM,
+    NONE
+}
+
 export class Page {
     _id: string;
     _pageNext?: Page | null;
     _pagePrev?: Page | null;
     _transitionScrollUp: Transition;
     _transitionScrollDown: Transition;
+    _pageScrollEdgeDetection: ScrollEdgeDetection = ScrollEdgeDetection.NONE;
 
     constructor(id: string, scrollTransition: Transition) {
         this._id = id;
@@ -30,31 +37,22 @@ export class Page {
         this._pagePrev = pagePrev;
     }
 
-    setDefaultOverscrollEventListeners(pageManagement?: PageManagement) {
+    getScrollUpCallback(pageManagement?: PageManagement) {
         const self = this;
-        this._addOverscrollEventListeners(function () {
+        return function () {
             if (self._pagePrev) {
                 self._transitionScrollUp.executeScrollUp(self._pagePrev!, self, pageManagement);
             }
-        }, function () {
+        }
+    }
+
+    getScrollDownCallback(pageManagement?: PageManagement) {
+        const self = this;
+        return function () {
             if (self._pageNext) {
                 self._transitionScrollDown.executeScrollDown(self, self._pageNext!, pageManagement);
             }
-        });
-    }
-
-    _addOverscrollEventListeners(overscrollTopCallback: Function, overscrollBottomCallback: Function) {
-        const scrollableDiv = document.getElementById(this._id)!
-        scrollableDiv.addEventListener("scroll", function () {
-            console.log(`scrolling! DIV: ${scrollableDiv.id}, scrollTop: ${scrollableDiv.scrollTop}`);
-            if (scrollableDiv.scrollTop === 0) {
-                overscrollTopCallback();
-                console.log(`overscroll UP! DIV: ${scrollableDiv.id}, scrollTop: ${scrollableDiv.scrollTop}, scrollHeight: ${scrollableDiv.scrollHeight}, clientHeight: ${scrollableDiv.clientHeight}`);
-            } else if (Utility.isScrollToPosition(scrollableDiv.scrollTop + scrollableDiv.clientHeight, scrollableDiv.scrollHeight)) {
-                overscrollBottomCallback();
-                console.log(`overscroll DWN! DIV: ${scrollableDiv.id}, clientHeight: ${scrollableDiv.clientHeight}`);
-            }
-          });
+        }
     }
 }
 

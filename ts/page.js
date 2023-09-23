@@ -1,6 +1,12 @@
-import { Utility } from "./utility.js";
+var ScrollEdgeDetection;
+(function (ScrollEdgeDetection) {
+    ScrollEdgeDetection[ScrollEdgeDetection["AT_TOP"] = 0] = "AT_TOP";
+    ScrollEdgeDetection[ScrollEdgeDetection["AT_BOTTOM"] = 1] = "AT_BOTTOM";
+    ScrollEdgeDetection[ScrollEdgeDetection["NONE"] = 2] = "NONE";
+})(ScrollEdgeDetection || (ScrollEdgeDetection = {}));
 export class Page {
     constructor(id, scrollTransition) {
+        this._pageScrollEdgeDetection = ScrollEdgeDetection.NONE;
         this._id = id;
         this._transitionScrollUp = scrollTransition;
         this._transitionScrollDown = scrollTransition;
@@ -17,31 +23,21 @@ export class Page {
         this._pageNext = pageNext;
         this._pagePrev = pagePrev;
     }
-    setDefaultOverscrollEventListeners(pageManagement) {
+    getScrollUpCallback(pageManagement) {
         const self = this;
-        this._addOverscrollEventListeners(function () {
+        return function () {
             if (self._pagePrev) {
                 self._transitionScrollUp.executeScrollUp(self._pagePrev, self, pageManagement);
             }
-        }, function () {
+        };
+    }
+    getScrollDownCallback(pageManagement) {
+        const self = this;
+        return function () {
             if (self._pageNext) {
                 self._transitionScrollDown.executeScrollDown(self, self._pageNext, pageManagement);
             }
-        });
-    }
-    _addOverscrollEventListeners(overscrollTopCallback, overscrollBottomCallback) {
-        const scrollableDiv = document.getElementById(this._id);
-        scrollableDiv.addEventListener("scroll", function () {
-            console.log(`scrolling! DIV: ${scrollableDiv.id}, scrollTop: ${scrollableDiv.scrollTop}`);
-            if (scrollableDiv.scrollTop === 0) {
-                overscrollTopCallback();
-                console.log(`overscroll UP! DIV: ${scrollableDiv.id}, scrollTop: ${scrollableDiv.scrollTop}, scrollHeight: ${scrollableDiv.scrollHeight}, clientHeight: ${scrollableDiv.clientHeight}`);
-            }
-            else if (Utility.isScrollToPosition(scrollableDiv.scrollTop + scrollableDiv.clientHeight, scrollableDiv.scrollHeight)) {
-                overscrollBottomCallback();
-                console.log(`overscroll DWN! DIV: ${scrollableDiv.id}, clientHeight: ${scrollableDiv.clientHeight}`);
-            }
-        });
+        };
     }
 }
 export default Page;

@@ -8,6 +8,8 @@ $element-offset-left: 24px;
 $border-radius-standard: 24px;
 $container-margin: 8px;
 $container-padding: 16px;
+$transition-time: 0.7s;
+$transition-time-debug: 3s;
 
 * {
     box-sizing: border-box;
@@ -19,6 +21,11 @@ body {
     font-style: normal;
     overscroll-behavior-x: none;
     position: relative;
+}
+
+.main-scaffold{
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .header {
@@ -153,7 +160,7 @@ p {
 
 /* 3D Transitions */
 .scene{
-    perspective: 200vh;
+    perspective: 400vh;
     position: relative;
 }
 
@@ -173,24 +180,24 @@ p {
 }
 
 .panScrollUp {
-    animation: moveCubeScrollUp 0.7s ease;
+    animation: moveCubeScrollUp $transition-time ease;
 }
 
 .panScrollDown {
-    animation: moveCubeScrollDown 0.7s ease;
+    animation: moveCubeScrollDown $transition-time ease;
 }
 
 .rotateCubeScrollUp {
-    animation: rotateCubeScrollUp 0.7s ease;
+    animation: rotateCubeScrollUp $transition-time ease;
 }
 
 .rotateCubeScrollDown {
-    animation: rotateCubeScrollDown 0.7s ease;
+    animation: rotateCubeScrollDown $transition-time ease;
 }
 
 @keyframes moveCubeScrollUp {
     0% { transform: translateZ(0); }
-    100% { transform: translateY(200vh) translateZ(100vh); }
+    100% { transform: translateY(100vh) translateZ(100vh); }
 }
 
 @keyframes moveCubeScrollDown {
@@ -199,7 +206,7 @@ p {
 }
 
 @keyframes rotateCubeScrollUp {
-    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    0% { transform: translateY(-100vh) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
     100% { transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg); }
 }
 

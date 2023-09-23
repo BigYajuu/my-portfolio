@@ -40,7 +40,8 @@
 
   <header>
   </header>
-  <div id="page-management-container">
+  <div class="main-scaffold" id="page-management-container">
+    
     <div class="entire-window dynamic-bg" id="page-1">  <!-- Operates the background -->
       <div class="header"> 
         <h1>Chuyue Wu</h1>
@@ -133,17 +134,6 @@
             }
           );
         </script>
-      </div>
-  
-      <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
-        <div class="row">
-          <div class="col-abs-width col-default-padding">
-            <div class="container">
-              <h1>Item 3</h1>
-              <p>Item 3</p>
-            </div>
-          </div>
-        </div>
       </div>
   
       <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
@@ -338,10 +328,9 @@
     import {Page} from "/ts/page.js";
     import {PageManagement} from "/ts/page-management.js";
     import {CubicXAxisTransition} from "/ts/cubic-x-axis-transition.js";
-
     var page1 = new Page("page-1", new CubicXAxisTransition());
     var page2 = new Page("page-2", new CubicXAxisTransition());
-    var pageManagement = new PageManagement([page1, page2]);
+    var pageManagement = new PageManagement("page-management-container", [page1, page2]);
   </script>
   
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->

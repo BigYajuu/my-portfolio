@@ -13,6 +13,11 @@ body {
   position: relative;
 }
 
+.main-scaffold {
+  height: 100vh;
+  overflow-y: auto;
+}
+
 .header {
   width: 100%;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
@@ -145,7 +150,7 @@ p {
 
 /* 3D Transitions */
 .scene {
-  perspective: 200vh;
+  perspective: 400vh;
   position: relative;
 }
 
@@ -185,7 +190,7 @@ p {
     transform: translateZ(0);
   }
   100% {
-    transform: translateY(200vh) translateZ(100vh);
+    transform: translateY(100vh) translateZ(100vh);
   }
 }
 @keyframes moveCubeScrollDown {
@@ -198,7 +203,7 @@ p {
 }
 @keyframes rotateCubeScrollUp {
   0% {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    transform: translateY(-100vh) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
   }
   100% {
     transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg);
