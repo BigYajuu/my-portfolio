@@ -8,6 +8,8 @@ $element-offset-left: 24px;
 $border-radius-standard: 24px;
 $container-margin: 8px;
 $container-padding: 16px;
+$transition-time: 0.7s;
+$transition-time-debug: 3s;
 
 * {
     box-sizing: border-box;
@@ -18,6 +20,12 @@ body {
     font-weight: normal;
     font-style: normal;
     overscroll-behavior-x: none;
+    position: relative;
+}
+
+.main-scaffold{
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .header {
@@ -102,6 +110,7 @@ p {
 .entire-window {
     height: 100vh;
     width: 100%;
+    overflow-y: auto;
 }
 
 .dynamic-bg {
@@ -151,21 +160,69 @@ p {
 
 /* 3D Transitions */
 .scene{
-    overflow: hidden;
-    perspective: 90em;
+    perspective: 400vh;
+    position: relative;
 }
 
-.x-axis {
-    animation: cubeTransition 0.5s ease 0s infinite alternate;
+.scene-removed{
+    display: none;
 }
 
-@keyframes cubeTransition {
-    0% {
-      transform: rotateX(0deg);
-    }
-    100% {
-      transform: translate3d(0, 50%, -480px) rotateX(-90deg);
-    }
+#pan {
+    transform-style: preserve-3d;
+}
+  
+#cube {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.panScrollUp {
+    animation: moveCubeScrollUp $transition-time ease;
+}
+
+.panScrollDown {
+    animation: moveCubeScrollDown $transition-time ease;
+}
+
+.rotateCubeScrollUp {
+    animation: rotateCubeScrollUp $transition-time ease;
+}
+
+.rotateCubeScrollDown {
+    animation: rotateCubeScrollDown $transition-time ease;
+}
+
+@keyframes moveCubeScrollUp {
+    0% { transform: translateZ(0); }
+    100% { transform: translateY(100vh) translateZ(100vh); }
+}
+
+@keyframes moveCubeScrollDown {
+    0% { transform: translateZ(0); }
+    100% { transform: translateZ(-100vh); }
+}
+
+@keyframes rotateCubeScrollUp {
+    0% { transform: translateY(-100vh) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    100% { transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg); }
+}
+
+@keyframes rotateCubeScrollDown {
+    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    100% { transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg); }
+}
+
+#cube .front  {
+    transform: rotateY(0deg) translateZ(0);
+}
+#cube .top    {
+    transform: rotateX(90deg) translateZ(-50vh) translateY(-50vh);
+}
+#cube .bottom {
+    transform: rotateX(-90deg) translateZ(-50vh) translateY(50vh);
 }
 
 /* Responsive Col */

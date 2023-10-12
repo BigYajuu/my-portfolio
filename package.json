@@ -11,10 +11,17 @@
     "sass": "sass --watch css/custom_style.scss css/custom_style.css",
     "start": "npm run build && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc_autosave" : "tsc -w"
+    "tsc_autosave": "tsc -w"
   },
   "devDependencies": {
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.11",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@types/jquery": "^3.5.18",
     "parcel-bundler": "^1.12.4",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "html2canvas": "^1.4.1"
   }
 }

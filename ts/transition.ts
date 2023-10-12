@@ -1,4 +1,7 @@
-abstract class Transition {
+import {Page} from "./page"
+import PageManagement from "./page-management";
+
+export abstract class Transition {
     constructor() {
     }
 
@@ -6,7 +9,9 @@ abstract class Transition {
 
     abstract animationStyleScrollDown(): void;
 
-    abstract executeScrollUp(pageAtTop: string, pageAtBottom: string): void;
+    abstract executeScrollUp(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void;
     
-    abstract executeScrollDown(pageAtTop: string, pageAtBottom: string): void;
+    abstract executeScrollDown(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void;
 }
+
+export default Transition;

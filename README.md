@@ -1,6 +1,5 @@
 ## Prerequisites
 
-
 ### Node.js and Chocolatey
 Install Node.js and Chocolatey
 
@@ -23,3 +22,6 @@ Sass is a powerful extension tool to the original CSS syntax. The Sass files mus
 The automated script `"sass"` in package.json helps to detect any saved changes occured to the Sass file. Any name changes to the .scss file will require refactoring in the script.
 
 You must run this tool first for any saved changes to be compiled in the .scss file. Run `npm run sass`.
+
+### Live Server
+Run `live-server` to simulate server-side environment, allowing clearances in CORS authentication whilst debugging the website. Once the server is live, open and test the webpage using the localhost URL. (Default port: 8080)

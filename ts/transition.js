@@ -1,5 +1,5 @@
-"use strict";
-class Transition {
+export class Transition {
     constructor() {
     }
 }
+export default Transition;
