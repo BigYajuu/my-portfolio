@@ -34,7 +34,7 @@ class AnimatedXScrollable {
         this.scrollChevronMouseStateRight = ScrollChevronMouseState.ALONE;
     }
 
-    build = function (selector, content) {
+    build = function (selector, pageSelector, content) {
         let height;
         let self = this;
         $(document).ready(function() {
@@ -65,6 +65,8 @@ class AnimatedXScrollable {
                 // 4) Setup Mouse Scroll Events
                 self._setupScrollMouseEvent(scrollChevronLeftID, scrollableID, ScrollDirection.LEFT);
                 self._setupScrollMouseEvent(scrollChevronRightID, scrollableID, ScrollDirection.RIGHT);
+                self._updateTopPosition(scrollChevronLeftID, pageSelector, $(`#${scrollChevronLeftID}`).position().top);
+                self._updateTopPosition(scrollChevronRightID, pageSelector, $(`#${scrollChevronRightID}`).position().top);
             }
         });
     }
@@ -166,6 +168,14 @@ class AnimatedXScrollable {
                 }
             }, 15);
             scrollEdgeResponse();
+        });
+    }
+
+    _updateTopPosition = function (selector, pageSelector, topPosition) {
+        const pageDiv = document.getElementById(pageSelector);
+        pageDiv.addEventListener('scroll', function() {
+            console.log(topPosition - pageDiv.scrollTop);
+            $(`#${selector}`).css('top', topPosition - pageDiv.scrollTop);
         });
     }
 }
