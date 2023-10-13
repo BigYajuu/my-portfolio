@@ -1,6 +1,6 @@
-import {Transition} from "./transition.js"
-import {Page} from "./page.js"
-import PageManagement from "./page-management.js";
+import Transition from "./transition.js";
+import Page from "engine/page.js";
+import PageManagement from "engine/page-management.js";
 
 export class CubicXAxisTransition extends Transition {
     

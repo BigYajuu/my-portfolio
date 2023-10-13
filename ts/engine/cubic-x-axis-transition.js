@@ -1,4 +1,4 @@
-import { Transition } from "./transition.js";
+import Transition from "./transition.js";
 export class CubicXAxisTransition extends Transition {
     /*  Follow the following div structure: (scrollDown)
         <div class="scene">

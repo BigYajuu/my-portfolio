@@ -1,5 +1,5 @@
-import {Page} from "./page"
-import PageManagement from "./page-management";
+import {Page} from "engine/page"
+import PageManagement from "engine/page-management";
 
 export abstract class Transition {
     constructor() {

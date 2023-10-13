@@ -1,5 +1,5 @@
-import {Page} from "./page.js"
-import {Utility, ScrollDirection} from "./utility.js";
+import Page from "engine/page";
+import {Utility, ScrollDirection} from "../utility.js";
 
 export class PageManagement {
     _divID: string;

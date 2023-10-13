@@ -1,6 +1,5 @@
-import PageManagement from "./page-management.js";
-import {Transition} from "./transition.js"
-import {Utility} from "./utility.js";
+import PageManagement from "engine/page-management";
+import Transition from "engine/transition";
 
 enum ScrollEdgeDetection {
     AT_TOP,
