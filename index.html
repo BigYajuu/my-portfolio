@@ -22,14 +22,11 @@
   <link rel="stylesheet" href="css/custom_style.css">
 
   <meta name="theme-color" content="#fafafa">
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
   <script src="js/jquery/jquery-3.7.0.min.js"></script>
-  <script src="js/jquery/detectmobilebrowser.js"></script>
   <!-- FontAwesome -->
   <!-- <script src="https://kit.fontawesome.com/33c5cad846.js" crossorigin="anonymous"></script> -->
   <!-- Advanced Animation Components -->
-  <script src="js/ui-components/animated-x-scrollable.js"></script>
+  <!-- <script src="js/ui-components/animated-x-scrollable.js"></script> -->
 </head>
 
 <body class="dynamic-bg">
@@ -52,7 +49,8 @@
       </div>
   
       <div class="section" id="section-projects-items">
-        <script>
+        <script type="module">
+          import {AnimatedXScrollable} from "/ts/components/animated-x-scrollable.js";
           $(document).ready(function() {
             new AnimatedXScrollable().build("section-projects-items", "page-1", `
               <div class="col-abs-width col-default-padding">
@@ -103,7 +101,8 @@
       </div>
   
       <div class="section" id="section-projects-items-2">
-        <script>
+        <script type="module">
+          import {AnimatedXScrollable} from "/ts/components/animated-x-scrollable.js";
           $(document).ready(function() {
             new AnimatedXScrollable().build("section-projects-items-2", "page-1", `
               <div class="col-abs-width col-default-padding">
@@ -190,7 +189,8 @@
       </div>
 
       <div class="section" id="section-projects-items-3">
-        <script>
+        <script type="module">
+          import {AnimatedXScrollable} from "/ts/components/animated-x-scrollable.js";
           $(document).ready(function() {
             new AnimatedXScrollable().build("section-projects-items-3", "page-2", `
               <div class="col-abs-width col-default-padding">
@@ -255,7 +255,8 @@
       </div>
   
       <div class="section" id="section-projects-items-4">
-        <script>
+        <script type="module">
+          import {AnimatedXScrollable} from "/ts/components/animated-x-scrollable.js";
           $(document).ready(function() {
             new AnimatedXScrollable().build("section-projects-items-4", "page-2", `
               <div class="col-abs-width col-default-padding">
