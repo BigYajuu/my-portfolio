@@ -12,8 +12,8 @@ export enum DeviceType {
 
 export class Utility {
     static isScrollToPosition(figure1: number, figure2: number): boolean {
-        const tolerance = 1;
-        return Math.abs(figure1 - figure2) < tolerance;
+        const tolerance = 2;
+        return Math.abs(figure1 - figure2) <= tolerance;
     }
 
     static determineScrollDirection(lastVPosition: number, currentVPosition: number): ScrollDirection {

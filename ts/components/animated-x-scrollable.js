@@ -82,9 +82,7 @@ export class AnimatedXScrollable {
             function scrollEdgeResponse() {
                 // Set Chevron's state to available/blank depending on whether the edge is reached on either side.
                 if (direction == ScrollDirection.RIGHT) {
-                    if (Math.round($(`#${scrollableID}`).scrollLeft()) == ($(`#${scrollableID}`).prop('scrollWidth') - $(window).width())
-                        || Math.round($(`#${scrollableID}`).scrollLeft()) - 1 == ($(`#${scrollableID}`).prop('scrollWidth') - $(window).width())
-                        || Math.ceil($(`#${scrollableID}`).scrollLeft()) + 1 == ($(`#${scrollableID}`).prop('scrollWidth') - $(window).width())) {
+                    if (Utility.isScrollToPosition(Math.round($(`#${scrollableID}`).scrollLeft()), $(`#${scrollableID}`).prop('scrollWidth') - $(`#${scrollableID}`).prop('clientWidth'))) {
                         customAnimation(scrollChevronID, ScrollChevronBlankStyle);
                     }
                     else if (self.scrollChevronMouseStateRight == ScrollChevronMouseState.ALONE) {

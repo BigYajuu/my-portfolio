@@ -12,8 +12,8 @@ export var DeviceType;
 })(DeviceType || (DeviceType = {}));
 export class Utility {
     static isScrollToPosition(figure1, figure2) {
-        const tolerance = 1;
-        return Math.abs(figure1 - figure2) < tolerance;
+        const tolerance = 2;
+        return Math.abs(figure1 - figure2) <= tolerance;
     }
     static determineScrollDirection(lastVPosition, currentVPosition) {
         if (lastVPosition < currentVPosition) {
