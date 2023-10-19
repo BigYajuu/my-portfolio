@@ -23,6 +23,9 @@ export class PageManagement {
         self.setOverscrollEventListener();
     }
     setOverscrollEventListener() {
+        // The listener detects scroll on the main div 
+        // and actuates up/down transition animation 
+        // accordingly.
         const self = this;
         const mainDiv = document.getElementById(this._divID);
         self._setLastVPosition(mainDiv.scrollTop); // Update current V position
@@ -39,6 +42,8 @@ export class PageManagement {
                 scrollDownCallback();
             }
         });
+    }
+    setComponentEventListeners() {
     }
     _setLastVPosition(lastVPosition) {
         this._lastVPosition = lastVPosition;

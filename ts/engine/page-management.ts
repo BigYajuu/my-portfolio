@@ -2,6 +2,9 @@ import Page from "engine/page";
 import {Utility, ScrollDirection} from "../utility.js";
 
 export class PageManagement {
+    // A class that manages and controls all the pages 
+    // and keeps the listeners updated 
+    // whenever transition takes place.
     _divID: string;
     _currentPageIndex: number = 0;
     _lastVPosition: number = 0;
@@ -30,6 +33,9 @@ export class PageManagement {
     }
 
     setOverscrollEventListener() {
+        // The listener detects scroll on the main div 
+        // and actuates up/down transition animation 
+        // accordingly.
         const self = this;
         const mainDiv = document.getElementById(this._divID)!
         self._setLastVPosition(mainDiv.scrollTop);  // Update current V position
@@ -46,6 +52,10 @@ export class PageManagement {
             }
         }
         );
+    }
+
+    setComponentEventListeners() {
+
     }
 
     _setLastVPosition(lastVPosition: number) {
