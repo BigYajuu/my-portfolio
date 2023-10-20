@@ -76,10 +76,13 @@ export class AnimatedXScrollable {
                     `
                 );
                 // 4) Setup Mouse Scroll Events
-                self._setupScrollMouseEvent(scrollChevronLeftID, scrollableID, ScrollDirection.LEFT);
-                self._setupScrollMouseEvent(scrollChevronRightID, scrollableID, ScrollDirection.RIGHT);
-                self._updateTopPosition(scrollChevronLeftID, pageSelector, $(`#${scrollChevronLeftID}`).position().top);
-                self._updateTopPosition(scrollChevronRightID, pageSelector, $(`#${scrollChevronRightID}`).position().top);
+                self._setScrollMouseEvent(scrollChevronLeftID, scrollableID, ScrollDirection.LEFT);
+                self._setScrollMouseEvent(scrollChevronRightID, scrollableID, ScrollDirection.RIGHT);
+                // 5) Make Chevrons to follow scroll
+                const fixedDivID = `${pageSelector}-fixed-div`;
+                self.appendDefaultFixedDiv(pageSelector, fixedDivID);
+                self._setChevronTopPositionEventListeners(scrollChevronLeftID, pageSelector, scrollableID);
+                self._setChevronTopPositionEventListeners(scrollChevronRightID, pageSelector, scrollableID);
             }
         });
     }
@@ -100,7 +103,18 @@ export class AnimatedXScrollable {
                 `;
     }
 
-    private _setupScrollMouseEvent =  (scrollChevronID: string, scrollableID: string, direction: ScrollDirection) => {
+    private appendDefaultFixedDiv = function (pageSelector: string, id: string) {
+        // $(document).ready(function() {
+            $(`#${pageSelector}`).append(
+                `
+                <div id="${id}" style="position: fixed; top: 0; left: 0; z-index: 9999"><p></p></div>
+                `
+            );
+        // })
+        
+    }
+
+    private _setScrollMouseEvent =  (scrollChevronID: string, scrollableID: string, direction: ScrollDirection) => {
         let self = this;
         let currentScrollAnimationStyle: ScrollChevronStyle;
         function customAnimation(scrollChevronID: string, scrollChevronStyle: ScrollChevronStyle) {
@@ -181,13 +195,18 @@ export class AnimatedXScrollable {
             scrollEdgeResponse();
         });
     }
-
-    private _updateTopPosition = function (selector: string, pageSelector: string, topPosition: number) {
-        const pageDiv = document.getElementById(pageSelector)!;
-        pageDiv.addEventListener('scroll', function() {
-            console.log(topPosition - pageDiv.scrollTop);
-            $(`#${selector}`).css('top', topPosition - pageDiv.scrollTop);
+    
+    private _setChevronTopPositionEventListeners = (selector: string, pageSelector: string, scrollableSelector: string) => {
+        const self = this;
+        $(`#${pageSelector}`).on('scroll', function() {
+            self._updateChevronTopPositions(selector, pageSelector, scrollableSelector);
         });
+    }
+
+    private _updateChevronTopPositions = function (selector: string, pageSelector: string, scrollableSelector: string) {
+        var scrollableOffset = $(`#${scrollableSelector}`).position()!;
+        console.log(`${pageSelector}: ${scrollableOffset.top} - ${$(`#${pageSelector}`).scrollTop()!}`);
+        $(`#${selector}`).css('top', scrollableOffset.top);
     }
 }
 

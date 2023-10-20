@@ -55,7 +55,7 @@ export class PageManagement {
     }
 
     setComponentEventListeners() {
-
+        
     }
 
     _setLastVPosition(lastVPosition: number) {

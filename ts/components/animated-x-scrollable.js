@@ -48,10 +48,13 @@ export class AnimatedXScrollable {
                     </div>
                     `);
                     // 4) Setup Mouse Scroll Events
-                    self._setupScrollMouseEvent(scrollChevronLeftID, scrollableID, ScrollDirection.LEFT);
-                    self._setupScrollMouseEvent(scrollChevronRightID, scrollableID, ScrollDirection.RIGHT);
-                    self._updateTopPosition(scrollChevronLeftID, pageSelector, $(`#${scrollChevronLeftID}`).position().top);
-                    self._updateTopPosition(scrollChevronRightID, pageSelector, $(`#${scrollChevronRightID}`).position().top);
+                    self._setScrollMouseEvent(scrollChevronLeftID, scrollableID, ScrollDirection.LEFT);
+                    self._setScrollMouseEvent(scrollChevronRightID, scrollableID, ScrollDirection.RIGHT);
+                    // 5) Make Chevrons to follow scroll
+                    const fixedDivID = `${pageSelector}-fixed-div`;
+                    self.appendDefaultFixedDiv(pageSelector, fixedDivID);
+                    self._setChevronTopPositionEventListeners(scrollChevronLeftID, pageSelector, scrollableID);
+                    self._setChevronTopPositionEventListeners(scrollChevronRightID, pageSelector, scrollableID);
                 }
             });
         };
@@ -69,7 +72,14 @@ export class AnimatedXScrollable {
                 </div>
                 `;
         };
-        this._setupScrollMouseEvent = (scrollChevronID, scrollableID, direction) => {
+        this.appendDefaultFixedDiv = function (pageSelector, id) {
+            // $(document).ready(function() {
+            $(`#${pageSelector}`).append(`
+                <div id="${id}" style="position: fixed; top: 0; left: 0; z-index: 9999"><p></p></div>
+                `);
+            // })
+        };
+        this._setScrollMouseEvent = (scrollChevronID, scrollableID, direction) => {
             let self = this;
             let currentScrollAnimationStyle;
             function customAnimation(scrollChevronID, scrollChevronStyle) {
@@ -156,12 +166,16 @@ export class AnimatedXScrollable {
                 scrollEdgeResponse();
             });
         };
-        this._updateTopPosition = function (selector, pageSelector, topPosition) {
-            const pageDiv = document.getElementById(pageSelector);
-            pageDiv.addEventListener('scroll', function () {
-                console.log(topPosition - pageDiv.scrollTop);
-                $(`#${selector}`).css('top', topPosition - pageDiv.scrollTop);
+        this._setChevronTopPositionEventListeners = (selector, pageSelector, scrollableSelector) => {
+            const self = this;
+            $(`#${pageSelector}`).on('scroll', function () {
+                self._updateChevronTopPositions(selector, pageSelector, scrollableSelector);
             });
+        };
+        this._updateChevronTopPositions = function (selector, pageSelector, scrollableSelector) {
+            var scrollableOffset = $(`#${scrollableSelector}`).position();
+            console.log(`${pageSelector}: ${scrollableOffset.top} - ${$(`#${pageSelector}`).scrollTop()}`);
+            $(`#${selector}`).css('top', scrollableOffset.top);
         };
         this.scrollPosition = 0;
         this.scrollSpeed = 0;
