@@ -38,6 +38,7 @@ export class AnimatedXScrollable {
     private scrollChevronMouseStateLeft: ScrollChevronMouseState;
     private scrollChevronMouseStateRight: ScrollChevronMouseState;
 
+
     constructor() {
         this.scrollPosition = 0;
         this.scrollSpeed = 0;

@@ -33,8 +33,9 @@
 
   <header>
   </header>
+
   <div class="main-scaffold" id="page-management-container">
-    
+
     <div class="entire-window dynamic-bg" id="page-1">  <!-- Operates the background -->
       <div class="header"> 
         <h1>Chuyue Wu</h1>
@@ -51,6 +52,7 @@
       <div class="section" id="section-projects-items">
         <script type="module">
           import {AnimatedXScrollable} from "/ts/components/animated-x-scrollable.js";
+          import {pageManagement} from "/ts/global_declarations.js";
           $(document).ready(function() {
             new AnimatedXScrollable().build("section-projects-items", "page-1", `
               <div class="col-abs-width col-default-padding">
@@ -288,16 +290,6 @@
       </div>
     </div>
   </div>
-  
-
-  <script type="module">
-    import {Page} from "/ts/engine/page.js";
-    import {PageManagement} from "/ts/engine/page-management.js";
-    import {CubicXAxisTransition} from "/ts/engine/cubic-x-axis-transition.js";
-    var page1 = new Page("page-1", new CubicXAxisTransition());
-    var page2 = new Page("page-2", new CubicXAxisTransition());
-    var pageManagement = new PageManagement("page-management-container", [page1, page2]);
-  </script>
   
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
