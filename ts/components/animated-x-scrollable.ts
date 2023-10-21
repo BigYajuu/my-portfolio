@@ -198,6 +198,9 @@ export class AnimatedXScrollable {
     
     private _setChevronTopPositionEventListeners = (selector: string, pageSelector: string, scrollableSelector: string) => {
         const self = this;
+        $(`#page-management-container`).on('scroll', function() {
+            self._updateChevronTopPositions(selector, pageSelector, scrollableSelector);
+        });
         $(`#${pageSelector}`).on('scroll', function() {
             self._updateChevronTopPositions(selector, pageSelector, scrollableSelector);
         });
