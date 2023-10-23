@@ -8,21 +8,21 @@ enum ScrollEdgeDetection {
 }
 
 export class Page {
-    _id: string;
-    _pageNext?: Page | null;
-    _pagePrev?: Page | null;
-    _transitionScrollUp: Transition;
-    _transitionScrollDown: Transition;
-    _pageScrollEdgeDetection: ScrollEdgeDetection = ScrollEdgeDetection.NONE;
+    private id: string;
+    private pageNext?: Page | null;
+    private pagePrev?: Page | null;
+    private transitionScrollUp: Transition;
+    private transitionScrollDown: Transition;
+    private pageScrollEdgeDetection: ScrollEdgeDetection = ScrollEdgeDetection.NONE;
 
     constructor(id: string, scrollTransition: Transition) {
-        this._id = id;
-        this._transitionScrollUp = scrollTransition;
-        this._transitionScrollDown = scrollTransition;
+        this.id = id;
+        this.transitionScrollUp = scrollTransition;
+        this.transitionScrollDown = scrollTransition;
     }
 
     getId() {
-        return this._id;
+        return this.id;
     }
 
     getNode() {
@@ -32,15 +32,15 @@ export class Page {
 
     setNeighbouringPages(pageNext: Page | null, pagePrev: Page | null) {
         const self = this;
-        this._pageNext = pageNext;
-        this._pagePrev = pagePrev;
+        this.pageNext = pageNext;
+        this.pagePrev = pagePrev;
     }
 
     getScrollUpCallback(pageManagement?: PageManagement) {
         const self = this;
         return function () {
-            if (self._pagePrev) {
-                self._transitionScrollUp.executeScrollUp(self._pagePrev!, self, pageManagement);
+            if (self.pagePrev) {
+                self.transitionScrollUp.executeScrollUp(self.pagePrev!, self, pageManagement);
             }
         }
     }
@@ -48,8 +48,8 @@ export class Page {
     getScrollDownCallback(pageManagement?: PageManagement) {
         const self = this;
         return function () {
-            if (self._pageNext) {
-                self._transitionScrollDown.executeScrollDown(self, self._pageNext!, pageManagement);
+            if (self.pageNext) {
+                self.transitionScrollDown.executeScrollDown(self, self.pageNext!, pageManagement);
             }
         }
     }

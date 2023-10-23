@@ -6,13 +6,13 @@ var ScrollEdgeDetection;
 })(ScrollEdgeDetection || (ScrollEdgeDetection = {}));
 export class Page {
     constructor(id, scrollTransition) {
-        this._pageScrollEdgeDetection = ScrollEdgeDetection.NONE;
-        this._id = id;
-        this._transitionScrollUp = scrollTransition;
-        this._transitionScrollDown = scrollTransition;
+        this.pageScrollEdgeDetection = ScrollEdgeDetection.NONE;
+        this.id = id;
+        this.transitionScrollUp = scrollTransition;
+        this.transitionScrollDown = scrollTransition;
     }
     getId() {
-        return this._id;
+        return this.id;
     }
     getNode() {
         const clonedElement = $(`#${this.getId()}`).clone(true, true)[0];
@@ -20,22 +20,22 @@ export class Page {
     }
     setNeighbouringPages(pageNext, pagePrev) {
         const self = this;
-        this._pageNext = pageNext;
-        this._pagePrev = pagePrev;
+        this.pageNext = pageNext;
+        this.pagePrev = pagePrev;
     }
     getScrollUpCallback(pageManagement) {
         const self = this;
         return function () {
-            if (self._pagePrev) {
-                self._transitionScrollUp.executeScrollUp(self._pagePrev, self, pageManagement);
+            if (self.pagePrev) {
+                self.transitionScrollUp.executeScrollUp(self.pagePrev, self, pageManagement);
             }
         };
     }
     getScrollDownCallback(pageManagement) {
         const self = this;
         return function () {
-            if (self._pageNext) {
-                self._transitionScrollDown.executeScrollDown(self, self._pageNext, pageManagement);
+            if (self.pageNext) {
+                self.transitionScrollDown.executeScrollDown(self, self.pageNext, pageManagement);
             }
         };
     }

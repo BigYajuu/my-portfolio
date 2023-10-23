@@ -5,13 +5,13 @@ export abstract class Transition {
     constructor() {
     }
 
-    protected abstract animationStyleScrollUp(): void;
+    public abstract animationStyleScrollUp(): void;
 
-    protected abstract animationStyleScrollDown(): void;
+    public abstract animationStyleScrollDown(): void;
 
-    protected abstract executeScrollUp(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void;
+    public abstract executeScrollUp(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void;
     
-    protected abstract executeScrollDown(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void;
+    public abstract executeScrollDown(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void;
 }
 
 export default Transition;
