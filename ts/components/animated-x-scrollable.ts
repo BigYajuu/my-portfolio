@@ -134,8 +134,8 @@ export class AnimatedXScrollable extends Component {
     }
 
     private _setScrollMouseEvent =  (scrollChevronID: string, scrollableID: string, direction: ScrollDirection) => {
-        let self = this;
-        let currentScrollAnimationStyle: ScrollChevronStyle;
+        const self = this;
+        var currentScrollAnimationStyle: ScrollChevronStyle;
         function customAnimation(scrollChevronID: string, scrollChevronStyle: ScrollChevronStyle) {
             if (currentScrollAnimationStyle != scrollChevronStyle) {
                 $(`#${scrollChevronID}`).stop();
