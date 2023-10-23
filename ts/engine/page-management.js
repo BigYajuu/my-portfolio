@@ -1,13 +1,13 @@
 import { Utility, ScrollDirection } from "../utility.js";
 export class PageManagement {
     constructor(divID, pages) {
-        this._currentPageIndex = 0;
-        this._lastVPosition = 0;
-        this._divID = divID;
+        this.currentPageIndex = 0;
+        this.lastVPosition = 0;
+        this.divID = divID;
         this.pages = pages;
-        this._initializePages();
+        this.initializePages();
     }
-    _initializePages() {
+    initializePages() {
         for (var i = 0; i < this.pages.length; i++) {
             var pagePrev = i - 1 >= 0 ? this.pages[i - 1] : null;
             var pageNext = i + 1 < this.pages.length ? this.pages[i + 1] : null;
@@ -24,29 +24,29 @@ export class PageManagement {
     }
     setOverscrollEventListener() {
         // The listener detects scroll on the main div 
-        // and actuates up/down transition animation 
+        // and actuates up/down scroll transition animation 
         // accordingly.
         const self = this;
-        const mainDiv = document.getElementById(this._divID);
-        self._setLastVPosition(mainDiv.scrollTop); // Update current V position
+        const mainDiv = document.getElementById(this.divID);
+        self.setLastVPosition(mainDiv.scrollTop); // Update current V position
         mainDiv.addEventListener('scroll', function (event) {
-            const scrollDirection = Utility.determineScrollDirection(self._lastVPosition, this.scrollTop);
+            const scrollDirection = Utility.determineScrollDirection(self.lastVPosition, this.scrollTop);
             if (scrollDirection == ScrollDirection.SCROLLING_UP) {
-                const scrollUpCallback = self.pages[self._currentPageIndex].getScrollUpCallback(self);
-                self._currentPageIndex = self._currentPageIndex - 1 >= 0 ? self._currentPageIndex - 1 : 0;
+                const scrollUpCallback = self.pages[self.currentPageIndex].getScrollUpCallback(self);
+                self.currentPageIndex = self.currentPageIndex - 1 >= 0 ? self.currentPageIndex - 1 : 0;
                 scrollUpCallback();
             }
             else if (scrollDirection == ScrollDirection.SCROLLING_DOWN) {
-                const scrollDownCallback = self.pages[self._currentPageIndex].getScrollDownCallback(self);
-                self._currentPageIndex = self._currentPageIndex + 1 < self.pages.length ? self._currentPageIndex + 1 : self.pages.length - 1;
+                const scrollDownCallback = self.pages[self.currentPageIndex].getScrollDownCallback(self);
+                self.currentPageIndex = self.currentPageIndex + 1 < self.pages.length ? self.currentPageIndex + 1 : self.pages.length - 1;
                 scrollDownCallback();
             }
         });
     }
     setComponentEventListeners() {
     }
-    _setLastVPosition(lastVPosition) {
-        this._lastVPosition = lastVPosition;
+    setLastVPosition(lastVPosition) {
+        this.lastVPosition = lastVPosition;
     }
 }
 export default PageManagement;
