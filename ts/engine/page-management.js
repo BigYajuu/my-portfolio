@@ -7,6 +7,9 @@ export class PageManagement {
         this.pages = pages;
         this.initializePages();
     }
+    doesPageSelectorDenoteCurrentPage(givenPageSelector) {
+        return givenPageSelector == this.pages[this.currentPageIndex].getSelector();
+    }
     initializePages() {
         for (var i = 0; i < this.pages.length; i++) {
             var pagePrev = i - 1 >= 0 ? this.pages[i - 1] : null;
@@ -14,13 +17,6 @@ export class PageManagement {
             this.pages[i].setNeighbouringPages(pageNext, pagePrev);
         }
         this.setOverscrollEventListener();
-    }
-    updatePageEvents() {
-        // This is called after the transition restores a new main div.
-        // And technically when a new main div is established,
-        // all event listeners will be removed. Thus an update is required.
-        const self = this;
-        self.setOverscrollEventListener();
     }
     setOverscrollEventListener() {
         // The listener detects scroll on the main div 
@@ -47,6 +43,13 @@ export class PageManagement {
     }
     setLastVPosition(lastVPosition) {
         this.lastVPosition = lastVPosition;
+    }
+    updatePageEvents() {
+        // This is called after the transition restores a new main div.
+        // And technically when a new main div is established,
+        // all event listeners will be removed. Thus an update is required.
+        const self = this;
+        self.setOverscrollEventListener();
     }
 }
 export default PageManagement;

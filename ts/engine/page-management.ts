@@ -15,6 +15,10 @@ export class PageManagement {
         this.initializePages();
     }
 
+    public doesPageSelectorDenoteCurrentPage(givenPageSelector: string): boolean {
+        return givenPageSelector == this.pages[this.currentPageIndex].getSelector();
+    }
+
     private initializePages() {
         for (var i = 0; i < this.pages.length; i++) {
             var pagePrev = i - 1 >= 0 ? this.pages[i-1] : null;
@@ -22,14 +26,6 @@ export class PageManagement {
             this.pages[i].setNeighbouringPages(pageNext, pagePrev);
         }
         this.setOverscrollEventListener();
-    }
-
-    public updatePageEvents() {
-        // This is called after the transition restores a new main div.
-        // And technically when a new main div is established,
-        // all event listeners will be removed. Thus an update is required.
-        const self = this;
-        self.setOverscrollEventListener();
     }
 
     public setOverscrollEventListener() {
@@ -60,6 +56,14 @@ export class PageManagement {
 
     private setLastVPosition(lastVPosition: number) {
         this.lastVPosition = lastVPosition;
+    }
+
+    public updatePageEvents() {
+        // This is called after the transition restores a new main div.
+        // And technically when a new main div is established,
+        // all event listeners will be removed. Thus an update is required.
+        const self = this;
+        self.setOverscrollEventListener();
     }
 }
 

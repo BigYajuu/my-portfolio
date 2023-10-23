@@ -38,7 +38,7 @@ export class CubicXAxisTransition extends Transition {
             var divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
             divCube.addEventListener("animationend", (event) => {
                 divScene.replaceWith(divBody);
-                const targetToScroll = document.getElementById(pageAtTop.getId());
+                const targetToScroll = document.getElementById(pageAtTop.getSelector());
                 targetToScroll === null || targetToScroll === void 0 ? void 0 : targetToScroll.scrollIntoView();
                 pageManagement === null || pageManagement === void 0 ? void 0 : pageManagement.updatePageEvents();
             });
@@ -72,7 +72,7 @@ export class CubicXAxisTransition extends Transition {
             var divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
             divCube.addEventListener("animationend", (event) => {
                 divScene.replaceWith(divBody);
-                const targetToScroll = document.getElementById(pageAtBottom.getId());
+                const targetToScroll = document.getElementById(pageAtBottom.getSelector());
                 targetToScroll === null || targetToScroll === void 0 ? void 0 : targetToScroll.scrollIntoView();
                 pageManagement === null || pageManagement === void 0 ? void 0 : pageManagement.updatePageEvents();
             });

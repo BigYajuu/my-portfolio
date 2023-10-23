@@ -5,17 +5,17 @@ var ScrollEdgeDetection;
     ScrollEdgeDetection[ScrollEdgeDetection["NONE"] = 2] = "NONE";
 })(ScrollEdgeDetection || (ScrollEdgeDetection = {}));
 export class Page {
-    constructor(id, scrollTransition) {
+    constructor(selector, scrollTransition) {
         this.pageScrollEdgeDetection = ScrollEdgeDetection.NONE;
-        this.id = id;
+        this.selector = selector;
         this.transitionScrollUp = scrollTransition;
         this.transitionScrollDown = scrollTransition;
     }
-    getId() {
-        return this.id;
+    getSelector() {
+        return this.selector;
     }
     getNode() {
-        const clonedElement = $(`#${this.getId()}`).clone(true, true)[0];
+        const clonedElement = $(`#${this.getSelector()}`).clone(true, true)[0];
         return clonedElement;
     }
     setNeighbouringPages(pageNext, pagePrev) {

@@ -12,13 +12,9 @@ export abstract class Component {
         this.pageManagement = pageManagement;
     }
 
-    public abstract appear(): void;
 
     public abstract build(): void;
 
-    public abstract disappear(): void;
-
-    public abstract discard(): void;
 }
 
 export default Component;

@@ -39,24 +39,21 @@ export class AnimatedXScrollable extends Component {
                 height = $(`#${self.selector}`).outerHeight();
                 if (Utility.determineDeviceType() === DeviceType.DESKTOP) {
                     // 3) Recreate scrollable div and chevrons w/ corrent heights
-                    const scrollableSelector = `${self.selector}-scrollable`; // For the scrollable div encompassing the containers
-                    const scrollChevronLeftSelector = `${self.selector}-scroll-chevron-left`; // Chevron on the left
-                    const scrollChevronRightSelector = `${self.selector}-scroll-chevron-right`; // Chevron on the right
                     $(`#${self.selector}`).html(`
-                    <div class="row x-scrollable" id="${scrollableSelector}">
-                        ${self._buildScrollChevronLeft(height, scrollChevronLeftSelector)}
-                        ${self._buildScrollChevronRight(height, scrollChevronRightSelector)}
+                    <div class="row x-scrollable" id="${self.scrollableSelector}">
+                        ${self._buildScrollChevronLeft(height, self.scrollChevronLeftSelector)}
+                        ${self._buildScrollChevronRight(height, self.scrollChevronRightSelector)}
                         ${self.content}
                     </div>
                     `);
                     // 4) Setup Mouse Scroll Events
-                    self._setScrollMouseEvent(scrollChevronLeftSelector, scrollableSelector, ScrollDirection.LEFT);
-                    self._setScrollMouseEvent(scrollChevronRightSelector, scrollableSelector, ScrollDirection.RIGHT);
+                    self._setScrollMouseEvent(self.scrollChevronLeftSelector, self.scrollableSelector, ScrollDirection.LEFT);
+                    self._setScrollMouseEvent(self.scrollChevronRightSelector, self.scrollableSelector, ScrollDirection.RIGHT);
                     // 5) Make Chevrons to follow scroll
                     const invisibleTopPinSelector = `${self.pageSelector}-invisible-top-pin`;
                     self.appendInvisibleTopPinDiv(self.pageSelector, invisibleTopPinSelector);
-                    self._setChevronTopPositionEventListeners(scrollChevronLeftSelector, self.pageSelector, scrollableSelector);
-                    self._setChevronTopPositionEventListeners(scrollChevronRightSelector, self.pageSelector, scrollableSelector);
+                    self._setScrollChevronVPositionEventListeners(self.scrollChevronLeftSelector, self.pageSelector, self.scrollableSelector);
+                    self._setScrollChevronVPositionEventListeners(self.scrollChevronRightSelector, self.pageSelector, self.scrollableSelector);
                 }
             });
         };
@@ -166,21 +163,31 @@ export class AnimatedXScrollable extends Component {
                 scrollEdgeResponse();
             });
         };
-        this._setChevronTopPositionEventListeners = (selector, pageSelector, scrollableSelector) => {
+        this._setScrollChevronVPositionEventListeners = (selector, pageSelector, scrollableSelector) => {
             const self = this;
             $(`#page-management-container`).on('scroll', function () {
-                self._updateChevronTopPositions(selector, pageSelector, scrollableSelector);
+                self._updateScrollChevronVPositions(selector, pageSelector, scrollableSelector);
             });
             $(`#${pageSelector}`).on('scroll', function () {
-                self._updateChevronTopPositions(selector, pageSelector, scrollableSelector);
+                self._updateScrollChevronVPositions(selector, pageSelector, scrollableSelector);
             });
         };
-        this._updateChevronTopPositions = function (selector, pageSelector, scrollableSelector) {
+        this._updateScrollChevronVPositions = (selector, pageSelector, scrollableSelector) => {
+            const self = this;
+            self.updateScrollChevronVisibility();
             var scrollableOffset = $(`#${scrollableSelector}`).position();
-            console.log(`${pageSelector}: ${scrollableOffset.top} - ${$(`#${pageSelector}`).scrollTop()}`);
+            // console.log(`${pageSelector}: ${scrollableOffset.top} - ${$(`#${pageSelector}`).scrollTop()!}`);
             $(`#${selector}`).css('top', scrollableOffset.top);
         };
+        this.isThisComponentOnCurrentPage = () => {
+            const self = this;
+            console.log(`${self.pageSelector}: ${self.pageManagement.doesPageSelectorDenoteCurrentPage(self.pageSelector)}`);
+            return this.pageManagement.doesPageSelectorDenoteCurrentPage(this.pageSelector);
+        };
         this.content = content;
+        this.scrollableSelector = `${this.selector}-scrollable`; // For the scrollable div encompassing the containers
+        this.scrollChevronLeftSelector = `${this.selector}-scroll-chevron-left`; // Chevron on the left
+        this.scrollChevronRightSelector = `${this.selector}-scroll-chevron-right`; // Chevron on the right
         this.scrollPosition = 0;
         this.scrollSpeed = 0;
         this.movementIntervalHandler = 0;
@@ -188,14 +195,25 @@ export class AnimatedXScrollable extends Component {
         this.scrollChevronMouseStateLeft = ScrollChevronMouseState.ALONE;
         this.scrollChevronMouseStateRight = ScrollChevronMouseState.ALONE;
     }
-    appear() {
-        throw new Error('Method not implemented.');
-    }
-    disappear() {
-        throw new Error('Method not implemented.');
-    }
     discard() {
         throw new Error('Method not implemented.');
+    }
+    setScrollChevronToAppear() {
+        const self = this;
+        $(`#${self.scrollChevronLeftSelector}`).css('visibility', 'visible');
+    }
+    setScrollChevronToDisappear() {
+        const self = this;
+        $(`#${self.scrollChevronLeftSelector}`).css('visibility', 'hidden');
+    }
+    updateScrollChevronVisibility() {
+        const self = this;
+        if (self.isThisComponentOnCurrentPage()) {
+            self.setScrollChevronToAppear();
+        }
+        else {
+            self.setScrollChevronToDisappear();
+        }
     }
 }
 export default AnimatedXScrollable;

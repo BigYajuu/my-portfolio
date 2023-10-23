@@ -8,25 +8,25 @@ enum ScrollEdgeDetection {
 }
 
 export class Page {
-    private id: string;
+    private selector: string;
     private pageNext?: Page | null;
     private pagePrev?: Page | null;
     private transitionScrollUp: Transition;
     private transitionScrollDown: Transition;
     private pageScrollEdgeDetection: ScrollEdgeDetection = ScrollEdgeDetection.NONE;
 
-    constructor(id: string, scrollTransition: Transition) {
-        this.id = id;
+    constructor(selector: string, scrollTransition: Transition) {
+        this.selector = selector;
         this.transitionScrollUp = scrollTransition;
         this.transitionScrollDown = scrollTransition;
     }
 
-    getId() {
-        return this.id;
+    getSelector() {
+        return this.selector;
     }
 
     getNode() {
-        const clonedElement = $(`#${this.getId()}`).clone(true, true)[0];
+        const clonedElement = $(`#${this.getSelector()}`).clone(true, true)[0];
         return clonedElement;
     }
 
