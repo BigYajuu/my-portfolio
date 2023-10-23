@@ -1,3 +1,5 @@
+import PageManagement from '../engine/page-management.js';
+import Component from '../engine/component.js';
 import {Utility, DeviceType} from '../utility.js';
 
 enum ScrollDirection {
@@ -30,7 +32,10 @@ const ScrollChevronHoveringStyle: ScrollChevronStyle = {
     width: '20%'
 };
 
-export class AnimatedXScrollable {
+export class AnimatedXScrollable extends Component {
+    
+    private content: string;
+
     private scrollPosition: number;
     private scrollSpeed: number;
     private movementIntervalHandler: number;
@@ -39,7 +44,10 @@ export class AnimatedXScrollable {
     private scrollChevronMouseStateRight: ScrollChevronMouseState;
 
 
-    constructor() {
+    constructor(content: string, selector: string, pageSelector: string, pageManagement: PageManagement) {
+        super(selector, pageSelector, pageManagement);
+        this.content = content;
+
         this.scrollPosition = 0;
         this.scrollSpeed = 0;
         this.movementIntervalHandler = 0;
@@ -48,31 +56,31 @@ export class AnimatedXScrollable {
         this.scrollChevronMouseStateRight = ScrollChevronMouseState.ALONE;
     }
 
-    build =  (selector: string, pageSelector: string, content: string) => {
+    build = () => {
+        const self = this;
         let height: number;
-        let self = this;
         $(document).ready(function() {
             // 1) Make scrollable div with populated content
-            $(`#${selector}`).html(
+            $(`#${self.selector}`).html(
                 `
                 <div class="row x-scrollable">
-                    ${content}
+                    ${self.content}
                 </div>
                 `
             );
             // 2) Get height of scrollable div
-            height = $(`#${selector}`).outerHeight()!;
+            height = $(`#${self.selector}`).outerHeight()!;
             if (Utility.determineDeviceType() === DeviceType.DESKTOP) {
                 // 3) Recreate scrollable div and chevrons w/ corrent heights
-                let scrollableID = `${selector}-scrollable` // For the scrollable div encompassing the containers
-                let scrollChevronLeftID = `${selector}-scroll-chevron-left` // Chevron on the left
-                let scrollChevronRightID = `${selector}-scroll-chevron-right`   // Chevron on the right
-                $(`#${selector}`).html(
+                let scrollableID = `${self.selector}-scrollable` // For the scrollable div encompassing the containers
+                let scrollChevronLeftID = `${self.selector}-scroll-chevron-left` // Chevron on the left
+                let scrollChevronRightID = `${self.selector}-scroll-chevron-right`   // Chevron on the right
+                $(`#${self.selector}`).html(
                     `
                     <div class="row x-scrollable" id="${scrollableID}">
                         ${self._buildScrollChevronLeft(height, scrollChevronLeftID)}
                         ${self._buildScrollChevronRight(height, scrollChevronRightID)}
-                        ${content}
+                        ${self.content}
                     </div>
                     `
                 );
@@ -80,12 +88,22 @@ export class AnimatedXScrollable {
                 self._setScrollMouseEvent(scrollChevronLeftID, scrollableID, ScrollDirection.LEFT);
                 self._setScrollMouseEvent(scrollChevronRightID, scrollableID, ScrollDirection.RIGHT);
                 // 5) Make Chevrons to follow scroll
-                const fixedDivID = `${pageSelector}-fixed-div`;
-                self.appendDefaultFixedDiv(pageSelector, fixedDivID);
-                self._setChevronTopPositionEventListeners(scrollChevronLeftID, pageSelector, scrollableID);
-                self._setChevronTopPositionEventListeners(scrollChevronRightID, pageSelector, scrollableID);
+                const fixedDivID = `${self.pageSelector}-fixed-div`;
+                self.appendDefaultFixedDiv(self.pageSelector, fixedDivID);
+                self._setChevronTopPositionEventListeners(scrollChevronLeftID, self.pageSelector, scrollableID);
+                self._setChevronTopPositionEventListeners(scrollChevronRightID, self.pageSelector, scrollableID);
             }
         });
+    }
+
+    appear(): void {
+        throw new Error('Method not implemented.');
+    }
+    disappear(): void {
+        throw new Error('Method not implemented.');
+    }
+    discard(): void {
+        throw new Error('Method not implemented.');
     }
 
     private _buildScrollChevronLeft = function (height: number, id: string) {

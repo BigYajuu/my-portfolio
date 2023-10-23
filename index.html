@@ -54,7 +54,8 @@
           import {AnimatedXScrollable} from "/ts/components/animated-x-scrollable.js";
           import {pageManagement} from "/ts/global_declarations.js";
           $(document).ready(function() {
-            new AnimatedXScrollable().build("section-projects-items", "page-1", `
+            new AnimatedXScrollable(
+              `
               <div class="col-abs-width col-default-padding">
                   <div class="container">
                       <h1>Item 1</h1>
@@ -96,7 +97,11 @@
                       <h1>Item 3</h1>
                       <p>Item 3</p>
                   </div>
-              </div>`);
+              </div>`,
+              "section-projects-items", 
+              "page-1", 
+              pageManagement
+            ).build();
             }
           );
         </script>
@@ -105,8 +110,10 @@
       <div class="section" id="section-projects-items-2">
         <script type="module">
           import {AnimatedXScrollable} from "/ts/components/animated-x-scrollable.js";
+          import {pageManagement} from "/ts/global_declarations.js";
           $(document).ready(function() {
-            new AnimatedXScrollable().build("section-projects-items-2", "page-1", `
+            new AnimatedXScrollable(
+              `
               <div class="col-abs-width col-default-padding">
                   <div class="container">
                       <h1>Item 1</h1>
@@ -127,7 +134,11 @@
                       <h1>Item 3</h1>
                       <p>Item 3</p>
                   </div>
-              </div>`);
+              </div>`,
+              "section-projects-items-2", 
+              "page-1", 
+              pageManagement
+            ).build();
             }
           );
         </script>
@@ -193,8 +204,10 @@
       <div class="section" id="section-projects-items-3">
         <script type="module">
           import {AnimatedXScrollable} from "/ts/components/animated-x-scrollable.js";
+          import {pageManagement} from "/ts/global_declarations.js";
           $(document).ready(function() {
-            new AnimatedXScrollable().build("section-projects-items-3", "page-2", `
+            new AnimatedXScrollable(
+              `
               <div class="col-abs-width col-default-padding">
                   <div class="container">
                       <h1>Item 1</h1>
@@ -250,7 +263,11 @@
                       <h1>Item 3</h1>
                       <p>Item 3</p>
                   </div>
-              </div>`);
+              </div>`,
+              "section-projects-items-3", 
+              "page-2", 
+              pageManagement
+            ).build();
             }
           );
         </script>
