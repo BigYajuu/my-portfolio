@@ -58,7 +58,7 @@ export class AnimatedXScrollable extends Component {
 
     build = () => {
         const self = this;
-        let height: number;
+        var height: number;
         $(document).ready(function() {
             // 1) Make scrollable div with populated content
             $(`#${self.selector}`).html(
@@ -72,9 +72,9 @@ export class AnimatedXScrollable extends Component {
             height = $(`#${self.selector}`).outerHeight()!;
             if (Utility.determineDeviceType() === DeviceType.DESKTOP) {
                 // 3) Recreate scrollable div and chevrons w/ corrent heights
-                let scrollableID = `${self.selector}-scrollable` // For the scrollable div encompassing the containers
-                let scrollChevronLeftID = `${self.selector}-scroll-chevron-left` // Chevron on the left
-                let scrollChevronRightID = `${self.selector}-scroll-chevron-right`   // Chevron on the right
+                const scrollableID = `${self.selector}-scrollable` // For the scrollable div encompassing the containers
+                const scrollChevronLeftID = `${self.selector}-scroll-chevron-left` // Chevron on the left
+                const scrollChevronRightID = `${self.selector}-scroll-chevron-right`   // Chevron on the right
                 $(`#${self.selector}`).html(
                     `
                     <div class="row x-scrollable" id="${scrollableID}">
