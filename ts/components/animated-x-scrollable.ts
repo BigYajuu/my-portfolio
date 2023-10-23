@@ -88,8 +88,8 @@ export class AnimatedXScrollable extends Component {
                 self._setScrollMouseEvent(scrollChevronLeftID, scrollableID, ScrollDirection.LEFT);
                 self._setScrollMouseEvent(scrollChevronRightID, scrollableID, ScrollDirection.RIGHT);
                 // 5) Make Chevrons to follow scroll
-                const fixedDivID = `${self.pageSelector}-fixed-div`;
-                self.appendDefaultFixedDiv(self.pageSelector, fixedDivID);
+                const invisibleTopPinSelector = `${self.pageSelector}-invisible-top-pin`;
+                self.appendInvisibleTopPinDiv(self.pageSelector, invisibleTopPinSelector);
                 self._setChevronTopPositionEventListeners(scrollChevronLeftID, self.pageSelector, scrollableID);
                 self._setChevronTopPositionEventListeners(scrollChevronRightID, self.pageSelector, scrollableID);
             }
@@ -122,15 +122,12 @@ export class AnimatedXScrollable extends Component {
                 `;
     }
 
-    private appendDefaultFixedDiv = function (pageSelector: string, id: string) {
-        // $(document).ready(function() {
-            $(`#${pageSelector}`).append(
-                `
-                <div id="${id}" style="position: fixed; top: 0; left: 0; z-index: 9999"><p></p></div>
-                `
-            );
-        // })
-        
+    private appendInvisibleTopPinDiv = function (pageSelector: string, id: string) {
+        $(`#${pageSelector}`).append(
+            `
+            <div id="${id}" style="position: fixed; top: 0; left: 0; z-index: 9999"></div>
+            `
+        );
     }
 
     private _setScrollMouseEvent =  (scrollChevronID: string, scrollableID: string, direction: ScrollDirection) => {
