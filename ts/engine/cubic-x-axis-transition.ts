@@ -45,7 +45,6 @@ export class CubicXAxisTransition extends Transition {
             var divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
             divCube.addEventListener("animationend", (event) => {
                 divScene.replaceWith(divBody);
-                console.log('animation ends');
                 const targetToScroll = document.getElementById(pageAtTop.getId());
                 targetToScroll?.scrollIntoView();
                 pageManagement?.updatePageEvents();
