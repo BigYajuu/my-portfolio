@@ -10,6 +10,9 @@ export class PageManagement {
     doesPageSelectorDenoteCurrentPage(givenPageSelector) {
         return givenPageSelector == this.pages[this.currentPageIndex].getSelector();
     }
+    getCurrentPageIndex() {
+        return this.currentPageIndex;
+    }
     initializePages() {
         for (var i = 0; i < this.pages.length; i++) {
             var pagePrev = i - 1 >= 0 ? this.pages[i - 1] : null;
@@ -38,8 +41,6 @@ export class PageManagement {
                 scrollDownCallback();
             }
         });
-    }
-    setComponentEventListeners() {
     }
     setLastVPosition(lastVPosition) {
         this.lastVPosition = lastVPosition;
