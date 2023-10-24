@@ -41,30 +41,30 @@ export class AnimatedXScrollable extends Component {
                     // 3) Recreate scrollable div and chevrons w/ corrent heights
                     $(`#${self.selector}`).html(`
                     <div class="row x-scrollable" id="${self.scrollableSelector}">
-                        ${self._buildScrollChevronLeft(height, self.scrollChevronLeftSelector)}
-                        ${self._buildScrollChevronRight(height, self.scrollChevronRightSelector)}
+                        ${self.buildScrollChevronLeft(height, self.scrollChevronLeftSelector)}
+                        ${self.buildScrollChevronRight(height, self.scrollChevronRightSelector)}
                         ${self.content}
                     </div>
                     `);
                     // 4) Setup Mouse Scroll Events
-                    self._setScrollMouseEvent(self.scrollChevronLeftSelector, self.scrollableSelector, ScrollDirection.LEFT);
-                    self._setScrollMouseEvent(self.scrollChevronRightSelector, self.scrollableSelector, ScrollDirection.RIGHT);
+                    self.setScrollMouseEvent(self.scrollChevronLeftSelector, self.scrollableSelector, ScrollDirection.LEFT);
+                    self.setScrollMouseEvent(self.scrollChevronRightSelector, self.scrollableSelector, ScrollDirection.RIGHT);
                     // 5) Make Chevrons to follow scroll
                     const invisibleTopPinSelector = `${self.pageSelector}-invisible-top-pin`;
                     self.appendInvisibleTopPinDiv(self.pageSelector, invisibleTopPinSelector);
-                    self._setScrollChevronVPositionEventListeners(self.scrollChevronLeftSelector, self.pageSelector, self.scrollableSelector);
-                    self._setScrollChevronVPositionEventListeners(self.scrollChevronRightSelector, self.pageSelector, self.scrollableSelector);
+                    self.setScrollChevronVPositionEventListeners(self.scrollChevronLeftSelector, self.pageSelector, self.scrollableSelector);
+                    self.setScrollChevronVPositionEventListeners(self.scrollChevronRightSelector, self.pageSelector, self.scrollableSelector);
                 }
             });
         };
-        this._buildScrollChevronLeft = function (height, selector) {
+        this.buildScrollChevronLeft = function (height, selector) {
             return `
                 <div class="scroll-chevron-left" id="${selector}" style="height: ${height}px">
                     <i class="fa-solid fa-arrow-left fa-fade fa-3x" style="color: #000000"></i>
                 </div>
                 `;
         };
-        this._buildScrollChevronRight = function (height, selector) {
+        this.buildScrollChevronRight = function (height, selector) {
             return `
                 <div class="scroll-chevron-right" id="${selector}" style="height: ${height}px">
                     <i class="fa-solid fa-arrow-right fa-fade fa-3x" style="color: #000000"></i>
@@ -76,7 +76,7 @@ export class AnimatedXScrollable extends Component {
             <div id="${selector}" style="position: fixed; top: 0; left: 0; z-index: 9999"></div>
             `);
         };
-        this._setScrollMouseEvent = (scrollChevronSelector, scrollableSelector, direction) => {
+        this.setScrollMouseEvent = (scrollChevronSelector, scrollableSelector, direction) => {
             const self = this;
             var currentScrollAnimationStyle;
             function customAnimation(scrollChevronSelector, scrollChevronStyle) {
@@ -163,16 +163,16 @@ export class AnimatedXScrollable extends Component {
                 scrollEdgeResponse();
             });
         };
-        this._setScrollChevronVPositionEventListeners = (selector, pageSelector, scrollableSelector) => {
+        this.setScrollChevronVPositionEventListeners = (selector, pageSelector, scrollableSelector) => {
             const self = this;
             $(`#page-management-container`).on('scroll', function () {
-                self._updateScrollChevronVPositions(selector, pageSelector, scrollableSelector);
+                self.updateScrollChevronVPositions(selector, pageSelector, scrollableSelector);
             });
             $(`#${pageSelector}`).on('scroll', function () {
-                self._updateScrollChevronVPositions(selector, pageSelector, scrollableSelector);
+                self.updateScrollChevronVPositions(selector, pageSelector, scrollableSelector);
             });
         };
-        this._updateScrollChevronVPositions = (selector, pageSelector, scrollableSelector) => {
+        this.updateScrollChevronVPositions = (selector, pageSelector, scrollableSelector) => {
             const self = this;
             self.updateScrollChevronVisibility();
             var scrollableOffset = $(`#${scrollableSelector}`).position();
