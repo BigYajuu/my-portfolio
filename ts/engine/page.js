@@ -19,7 +19,6 @@ export class Page {
         return clonedElement;
     }
     setNeighbouringPages(pageNext, pagePrev) {
-        const self = this;
         this.pageNext = pageNext;
         this.pagePrev = pagePrev;
     }

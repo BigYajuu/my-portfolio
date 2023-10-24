@@ -31,7 +31,6 @@ export class Page {
     }
 
     setNeighbouringPages(pageNext: Page | null, pagePrev: Page | null) {
-        const self = this;
         this.pageNext = pageNext;
         this.pagePrev = pagePrev;
     }
