@@ -229,28 +229,29 @@ export class AnimatedXScrollable extends Component {
         
     }
 
-    private setScrollChevronToAppear() {
+    private setScrollChevronsToAppear() {
         const self = this;
         $(`#${self.scrollChevronLeftSelector}`).css('visibility', 'visible');
+        $(`#${self.scrollChevronRightSelector}`).css('visibility', 'visible');
     }
 
-    private setScrollChevronToDisappear() {
+    private setScrollChevronsToDisappear() {
         const self = this;
         $(`#${self.scrollChevronLeftSelector}`).css('visibility', 'hidden');
+        $(`#${self.scrollChevronRightSelector}`).css('visibility', 'hidden');
     }
 
     private isThisComponentOnCurrentPage = () => {
         const self = this;
-        console.log(`${self.pageSelector}: ${self.pageManagement.doesPageSelectorDenoteCurrentPage(self.pageSelector)}`);
         return this.pageManagement.doesPageSelectorDenoteCurrentPage(this.pageSelector);
     }
 
     private updateScrollChevronVisibility() {
         const self = this;
         if (self.isThisComponentOnCurrentPage()) {
-            self.setScrollChevronToAppear();
+            self.setScrollChevronsToAppear();
         } else {
-            self.setScrollChevronToDisappear();
+            self.setScrollChevronsToDisappear();
         }
     }
 }

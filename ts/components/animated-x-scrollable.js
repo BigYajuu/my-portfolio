@@ -181,7 +181,6 @@ export class AnimatedXScrollable extends Component {
         };
         this.isThisComponentOnCurrentPage = () => {
             const self = this;
-            console.log(`${self.pageSelector}: ${self.pageManagement.doesPageSelectorDenoteCurrentPage(self.pageSelector)}`);
             return this.pageManagement.doesPageSelectorDenoteCurrentPage(this.pageSelector);
         };
         this.content = content;
@@ -198,21 +197,23 @@ export class AnimatedXScrollable extends Component {
     discard() {
         throw new Error('Method not implemented.');
     }
-    setScrollChevronToAppear() {
+    setScrollChevronsToAppear() {
         const self = this;
         $(`#${self.scrollChevronLeftSelector}`).css('visibility', 'visible');
+        $(`#${self.scrollChevronRightSelector}`).css('visibility', 'visible');
     }
-    setScrollChevronToDisappear() {
+    setScrollChevronsToDisappear() {
         const self = this;
         $(`#${self.scrollChevronLeftSelector}`).css('visibility', 'hidden');
+        $(`#${self.scrollChevronRightSelector}`).css('visibility', 'hidden');
     }
     updateScrollChevronVisibility() {
         const self = this;
         if (self.isThisComponentOnCurrentPage()) {
-            self.setScrollChevronToAppear();
+            self.setScrollChevronsToAppear();
         }
         else {
-            self.setScrollChevronToDisappear();
+            self.setScrollChevronsToDisappear();
         }
     }
 }
