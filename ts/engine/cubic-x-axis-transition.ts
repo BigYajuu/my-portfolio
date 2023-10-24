@@ -20,11 +20,11 @@ export class CubicXAxisTransition extends Transition {
 
     executeScrollUp(pageAtTop: Page, pageAtBottom: Page, pageManagement: PageManagement): void {
         jQuery(function() {
-            var divScene = document.createElement('div');
-            var divPan = document.createElement('div');
-            var divCube = document.createElement('div');
-            var divTop = document.createElement('div');
-            var divFront = document.createElement('div');
+            const divScene = document.createElement('div');
+            const divPan = document.createElement('div');
+            const divCube = document.createElement('div');
+            const divTop = document.createElement('div');
+            const divFront = document.createElement('div');
 
             divScene.classList.add('scene');
             divPan.id = 'pan';
@@ -42,7 +42,7 @@ export class CubicXAxisTransition extends Transition {
             divPan.appendChild(divCube);
             divScene.appendChild(divPan);
             // Save current body state and scroll page to the next marking
-            var divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
+            const divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
             divCube.addEventListener("animationend", (event) => {
                 divScene.replaceWith(divBody);
                 const targetToScroll = document.getElementById(pageAtTop.getSelector());
@@ -57,11 +57,11 @@ export class CubicXAxisTransition extends Transition {
 
     executeScrollDown(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void {
         jQuery(function() {
-            var divScene = document.createElement('div');
-            var divPan = document.createElement('div');
-            var divCube = document.createElement('div');
-            var divFront = document.createElement('div');
-            var divBottom = document.createElement('div');
+            const divScene = document.createElement('div');
+            const divPan = document.createElement('div');
+            const divCube = document.createElement('div');
+            const divFront = document.createElement('div');
+            const divBottom = document.createElement('div');
 
             divScene.classList.add('scene');
             divPan.id = 'pan';
@@ -79,7 +79,7 @@ export class CubicXAxisTransition extends Transition {
             divPan.appendChild(divCube);
             divScene.appendChild(divPan);
             // Save current body state and scroll page to the next marking
-            var divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
+            const divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
             divCube.addEventListener("animationend", (event) => {
                 divScene.replaceWith(divBody);
                 const targetToScroll = document.getElementById(pageAtBottom.getSelector());
