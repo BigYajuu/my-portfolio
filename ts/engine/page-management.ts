@@ -42,12 +42,24 @@ export class PageManagement {
         mainDiv.addEventListener('scroll', function (event) {
             const scrollDirection = Utility.determineScrollDirection(self.lastVPosition, this.scrollTop);
             if (scrollDirection == ScrollDirection.SCROLLING_UP) {
+                const lastPageIndex = self.currentPageIndex;
                 const scrollUpCallback = self.pages[self.currentPageIndex].getScrollUpCallback(self);
                 self.currentPageIndex = self.currentPageIndex - 1 >= 0 ? self.currentPageIndex - 1 : 0;
+                console.log(self.currentPageIndex);
+                if (lastPageIndex != self.currentPageIndex) {
+                    self.pages[lastPageIndex].setAllFixedItemsToDissapear();
+                    self.pages[self.currentPageIndex].setAllFixedItemsToAppear();
+                }
                 scrollUpCallback();
             } else if (scrollDirection == ScrollDirection.SCROLLING_DOWN) {
+                const lastPageIndex = self.currentPageIndex;
                 const scrollDownCallback = self.pages[self.currentPageIndex].getScrollDownCallback(self);
                 self.currentPageIndex = self.currentPageIndex + 1 < self.pages.length ? self.currentPageIndex + 1 : self.pages.length - 1;
+                console.log(self.currentPageIndex);
+                if (lastPageIndex != self.currentPageIndex) {
+                    self.pages[lastPageIndex].setAllFixedItemsToDissapear();
+                    self.pages[self.currentPageIndex].setAllFixedItemsToAppear();
+                }
                 scrollDownCallback();
             }
         }

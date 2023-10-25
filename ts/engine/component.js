@@ -1,8 +1,9 @@
 export class Component {
-    constructor(selector, pageSelector, pageManagement) {
+    constructor(selector, page, pageManagement) {
         this.selector = selector;
-        this.pageSelector = pageSelector;
+        this.page = page;
         this.pageManagement = pageManagement;
+        this.page.appendComponent(this);
     }
 }
 export default Component;

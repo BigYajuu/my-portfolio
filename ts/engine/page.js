@@ -7,9 +7,13 @@ var ScrollEdgeDetection;
 export class Page {
     constructor(selector, scrollTransition) {
         this.pageScrollEdgeDetection = ScrollEdgeDetection.NONE;
+        this.components = [];
         this.selector = selector;
         this.transitionScrollUp = scrollTransition;
         this.transitionScrollDown = scrollTransition;
+    }
+    appendComponent(component) {
+        this.components.push(component);
     }
     getSelector() {
         return this.selector;
@@ -17,10 +21,6 @@ export class Page {
     getNode() {
         const clonedElement = $(`#${this.getSelector()}`).clone(true, true)[0];
         return clonedElement;
-    }
-    setNeighbouringPages(pageNext, pagePrev) {
-        this.pageNext = pageNext;
-        this.pagePrev = pagePrev;
     }
     getScrollUpCallback(pageManagement) {
         const self = this;
@@ -37,6 +37,20 @@ export class Page {
                 self.transitionScrollDown.executeScrollDown(self, self.pageNext, pageManagement);
             }
         };
+    }
+    setNeighbouringPages(pageNext, pagePrev) {
+        this.pageNext = pageNext;
+        this.pagePrev = pagePrev;
+    }
+    setAllFixedItemsToAppear() {
+        for (var i = 0; i < this.components.length; i++) {
+            this.components[i].setFixedItemsToAppear();
+        }
+    }
+    setAllFixedItemsToDissapear() {
+        for (var i = 0; i < this.components.length; i++) {
+            this.components[i].setFixedItemsToDissapear();
+        }
     }
 }
 export default Page;

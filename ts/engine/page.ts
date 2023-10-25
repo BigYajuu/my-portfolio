@@ -1,5 +1,6 @@
 import PageManagement from "engine/page-management";
 import Transition from "engine/transition";
+import Component from "./component";
 
 enum ScrollEdgeDetection {
     AT_TOP,
@@ -14,11 +15,16 @@ export class Page {
     private transitionScrollUp: Transition;
     private transitionScrollDown: Transition;
     private pageScrollEdgeDetection: ScrollEdgeDetection = ScrollEdgeDetection.NONE;
+    private components: Component[] = [];
 
     constructor(selector: string, scrollTransition: Transition) {
         this.selector = selector;
         this.transitionScrollUp = scrollTransition;
         this.transitionScrollDown = scrollTransition;
+    }
+
+    appendComponent(component: Component) {
+        this.components.push(component);
     }
 
     getSelector() {
@@ -28,11 +34,6 @@ export class Page {
     getNode() {
         const clonedElement = $(`#${this.getSelector()}`).clone(true, true)[0];
         return clonedElement;
-    }
-
-    setNeighbouringPages(pageNext: Page | null, pagePrev: Page | null) {
-        this.pageNext = pageNext;
-        this.pagePrev = pagePrev;
     }
 
     getScrollUpCallback(pageManagement?: PageManagement) {
@@ -50,6 +51,23 @@ export class Page {
             if (self.pageNext) {
                 self.transitionScrollDown.executeScrollDown(self, self.pageNext!, pageManagement);
             }
+        }
+    }
+
+    setNeighbouringPages(pageNext: Page | null, pagePrev: Page | null) {
+        this.pageNext = pageNext;
+        this.pagePrev = pagePrev;
+    }
+
+    setAllFixedItemsToAppear() {
+        for (var i=0; i<this.components.length; i++) {
+            this.components[i].setFixedItemsToAppear();
+        }
+    }
+
+    setAllFixedItemsToDissapear() {
+        for (var i=0; i<this.components.length; i++) {
+            this.components[i].setFixedItemsToDissapear();
         }
     }
 }

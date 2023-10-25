@@ -23,39 +23,37 @@ const ScrollChevronHoveringStyle = {
     width: '20%'
 };
 export class AnimatedXScrollable extends Component {
-    constructor(content, selector, pageSelector, pageManagement) {
-        super(selector, pageSelector, pageManagement);
+    constructor(content, selector, page, pageManagement) {
+        super(selector, page, pageManagement);
         this.build = () => {
             const self = this;
             var height;
-            $(document).ready(function () {
-                // 1) Make scrollable div with populated content
+            // 1) Make scrollable div with populated content
+            $(`#${self.selector}`).html(`
+            <div class="row x-scrollable">
+                ${self.content}
+            </div>
+            `);
+            // 2) Get height of scrollable div
+            height = $(`#${self.selector}`).outerHeight();
+            if (Utility.determineDeviceType() === DeviceType.DESKTOP) {
+                // 3) Recreate scrollable div and chevrons w/ corrent heights
                 $(`#${self.selector}`).html(`
-                <div class="row x-scrollable">
+                <div class="row x-scrollable" id="${self.scrollableSelector}">
+                    ${self.buildScrollChevronLeft(height, self.scrollChevronLeftSelector)}
+                    ${self.buildScrollChevronRight(height, self.scrollChevronRightSelector)}
                     ${self.content}
                 </div>
                 `);
-                // 2) Get height of scrollable div
-                height = $(`#${self.selector}`).outerHeight();
-                if (Utility.determineDeviceType() === DeviceType.DESKTOP) {
-                    // 3) Recreate scrollable div and chevrons w/ corrent heights
-                    $(`#${self.selector}`).html(`
-                    <div class="row x-scrollable" id="${self.scrollableSelector}">
-                        ${self.buildScrollChevronLeft(height, self.scrollChevronLeftSelector)}
-                        ${self.buildScrollChevronRight(height, self.scrollChevronRightSelector)}
-                        ${self.content}
-                    </div>
-                    `);
-                    // 4) Setup Mouse Scroll Events
-                    self.setScrollMouseEvent(self.scrollChevronLeftSelector, self.scrollableSelector, ScrollDirection.LEFT);
-                    self.setScrollMouseEvent(self.scrollChevronRightSelector, self.scrollableSelector, ScrollDirection.RIGHT);
-                    // 5) Make Chevrons to follow scroll
-                    const invisibleTopPinSelector = `${self.pageSelector}-invisible-top-pin`;
-                    self.appendInvisibleTopPinDiv(self.pageSelector, invisibleTopPinSelector);
-                    self.setScrollChevronVPositionEventListeners(self.scrollChevronLeftSelector, self.pageSelector, self.scrollableSelector);
-                    self.setScrollChevronVPositionEventListeners(self.scrollChevronRightSelector, self.pageSelector, self.scrollableSelector);
-                }
-            });
+                // 4) Setup Mouse Scroll Events
+                self.setScrollMouseEvent(self.scrollChevronLeftSelector, self.scrollableSelector, ScrollDirection.LEFT);
+                self.setScrollMouseEvent(self.scrollChevronRightSelector, self.scrollableSelector, ScrollDirection.RIGHT);
+                // 5) Make Chevrons to follow scroll
+                const invisibleTopPinSelector = `${self.page.getSelector()}-invisible-top-pin`;
+                self.appendInvisibleTopPinDiv(self.page.getSelector(), invisibleTopPinSelector);
+                self.setScrollChevronVPositionEventListeners(self.scrollChevronLeftSelector, self.page.getSelector(), self.scrollableSelector);
+                self.setScrollChevronVPositionEventListeners(self.scrollChevronRightSelector, self.page.getSelector(), self.scrollableSelector);
+            }
         };
         this.buildScrollChevronLeft = function (height, selector) {
             return `
@@ -165,23 +163,24 @@ export class AnimatedXScrollable extends Component {
         };
         this.setScrollChevronVPositionEventListeners = (selector, pageSelector, scrollableSelector) => {
             const self = this;
-            $(`#page-management-container`).on('scroll', function () {
-                self.updateScrollChevronVPositions(selector, pageSelector, scrollableSelector);
-            });
+            // $(`#page-management-container`).on('scroll', async function() {
+            //     console.log(`${pageSelector} overscrolls; currentPage - ${self.pageManagement.getCurrentPageIndex()}`);
+            //     self.updateScrollChevronVisibility();
+            //     self.updateScrollChevronVPositions(selector, pageSelector, scrollableSelector);
+            // });
             $(`#${pageSelector}`).on('scroll', function () {
+                // self.updateScrollChevronVisibility();
                 self.updateScrollChevronVPositions(selector, pageSelector, scrollableSelector);
             });
         };
         this.updateScrollChevronVPositions = (selector, pageSelector, scrollableSelector) => {
             const self = this;
-            self.updateScrollChevronVisibility();
             var scrollableOffset = $(`#${scrollableSelector}`).position();
-            // console.log(`${pageSelector}: ${scrollableOffset.top} - ${$(`#${pageSelector}`).scrollTop()!}`);
             $(`#${selector}`).css('top', scrollableOffset.top);
         };
         this.isThisComponentOnCurrentPage = () => {
             const self = this;
-            return this.pageManagement.doesPageSelectorDenoteCurrentPage(this.pageSelector);
+            return this.pageManagement.doesPageSelectorDenoteCurrentPage(this.page.getSelector());
         };
         this.content = content;
         this.scrollableSelector = `${this.selector}-scrollable`; // For the scrollable div encompassing the containers
@@ -196,6 +195,12 @@ export class AnimatedXScrollable extends Component {
     }
     discard() {
         throw new Error('Method not implemented.');
+    }
+    setFixedItemsToAppear() {
+        this.setScrollChevronsToAppear();
+    }
+    setFixedItemsToDissapear() {
+        this.setScrollChevronsToDisappear();
     }
     setScrollChevronsToAppear() {
         const self = this;

@@ -47,7 +47,7 @@ export const sectionProjectItems = new AnimatedXScrollable(`
             <h1>Item 3</h1>
             <p>Item 3</p>
         </div>
-    </div>`, "section-projects-items", "page-1", pageManagement);
+    </div>`, "section-projects-items", page1, pageManagement);
 export const sectionProjectItems2 = new AnimatedXScrollable(`
     <div class="col-abs-width col-default-padding">
         <div class="container">
@@ -69,7 +69,7 @@ export const sectionProjectItems2 = new AnimatedXScrollable(`
             <h1>Item 3</h1>
             <p>Item 3</p>
         </div>
-    </div>`, "section-projects-items-2", "page-2", pageManagement);
+    </div>`, "section-projects-items-2", page2, pageManagement);
 export const sectionProjectItems3 = new AnimatedXScrollable(`
     <div class="col-abs-width col-default-padding">
         <div class="container">
@@ -126,4 +126,4 @@ export const sectionProjectItems3 = new AnimatedXScrollable(`
             <h1>Item 3</h1>
             <p>Item 3</p>
         </div>
-    </div>`, "section-projects-items-3", "page-2", pageManagement);
+    </div>`, "section-projects-items-3", page2, pageManagement);
