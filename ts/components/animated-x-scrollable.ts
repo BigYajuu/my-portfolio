@@ -94,8 +94,7 @@ export class AnimatedXScrollable extends Component {
             // 5) Make Chevrons to follow scroll
             const invisibleTopPinSelector = `${self.page.getSelector()}-invisible-top-pin`;
             self.appendInvisibleTopPinDiv(self.page.getSelector(), invisibleTopPinSelector);
-            self.setScrollChevronVPositionEventListeners(self.scrollChevronLeftSelector, self.page.getSelector(), self.scrollableSelector);
-            self.setScrollChevronVPositionEventListeners(self.scrollChevronRightSelector, self.page.getSelector(), self.scrollableSelector);
+            self.setScrollChevronVPositionEventListeners();
         }
     }
     
@@ -209,23 +208,11 @@ export class AnimatedXScrollable extends Component {
         });
     }
     
-    private setScrollChevronVPositionEventListeners = (selector: string, pageSelector: string, scrollableSelector: string) => {
+    private setScrollChevronVPositionEventListeners = () => {
         const self = this;
-        // $(`#page-management-container`).on('scroll', async function() {
-        //     console.log(`${pageSelector} overscrolls; currentPage - ${self.pageManagement.getCurrentPageIndex()}`);
-        //     self.updateScrollChevronVisibility();
-        //     self.updateScrollChevronVPositions(selector, pageSelector, scrollableSelector);
-        // });
-        $(`#${pageSelector}`).on('scroll', function() {
-            // self.updateScrollChevronVisibility();
-            self.updateScrollChevronVPositions(selector, pageSelector, scrollableSelector);
+        $(`#${self.page.getSelector()}`).on('scroll', function() {
+            self.updateScrollChevronVPositions();
         });
-    }
-
-    private updateScrollChevronVPositions = (selector: string, pageSelector: string, scrollableSelector: string) => {
-        const self = this;
-        var scrollableOffset = $(`#${scrollableSelector}`).position()!;
-        $(`#${selector}`).css('top', scrollableOffset.top);
     }
 
     public setFixedItemsToAppear(): void {
@@ -248,18 +235,11 @@ export class AnimatedXScrollable extends Component {
         $(`#${self.scrollChevronRightSelector}`).css('visibility', 'hidden');
     }
 
-    private isThisComponentOnCurrentPage = () => {
+    private updateScrollChevronVPositions = () => {
         const self = this;
-        return this.pageManagement.doesPageSelectorDenoteCurrentPage(this.page.getSelector());
-    }
-
-    private updateScrollChevronVisibility() {
-        const self = this;
-        if (self.isThisComponentOnCurrentPage()) {
-            self.setScrollChevronsToAppear();
-        } else {
-            self.setScrollChevronsToDisappear();
-        }
+        var scrollableOffset = $(`#${self.scrollableSelector}`).position()!;
+        $(`#${self.scrollChevronLeftSelector}`).css('top', scrollableOffset.top);
+        $(`#${self.scrollChevronRightSelector}`).css('top', scrollableOffset.top);
     }
 }
 
