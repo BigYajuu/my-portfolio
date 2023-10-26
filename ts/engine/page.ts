@@ -23,20 +23,20 @@ export class Page {
         this.transitionScrollDown = scrollTransition;
     }
 
-    appendComponent(component: Component) {
+    public appendComponent(component: Component) {
         this.components.push(component);
     }
 
-    getSelector() {
+    public getSelector() {
         return this.selector;
     }
 
-    getNode() {
+    public getNode() {
         const clonedElement = $(`#${this.getSelector()}`).clone(true, true)[0];
         return clonedElement;
     }
 
-    getScrollUpCallback(pageManagement?: PageManagement) {
+    public getScrollUpCallback(pageManagement?: PageManagement) {
         const self = this;
         return function () {
             if (self.pagePrev) {
@@ -45,7 +45,7 @@ export class Page {
         }
     }
 
-    getScrollDownCallback(pageManagement?: PageManagement) {
+    public getScrollDownCallback(pageManagement?: PageManagement) {
         const self = this;
         return function () {
             if (self.pageNext) {
@@ -54,18 +54,18 @@ export class Page {
         }
     }
 
-    setNeighbouringPages(pageNext: Page | null, pagePrev: Page | null) {
+    public setNeighbouringPages(pageNext: Page | null, pagePrev: Page | null) {
         this.pageNext = pageNext;
         this.pagePrev = pagePrev;
     }
 
-    setAllFixedItemsToAppear() {
+    public setAllFixedItemsToAppear() {
         for (var i=0; i<this.components.length; i++) {
             this.components[i].setFixedItemsToAppear();
         }
     }
 
-    setAllFixedItemsToDisappear() {
+    public setAllFixedItemsToDisappear() {
         for (var i=0; i<this.components.length; i++) {
             this.components[i].setFixedItemsToDissapear();
         }

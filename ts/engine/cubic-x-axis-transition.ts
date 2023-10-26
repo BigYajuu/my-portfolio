@@ -11,14 +11,14 @@ export class CubicXAxisTransition extends Transition {
                     <div class="front"> 
                     <div class="bottom"> */
 
-    animationStyleScrollUp(): void {
+    public animationStyleScrollUp(): void {
         throw new Error("Method not implemented.");
     }
-    animationStyleScrollDown(): void {
+    public animationStyleScrollDown(): void {
         throw new Error("Method not implemented.");
     }
 
-    executeScrollUp(pageAtTop: Page, pageAtBottom: Page, pageManagement: PageManagement): void {
+    public executeScrollUp(pageAtTop: Page, pageAtBottom: Page, pageManagement: PageManagement): void {
         jQuery(function() {
             const divScene = document.createElement('div');
             const divPan = document.createElement('div');
@@ -57,7 +57,7 @@ export class CubicXAxisTransition extends Transition {
         });
     }
 
-    executeScrollDown(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void {
+    public executeScrollDown(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void {
         jQuery(function() {
             const divScene = document.createElement('div');
             const divPan = document.createElement('div');
