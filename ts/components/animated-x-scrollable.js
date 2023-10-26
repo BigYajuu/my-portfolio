@@ -6,11 +6,12 @@ var ScrollDirection;
     ScrollDirection["LEFT"] = "left";
     ScrollDirection["RIGHT"] = "right";
 })(ScrollDirection || (ScrollDirection = {}));
-var ScrollChevronMouseState;
-(function (ScrollChevronMouseState) {
-    ScrollChevronMouseState["ALONE"] = "alone";
-    ScrollChevronMouseState["HOVERING"] = "hovering";
-})(ScrollChevronMouseState || (ScrollChevronMouseState = {}));
+var ScrollChevronState;
+(function (ScrollChevronState) {
+    ScrollChevronState["BLANK"] = "blank";
+    ScrollChevronState["AVAILABLE"] = "available";
+    ScrollChevronState["HOVERING"] = "hovering";
+})(ScrollChevronState || (ScrollChevronState = {}));
 const ScrollChevronBlankStyle = {
     opacity: '0',
     width: '0%'
@@ -80,27 +81,25 @@ export class AnimatedXScrollable extends Component {
             // Attaches mouse event to only ONE scroll chevron.
             // Manages scroll animation's speed, acceleration and chevron's state of opacity.
             const self = this;
-            var currentScrollAnimationStyle = ScrollChevronBlankStyle;
             // Set Chevron's initial state
-            currentScrollAnimationStyle = self.xScrollEdgeResponse(scrollChevronSelector, direction);
+            self.xScrollEdgeResponse(scrollChevronSelector, direction);
             // Update Chevron's state whenever scroll is triggered
             $(`#${self.scrollableSelector}`).on('scroll', function () {
-                currentScrollAnimationStyle = self.xScrollEdgeResponse(scrollChevronSelector, direction, currentScrollAnimationStyle);
+                self.xScrollEdgeResponse(scrollChevronSelector, direction);
             });
             // Updates chevrons when window resizes
             $(window).on('resize', function () {
-                currentScrollAnimationStyle = self.xScrollEdgeResponse(scrollChevronSelector, direction, currentScrollAnimationStyle);
+                self.xScrollEdgeResponse(scrollChevronSelector, direction);
             });
             $(`#${scrollChevronSelector}`).on('mouseenter', function () {
                 clearInterval(self.xAccelerationIntervalHandler);
                 // Set Chevron to Hovering state and animate
-                console.log(currentScrollAnimationStyle === null || currentScrollAnimationStyle === void 0 ? void 0 : currentScrollAnimationStyle.opacity);
-                currentScrollAnimationStyle = self.customAnimation(scrollChevronSelector, ScrollChevronHoveringStyle, currentScrollAnimationStyle);
+                self.customAnimation(scrollChevronSelector, ScrollChevronState.HOVERING, direction);
                 if (direction === ScrollDirection.LEFT) {
-                    self.xScrollChevronMouseStateLeft = ScrollChevronMouseState.HOVERING;
+                    self.scrollChevronStateLeft = ScrollChevronState.HOVERING;
                 }
                 else if (direction === ScrollDirection.RIGHT) {
-                    self.xScrollChevronMouseStateRight = ScrollChevronMouseState.HOVERING;
+                    self.scrollChevronStateRight = ScrollChevronState.HOVERING;
                 }
                 // Set scroll accel animation
                 self.xMovementIntervalHandler = setInterval(function () {
@@ -119,10 +118,10 @@ export class AnimatedXScrollable extends Component {
                 clearInterval(self.xMovementIntervalHandler);
                 // Set Chevron to Alone state
                 if (direction === ScrollDirection.LEFT) {
-                    self.xScrollChevronMouseStateLeft = ScrollChevronMouseState.ALONE;
+                    self.scrollChevronStateLeft = ScrollChevronState.BLANK;
                 }
                 else if (direction === ScrollDirection.RIGHT) {
-                    self.xScrollChevronMouseStateRight = ScrollChevronMouseState.ALONE;
+                    self.scrollChevronStateRight = ScrollChevronState.BLANK;
                 }
                 // Set scroll de-accel animation
                 self.xAccelerationIntervalHandler = setInterval(function () {
@@ -137,8 +136,18 @@ export class AnimatedXScrollable extends Component {
                         self.xScrollSpeed -= 1;
                     }
                 }, 15);
-                currentScrollAnimationStyle = self.xScrollEdgeResponse(scrollChevronSelector, direction, currentScrollAnimationStyle);
+                self.xScrollEdgeResponse(scrollChevronSelector, direction);
             });
+        };
+        this.getScrollChevronStyleByState = (scrollChevronState) => {
+            switch (scrollChevronState) {
+                case ScrollChevronState.BLANK:
+                    return ScrollChevronBlankStyle;
+                case ScrollChevronState.AVAILABLE:
+                    return ScrollChevronAvailableStyle;
+                case ScrollChevronState.HOVERING:
+                    return ScrollChevronHoveringStyle;
+            }
         };
         this.setScrollChevronVPositionEventListeners = () => {
             const self = this;
@@ -167,41 +176,45 @@ export class AnimatedXScrollable extends Component {
         this.xScrollSpeed = 0;
         this.xMovementIntervalHandler = 0;
         this.xAccelerationIntervalHandler = 0;
-        this.xScrollChevronMouseStateLeft = ScrollChevronMouseState.ALONE;
-        this.xScrollChevronMouseStateRight = ScrollChevronMouseState.ALONE;
+        this.scrollChevronStateLeft = ScrollChevronState.BLANK;
+        this.scrollChevronStateRight = ScrollChevronState.BLANK;
     }
-    customAnimation(scrollChevronSelector, scrollChevronStyle, currentScrollAnimationStyle) {
-        console.log(`Animate ${scrollChevronSelector} ${currentScrollAnimationStyle === null || currentScrollAnimationStyle === void 0 ? void 0 : currentScrollAnimationStyle.opacity}->${scrollChevronStyle.opacity}`);
-        if (currentScrollAnimationStyle == undefined || currentScrollAnimationStyle != scrollChevronStyle) {
-            $(`#${scrollChevronSelector}`).stop();
-            $(`#${scrollChevronSelector}`).animate(scrollChevronStyle, Constants.DEFAULT_ANIMATION_DURATION);
-            currentScrollAnimationStyle = scrollChevronStyle;
+    customAnimation(scrollChevronSelector, newScrollChevronState, direction) {
+        if (direction === ScrollDirection.LEFT) {
+            if (this.scrollChevronStateLeft != newScrollChevronState) {
+                $(`#${scrollChevronSelector}`).stop();
+                $(`#${scrollChevronSelector}`).animate(this.getScrollChevronStyleByState(newScrollChevronState), Constants.DEFAULT_ANIMATION_DURATION);
+                this.scrollChevronStateLeft = newScrollChevronState;
+            }
         }
-        return currentScrollAnimationStyle;
+        else if (direction === ScrollDirection.RIGHT) {
+            if (this.scrollChevronStateRight != newScrollChevronState) {
+                $(`#${scrollChevronSelector}`).stop();
+                $(`#${scrollChevronSelector}`).animate(this.getScrollChevronStyleByState(newScrollChevronState), Constants.DEFAULT_ANIMATION_DURATION);
+                this.scrollChevronStateRight = newScrollChevronState;
+            }
+        }
     }
-    xScrollEdgeResponse(scrollChevronSelector, direction, currentScrollAnimationStyle) {
+    xScrollEdgeResponse(scrollChevronSelector, direction) {
         const self = this;
-        var updatedScrollAnimationStyle = currentScrollAnimationStyle;
         // Set Chevron's state to available/blank depending on whether the edge is reached on either side.
         if (direction == ScrollDirection.LEFT) {
             if ($(`#${self.scrollableSelector}`).scrollLeft() == (0)) {
                 // console.log(`LEFTEDGE ${currentScrollAnimationStyle?.opacity} ${`#${self.xScrollChevronMouseStateLeft}`}`);
-                updatedScrollAnimationStyle = self.customAnimation(scrollChevronSelector, ScrollChevronBlankStyle, currentScrollAnimationStyle);
+                self.customAnimation(scrollChevronSelector, ScrollChevronState.BLANK, direction);
             }
-            else if (self.xScrollChevronMouseStateLeft != ScrollChevronMouseState.HOVERING) {
-                console.log(`MIDDLE ${currentScrollAnimationStyle === null || currentScrollAnimationStyle === void 0 ? void 0 : currentScrollAnimationStyle.opacity} ${`#${self.xScrollChevronMouseStateLeft}`}`);
-                updatedScrollAnimationStyle = self.customAnimation(scrollChevronSelector, ScrollChevronAvailableStyle, currentScrollAnimationStyle);
+            else if (self.scrollChevronStateLeft != ScrollChevronState.HOVERING) {
+                self.customAnimation(scrollChevronSelector, ScrollChevronState.AVAILABLE, direction);
             } // Left Chevron edge detection
         }
         else if (direction == ScrollDirection.RIGHT) {
             if (Utility.isScrollToPosition(Math.round($(`#${self.scrollableSelector}`).scrollLeft()), $(`#${self.scrollableSelector}`).prop('scrollWidth') - $(`#${self.scrollableSelector}`).prop('clientWidth'))) {
-                updatedScrollAnimationStyle = self.customAnimation(scrollChevronSelector, ScrollChevronBlankStyle, currentScrollAnimationStyle);
+                self.customAnimation(scrollChevronSelector, ScrollChevronState.BLANK, direction);
             }
-            else if (self.xScrollChevronMouseStateRight == ScrollChevronMouseState.ALONE) {
-                updatedScrollAnimationStyle = self.customAnimation(scrollChevronSelector, ScrollChevronAvailableStyle, currentScrollAnimationStyle);
+            else if (self.scrollChevronStateRight == ScrollChevronState.BLANK) {
+                self.customAnimation(scrollChevronSelector, ScrollChevronState.AVAILABLE, direction);
             } // Right Chevron edge detection
         }
-        return updatedScrollAnimationStyle;
     }
     setFixedItemsToAppear() {
         this.updateScrollChevronVPositions();
