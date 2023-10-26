@@ -65,7 +65,7 @@ export class Page {
         }
     }
 
-    setAllFixedItemsToDissapear() {
+    setAllFixedItemsToDisappear() {
         for (var i=0; i<this.components.length; i++) {
             this.components[i].setFixedItemsToDissapear();
         }
