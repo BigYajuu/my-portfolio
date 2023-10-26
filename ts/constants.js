@@ -1,3 +1,3 @@
 export class Constants {
 }
-Constants.DEFAULT_ANIMATION_DURATION = 120;
+Constants.DEFAULT_ANIMATION_DURATION = 140;
