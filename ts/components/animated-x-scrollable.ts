@@ -159,7 +159,7 @@ export class AnimatedXScrollable extends Component {
         // Set Chevron's initial state
         xScrollEdgeResponse();
         // Update Chevron's state whenever scroll is triggered
-        $(`#${self.scrollableSelector}`).scroll(function () {
+        $(`#${self.scrollableSelector}`).on('scroll', function () {
             xScrollEdgeResponse();
         })
         // Updates chevrons when window resizes
