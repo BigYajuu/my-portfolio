@@ -40,12 +40,14 @@ export class AnimatedXScrollable extends Component {
     private scrollChevronLeftSelector: string;
     private scrollChevronRightSelector: string;
 
-    private scrollPosition: number;
-    private scrollSpeed: number;
-    private movementIntervalHandler: number;
-    private accelerationIntervalHandler: number;
-    private scrollChevronMouseStateLeft: ScrollChevronMouseState;
-    private scrollChevronMouseStateRight: ScrollChevronMouseState;
+    private lastVPosition: number;
+
+    private xScrollPosition: number;
+    private xScrollSpeed: number;
+    private xMovementIntervalHandler: number;
+    private xAccelerationIntervalHandler: number;
+    private xScrollChevronMouseStateLeft: ScrollChevronMouseState;
+    private xScrollChevronMouseStateRight: ScrollChevronMouseState;
 
 
     constructor(content: string, selector: string, page: Page, pageManagement: PageManagement) {
@@ -55,13 +57,14 @@ export class AnimatedXScrollable extends Component {
         this.scrollChevronLeftSelector = `${this.selector}-scroll-chevron-left`;    // Chevron on the left
         this.scrollChevronRightSelector = `${this.selector}-scroll-chevron-right`;  // Chevron on the right
 
+        this.lastVPosition = 0;
 
-        this.scrollPosition = 0;
-        this.scrollSpeed = 0;
-        this.movementIntervalHandler = 0;
-        this.accelerationIntervalHandler = 0;
-        this.scrollChevronMouseStateLeft = ScrollChevronMouseState.ALONE;
-        this.scrollChevronMouseStateRight = ScrollChevronMouseState.ALONE;
+        this.xScrollPosition = 0;
+        this.xScrollSpeed = 0;
+        this.xMovementIntervalHandler = 0;
+        this.xAccelerationIntervalHandler = 0;
+        this.xScrollChevronMouseStateLeft = ScrollChevronMouseState.ALONE;
+        this.xScrollChevronMouseStateRight = ScrollChevronMouseState.ALONE;
     }
 
     build = () => {
@@ -141,13 +144,13 @@ export class AnimatedXScrollable extends Component {
             if (direction == ScrollDirection.RIGHT) {
                 if (Utility.isScrollToPosition(Math.round($(`#${scrollableSelector}`).scrollLeft()!), $(`#${scrollableSelector}`).prop('scrollWidth')! - $(`#${scrollableSelector}`).prop('clientWidth')!)) {
                     customAnimation(scrollChevronSelector, ScrollChevronBlankStyle);
-                } else if (self.scrollChevronMouseStateRight == ScrollChevronMouseState.ALONE) {
+                } else if (self.xScrollChevronMouseStateRight == ScrollChevronMouseState.ALONE) {
                     customAnimation(scrollChevronSelector, ScrollChevronAvailableStyle);
                 } // Right Chevron edge detection
             } else if (direction == ScrollDirection.LEFT) {
                 if ($(`#${scrollableSelector}`).scrollLeft() == (0)) {
                     customAnimation(scrollChevronSelector, ScrollChevronBlankStyle);
-                } else if (self.scrollChevronMouseStateLeft == ScrollChevronMouseState.ALONE) {
+                } else if (self.xScrollChevronMouseStateLeft == ScrollChevronMouseState.ALONE) {
                     customAnimation(scrollChevronSelector, ScrollChevronAvailableStyle);
                 } // Left Chevron edge detection
             }
@@ -163,45 +166,45 @@ export class AnimatedXScrollable extends Component {
             scrollEdgeResponse();
         });
         $(`#${scrollChevronSelector}`).on('mouseenter', function() {  // When mouse enters chevron
-            clearInterval(self.accelerationIntervalHandler);
+            clearInterval(self.xAccelerationIntervalHandler);
             // Set Chevron to Hovering state and animate
             customAnimation(scrollChevronSelector, ScrollChevronHoveringStyle);
             if (direction === ScrollDirection.LEFT) {
-                self.scrollChevronMouseStateLeft = ScrollChevronMouseState.HOVERING;
+                self.xScrollChevronMouseStateLeft = ScrollChevronMouseState.HOVERING;
             } else if (direction === ScrollDirection.RIGHT) {
-                self.scrollChevronMouseStateRight = ScrollChevronMouseState.HOVERING;
+                self.xScrollChevronMouseStateRight = ScrollChevronMouseState.HOVERING;
             }
             // Set scroll accel animation
-            self.movementIntervalHandler = setInterval(function() {
-                if (self.scrollSpeed < 12) {
-                    self.scrollSpeed += 1;
+            self.xMovementIntervalHandler = setInterval(function() {
+                if (self.xScrollSpeed < 12) {
+                    self.xScrollSpeed += 1;
                 }
                 if (direction === ScrollDirection.LEFT) {
-                    self.scrollPosition = $(`#${scrollableSelector}`).scrollLeft()! - self.scrollSpeed;
+                    self.xScrollPosition = $(`#${scrollableSelector}`).scrollLeft()! - self.xScrollSpeed;
                 } else if (direction === ScrollDirection.RIGHT) {
-                    self.scrollPosition = $(`#${scrollableSelector}`).scrollLeft()! + self.scrollSpeed;
+                    self.xScrollPosition = $(`#${scrollableSelector}`).scrollLeft()! + self.xScrollSpeed;
                 }
-                $(`#${scrollableSelector}`).scrollLeft(self.scrollPosition);
+                $(`#${scrollableSelector}`).scrollLeft(self.xScrollPosition);
             }, 15);
         }).on('mouseleave', function() {    // When mouse leaves chevron
-            clearInterval(self.movementIntervalHandler);
+            clearInterval(self.xMovementIntervalHandler);
             // Set Chevron to Alone state
             if (direction === ScrollDirection.LEFT) {
-                self.scrollChevronMouseStateLeft = ScrollChevronMouseState.ALONE;
+                self.xScrollChevronMouseStateLeft = ScrollChevronMouseState.ALONE;
             } else if (direction === ScrollDirection.RIGHT) {
-                self.scrollChevronMouseStateRight = ScrollChevronMouseState.ALONE;
+                self.xScrollChevronMouseStateRight = ScrollChevronMouseState.ALONE;
             }
             // Set scroll de-accel animation
-            self.accelerationIntervalHandler = setInterval(function() {
+            self.xAccelerationIntervalHandler = setInterval(function() {
                 if (direction === ScrollDirection.LEFT) {
-                    self.scrollPosition = $(`#${scrollableSelector}`).scrollLeft()! - self.scrollSpeed;
+                    self.xScrollPosition = $(`#${scrollableSelector}`).scrollLeft()! - self.xScrollSpeed;
                 } else if (direction === ScrollDirection.RIGHT) {
-                    self.scrollPosition = $(`#${scrollableSelector}`).scrollLeft()! + self.scrollSpeed;
+                    self.xScrollPosition = $(`#${scrollableSelector}`).scrollLeft()! + self.xScrollSpeed;
                 }
-                $(`#${scrollableSelector}`).scrollLeft(self.scrollPosition);
+                $(`#${scrollableSelector}`).scrollLeft(self.xScrollPosition);
     
-                if (self.scrollSpeed > 0) {
-                    self.scrollSpeed -= 1;
+                if (self.xScrollSpeed > 0) {
+                    self.xScrollSpeed -= 1;
                 }
             }, 15);
             scrollEdgeResponse();
@@ -216,6 +219,7 @@ export class AnimatedXScrollable extends Component {
     }
 
     public setFixedItemsToAppear(): void {
+        this.updateScrollChevronVPositions();
         this.setScrollChevronsToAppear();
     }
 
@@ -237,9 +241,15 @@ export class AnimatedXScrollable extends Component {
 
     private updateScrollChevronVPositions = () => {
         const self = this;
-        var scrollableOffset = $(`#${self.scrollableSelector}`).position()!;
-        $(`#${self.scrollChevronLeftSelector}`).css('top', scrollableOffset.top);
-        $(`#${self.scrollChevronRightSelector}`).css('top', scrollableOffset.top);
+        const scrollableHeight = $(`#${self.scrollableSelector}`).position();
+        var finalHeight = self.lastVPosition;
+        if (scrollableHeight) {
+            finalHeight = scrollableHeight.top;
+            self.lastVPosition = finalHeight;
+        }
+        console.log(finalHeight);
+        $(`#${self.scrollChevronLeftSelector}`).css('top', finalHeight);
+        $(`#${self.scrollChevronRightSelector}`).css('top', finalHeight);
     }
 }
 

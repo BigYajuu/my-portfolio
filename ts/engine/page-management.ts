@@ -36,6 +36,8 @@ export class PageManagement {
         // The listener detects scroll on the main div 
         // and actuates up/down scroll transition animation 
         // accordingly.
+        // In addition, any fixed parts of all components
+        // from each page will have to be set to appear/disappear.
         const self = this;
         const mainDiv = document.getElementById(this.divID)!
         self.setLastVPosition(mainDiv.scrollTop);  // Update current V position
@@ -45,20 +47,16 @@ export class PageManagement {
                 const lastPageIndex = self.currentPageIndex;
                 const scrollUpCallback = self.pages[self.currentPageIndex].getScrollUpCallback(self);
                 self.currentPageIndex = self.currentPageIndex - 1 >= 0 ? self.currentPageIndex - 1 : 0;
-                console.log(self.currentPageIndex);
                 if (lastPageIndex != self.currentPageIndex) {
                     self.pages[lastPageIndex].setAllFixedItemsToDissapear();
-                    self.pages[self.currentPageIndex].setAllFixedItemsToAppear();
                 }
                 scrollUpCallback();
             } else if (scrollDirection == ScrollDirection.SCROLLING_DOWN) {
                 const lastPageIndex = self.currentPageIndex;
                 const scrollDownCallback = self.pages[self.currentPageIndex].getScrollDownCallback(self);
                 self.currentPageIndex = self.currentPageIndex + 1 < self.pages.length ? self.currentPageIndex + 1 : self.pages.length - 1;
-                console.log(self.currentPageIndex);
                 if (lastPageIndex != self.currentPageIndex) {
                     self.pages[lastPageIndex].setAllFixedItemsToDissapear();
-                    self.pages[self.currentPageIndex].setAllFixedItemsToAppear();
                 }
                 scrollDownCallback();
             }

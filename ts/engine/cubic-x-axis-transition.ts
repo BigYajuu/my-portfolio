@@ -48,6 +48,8 @@ export class CubicXAxisTransition extends Transition {
                 const targetToScroll = document.getElementById(pageAtTop.getSelector());
                 targetToScroll?.scrollIntoView();
                 pageManagement?.updatePageEvents();
+                // Make all fixed items at Top Page to appear
+                pageAtTop.setAllFixedItemsToAppear();
             });
             
             // Body replaced by Cube Animation
@@ -85,6 +87,8 @@ export class CubicXAxisTransition extends Transition {
                 const targetToScroll = document.getElementById(pageAtBottom.getSelector());
                 targetToScroll?.scrollIntoView();
                 pageManagement?.updatePageEvents();
+                // Make all fixed items at Bottom Page to appear
+                pageAtBottom.setAllFixedItemsToAppear();
             });
             
             // Body replaced by Cube Animation
