@@ -1,5 +1,6 @@
 import Component from '../engine/component.js';
 import { Utility, DeviceType } from '../utility.js';
+import { Constants } from '../constants.js';
 var ScrollDirection;
 (function (ScrollDirection) {
     ScrollDirection["LEFT"] = "left";
@@ -83,7 +84,7 @@ export class AnimatedXScrollable extends Component {
             function customAnimation(scrollChevronSelector, scrollChevronStyle) {
                 if (currentScrollAnimationStyle != scrollChevronStyle) {
                     $(`#${scrollChevronSelector}`).stop();
-                    $(`#${scrollChevronSelector}`).animate(scrollChevronStyle, 150);
+                    $(`#${scrollChevronSelector}`).animate(scrollChevronStyle, Constants.DEFAULT_ANIMATION_DURATION);
                     currentScrollAnimationStyle = scrollChevronStyle;
                 }
             }
@@ -203,11 +204,13 @@ export class AnimatedXScrollable extends Component {
     }
     setScrollChevronsToAppear() {
         const self = this;
-        $(`#${self.scrollChevronOpacityMaskSelector}`).css('visibility', 'visible');
+        $(`#${self.scrollChevronOpacityMaskSelector}`).animate({
+            opacity: '1',
+        }, Constants.DEFAULT_ANIMATION_DURATION);
     }
     setScrollChevronsToDisappear() {
         const self = this;
-        $(`#${self.scrollChevronOpacityMaskSelector}`).css('visibility', 'hidden');
+        $(`#${self.scrollChevronOpacityMaskSelector}`).css('opacity', '0');
     }
 }
 export default AnimatedXScrollable;

@@ -2,6 +2,7 @@ import PageManagement from '../engine/page-management.js';
 import Component from '../engine/component.js';
 import {Utility, DeviceType} from '../utility.js';
 import Page from '../engine/page.js';
+import { Constants } from '../constants.js';
 
 enum ScrollDirection {
     LEFT = 'left',
@@ -48,7 +49,6 @@ export class AnimatedXScrollable extends Component {
     private xScrollChevronMouseStateLeft: ScrollChevronMouseState;
     private xScrollChevronMouseStateRight: ScrollChevronMouseState;
     private scrollChevronOpacityMaskSelector: string;
-
 
     constructor(content: string, selector: string, page: Page, pageManagement: PageManagement) {
         super(selector, page, pageManagement);
@@ -136,7 +136,7 @@ export class AnimatedXScrollable extends Component {
         function customAnimation(scrollChevronSelector: string, scrollChevronStyle: ScrollChevronStyle) {
             if (currentScrollAnimationStyle != scrollChevronStyle) {
                 $(`#${scrollChevronSelector}`).stop();
-                $(`#${scrollChevronSelector}`).animate(scrollChevronStyle, 150);
+                $(`#${scrollChevronSelector}`).animate(scrollChevronStyle, Constants.DEFAULT_ANIMATION_DURATION);
                 currentScrollAnimationStyle = scrollChevronStyle;
             }
         }
@@ -230,12 +230,14 @@ export class AnimatedXScrollable extends Component {
 
     private setScrollChevronsToAppear() {
         const self = this;
-        $(`#${self.scrollChevronOpacityMaskSelector}`).css('visibility', 'visible');
+        $(`#${self.scrollChevronOpacityMaskSelector}`).animate({
+            opacity: '1',
+        }, Constants.DEFAULT_ANIMATION_DURATION);
     }
 
     private setScrollChevronsToDisappear() {
         const self = this;
-        $(`#${self.scrollChevronOpacityMaskSelector}`).css('visibility', 'hidden');
+        $(`#${self.scrollChevronOpacityMaskSelector}`).css('opacity', '0');
     }
 
     private updateScrollChevronVPositions = () => {
