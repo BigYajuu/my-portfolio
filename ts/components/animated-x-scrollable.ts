@@ -47,6 +47,7 @@ export class AnimatedXScrollable extends Component {
     private xAccelerationIntervalHandler: number;
     private xScrollChevronMouseStateLeft: ScrollChevronMouseState;
     private xScrollChevronMouseStateRight: ScrollChevronMouseState;
+    private scrollChevronOpacityMaskSelector: string;
 
 
     constructor(content: string, selector: string, page: Page, pageManagement: PageManagement) {
@@ -55,6 +56,7 @@ export class AnimatedXScrollable extends Component {
         this.scrollableSelector = `${this.selector}-scrollable`;    // For the scrollable div encompassing the containers
         this.scrollChevronLeftSelector = `${this.selector}-scroll-chevron-left`;    // Chevron on the left
         this.scrollChevronRightSelector = `${this.selector}-scroll-chevron-right`;  // Chevron on the right
+        this.scrollChevronOpacityMaskSelector = `${this.selector}-scroll-chevron-opacity-mask` // An outer div that controls opacity for chevrons
 
         this.lastVPosition = 0;
 
@@ -101,11 +103,13 @@ export class AnimatedXScrollable extends Component {
     private buildScrollChevrons = (height: number) => {
         const self = this;
         return `
-                <div class="scroll-chevron-left" id="${self.scrollChevronLeftSelector}" style="height: ${height}px">
-                    <i class="fa-solid fa-arrow-left fa-fade fa-3x" style="color: #000000"></i>
-                </div>
-                <div class="scroll-chevron-right" id="${self.scrollChevronRightSelector}" style="height: ${height}px">
-                    <i class="fa-solid fa-arrow-right fa-fade fa-3x" style="color: #000000"></i>
+                <div id="${self.scrollChevronOpacityMaskSelector}">
+                    <div class="scroll-chevron-left" id="${self.scrollChevronLeftSelector}" style="height: ${height}px">
+                        <i class="fa-solid fa-arrow-left fa-fade fa-3x" style="color: #000000"></i>
+                    </div>
+                    <div class="scroll-chevron-right" id="${self.scrollChevronRightSelector}" style="height: ${height}px">
+                        <i class="fa-solid fa-arrow-right fa-fade fa-3x" style="color: #000000"></i>
+                    </div>
                 </div>
                 `;
     }
@@ -226,14 +230,12 @@ export class AnimatedXScrollable extends Component {
 
     private setScrollChevronsToAppear() {
         const self = this;
-        $(`#${self.scrollChevronLeftSelector}`).css('visibility', 'visible');
-        $(`#${self.scrollChevronRightSelector}`).css('visibility', 'visible');
+        $(`#${self.scrollChevronOpacityMaskSelector}`).css('visibility', 'visible');
     }
 
     private setScrollChevronsToDisappear() {
         const self = this;
-        $(`#${self.scrollChevronLeftSelector}`).css('visibility', 'hidden');
-        $(`#${self.scrollChevronRightSelector}`).css('visibility', 'hidden');
+        $(`#${self.scrollChevronOpacityMaskSelector}`).css('visibility', 'hidden');
     }
 
     private updateScrollChevronVPositions = () => {
