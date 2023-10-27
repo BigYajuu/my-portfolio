@@ -22,26 +22,18 @@
   <link rel="stylesheet" href="css/custom_style.css">
 
   <meta name="theme-color" content="#fafafa">
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
   <script src="js/jquery/jquery-3.7.0.min.js"></script>
-  <script src="js/jquery/detectmobilebrowser.js"></script>
   <!-- FontAwesome -->
   <!-- <script src="https://kit.fontawesome.com/33c5cad846.js" crossorigin="anonymous"></script> -->
-  <!-- Advanced Animation Components -->
-  <script src="js/ui-components/animated-x-scrollable.js"></script>
-  <!-- ./ts -->
-  <!-- <script type="module" src="ts/page-management.js"></script>
-  <script type="module" src="ts/page.js"></script>
-  <script type="module" src="ts/cubic-x-axis-transition.js"></script> -->
 </head>
 
 <body class="dynamic-bg">
 
   <header>
   </header>
+
   <div class="main-scaffold" id="page-management-container">
-    
+
     <div class="entire-window dynamic-bg" id="page-1">  <!-- Operates the background -->
       <div class="header"> 
         <h1>Chuyue Wu</h1>
@@ -56,60 +48,19 @@
       </div>
   
       <div class="section" id="section-projects-items">
-        <script>
-          $(document).ready(function() {
-            new AnimatedXScrollable().build("section-projects-items", `
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 1</h1>
-                      <p>Item 1</p>
-                      <p>Item 1</p>
-                  </div>
-              </div>
-              
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 2</h1>
-                      <p>Item 2</p>
-                  </div>
-              </div>
-  
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 2</h1>
-                      <p>Item 2</p>
-                  </div>
-              </div>
-  
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 2</h1>
-                      <p>Item 2</p>
-                  </div>
-              </div>
-  
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 2</h1>
-                      <p>Item 2</p>
-                  </div>
-              </div>
-              
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 3</h1>
-                      <p>Item 3</p>
-                  </div>
-              </div>`);
-            }
-          );
+        <script type="module">
+          import {sectionProjectItems} from "/ts/initialized_items.js";
+          sectionProjectItems.build();
         </script>
       </div>
   
-      <div class="section" id="section-projects-items-2">
-        <script>
+      <!-- <div class="section" id="section-projects-items-2">
+        <script type="module">
+          import {AnimatedXScrollable} from "/ts/components/animated-x-scrollable.js";
+          import {pageManagement} from "/ts/initialized_items.js";
           $(document).ready(function() {
-            new AnimatedXScrollable().build("section-projects-items-2", `
+            new AnimatedXScrollable(
+              `
               <div class="col-abs-width col-default-padding">
                   <div class="container">
                       <h1>Item 1</h1>
@@ -130,11 +81,15 @@
                       <h1>Item 3</h1>
                       <p>Item 3</p>
                   </div>
-              </div>`);
+              </div>`,
+              "section-projects-items-2", 
+              "page-1", 
+              pageManagement
+            ).build();
             }
           );
         </script>
-      </div>
+      </div> -->
   
       <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
         <div class="row">
@@ -194,97 +149,9 @@
       </div>
 
       <div class="section" id="section-projects-items-3">
-        <script>
-          $(document).ready(function() {
-            new AnimatedXScrollable().build("section-projects-items-3", `
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 1</h1>
-                      <p>Item 1</p>
-                      <p>Item 1</p>
-                  </div>
-              </div>
-              
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 2</h1>
-                      <p>Item 2</p>
-                  </div>
-              </div>
-  
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 2</h1>
-                      <p>Item 2</p>
-                  </div>
-              </div>
-  
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 2</h1>
-                      <p>Item 2</p>
-                  </div>
-              </div>
-  
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 2</h1>
-                      <p>Item 2</p>
-                  </div>
-              </div>
-  
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 2</h1>
-                      <p>Item 2</p>
-                  </div>
-              </div>
-  
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 2</h1>
-                      <p>Item 2</p>
-                  </div>
-              </div>
-              
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 3</h1>
-                      <p>Item 3</p>
-                  </div>
-              </div>`);
-            }
-          );
-        </script>
-      </div>
-  
-      <div class="section" id="section-projects-items-4">
-        <script>
-          $(document).ready(function() {
-            new AnimatedXScrollable().build("section-projects-items-4", `
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 1</h1>
-                      <p>Item 1</p>
-                      <p>Item 1</p>
-                  </div>
-              </div>
-              
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 2</h1>
-                      <p>Item 2</p>
-                  </div>
-              </div>
-              
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 3</h1>
-                      <p>Item 3</p>
-                  </div>
-              </div>`);
-            }
-          );
+        <script type="module">
+          import {sectionProjectItems3} from "/ts/initialized_items.js";
+          sectionProjectItems3.build();
         </script>
       </div>
   
@@ -322,16 +189,6 @@
       </div>
     </div>
   </div>
-  
-
-  <script  type="module">
-    import {Page} from "/ts/page.js";
-    import {PageManagement} from "/ts/page-management.js";
-    import {CubicXAxisTransition} from "/ts/cubic-x-axis-transition.js";
-    var page1 = new Page("page-1", new CubicXAxisTransition());
-    var page2 = new Page("page-2", new CubicXAxisTransition());
-    var pageManagement = new PageManagement("page-management-container", [page1, page2]);
-  </script>
   
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>

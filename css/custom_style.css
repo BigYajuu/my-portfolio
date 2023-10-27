@@ -170,19 +170,19 @@ p {
 }
 
 .panScrollUp {
-  animation: moveCubeScrollUp 0.7s ease;
+  animation: moveCubeScrollUp 0.6s ease;
 }
 
 .panScrollDown {
-  animation: moveCubeScrollDown 0.7s ease;
+  animation: moveCubeScrollDown 0.6s ease;
 }
 
 .rotateCubeScrollUp {
-  animation: rotateCubeScrollUp 0.7s ease;
+  animation: rotateCubeScrollUp 0.6s ease;
 }
 
 .rotateCubeScrollDown {
-  animation: rotateCubeScrollDown 0.7s ease;
+  animation: rotateCubeScrollDown 0.6s ease;
 }
 
 @keyframes moveCubeScrollUp {

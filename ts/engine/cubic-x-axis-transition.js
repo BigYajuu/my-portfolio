@@ -1,4 +1,4 @@
-import { Transition } from "./transition.js";
+import Transition from "./transition.js";
 export class CubicXAxisTransition extends Transition {
     /*  Follow the following div structure: (scrollDown)
         <div class="scene">
@@ -14,11 +14,11 @@ export class CubicXAxisTransition extends Transition {
     }
     executeScrollUp(pageAtTop, pageAtBottom, pageManagement) {
         jQuery(function () {
-            var divScene = document.createElement('div');
-            var divPan = document.createElement('div');
-            var divCube = document.createElement('div');
-            var divTop = document.createElement('div');
-            var divFront = document.createElement('div');
+            const divScene = document.createElement('div');
+            const divPan = document.createElement('div');
+            const divCube = document.createElement('div');
+            const divTop = document.createElement('div');
+            const divFront = document.createElement('div');
             divScene.classList.add('scene');
             divPan.id = 'pan';
             divCube.id = 'cube';
@@ -35,13 +35,14 @@ export class CubicXAxisTransition extends Transition {
             divPan.appendChild(divCube);
             divScene.appendChild(divPan);
             // Save current body state and scroll page to the next marking
-            var divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
+            const divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
             divCube.addEventListener("animationend", (event) => {
                 divScene.replaceWith(divBody);
-                console.log('animation ends');
-                const targetToScroll = document.getElementById(pageAtTop.getId());
+                const targetToScroll = document.getElementById(pageAtTop.getSelector());
                 targetToScroll === null || targetToScroll === void 0 ? void 0 : targetToScroll.scrollIntoView();
                 pageManagement === null || pageManagement === void 0 ? void 0 : pageManagement.updatePageEvents();
+                // Make all fixed items at Top Page to appear
+                pageAtTop.setAllFixedItemsToAppear();
             });
             // Body replaced by Cube Animation
             document.getElementById('page-management-container').replaceWith(divScene);
@@ -49,11 +50,11 @@ export class CubicXAxisTransition extends Transition {
     }
     executeScrollDown(pageAtTop, pageAtBottom, pageManagement) {
         jQuery(function () {
-            var divScene = document.createElement('div');
-            var divPan = document.createElement('div');
-            var divCube = document.createElement('div');
-            var divFront = document.createElement('div');
-            var divBottom = document.createElement('div');
+            const divScene = document.createElement('div');
+            const divPan = document.createElement('div');
+            const divCube = document.createElement('div');
+            const divFront = document.createElement('div');
+            const divBottom = document.createElement('div');
             divScene.classList.add('scene');
             divPan.id = 'pan';
             divCube.id = 'cube';
@@ -70,12 +71,14 @@ export class CubicXAxisTransition extends Transition {
             divPan.appendChild(divCube);
             divScene.appendChild(divPan);
             // Save current body state and scroll page to the next marking
-            var divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
+            const divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
             divCube.addEventListener("animationend", (event) => {
                 divScene.replaceWith(divBody);
-                const targetToScroll = document.getElementById(pageAtBottom.getId());
+                const targetToScroll = document.getElementById(pageAtBottom.getSelector());
                 targetToScroll === null || targetToScroll === void 0 ? void 0 : targetToScroll.scrollIntoView();
                 pageManagement === null || pageManagement === void 0 ? void 0 : pageManagement.updatePageEvents();
+                // Make all fixed items at Bottom Page to appear
+                pageAtBottom.setAllFixedItemsToAppear();
             });
             // Body replaced by Cube Animation
             document.getElementById('page-management-container').replaceWith(divScene);

@@ -23,5 +23,6 @@
   },
   "dependencies": {
     "html2canvas": "^1.4.1"
-  }
+  },
+  "homepage" : "http://bigyajuu.github.io/my-portfolio/"
 }
