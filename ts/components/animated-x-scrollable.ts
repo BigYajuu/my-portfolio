@@ -98,6 +98,8 @@ export class AnimatedXScrollable extends Component {
             const invisibleTopPinSelector = `${self.page.getSelector()}-invisible-top-pin`;
             self.appendInvisibleTopPinDiv(self.page.getSelector(), invisibleTopPinSelector);
             self.setScrollChevronVPositionEventListeners();
+            // 6) Set Chevrons on other pages to disappear first
+            self.setFixedItemsToDisappearInitially();
         }
     }
 
@@ -250,6 +252,16 @@ export class AnimatedXScrollable extends Component {
 
     public setFixedItemsToDissapear(): void {
         this.setScrollChevronsToDisappear();
+    }
+
+    private setFixedItemsToDisappearInitially(): void {
+        // To avoid fixed items (i.e. chevrons) from appearing on other pages initially,
+        // it is necessary to hide them beforehand to avoid buggy behaviour.
+        // EBI: This solution only makes sense if the components of all pages were pre-built and loaded.
+        //      A better approach would be to set all disappear through PageManagement class.
+        if (!this.pageManagement.doesPageSelectorDenoteCurrentPage(this.page.getSelector())) {
+            this.setScrollChevronsToDisappear();
+        }
     }
 
     private setScrollChevronsToAppear() {
