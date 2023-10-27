@@ -49,8 +49,6 @@ export class AnimatedXScrollable extends Component {
                 // 4) Setup Mouse Scroll Events
                 self.setXScrollMouseEvents();
                 // 5) Make Chevrons to follow scroll
-                const invisibleTopPinSelector = `${self.page.getSelector()}-invisible-top-pin`;
-                self.appendInvisibleTopPinDiv(self.page.getSelector(), invisibleTopPinSelector);
                 self.setScrollChevronVPositionEventListeners();
                 // 6) Set Chevrons on other pages to disappear first
                 self.setFixedItemsToDisappearInitially();
@@ -68,11 +66,6 @@ export class AnimatedXScrollable extends Component {
                     </div>
                 </div>
                 `;
-        };
-        this.appendInvisibleTopPinDiv = function (pageSelector, selector) {
-            $(`#${pageSelector}`).append(`
-            <div id="${selector}" style="position: fixed; top: 0; left: 0; z-index: 9999"></div>
-            `);
         };
         this.setXScrollMouseEvents = () => {
             const self = this;
