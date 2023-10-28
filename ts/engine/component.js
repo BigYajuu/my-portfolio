@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Component = void 0;
-class Component {
+export class Component {
     constructor(selector, page, pageManagement) {
         this.selector = selector;
         this.page = page;
@@ -9,5 +6,4 @@ class Component {
         this.page.appendComponent(this);
     }
 }
-exports.Component = Component;
-exports.default = Component;
+export default Component;

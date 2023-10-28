@@ -1,13 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Page = void 0;
 var ScrollEdgeDetection;
 (function (ScrollEdgeDetection) {
     ScrollEdgeDetection[ScrollEdgeDetection["AT_TOP"] = 0] = "AT_TOP";
     ScrollEdgeDetection[ScrollEdgeDetection["AT_BOTTOM"] = 1] = "AT_BOTTOM";
     ScrollEdgeDetection[ScrollEdgeDetection["NONE"] = 2] = "NONE";
 })(ScrollEdgeDetection || (ScrollEdgeDetection = {}));
-class Page {
+export class Page {
     constructor(selector, scrollTransition) {
         this.pageScrollEdgeDetection = ScrollEdgeDetection.NONE;
         this.components = [];
@@ -56,5 +53,4 @@ class Page {
         }
     }
 }
-exports.Page = Page;
-exports.default = Page;
+export default Page;

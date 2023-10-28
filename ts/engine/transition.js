@@ -1,9 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Transition = void 0;
-class Transition {
+export class Transition {
     constructor() {
     }
 }
-exports.Transition = Transition;
-exports.default = Transition;
+export default Transition;

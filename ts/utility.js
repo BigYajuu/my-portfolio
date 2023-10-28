@@ -1,19 +1,16 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Utility = exports.DeviceType = exports.ScrollDirection = void 0;
-var ScrollDirection;
+export var ScrollDirection;
 (function (ScrollDirection) {
     ScrollDirection[ScrollDirection["SCROLLING_UP"] = 0] = "SCROLLING_UP";
     ScrollDirection[ScrollDirection["SCROLLING_DOWN"] = 1] = "SCROLLING_DOWN";
     ScrollDirection[ScrollDirection["UNCHANGING"] = 2] = "UNCHANGING";
-})(ScrollDirection || (exports.ScrollDirection = ScrollDirection = {}));
-var DeviceType;
+})(ScrollDirection || (ScrollDirection = {}));
+export var DeviceType;
 (function (DeviceType) {
     DeviceType[DeviceType["DESKTOP"] = 0] = "DESKTOP";
     DeviceType[DeviceType["TABLET"] = 1] = "TABLET";
     DeviceType[DeviceType["MOBILE"] = 2] = "MOBILE";
-})(DeviceType || (exports.DeviceType = DeviceType = {}));
-class Utility {
+})(DeviceType || (DeviceType = {}));
+export class Utility {
     static isScrollToPosition(figure1, figure2) {
         const tolerance = 2;
         return Math.abs(figure1 - figure2) <= tolerance;
@@ -55,5 +52,4 @@ class Utility {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 }
-exports.Utility = Utility;
-exports.default = Utility;
+export default Utility;

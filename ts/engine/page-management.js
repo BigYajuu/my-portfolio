@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.PageManagement = void 0;
-const utility_js_1 = require("../utility.js");
-class PageManagement {
+import { Utility, ScrollDirection } from "../utility.js";
+export class PageManagement {
     constructor(divID, pages) {
         this.currentPageIndex = 0;
         this.lastVPosition = 0;
@@ -34,8 +31,8 @@ class PageManagement {
         const mainDiv = document.getElementById(this.divID);
         self.setLastVPosition(mainDiv.scrollTop); // Update current V position
         mainDiv.addEventListener('scroll', function (event) {
-            const scrollDirection = utility_js_1.Utility.determineScrollDirection(self.lastVPosition, this.scrollTop);
-            if (scrollDirection == utility_js_1.ScrollDirection.SCROLLING_UP) {
+            const scrollDirection = Utility.determineScrollDirection(self.lastVPosition, this.scrollTop);
+            if (scrollDirection == ScrollDirection.SCROLLING_UP) {
                 const lastPageIndex = self.currentPageIndex;
                 const scrollUpCallback = self.pages[self.currentPageIndex].getScrollUpCallback(self);
                 self.currentPageIndex = self.currentPageIndex - 1 >= 0 ? self.currentPageIndex - 1 : 0;
@@ -44,7 +41,7 @@ class PageManagement {
                 }
                 scrollUpCallback();
             }
-            else if (scrollDirection == utility_js_1.ScrollDirection.SCROLLING_DOWN) {
+            else if (scrollDirection == ScrollDirection.SCROLLING_DOWN) {
                 const lastPageIndex = self.currentPageIndex;
                 const scrollDownCallback = self.pages[self.currentPageIndex].getScrollDownCallback(self);
                 self.currentPageIndex = self.currentPageIndex + 1 < self.pages.length ? self.currentPageIndex + 1 : self.pages.length - 1;
@@ -66,5 +63,4 @@ class PageManagement {
         self.setOverscrollEventListener();
     }
 }
-exports.PageManagement = PageManagement;
-exports.default = PageManagement;
+export default PageManagement;
