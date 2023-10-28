@@ -1,6 +1,12 @@
-import Component from '../engine/component.js';
-import { Utility, DeviceType } from '../utility.js';
-import { Constants } from '../constants.js';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AnimatedXScrollable = void 0;
+const component_js_1 = __importDefault(require("../engine/component.js"));
+const utility_js_1 = require("../utility.js");
+const constants_js_1 = require("../constants.js");
 var ScrollDirection;
 (function (ScrollDirection) {
     ScrollDirection["LEFT"] = "left";
@@ -24,7 +30,7 @@ const ScrollChevronHoveringStyle = {
     opacity: '1',
     width: '20%'
 };
-export class AnimatedXScrollable extends Component {
+class AnimatedXScrollable extends component_js_1.default {
     constructor(content, selector, page, pageManagement) {
         super(selector, page, pageManagement);
         this.build = () => {
@@ -38,7 +44,7 @@ export class AnimatedXScrollable extends Component {
             `);
             // 2) Get height of scrollable div
             height = $(`#${self.selector}`).outerHeight();
-            if (Utility.determineDeviceType() === DeviceType.DESKTOP) {
+            if (utility_js_1.Utility.determineDeviceType() === utility_js_1.DeviceType.DESKTOP) {
                 // 3) Recreate scrollable div and chevrons w/ corrent heights
                 $(`#${self.selector}`).html(`
                 <div class="row x-scrollable" id="${self.scrollableSelector}">
@@ -178,14 +184,14 @@ export class AnimatedXScrollable extends Component {
         if (direction === ScrollDirection.LEFT) {
             if (this.scrollChevronStateLeft != newScrollChevronState) {
                 $(`#${scrollChevronSelector}`).stop();
-                $(`#${scrollChevronSelector}`).animate(this.getScrollChevronStyleByState(newScrollChevronState), Constants.DEFAULT_ANIMATION_DURATION);
+                $(`#${scrollChevronSelector}`).animate(this.getScrollChevronStyleByState(newScrollChevronState), constants_js_1.Constants.DEFAULT_ANIMATION_DURATION);
                 this.scrollChevronStateLeft = newScrollChevronState;
             }
         }
         else if (direction === ScrollDirection.RIGHT) {
             if (this.scrollChevronStateRight != newScrollChevronState) {
                 $(`#${scrollChevronSelector}`).stop();
-                $(`#${scrollChevronSelector}`).animate(this.getScrollChevronStyleByState(newScrollChevronState), Constants.DEFAULT_ANIMATION_DURATION);
+                $(`#${scrollChevronSelector}`).animate(this.getScrollChevronStyleByState(newScrollChevronState), constants_js_1.Constants.DEFAULT_ANIMATION_DURATION);
                 this.scrollChevronStateRight = newScrollChevronState;
             }
         }
@@ -203,7 +209,7 @@ export class AnimatedXScrollable extends Component {
             } // Left Chevron edge detection
         }
         else if (direction == ScrollDirection.RIGHT) {
-            if (Utility.isScrollToPosition(Math.round($(`#${self.scrollableSelector}`).scrollLeft()), $(`#${self.scrollableSelector}`).prop('scrollWidth') - $(`#${self.scrollableSelector}`).prop('clientWidth'))) {
+            if (utility_js_1.Utility.isScrollToPosition(Math.round($(`#${self.scrollableSelector}`).scrollLeft()), $(`#${self.scrollableSelector}`).prop('scrollWidth') - $(`#${self.scrollableSelector}`).prop('clientWidth'))) {
                 self.customAnimation(scrollChevronSelector, ScrollChevronState.BLANK, direction);
             }
             else if (self.scrollChevronStateRight == ScrollChevronState.BLANK) {
@@ -233,11 +239,12 @@ export class AnimatedXScrollable extends Component {
         self.xScrollEdgeResponse(self.scrollChevronRightSelector, ScrollDirection.RIGHT);
         $(`#${self.scrollChevronOpacityMaskSelector}`).animate({
             opacity: '1',
-        }, Constants.DEFAULT_ANIMATION_DURATION);
+        }, constants_js_1.Constants.DEFAULT_ANIMATION_DURATION);
     }
     setScrollChevronsToDisappear() {
         const self = this;
         $(`#${self.scrollChevronOpacityMaskSelector}`).css('opacity', '0');
     }
 }
-export default AnimatedXScrollable;
+exports.AnimatedXScrollable = AnimatedXScrollable;
+exports.default = AnimatedXScrollable;

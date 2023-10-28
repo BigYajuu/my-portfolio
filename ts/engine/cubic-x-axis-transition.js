@@ -1,5 +1,11 @@
-import Transition from "./transition.js";
-export class CubicXAxisTransition extends Transition {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CubicXAxisTransition = void 0;
+const transition_js_1 = __importDefault(require("./transition.js"));
+class CubicXAxisTransition extends transition_js_1.default {
     /*  Follow the following div structure: (scrollDown)
         <div class="scene">
             <div id="pan">
@@ -85,4 +91,5 @@ export class CubicXAxisTransition extends Transition {
         });
     }
 }
-export default CubicXAxisTransition;
+exports.CubicXAxisTransition = CubicXAxisTransition;
+exports.default = CubicXAxisTransition;

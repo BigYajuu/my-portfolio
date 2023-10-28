@@ -1,4 +1,4 @@
-import Page from "engine/page";
+import Page from "./page";
 import {Utility, ScrollDirection} from "../utility.js";
 
 export class PageManagement {

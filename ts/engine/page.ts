@@ -1,5 +1,5 @@
-import PageManagement from "engine/page-management";
-import Transition from "engine/transition";
+import PageManagement from "./page-management";
+import Transition from "./transition";
 import Component from "./component";
 
 enum ScrollEdgeDetection {
