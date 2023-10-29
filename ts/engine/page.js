@@ -1,3 +1,4 @@
+import $ from "jquery";
 var ScrollEdgeDetection;
 (function (ScrollEdgeDetection) {
     ScrollEdgeDetection[ScrollEdgeDetection["AT_TOP"] = 0] = "AT_TOP";

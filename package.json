@@ -22,7 +22,8 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "html2canvas": "^1.4.1"
+    "html2canvas": "^1.4.1",
+    "jquery": "^3.7.1"
   },
-  "homepage" : "http://bigyajuu.github.io/my-portfolio/"
+  "homepage": "http://bigyajuu.github.io/my-portfolio/"
 }

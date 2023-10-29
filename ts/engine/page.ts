@@ -1,3 +1,4 @@
+import $ from "jquery";
 import PageManagement from "./page-management";
 import Transition from "./transition";
 import Component from "./component";

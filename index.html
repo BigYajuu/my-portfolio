@@ -22,7 +22,6 @@
   <link rel="stylesheet" href="css/custom_style.css">
 
   <meta name="theme-color" content="#fafafa">
-  <script src="js/jquery/jquery-3.7.0.min.js"></script>
   <!-- FontAwesome -->
   <!-- <script src="https://kit.fontawesome.com/33c5cad846.js" crossorigin="anonymous"></script> -->
 </head>
@@ -47,49 +46,7 @@
         </div>
       </div>
   
-      <div class="section" id="section-projects-items">
-        <script type="module">
-          import {sectionProjectItems} from "/ts/initialized_items.js";
-          sectionProjectItems.build();
-        </script>
-      </div>
-  
-      <!-- <div class="section" id="section-projects-items-2">
-        <script type="module">
-          import {AnimatedXScrollable} from "/ts/components/animated-x-scrollable.js";
-          import {pageManagement} from "/ts/initialized_items.js";
-          $(document).ready(function() {
-            new AnimatedXScrollable(
-              `
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 1</h1>
-                      <p>Item 1</p>
-                      <p>Item 1</p>
-                  </div>
-              </div>
-              
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 2</h1>
-                      <p>Item 2</p>
-                  </div>
-              </div>
-              
-              <div class="col-abs-width col-default-padding">
-                  <div class="container">
-                      <h1>Item 3</h1>
-                      <p>Item 3</p>
-                  </div>
-              </div>`,
-              "section-projects-items-2", 
-              "page-1", 
-              pageManagement
-            ).build();
-            }
-          );
-        </script>
-      </div> -->
+      <div class="section" id="section-projects-items"></div>
   
       <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
         <div class="row">
@@ -148,12 +105,9 @@
         </div>
       </div>
 
-      <div class="section" id="section-projects-items-3">
-        <script type="module">
-          import {sectionProjectItems3} from "/ts/initialized_items.js";
-          sectionProjectItems3.build();
-        </script>
-      </div>
+      <div class="section" id="section-projects-items-2"></div>
+
+      <div class="section" id="section-projects-items-3"></div>
   
       <div class="section-default-page-margin" id="section-about"> <!-- Section 2 - About -->
         <div class="row">
@@ -195,8 +149,8 @@
     window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
     ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
   </script>
-  <!-- <script src="ts/initialized_items.js"></script> -->
   <script src="https://www.google-analytics.com/analytics.js" async></script>
+  <script type="module" src="/ts/initialized_items.js"></script>
 </body>
 
 </html>

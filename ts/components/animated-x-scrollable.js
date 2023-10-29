@@ -1,3 +1,4 @@
+import $ from "jquery";
 import Component from '../engine/component.js';
 import { Utility, DeviceType } from '../utility.js';
 import { Constants } from '../constants.js';

@@ -1,3 +1,4 @@
+import $ from "jquery";
 import Transition from "./transition.js";
 export class CubicXAxisTransition extends Transition {
     /*  Follow the following div structure: (scrollDown)
@@ -13,7 +14,7 @@ export class CubicXAxisTransition extends Transition {
         throw new Error("Method not implemented.");
     }
     executeScrollUp(pageAtTop, pageAtBottom, pageManagement) {
-        jQuery(function () {
+        $(function () {
             const divScene = document.createElement('div');
             const divPan = document.createElement('div');
             const divCube = document.createElement('div');
@@ -49,7 +50,7 @@ export class CubicXAxisTransition extends Transition {
         });
     }
     executeScrollDown(pageAtTop, pageAtBottom, pageManagement) {
-        jQuery(function () {
+        $(function () {
             const divScene = document.createElement('div');
             const divPan = document.createElement('div');
             const divCube = document.createElement('div');

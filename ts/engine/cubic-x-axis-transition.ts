@@ -1,3 +1,4 @@
+import $ from "jquery";
 import Transition from "./transition.js";
 import Page from "./page.js";
 import PageManagement from "./page-management.js";
@@ -19,7 +20,7 @@ export class CubicXAxisTransition extends Transition {
     }
 
     public executeScrollUp(pageAtTop: Page, pageAtBottom: Page, pageManagement: PageManagement): void {
-        jQuery(function() {
+        $(function() {
             const divScene = document.createElement('div');
             const divPan = document.createElement('div');
             const divCube = document.createElement('div');
@@ -58,7 +59,7 @@ export class CubicXAxisTransition extends Transition {
     }
 
     public executeScrollDown(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void {
-        jQuery(function() {
+        $(function() {
             const divScene = document.createElement('div');
             const divPan = document.createElement('div');
             const divCube = document.createElement('div');

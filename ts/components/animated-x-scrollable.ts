@@ -1,3 +1,4 @@
+import $ from "jquery";
 import PageManagement from '../engine/page-management.js';
 import Component from '../engine/component.js';
 import {Utility, DeviceType} from '../utility.js';
