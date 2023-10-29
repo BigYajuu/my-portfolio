@@ -1,7 +1,7 @@
-import { Page } from "./engine/page.js";
-import { PageManagement } from "./engine/page-management.js";
-import { CubicXAxisTransition } from "./engine/cubic-x-axis-transition.js";
-import { AnimatedXScrollable } from "./components/animated-x-scrollable.js";
+import { Page } from "./ts/engine/page.js";
+import { PageManagement } from "./ts/engine/page-management.js";
+import { CubicXAxisTransition } from "./ts/engine/cubic-x-axis-transition.js";
+import { AnimatedXScrollable } from "./ts/components/animated-x-scrollable.js";
 const page1 = new Page("page-1", new CubicXAxisTransition());
 const page2 = new Page("page-2", new CubicXAxisTransition());
 const pageManagement = new PageManagement("page-management-container", [page1, page2]);
@@ -127,4 +127,3 @@ export const sectionProjectItems3 = new AnimatedXScrollable(`
             <p>Item 3</p>
         </div>
     </div>`, "section-projects-items-3", page2, pageManagement).build();
-console.log('fuck you');

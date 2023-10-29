@@ -144,5 +144,4 @@ export const sectionProjectItems3 = new AnimatedXScrollable(
     page2, 
     pageManagement
 ).build();
-console.log('fuck you');
 
