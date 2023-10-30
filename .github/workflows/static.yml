@@ -42,9 +42,7 @@ jobs:
       # - name: Deploy
       #   run: npm run deploy
       - name: Test Deploy CMD
-        run: |
-          git remote set-url origin https://github.com/BigYajuu/my-portfolio.git
-          npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
+        run: npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
         # env:
         #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifact
