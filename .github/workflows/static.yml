@@ -37,7 +37,7 @@ jobs:
         uses: actions/setup-node@v4.0.0
       - name: Install dependencies
         run: npm install
-      - name: Build and Run
+      - name: Build and deploy
         run: npm run start
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2

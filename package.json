@@ -10,7 +10,7 @@
     "dev": "parcel index.html --open",
     "sass": "sass --watch css/custom_style.scss css/custom_style.css",
     "start": "npm run build && npm run dev",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm run build && gh-pages -d dist",
     "tsc_autosave": "tsc -w"
   },
   "devDependencies": {
