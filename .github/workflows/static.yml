@@ -39,8 +39,8 @@ jobs:
         run: npm install
       - name: Predeploy
         run: npm run predeploy
-      - name: Deploy
-        run: npm run deploy
+      # - name: Deploy
+      #   run: npm run deploy
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
@@ -49,4 +49,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-        
+
