@@ -10,7 +10,8 @@
     "dev": "parcel index.html --open",
     "sass": "sass --watch css/custom_style.scss css/custom_style.css",
     "start": "npm run build && npm run dev",
-    "deploy": "npm run build",
+    "predeploy": "rm -rf dist && parcel build index.html --no-source-maps --public-url ./",
+    "deploy": "gh-pages -d dist",
     "tsc_autosave": "tsc -w"
   },
   "devDependencies": {
