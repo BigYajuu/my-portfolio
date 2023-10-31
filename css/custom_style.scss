@@ -1,0 +1,305 @@
+/* Constants */
+/* Display and Page Margins */
+$viewport-min-width: 1000px;
+$page-margin-desktop: 8.33%;
+$page-margin-mobile: 2%;
+/* Elemental Paddings and Curves*/
+$element-offset-left: 24px;
+$border-radius-standard: 24px;
+$container-margin: 8px;
+$container-padding: 16px;
+$transition-time: 0.6s;
+$transition-time-debug: 3s;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'BauPro', Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    overscroll-behavior-x: none;
+    position: relative;
+}
+
+.main-scaffold{
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.header {
+    width: 100%;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(5px);
+    display: block;
+    padding-top: 16px;
+    padding-bottom: 12px;
+    padding-left: calc($page-margin-mobile + $element-offset-left);
+    padding-right: calc($page-margin-mobile + $element-offset-left);
+    @media (min-width: $viewport-min-width) {
+        padding-left: calc($page-margin-desktop + $element-offset-left);
+        padding-right: calc($page-margin-desktop + $element-offset-left);
+    }
+}
+
+.container {
+    width: 100%;
+    box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+    border-radius: $border-radius-standard;
+    background: url('../img/noise.svg');
+    background-blend-mode: soft-light;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    display: inline-block;
+    padding: $container-padding;
+    margin-top: $container-margin;    // For vertical margin only
+    margin-bottom: $container-margin;
+    overflow-wrap: normal;
+}
+
+.col-default-padding {
+    // For horizontal padding only
+    padding-left: $container-margin;
+    padding-right: $container-margin;
+}
+
+.section{
+    width: 100%;
+    &-default-page-margin {
+        margin-left: $page-margin-mobile;    // For side margins of the entire page
+        margin-right: $page-margin-mobile;
+        @media (min-width: $viewport-min-width) {
+            margin-left: $page-margin-desktop;
+            margin-right: $page-margin-desktop;
+        }
+    }
+}
+
+.section-text{
+    padding-left: $element-offset-left;
+}
+
+.row:after{
+    content: " ";
+    clear: both;
+    display: table;
+}
+
+/* Text Styles and Paragraphs */
+/* Set All Text Margin to Zero as Default */
+h1 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.paragraph-margin {
+    margin-top: 24px;
+}
+
+.section-margin {
+    margin-top: 48px;
+    margin-bottom: 12px;
+}
+
+/* Background Colour Schemes */
+.entire-window {
+    height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.dynamic-bg {
+    background: 
+        linear-gradient(to right, #ff7e00, #ebff10),
+        linear-gradient(to top, #ff0042, #f72ddd);
+    background-blend-mode: lighten;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.dynamic-bg:before dynamic-bg:after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.scroll-chevron {
+    &-left {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Height is detected by JQuery's outerHeight() */
+        width: 0%;
+        opacity: 0;
+        z-index: 1;
+        left: 0;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.70) 25%, rgba(0, 0, 0, 0) 100%);
+    }
+    &-right {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Height is detected by JQuery's outerHeight() */
+        width: 0%;
+        opacity: 0;
+        z-index: 1;
+        right: 0;
+        background-image: linear-gradient(to left, rgba(0, 0, 0, 0.70) 25%, rgba(0, 0, 0, 0) 100%);
+    }
+}
+
+/* 3D Transitions */
+.scene{
+    perspective: 400vh;
+    position: relative;
+}
+
+.scene-removed{
+    display: none;
+}
+
+#pan {
+    transform-style: preserve-3d;
+}
+  
+#cube {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.panScrollUp {
+    animation: moveCubeScrollUp $transition-time ease;
+}
+
+.panScrollDown {
+    animation: moveCubeScrollDown $transition-time ease;
+}
+
+.rotateCubeScrollUp {
+    animation: rotateCubeScrollUp $transition-time ease;
+}
+
+.rotateCubeScrollDown {
+    animation: rotateCubeScrollDown $transition-time ease;
+}
+
+@keyframes moveCubeScrollUp {
+    0% { transform: translateZ(0); }
+    100% { transform: translateY(100vh) translateZ(100vh); }
+}
+
+@keyframes moveCubeScrollDown {
+    0% { transform: translateZ(0); }
+    100% { transform: translateZ(-100vh); }
+}
+
+@keyframes rotateCubeScrollUp {
+    0% { transform: translateY(-100vh) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    100% { transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg); }
+}
+
+@keyframes rotateCubeScrollDown {
+    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    100% { transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg); }
+}
+
+#cube .front  {
+    transform: rotateY(0deg) translateZ(0);
+}
+#cube .top    {
+    transform: rotateX(90deg) translateZ(-50vh) translateY(-50vh);
+}
+#cube .bottom {
+    transform: rotateX(-90deg) translateZ(-50vh) translateY(50vh);
+}
+
+/* Responsive Col */
+.col-1 {
+    width: 8.33%;
+}
+.col-2 {
+    width: 16.66%;
+}
+.col-3 {
+    width: 25%;
+}
+.col-4 {
+    width: 33.33%;
+}
+.col-5 {
+    width: 41.66%;
+}
+.col-6 {
+    width: 50%;
+}
+.col-7 {
+    width: 58.33%;
+}
+.col-8 {
+    width: 66.66%;
+}
+.col-9 {
+    width: 75%;
+}
+.col-10 {
+    width: 83.33%;
+}
+.col-11 {
+    width: 91.66%;
+}
+.col-12 {
+    width: 100%;
+}
+.col-abs-width {
+    width: 400px;
+}
+.col-page-margin {
+    width: $page-margin-mobile;
+    @media (min-width: $viewport-min-width) {
+        width: $page-margin-desktop;
+    }
+}
+
+[class*="col-"] {
+    float: left;
+}
+
+.x-scrollable [class*="col-"] {
+    float: none;
+    display: inline-flex;
+}
+
+.x-scrollable {
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-left: $page-margin-desktop;
+    @media (max-width: $viewport-min-width) {
+        padding-left: $page-margin-mobile;
+    }
+}
+
+.float-right {
+    float: right;
+}
+
+/* Collapsible Measures */
+@media (max-width: $viewport-min-width) {
+    .row-covering {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}
+
