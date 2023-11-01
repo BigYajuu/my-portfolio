@@ -2,6 +2,7 @@ import $ from "jquery";
 import Transition from "./transition.js";
 import Page from "./page.js";
 import PageManagement from "./page-management.js";
+import { Selectors } from "../constants.js";
 
 export class CubicXAxisTransition extends Transition {
     
@@ -43,7 +44,7 @@ export class CubicXAxisTransition extends Transition {
             divPan.appendChild(divCube);
             divScene.appendChild(divPan);
             // Save current body state and scroll page to the next marking
-            const divBody = $(`#${'page-management-container'}`).clone(true, true)[0];
+            const divBody = $(`#${Selectors.PAGE_MANAGEMENT_CONTAINER}`).clone(true, true)[0];
             divCube.addEventListener("animationend", (event) => {
                 divScene.replaceWith(divBody);
                 const targetToScroll = document.getElementById(pageAtTop.getSelector());
@@ -54,7 +55,7 @@ export class CubicXAxisTransition extends Transition {
             });
             
             // Body replaced by Cube Animation
-            document.getElementById('page-management-container')!.replaceWith(divScene);
+            document.getElementById(Selectors.PAGE_MANAGEMENT_CONTAINER)!.replaceWith(divScene);
         });
     }
 
