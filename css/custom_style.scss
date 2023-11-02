@@ -48,7 +48,7 @@ body {
     width: 100%;
     box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
     border-radius: $border-radius-standard;
-    background: url('../img/noise.svg');
+    background: url('/img/noise.svg');
     background-blend-mode: soft-light;
     background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(5px);
@@ -106,22 +106,19 @@ p {
     margin-bottom: 12px;
 }
 
-/* Background Colour Schemes */
+/* Backgrounds */
 .entire-window {
     height: 100vh;
     width: 100%;
     overflow-y: auto;
 }
 
-.dynamic-bg {
-    background: 
-        linear-gradient(to right, #ff7e00, #ebff10),
-        linear-gradient(to top, #ff0042, #f72ddd);
-    background-blend-mode: lighten;
+.background-default {
+    background: url('/img/flux/bg1-oversaturate.svg');
     background-size: cover;
     background-attachment: fixed;
 }
-.dynamic-bg:before dynamic-bg:after {
+.background-default:before background-default:after {
     display: block;
     content: "";
     position: absolute;
@@ -130,6 +127,8 @@ p {
     right: 0;
     bottom: 0;
 }
+
+/* Components */
 
 .scroll-chevron {
     &-left {
