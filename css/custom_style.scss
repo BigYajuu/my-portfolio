@@ -8,8 +8,8 @@ $element-offset-left: 24px;
 $border-radius-standard: 24px;
 $container-margin: 8px;
 $container-padding: 16px;
-$transition-time: 0.6s;
-$transition-time-debug: 3s;
+$scroll-transition-time: 0.6s;
+$scroll-transition-time-debug: 3s;
 
 * {
     box-sizing: border-box;
@@ -21,11 +21,15 @@ body {
     font-style: normal;
     overscroll-behavior-x: none;
     position: relative;
+    overflow: hidden;
 }
 
 .main-scaffold{
     height: 100vh;
     overflow-y: auto;
+}
+.main-scaffold::-webkit-scrollbar{
+    width: 0px;
 }
 
 .header {
@@ -82,7 +86,7 @@ body {
 }
 
 .row:after{
-    content: " ";
+    content: "";
     clear: both;
     display: table;
 }
@@ -107,25 +111,37 @@ p {
 }
 
 /* Backgrounds */
-.entire-window {
+.background-window {
     height: 100vh;
     width: 100%;
     overflow-y: auto;
-}
-
-.background-default {
-    background: url('/img/flux/bg1-oversaturate.svg');
     background-size: cover;
     background-attachment: fixed;
 }
-.background-default:before background-default:after {
+
+.background-window:before background-window:after {
     display: block;
-    content: "";
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar{
+    width: 0px;
+    height: 8px;
+}
+::-webkit-scrollbar-button:single-button {
+    display: block;
+    border-style: solid;
+    border-color: transparent;
+    width: $container-margin;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
 }
 
 /* Components */
@@ -139,7 +155,7 @@ p {
         /* Height is detected by JQuery's outerHeight() */
         width: 0%;
         opacity: 0;
-        z-index: 1;
+        z-index: 2;
         left: 0;
         background-image: linear-gradient(to right, rgba(0, 0, 0, 0.70) 25%, rgba(0, 0, 0, 0) 100%);
     }
@@ -151,7 +167,7 @@ p {
         /* Height is detected by JQuery's outerHeight() */
         width: 0%;
         opacity: 0;
-        z-index: 1;
+        z-index: 2;
         right: 0;
         background-image: linear-gradient(to left, rgba(0, 0, 0, 0.70) 25%, rgba(0, 0, 0, 0) 100%);
     }
@@ -179,19 +195,19 @@ p {
 }
 
 .panScrollUp {
-    animation: moveCubeScrollUp $transition-time ease;
+    animation: moveCubeScrollUp $scroll-transition-time ease;
 }
 
 .panScrollDown {
-    animation: moveCubeScrollDown $transition-time ease;
+    animation: moveCubeScrollDown $scroll-transition-time ease;
 }
 
 .rotateCubeScrollUp {
-    animation: rotateCubeScrollUp $transition-time ease;
+    animation: rotateCubeScrollUp $scroll-transition-time ease;
 }
 
 .rotateCubeScrollDown {
-    animation: rotateCubeScrollDown $transition-time ease;
+    animation: rotateCubeScrollDown $scroll-transition-time ease;
 }
 
 @keyframes moveCubeScrollUp {
