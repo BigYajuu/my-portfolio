@@ -1,0 +1,56 @@
+$line-thickness: 0.25em;  // 1
+$line-color: #333;       // 2
+$line-contrast: 500%;    // 3
+$photo-brightness: 90%;  // 4
+$photo-contrast: 150%;   // 5
+$photo-blur: 3px;        // 6
+$blend-mode: hard-light; // 7
+
+.flux-foreground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-attachment: fixed;
+}
+
+.flux-content {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    width: 100%;
+}
+
+.bg1-normal {
+    background-image: url('/img/flux/bg1-normal.svg');
+}
+
+.bg1-saturate {
+    background-image: url('/img/flux/bg1-saturate.svg');
+}
+
+.bg2-normal {
+    background-image: url('/img/flux/bg2-normal.svg');
+}
+
+.bg2-saturate {
+    background-image: url('/img/flux/bg2-saturate.svg');
+}
+
+.bg3-normal {
+    background-image: url('/img/flux/bg3-normal.svg');
+}
+
+.bg3-saturate {
+    background-image: url('/img/flux/bg3-saturate.svg');
+}
+
+.bg4-normal {
+    background-image: url('/img/flux/bg4-normal.svg');
+}
+
+.bg4-saturate {
+    background-image: url('/img/flux/bg4-saturate.svg');
+}
+

@@ -271,10 +271,11 @@ export class AnimatedXScrollable extends Component {
 
     private updateScrollChevronVPositions = () => {
         const self = this;
-        const scrollableHeight = $(`#${self.scrollableSelector}`).position();
+        // offset() is applicable for divs relative to the parents
+        const scrollablePositions = $(`#${self.scrollableSelector}`).offset();
         var finalHeight = self.lastVPosition;
-        if (scrollableHeight) {
-            finalHeight = scrollableHeight.top;
+        if (scrollablePositions) {
+            finalHeight = scrollablePositions.top;
             self.lastVPosition = finalHeight;
         }
         $(`#${self.scrollChevronLeftSelector}`).css('top', finalHeight);
