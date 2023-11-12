@@ -18,17 +18,21 @@ export class FluxDynamicBackgrounds extends Component {
         this.imageMode = ImageMode.NORMAL;
         this.currentImageIndex = 0;
         imageMode ? this.imageMode = imageMode : null;
+        this.foregroundSelector = `${this.selector}-foreground`;
+        this.backgroundSelector = `${this.selector}-background`;
+        this.contentSelector = `${this.selector}-content`;
     }
     build() {
         const self = this;
         // 1) Clone all children of page div
-        const $childrenClones = $(`#${this.selector}`).children().clone(true, true);
-        // 2) Create new foreground canvas
-        const foregroundSelector = `${this.selector}-foreground`;
-        const contentSelector = `${this.selector}-content`;
-        $(`#${this.selector}`).html(`
-            <div id=${foregroundSelector} class="flux-foreground flux-canvas">
-                <div id=${foregroundSelector} class="flux-foreground bg2-saturate"></div>
+        const $childrenClones = $(`#${self.selector}`).children().clone(true, true);
+        // 2) Set-up back/foregrounds
+        const foregroundSelector = self.foregroundSelector;
+        const backgroundSelector = self.backgroundSelector;
+        const contentSelector = self.contentSelector;
+        $(`#${self.selector}`).html(`
+            <div id=${backgroundSelector} class="flux-foreground">
+                <div id=${foregroundSelector} class="flux-foreground"></div>
             </div>
             <div id=${contentSelector} class="flux-content"></div>
             `);
