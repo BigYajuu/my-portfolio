@@ -1,10 +1,10 @@
-$line-thickness: 0.25em;  // 1
-$line-color: #333;       // 2
-$line-contrast: 500%;    // 3
-$photo-brightness: 90%;  // 4
-$photo-contrast: 150%;   // 5
-$photo-blur: 3px;        // 6
-$blend-mode: hard-light; // 7
+// $line-thickness: 0.25em;  // 1
+// $line-color: #333;       // 2
+// $line-contrast: 500%;    // 3
+// $photo-brightness: 90%;  // 4
+// $photo-contrast: 150%;   // 5
+// $photo-blur: 3px;        // 6
+// $blend-mode: hard-light; // 7
 
 .flux-foreground {
     position: absolute;
@@ -14,6 +14,37 @@ $blend-mode: hard-light; // 7
     width: 100%;
     background-attachment: fixed;
 }
+
+// .flux-canvas {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     bottom: 0;
+//     right: 0;
+//     background: repeating-radial-gradient(
+//         circle at 0 -25%,
+//         #fff,
+//         $line-color calc($line-thickness / 2),
+//         #fff $line-thickness
+//     );
+//     filter: contrast($line-contrast);
+// }
+
+// .flux-canvas img {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//     object-position: center;
+//     mix-blend-mode: $blend-mode;
+//     filter:
+//       grayscale(1) 
+//       brightness($photo-brightness) 
+//       contrast($photo-contrast) 
+//       blur($photo-blur);
+//   }
 
 .flux-content {
     position: relative;
