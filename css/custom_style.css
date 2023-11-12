@@ -2,6 +2,8 @@
 /* Display and Page Margins */
 /* Elemental Paddings and Curves*/
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -79,6 +81,10 @@ body {
   padding-left: 24px;
 }
 
+.row:before {
+  content: "";
+}
+
 .row:after {
   content: "";
   clear: both;
@@ -96,12 +102,12 @@ p {
 }
 
 .paragraph-margin {
-  margin-top: 24px;
+  padding-top: 24px;
 }
 
 .section-margin {
-  margin-top: 48px;
-  margin-bottom: 12px;
+  padding-top: 48px;
+  padding-bottom: 12px;
 }
 
 /* Backgrounds */
@@ -110,16 +116,11 @@ p {
   width: 100%;
   overflow-y: auto;
   background-size: cover;
-  background-attachment: fixed;
 }
 
 .background-window:before background-window:after {
   display: block;
   position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 
 /* Scrollbars */
