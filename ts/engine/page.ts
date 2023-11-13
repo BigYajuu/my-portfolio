@@ -61,28 +61,14 @@ export class Page {
     }
 
     public onLoad() {
-        this.setAllFixedItemsToAppear();
         for (var i=0; i<this.components.length; i++) {
             this.components[i].onLoad();
         }
     }
 
     public onRetire() {
-        this.setAllFixedItemsToDisappear();
         for (var i=0; i<this.components.length; i++) {
             this.components[i].onRetire();
-        }
-    }
-
-    private setAllFixedItemsToAppear() {
-        for (var i=0; i<this.components.length; i++) {
-            this.components[i].setFixedItemsToAppear();
-        }
-    }
-
-    private setAllFixedItemsToDisappear() {
-        for (var i=0; i<this.components.length; i++) {
-            this.components[i].setFixedItemsToDissapear();
         }
     }
 }

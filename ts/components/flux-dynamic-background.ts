@@ -23,17 +23,19 @@ const SVGFilm1: Array<SVGSetClasses> = [
 
 export class FluxDynamicBackgrounds extends Component {
 
-    private imageMode: ImageMode = ImageMode.NORMAL;
+    private imageMode: ImageMode = ImageMode.SATURATED;
     private currentImageIndex: number = 0;
-    private foregroundSelector;
-    private backgroundSelector;
-    private contentSelector;
+    private foregroundSelector: string;
+    private backgroundSelector: string;
+    private contentSelector: string;
+    private lastBackgroundClass: string = "bg0-blank";
 
-    constructor(selector: string, page: Page, pageManagement: PageManagement, imageMode?: ImageMode) {
+    constructor(selector: string, page: Page, pageManagement: PageManagement, imageMode?: ImageMode, initialBackgroundClass?: string) {
         super(selector, page, pageManagement);
         imageMode ? this.imageMode = imageMode : null;
+        initialBackgroundClass ? this.lastBackgroundClass = initialBackgroundClass : null;
         this.foregroundSelector = `${this.selector}-foreground`;
-        this.backgroundSelector = `${this.selector}-background`;
+        this.backgroundSelector = `${this.selector}`;
         this.contentSelector = `${this.selector}-content`;
     }
 
@@ -43,13 +45,10 @@ export class FluxDynamicBackgrounds extends Component {
         const $childrenClones = $(`#${self.selector}`).children().clone(true, true);
         // 2) Set-up back/foregrounds
         const foregroundSelector = self.foregroundSelector;
-        const backgroundSelector = self.backgroundSelector;
         const contentSelector = self.contentSelector;
         $(`#${self.selector}`).html(
             `
-            <div id=${backgroundSelector} class="flux-foreground">
-                <div id=${foregroundSelector} class="flux-foreground"></div>
-            </div>
+            <div id=${foregroundSelector} class="flux-foreground"></div>
             <div id=${contentSelector} class="flux-content"></div>
             `
         );
@@ -66,15 +65,23 @@ export class FluxDynamicBackgrounds extends Component {
     }
 
     public runFadeTransition(toClass: string): void {
-        $(`#${this.selector}`).addClass(toClass);
-        // $(`#${this.selector}`).css('background-color', 'red');
-        console.log("runTransition");
+        $(`#${this.foregroundSelector}`).addClass(this.lastBackgroundClass);
+        $(`#${this.backgroundSelector}`).addClass(toClass);
+        $(`#${this.foregroundSelector}`).animate({opacity: 0}, 4000, function() {
+            // Animation ending sequence
+        });
     }
 
     public getImageClassByIndex(film: Array<SVGSetClasses>, index: number): string {
         return this.imageMode == ImageMode.NORMAL ? film[index].normal : film[index].saturated;
     }
 
-    public setFixedItemsToDissapear(): void {}
-    public setFixedItemsToAppear(): void {}
+    public onLoad(): void {
+        console.log('onLoad');
+    }
+
+    public onRetire(): void {
+        console.log('onRetire');
+    }
+
 }

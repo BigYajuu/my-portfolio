@@ -9,9 +9,9 @@ export class Component {
     ;
     onRetire() { }
     ;
-    setFixedItemsToDissapear() { }
+    onRetire() { }
     ;
-    setFixedItemsToAppear() { }
+    onLoad() { }
     ;
 }
 export default Component;

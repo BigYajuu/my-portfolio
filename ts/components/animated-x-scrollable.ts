@@ -236,12 +236,12 @@ export class AnimatedXScrollable extends Component {
         });
     }
 
-    public setFixedItemsToAppear(): void {
+    public onLoad(): void {
         this.updateScrollChevronVPositions();
         this.setScrollChevronsToAppear();
     }
 
-    public setFixedItemsToDissapear(): void {
+    public onRetire(): void {
         this.setScrollChevronsToDisappear();
     }
 

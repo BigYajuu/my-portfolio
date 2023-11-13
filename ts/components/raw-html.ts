@@ -14,10 +14,10 @@ class RawHtml extends Component {
     public build(): void {
         $(`#${this.selector}`).html(this.htmlString);
     }
-    public setFixedItemsToDissapear(): void {
+    public onRetire(): void {
         throw new Error("Method not implemented.");
     }
-    public setFixedItemsToAppear(): void {
+    public onLoad(): void {
         throw new Error("Method not implemented.");
     }
     

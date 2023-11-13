@@ -213,11 +213,11 @@ export class AnimatedXScrollable extends Component {
             } // Right Chevron edge detection
         }
     }
-    setFixedItemsToAppear() {
+    onLoad() {
         this.updateScrollChevronVPositions();
         this.setScrollChevronsToAppear();
     }
-    setFixedItemsToDissapear() {
+    onRetire() {
         this.setScrollChevronsToDisappear();
     }
     setFixedItemsToDisappearInitially() {

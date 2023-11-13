@@ -7,10 +7,10 @@ class RawHtml extends Component {
     build() {
         $(`#${this.selector}`).html(this.htmlString);
     }
-    setFixedItemsToDissapear() {
+    onRetire() {
         throw new Error("Method not implemented.");
     }
-    setFixedItemsToAppear() {
+    onLoad() {
         throw new Error("Method not implemented.");
     }
 }

@@ -13,13 +13,15 @@ const SVGFilm1 = [
     { normal: "bg4-normal", saturated: "bg4-saturate" }
 ];
 export class FluxDynamicBackgrounds extends Component {
-    constructor(selector, page, pageManagement, imageMode) {
+    constructor(selector, page, pageManagement, imageMode, initialBackgroundClass) {
         super(selector, page, pageManagement);
-        this.imageMode = ImageMode.NORMAL;
+        this.imageMode = ImageMode.SATURATED;
         this.currentImageIndex = 0;
+        this.lastBackgroundClass = "bg0-blank";
         imageMode ? this.imageMode = imageMode : null;
+        initialBackgroundClass ? this.lastBackgroundClass = initialBackgroundClass : null;
         this.foregroundSelector = `${this.selector}-foreground`;
-        this.backgroundSelector = `${this.selector}-background`;
+        this.backgroundSelector = `${this.selector}`;
         this.contentSelector = `${this.selector}-content`;
     }
     build() {
@@ -28,12 +30,9 @@ export class FluxDynamicBackgrounds extends Component {
         const $childrenClones = $(`#${self.selector}`).children().clone(true, true);
         // 2) Set-up back/foregrounds
         const foregroundSelector = self.foregroundSelector;
-        const backgroundSelector = self.backgroundSelector;
         const contentSelector = self.contentSelector;
         $(`#${self.selector}`).html(`
-            <div id=${backgroundSelector} class="flux-foreground">
-                <div id=${foregroundSelector} class="flux-foreground"></div>
-            </div>
+            <div id=${foregroundSelector} class="flux-foreground"></div>
             <div id=${contentSelector} class="flux-content"></div>
             `);
         $(`#${contentSelector}`).append($childrenClones);
@@ -47,13 +46,19 @@ export class FluxDynamicBackgrounds extends Component {
         `);
     }
     runFadeTransition(toClass) {
-        $(`#${this.selector}`).addClass(toClass);
-        // $(`#${this.selector}`).css('background-color', 'red');
-        console.log("runTransition");
+        $(`#${this.foregroundSelector}`).addClass(this.lastBackgroundClass);
+        $(`#${this.backgroundSelector}`).addClass(toClass);
+        $(`#${this.foregroundSelector}`).animate({ opacity: 0 }, 4000, function () {
+            // Animation ending sequence
+        });
     }
     getImageClassByIndex(film, index) {
         return this.imageMode == ImageMode.NORMAL ? film[index].normal : film[index].saturated;
     }
-    setFixedItemsToDissapear() { }
-    setFixedItemsToAppear() { }
+    onLoad() {
+        console.log('onLoad');
+    }
+    onRetire() {
+        console.log('onRetire');
+    }
 }

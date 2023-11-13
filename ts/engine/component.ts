@@ -20,9 +20,9 @@ export abstract class Component {
 
     public onRetire(): void {};
 
-    public setFixedItemsToDissapear() : void {};
+    public onRetire() : void {};
     
-    public setFixedItemsToAppear() : void {};
+    public onLoad() : void {};
 
 }
 
