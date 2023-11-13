@@ -5,5 +5,13 @@ export class Component {
         this.pageManagement = pageManagement;
         this.page.appendComponent(this);
     }
+    onLoad() { }
+    ;
+    onRetire() { }
+    ;
+    setFixedItemsToDissapear() { }
+    ;
+    setFixedItemsToAppear() { }
+    ;
 }
 export default Component;

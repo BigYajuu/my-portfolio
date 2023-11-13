@@ -16,9 +16,13 @@ export abstract class Component {
 
     public abstract build(): void;
 
-    public abstract setFixedItemsToDissapear() : void;
+    public onLoad(): void {};
+
+    public onRetire(): void {};
+
+    public setFixedItemsToDissapear() : void {};
     
-    public abstract setFixedItemsToAppear() : void;
+    public setFixedItemsToAppear() : void {};
 
 }
 

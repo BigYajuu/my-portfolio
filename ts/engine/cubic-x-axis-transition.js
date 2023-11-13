@@ -44,7 +44,7 @@ export class CubicXAxisTransition extends Transition {
                 targetToScroll === null || targetToScroll === void 0 ? void 0 : targetToScroll.scrollIntoView();
                 pageManagement === null || pageManagement === void 0 ? void 0 : pageManagement.updatePageEvents();
                 // Make all fixed items at Top Page to appear
-                pageAtTop.setAllFixedItemsToAppear();
+                pageAtTop.onLoad();
             });
             // Body replaced by Cube Animation
             document.getElementById(Selectors.PAGE_MANAGEMENT_CONTAINER).replaceWith(divScene);
@@ -80,7 +80,7 @@ export class CubicXAxisTransition extends Transition {
                 targetToScroll === null || targetToScroll === void 0 ? void 0 : targetToScroll.scrollIntoView();
                 pageManagement === null || pageManagement === void 0 ? void 0 : pageManagement.updatePageEvents();
                 // Make all fixed items at Bottom Page to appear
-                pageAtBottom.setAllFixedItemsToAppear();
+                pageAtBottom.onLoad();
             });
             // Body replaced by Cube Animation
             document.getElementById('page-management-container').replaceWith(divScene);

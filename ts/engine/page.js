@@ -43,6 +43,18 @@ export class Page {
         this.pageNext = pageNext;
         this.pagePrev = pagePrev;
     }
+    onLoad() {
+        this.setAllFixedItemsToAppear();
+        for (var i = 0; i < this.components.length; i++) {
+            this.components[i].onLoad();
+        }
+    }
+    onRetire() {
+        this.setAllFixedItemsToDisappear();
+        for (var i = 0; i < this.components.length; i++) {
+            this.components[i].onRetire();
+        }
+    }
     setAllFixedItemsToAppear() {
         for (var i = 0; i < this.components.length; i++) {
             this.components[i].setFixedItemsToAppear();
