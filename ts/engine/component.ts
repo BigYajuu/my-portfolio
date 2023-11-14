@@ -19,11 +19,6 @@ export abstract class Component {
     public onLoad(): void {};
 
     public onRetire(): void {};
-
-    public onRetire() : void {};
-    
-    public onLoad() : void {};
-
 }
 
 export default Component;

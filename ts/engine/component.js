@@ -9,9 +9,5 @@ export class Component {
     ;
     onRetire() { }
     ;
-    onRetire() { }
-    ;
-    onLoad() { }
-    ;
 }
 export default Component;
