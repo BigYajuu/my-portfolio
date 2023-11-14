@@ -17,7 +17,9 @@ export class FluxDynamicBackgrounds extends Component {
         super(selector, page, pageManagement);
         this.imageMode = ImageMode.SATURATED;
         this.currentImageIndex = 0;
+        this.currentFilm = SVGFilm1;
         this.lastBackgroundClass = "bg0-blank";
+        this.lastForegroundClass = "";
         imageMode ? this.imageMode = imageMode : null;
         initialBackgroundClass ? this.lastBackgroundClass = initialBackgroundClass : null;
         this.foregroundSelector = `${this.selector}-foreground`;
@@ -36,7 +38,7 @@ export class FluxDynamicBackgrounds extends Component {
             <div id=${contentSelector} class="flux-content"></div>
             `);
         $(`#${contentSelector}`).append($childrenClones);
-        this.runFadeTransition(this.getImageClassByIndex(SVGFilm1, 1));
+        this.runNextFadeTransition();
     }
     appendCanvases() {
         $(`#${this.selector}`).append(`
@@ -46,19 +48,42 @@ export class FluxDynamicBackgrounds extends Component {
         `);
     }
     runFadeTransition(toClass) {
-        $(`#${this.foregroundSelector}`).addClass(this.lastBackgroundClass);
-        $(`#${this.backgroundSelector}`).addClass(toClass);
-        $(`#${this.foregroundSelector}`).animate({ opacity: 0 }, 4000, function () {
-            // Animation ending sequence
+        const self = this;
+        const lastForegroundClass = this.lastForegroundClass;
+        const lastBackgroundClass = this.lastBackgroundClass;
+        const newBackgroundClass = toClass;
+        $(`#${this.foregroundSelector}`).addClass(lastBackgroundClass).removeClass(lastForegroundClass);
+        $(`#${this.backgroundSelector}`).addClass(newBackgroundClass).removeClass(lastBackgroundClass);
+        $(`#${this.foregroundSelector}`).css('opacity', 1);
+        $(`#${this.foregroundSelector}`).animate({ opacity: 0 }, 2000, function () {
+            self.lastForegroundClass = lastBackgroundClass;
+            self.lastBackgroundClass = newBackgroundClass;
+            console.log(`lastForegroundClass: ${self.lastForegroundClass}\nlastBackgroundClass: ${self.lastBackgroundClass}`);
+            console.log(`currentImageIndex: ${self.currentImageIndex}`);
+            self.runNextFadeTransition();
         });
     }
-    getImageClassByIndex(film, index) {
-        return this.imageMode == ImageMode.NORMAL ? film[index].normal : film[index].saturated;
+    getImageClassByIndex(index) {
+        return this.imageMode == ImageMode.NORMAL ? this.currentFilm[index].normal : this.currentFilm[index].saturated;
     }
     onLoad() {
-        console.log('onLoad');
+        this.setForegroundToAppear();
+        // this.runNextFadeTransition();
     }
     onRetire() {
-        console.log('onRetire');
+        this.setForegroundToDisappear();
+    }
+    runNextFadeTransition() {
+        this.runFadeTransition(this.getImageClassByIndex(this.currentImageIndex));
+        this.updateNextImageIndex();
+    }
+    updateNextImageIndex() {
+        this.currentImageIndex = (this.currentImageIndex + 1) % this.currentFilm.length;
+    }
+    setForegroundToAppear() {
+        $(`#${this.foregroundSelector}`).css('opacity', 1);
+    }
+    setForegroundToDisappear() {
+        $(`#${this.foregroundSelector}`).css('opacity', 0);
     }
 }

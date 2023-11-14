@@ -25,10 +25,12 @@ export class FluxDynamicBackgrounds extends Component {
 
     private imageMode: ImageMode = ImageMode.SATURATED;
     private currentImageIndex: number = 0;
+    private currentFilm: Array<SVGSetClasses> = SVGFilm1;
     private foregroundSelector: string;
     private backgroundSelector: string;
     private contentSelector: string;
     private lastBackgroundClass: string = "bg0-blank";
+    private lastForegroundClass: string = "";
 
     constructor(selector: string, page: Page, pageManagement: PageManagement, imageMode?: ImageMode, initialBackgroundClass?: string) {
         super(selector, page, pageManagement);
@@ -53,7 +55,7 @@ export class FluxDynamicBackgrounds extends Component {
             `
         );
         $(`#${contentSelector}`).append($childrenClones);
-        this.runFadeTransition(this.getImageClassByIndex(SVGFilm1, 1));
+        this.runNextFadeTransition();
     }
 
     public appendCanvases(): void {
@@ -65,23 +67,51 @@ export class FluxDynamicBackgrounds extends Component {
     }
 
     public runFadeTransition(toClass: string): void {
-        $(`#${this.foregroundSelector}`).addClass(this.lastBackgroundClass);
-        $(`#${this.backgroundSelector}`).addClass(toClass);
-        $(`#${this.foregroundSelector}`).animate({opacity: 0}, 4000, function() {
-            // Animation ending sequence
+        const self = this;
+        const lastForegroundClass = this.lastForegroundClass;
+        const lastBackgroundClass = this.lastBackgroundClass;
+        const newBackgroundClass = toClass;
+        $(`#${this.foregroundSelector}`).addClass(lastBackgroundClass).removeClass(lastForegroundClass);
+        $(`#${this.backgroundSelector}`).addClass(newBackgroundClass).removeClass(lastBackgroundClass);
+        $(`#${this.foregroundSelector}`).css('opacity', 1);
+        $(`#${this.foregroundSelector}`).animate({opacity: 0}, 2000, function() {
+            self.lastForegroundClass = lastBackgroundClass;
+            self.lastBackgroundClass = newBackgroundClass;
+            console.log(`lastForegroundClass: ${self.lastForegroundClass}\nlastBackgroundClass: ${self.lastBackgroundClass}`);
+            console.log(`currentImageIndex: ${self.currentImageIndex}`);
+            self.runNextFadeTransition();
         });
+        
     }
 
-    public getImageClassByIndex(film: Array<SVGSetClasses>, index: number): string {
-        return this.imageMode == ImageMode.NORMAL ? film[index].normal : film[index].saturated;
+    public getImageClassByIndex(index: number): string {
+        return this.imageMode == ImageMode.NORMAL ? this.currentFilm[index].normal : this.currentFilm[index].saturated;
     }
 
     public onLoad(): void {
-        console.log('onLoad');
+        this.setForegroundToAppear();
+        // this.runNextFadeTransition();
     }
 
     public onRetire(): void {
-        console.log('onRetire');
+        this.setForegroundToDisappear();
+    }
+
+    public runNextFadeTransition(): void {
+        this.runFadeTransition(this.getImageClassByIndex(this.currentImageIndex));
+        this.updateNextImageIndex();
+    }
+
+    public updateNextImageIndex(): void {
+        this.currentImageIndex = (this.currentImageIndex + 1) % this.currentFilm.length;
+    }
+
+    public setForegroundToAppear(): void {
+        $(`#${this.foregroundSelector}`).css('opacity', 1);
+    }
+
+    public setForegroundToDisappear(): void {
+        $(`#${this.foregroundSelector}`).css('opacity', 0);
     }
 
 }

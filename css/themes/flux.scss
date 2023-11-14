@@ -12,7 +12,7 @@
     left: 0;
     height: 100vh;
     width: 100%;
-    background-attachment: fixed;
+    background-size: cover;
 }
 
 .flux-content {
@@ -20,6 +20,10 @@
     z-index: 1;
     height: 100vh;
     width: 100%;
+}
+
+.bg0-blank {
+    background-color: white;
 }
 
 .bg1-normal {
