@@ -13,15 +13,14 @@ const SVGFilm1 = [
     { normal: "bg4-normal", saturated: "bg4-saturate" }
 ];
 export class FluxDynamicBackgrounds extends Component {
-    constructor(selector, page, pageManagement, imageMode, initialBackgroundClass) {
+    constructor(selector, page, pageManagement, imageMode, initialImageClass) {
         super(selector, page, pageManagement);
         this.imageMode = ImageMode.SATURATED;
         this.currentImageIndex = 0;
         this.currentFilm = SVGFilm1;
-        this.lastBackgroundClass = "bg0-blank";
-        this.lastForegroundClass = "";
+        this.initialImageClass = "bg0-blank";
         imageMode ? this.imageMode = imageMode : null;
-        initialBackgroundClass ? this.lastBackgroundClass = initialBackgroundClass : null;
+        initialImageClass ? this.initialImageClass = initialImageClass : null;
         this.foregroundSelector = `${this.selector}-foreground`;
         this.backgroundSelector = `${this.selector}`;
         this.contentSelector = `${this.selector}-content`;
@@ -49,29 +48,36 @@ export class FluxDynamicBackgrounds extends Component {
     }
     runFadeTransition(toClass) {
         const self = this;
-        const lastForegroundClass = this.lastForegroundClass;
-        const lastBackgroundClass = this.lastBackgroundClass;
-        const newBackgroundClass = toClass;
+        const lastForegroundClass = this.getImageClassByIndex(this.currentImageIndex - 2);
+        const lastBackgroundClass = this.getImageClassByIndex(this.currentImageIndex - 1);
+        const newBackgroundClass = this.getImageClassByIndex(this.currentImageIndex);
         $(`#${this.foregroundSelector}`).addClass(lastBackgroundClass).removeClass(lastForegroundClass);
         $(`#${this.backgroundSelector}`).addClass(newBackgroundClass).removeClass(lastBackgroundClass);
         $(`#${this.foregroundSelector}`).css('opacity', 1);
-        $(`#${this.foregroundSelector}`).animate({ opacity: 0 }, 2000, function () {
-            self.lastForegroundClass = lastBackgroundClass;
-            self.lastBackgroundClass = newBackgroundClass;
-            console.log(`lastForegroundClass: ${self.lastForegroundClass}\nlastBackgroundClass: ${self.lastBackgroundClass}`);
+        $(`#${this.foregroundSelector}`).animate({ opacity: 0 }, 4000, function () {
             console.log(`currentImageIndex: ${self.currentImageIndex}`);
             self.runNextFadeTransition();
         });
     }
     getImageClassByIndex(index) {
-        return this.imageMode == ImageMode.NORMAL ? this.currentFilm[index].normal : this.currentFilm[index].saturated;
+        var rectifiedIndex = ((index % this.currentFilm.length) + this.currentFilm.length) % this.currentFilm.length;
+        return this.imageMode == ImageMode.NORMAL ? this.currentFilm[rectifiedIndex].normal : this.currentFilm[rectifiedIndex].saturated;
     }
     onLoad() {
+        this.clearAllImageClasses();
         this.setForegroundToAppear();
-        // this.runNextFadeTransition();
+        this.setForegroundAnimationToRunning();
     }
     onRetire() {
         this.setForegroundToDisappear();
+        this.setForegroundAnimationToPaused();
+    }
+    clearAllImageClasses() {
+        $(`#${this.foregroundSelector}`).removeClass(this.initialImageClass);
+        for (let i = 0; i < this.currentFilm.length; i++) {
+            $(`#${this.foregroundSelector}`).removeClass(this.getImageClassByIndex(i));
+            $(`#${this.backgroundSelector}`).removeClass(this.getImageClassByIndex(i));
+        }
     }
     runNextFadeTransition() {
         this.runFadeTransition(this.getImageClassByIndex(this.currentImageIndex));
@@ -81,9 +87,16 @@ export class FluxDynamicBackgrounds extends Component {
         this.currentImageIndex = (this.currentImageIndex + 1) % this.currentFilm.length;
     }
     setForegroundToAppear() {
-        $(`#${this.foregroundSelector}`).css('opacity', 1);
+        $(`#${this.foregroundSelector}`).css('visibility', 'visible');
+        $(`#${this.foregroundSelector}`).css('opacity', '0');
     }
     setForegroundToDisappear() {
-        $(`#${this.foregroundSelector}`).css('opacity', 0);
+        $(`#${this.foregroundSelector}`).css('visibility', 'hidden');
+    }
+    setForegroundAnimationToPaused() {
+        $(`#${this.foregroundSelector}`).stop();
+    }
+    setForegroundAnimationToRunning() {
+        this.runNextFadeTransition();
     }
 }

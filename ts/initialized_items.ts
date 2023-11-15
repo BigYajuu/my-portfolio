@@ -11,7 +11,7 @@ const page2 = new Page(Selectors.PAGE_2, new CubicXAxisTransition());
 const pageManagement = new PageManagement(Selectors.PAGE_MANAGEMENT_CONTAINER, [page1, page2]);
 
 const page1_bg = new FluxDynamicBackgrounds(Selectors.PAGE_1, page1, pageManagement).build();
-const page2_bg = new FluxDynamicBackgrounds(Selectors.PAGE_2, page2, pageManagement, undefined, "bg1-normal").build();
+// const page2_bg = new FluxDynamicBackgrounds(Selectors.PAGE_2, page2, pageManagement, undefined, "bg1-normal").build();
 
 const sectionProjectItems2 = new AnimatedXScrollable(
     `
@@ -103,6 +103,4 @@ const sectionProjectItems3 = new AnimatedXScrollable(
     page2, 
     pageManagement
 ).build();
-
-console.log("Initialized Items");
 
