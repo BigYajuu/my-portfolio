@@ -14,10 +14,10 @@ class RawHtml extends Component {
     public build(): void {
         $(`#${this.selector}`).html(this.htmlString);
     }
-    public onRetire(): void {
+    public onScrollOut(): void {
         throw new Error("Method not implemented.");
     }
-    public onLoad(): void {
+    public onScrollIn(): void {
         throw new Error("Method not implemented.");
     }
     

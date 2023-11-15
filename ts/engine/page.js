@@ -43,14 +43,14 @@ export class Page {
         this.pageNext = pageNext;
         this.pagePrev = pagePrev;
     }
-    onLoad() {
+    onScrollIn() {
         for (var i = 0; i < this.components.length; i++) {
-            this.components[i].onLoad();
+            this.components[i].onScrollIn();
         }
     }
-    onRetire() {
+    onScrollOut() {
         for (var i = 0; i < this.components.length; i++) {
-            this.components[i].onRetire();
+            this.components[i].onScrollOut();
         }
     }
 }

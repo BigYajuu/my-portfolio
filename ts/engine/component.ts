@@ -16,9 +16,9 @@ export abstract class Component {
 
     public abstract build(): void;
 
-    public onLoad(): void {};
+    public onScrollIn(): void {};
 
-    public onRetire(): void {};
+    public onScrollOut(): void {};
 }
 
 export default Component;

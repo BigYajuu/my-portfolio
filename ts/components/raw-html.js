@@ -7,10 +7,10 @@ class RawHtml extends Component {
     build() {
         $(`#${this.selector}`).html(this.htmlString);
     }
-    onRetire() {
+    onScrollOut() {
         throw new Error("Method not implemented.");
     }
-    onLoad() {
+    onScrollIn() {
         throw new Error("Method not implemented.");
     }
 }

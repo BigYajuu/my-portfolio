@@ -84,13 +84,13 @@ export class FluxDynamicBackgrounds extends Component {
         return this.imageMode == ImageMode.NORMAL ? this.currentFilm[rectifiedIndex].normal : this.currentFilm[rectifiedIndex].saturated;
     }
 
-    public onLoad(): void {
+    public onScrollIn(): void {
         this.clearAllImageClasses();
         this.setForegroundToAppear();
         this.setForegroundAnimationToRunning();
     }
 
-    public onRetire(): void {
+    public onScrollOut(): void {
         this.setForegroundToDisappear();
         this.setForegroundAnimationToPaused();
     }

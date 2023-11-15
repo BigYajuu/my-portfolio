@@ -48,7 +48,7 @@ export class PageManagement {
                 const scrollUpCallback = self.pages[self.currentPageIndex].getScrollUpCallback(self);
                 self.currentPageIndex = self.currentPageIndex - 1 >= 0 ? self.currentPageIndex - 1 : 0;
                 if (lastPageIndex != self.currentPageIndex) {
-                    self.pages[lastPageIndex].onRetire();
+                    self.pages[lastPageIndex].onScrollOut();
                 }
                 scrollUpCallback();
             } else if (scrollDirection == ScrollDirection.SCROLLING_DOWN) {
@@ -56,7 +56,7 @@ export class PageManagement {
                 const scrollDownCallback = self.pages[self.currentPageIndex].getScrollDownCallback(self);
                 self.currentPageIndex = self.currentPageIndex + 1 < self.pages.length ? self.currentPageIndex + 1 : self.pages.length - 1;
                 if (lastPageIndex != self.currentPageIndex) {
-                    self.pages[lastPageIndex].onRetire();
+                    self.pages[lastPageIndex].onScrollOut();
                 }
                 scrollDownCallback();
             }

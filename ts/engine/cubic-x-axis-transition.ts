@@ -51,7 +51,7 @@ export class CubicXAxisTransition extends Transition {
                 targetToScroll?.scrollIntoView();
                 pageManagement?.updatePageEvents();
                 // Make all fixed items at Top Page to appear
-                pageAtTop.onLoad();
+                pageAtTop.onScrollIn();
             });
             
             // Body replaced by Cube Animation
@@ -90,7 +90,7 @@ export class CubicXAxisTransition extends Transition {
                 targetToScroll?.scrollIntoView();
                 pageManagement?.updatePageEvents();
                 // Make all fixed items at Bottom Page to appear
-                pageAtBottom.onLoad();
+                pageAtBottom.onScrollIn();
             });
             
             // Body replaced by Cube Animation

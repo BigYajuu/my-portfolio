@@ -60,15 +60,15 @@ export class Page {
         this.pagePrev = pagePrev;
     }
 
-    public onLoad() {
+    public onScrollIn() {
         for (var i=0; i<this.components.length; i++) {
-            this.components[i].onLoad();
+            this.components[i].onScrollIn();
         }
     }
 
-    public onRetire() {
+    public onScrollOut() {
         for (var i=0; i<this.components.length; i++) {
-            this.components[i].onRetire();
+            this.components[i].onScrollOut();
         }
     }
 }

@@ -5,9 +5,9 @@ export class Component {
         this.pageManagement = pageManagement;
         this.page.appendComponent(this);
     }
-    onLoad() { }
+    onScrollIn() { }
     ;
-    onRetire() { }
+    onScrollOut() { }
     ;
 }
 export default Component;

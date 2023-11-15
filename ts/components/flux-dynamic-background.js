@@ -63,12 +63,12 @@ export class FluxDynamicBackgrounds extends Component {
         var rectifiedIndex = ((index % this.currentFilm.length) + this.currentFilm.length) % this.currentFilm.length;
         return this.imageMode == ImageMode.NORMAL ? this.currentFilm[rectifiedIndex].normal : this.currentFilm[rectifiedIndex].saturated;
     }
-    onLoad() {
+    onScrollIn() {
         this.clearAllImageClasses();
         this.setForegroundToAppear();
         this.setForegroundAnimationToRunning();
     }
-    onRetire() {
+    onScrollOut() {
         this.setForegroundToDisappear();
         this.setForegroundAnimationToPaused();
     }
