@@ -174,10 +174,8 @@ export class AnimatedXScrollable extends Component {
             // 5) Make Chevrons to follow scroll
             self.setScrollChevronVPositionEventListeners();
         }
-        console.log(`onInitialBuildBeforeScrollIn completes`);
     }
     customAnimation(scrollChevronSelector, newScrollChevronState, direction) {
-        console.log(`customAnimation ${scrollChevronSelector} ${newScrollChevronState}`);
         if (direction === ScrollDirection.LEFT) {
             if (this.scrollChevronStateLeft != newScrollChevronState) {
                 $(`#${scrollChevronSelector}`).stop();
@@ -219,6 +217,7 @@ export class AnimatedXScrollable extends Component {
         this.setScrollChevronsToAppear();
     }
     onScrollOut() {
+        console.log('onScrollOut');
         this.setScrollChevronsToDisappear();
     }
     setScrollChevronsToAppear() {
@@ -231,6 +230,7 @@ export class AnimatedXScrollable extends Component {
     }
     setScrollChevronsToDisappear() {
         const self = this;
+        $(`#${self.scrollChevronOpacityMaskSelector}`).stop();
         $(`#${self.scrollChevronOpacityMaskSelector}`).css('opacity', '0');
     }
 }
