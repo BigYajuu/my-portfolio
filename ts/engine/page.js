@@ -6,15 +6,24 @@ var ScrollEdgeDetection;
     ScrollEdgeDetection[ScrollEdgeDetection["NONE"] = 2] = "NONE";
 })(ScrollEdgeDetection || (ScrollEdgeDetection = {}));
 export class Page {
-    constructor(selector, scrollTransition) {
+    constructor(selector, scrollTransition, components = []) {
         this.pageScrollEdgeDetection = ScrollEdgeDetection.NONE;
         this.components = [];
         this.selector = selector;
         this.transitionScrollUp = scrollTransition;
         this.transitionScrollDown = scrollTransition;
+        this.components = components;
     }
     appendComponent(component) {
         this.components.push(component);
+    }
+    initializePage() {
+        this.buildComponents();
+    }
+    buildComponents() {
+        for (var i = 0; i < this.components.length; i++) {
+            this.components[i].build();
+        }
     }
     getSelector() {
         return this.selector;
@@ -42,6 +51,12 @@ export class Page {
     setNeighbouringPages(pageNext, pagePrev) {
         this.pageNext = pageNext;
         this.pagePrev = pagePrev;
+    }
+    conditionalOnInitialBuildBeforeScrollIn() {
+        for (var i = 0; i < this.components.length; i++) {
+            console.log(`onInitialBuildBeforeScrollIn: ${this.components[i].constructor.name}`);
+            this.components[i].conditionalOnInitialBuildBeforeScrollIn();
+        }
     }
     onScrollIn() {
         for (var i = 0; i < this.components.length; i++) {

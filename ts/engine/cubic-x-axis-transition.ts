@@ -21,6 +21,7 @@ export class CubicXAxisTransition extends Transition {
     }
 
     public executeScrollUp(pageAtTop: Page, pageAtBottom: Page, pageManagement: PageManagement): void {
+        console.log('scroll up');
         $(function() {
             const divScene = document.createElement('div');
             const divPan = document.createElement('div');
@@ -60,6 +61,7 @@ export class CubicXAxisTransition extends Transition {
     }
 
     public executeScrollDown(pageAtTop: Page, pageAtBottom: Page, pageManagement?: PageManagement): void {
+        console.log('scroll dwn');
         $(function() {
             const divScene = document.createElement('div');
             const divPan = document.createElement('div');

@@ -1,13 +1,19 @@
 export class Component {
-    constructor(selector, page, pageManagement) {
+    constructor(selector) {
+        this.hasInitiallyScrolledIn = false;
         this.selector = selector;
-        this.page = page;
-        this.pageManagement = pageManagement;
-        this.page.appendComponent(this);
     }
+    onInitialBuildBeforeScrollIn() { }
+    ;
     onScrollIn() { }
     ;
     onScrollOut() { }
     ;
+    conditionalOnInitialBuildBeforeScrollIn() {
+        if (!this.hasInitiallyScrolledIn) {
+            this.onInitialBuildBeforeScrollIn();
+            this.hasInitiallyScrolledIn = true;
+        }
+    }
 }
 export default Component;

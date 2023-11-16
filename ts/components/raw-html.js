@@ -1,7 +1,7 @@
 import Component from "../engine/component";
 class RawHtml extends Component {
-    constructor(selector, page, pageManagement, htmlString) {
-        super(selector, page, pageManagement);
+    constructor(selector, htmlString) {
+        super(selector);
         this.htmlString = htmlString;
     }
     build() {

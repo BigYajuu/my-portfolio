@@ -26,35 +26,9 @@ const ScrollChevronHoveringStyle = {
     width: '20%'
 };
 export class AnimatedXScrollable extends Component {
-    constructor(content, selector, page, pageManagement) {
-        super(selector, page, pageManagement);
-        this.build = () => {
-            const self = this;
-            var height;
-            // 1) Make scrollable div with populated content
-            $(`#${self.selector}`).html(`
-            <div class="row x-scrollable">
-                ${self.content}
-            </div>
-            `);
-            // 2) Get height of scrollable div
-            height = $(`#${self.selector}`).outerHeight();
-            if (Utility.determineDeviceType() === DeviceType.DESKTOP) {
-                // 3) Recreate scrollable div and chevrons w/ corrent heights
-                $(`#${self.selector}`).html(`
-                <div class="row x-scrollable" id="${self.scrollableSelector}">
-                    ${self.buildScrollChevrons(height)}
-                    ${self.content}
-                </div>
-                `);
-                // 4) Setup Mouse Scroll Events
-                self.setXScrollMouseEvents();
-                // 5) Make Chevrons to follow scroll
-                self.setScrollChevronVPositionEventListeners();
-                // 6) Set Chevrons on other pages to disappear first
-                self.setFixedItemsToDisappearInitially();
-            }
-        };
+    constructor(content, selector, pageSelector) {
+        super(selector);
+        this.build = () => { };
         this.buildScrollChevrons = (height) => {
             const self = this;
             return `
@@ -147,7 +121,7 @@ export class AnimatedXScrollable extends Component {
         };
         this.setScrollChevronVPositionEventListeners = () => {
             const self = this;
-            $(`#${self.page.getSelector()}`).on('scroll', function () {
+            $(`#${this.pageSelector}`).on('scroll', function () {
                 self.updateScrollChevronVPositions();
             });
         };
@@ -164,6 +138,7 @@ export class AnimatedXScrollable extends Component {
             $(`#${self.scrollChevronRightSelector}`).css('top', finalHeight);
         };
         this.content = content;
+        this.pageSelector = pageSelector;
         this.scrollableSelector = `${this.selector}-scrollable`; // For the scrollable div encompassing the containers
         this.scrollChevronLeftSelector = `${this.selector}-scroll-chevron-left`; // Chevron on the left
         this.scrollChevronRightSelector = `${this.selector}-scroll-chevron-right`; // Chevron on the right
@@ -175,6 +150,31 @@ export class AnimatedXScrollable extends Component {
         this.xAccelerationIntervalHandler = 0;
         this.scrollChevronStateLeft = ScrollChevronState.BLANK;
         this.scrollChevronStateRight = ScrollChevronState.BLANK;
+    }
+    onInitialBuildBeforeScrollIn() {
+        const self = this;
+        var height;
+        // 1) Make scrollable div with populated content
+        $(`#${self.selector}`).html(`
+            <div class="row x-scrollable">
+                ${self.content}
+            </div>
+            `);
+        // 2) Get height of scrollable div
+        height = $(`#${self.selector}`).outerHeight();
+        if (Utility.determineDeviceType() === DeviceType.DESKTOP) {
+            // 3) Recreate scrollable div and chevrons w/ corrent heights
+            $(`#${self.selector}`).html(`
+                <div class="row x-scrollable" id="${self.scrollableSelector}">
+                    ${self.buildScrollChevrons(height)}
+                    ${self.content}
+                </div>
+                `);
+            // 4) Setup Mouse Scroll Events
+            self.setXScrollMouseEvents();
+            // 5) Make Chevrons to follow scroll
+            self.setScrollChevronVPositionEventListeners();
+        }
     }
     customAnimation(scrollChevronSelector, newScrollChevronState, direction) {
         if (direction === ScrollDirection.LEFT) {
@@ -220,15 +220,14 @@ export class AnimatedXScrollable extends Component {
     onScrollOut() {
         this.setScrollChevronsToDisappear();
     }
-    setFixedItemsToDisappearInitially() {
-        // To avoid fixed items (i.e. chevrons) from appearing on other pages initially,
-        // it is necessary to hide them beforehand to avoid buggy behaviour.
-        // EBI: This solution only makes sense if the components of all pages were pre-built and loaded.
-        //      A better approach would be to set all disappear through PageManagement class.
-        if (!this.pageManagement.doesPageSelectorDenoteCurrentPage(this.page.getSelector())) {
-            this.setScrollChevronsToDisappear();
-        }
-    }
+    // private setFixedItemsToDisappearInitially(): void {
+    //     // To avoid fixed items (i.e. chevrons) from appearing on other pages initially,
+    //     // it is necessary to hide them beforehand to avoid buggy behaviour.
+    //     // EBI: This solution only makes sense if the components of all pages were pre-built and loaded.
+    //     //      A better approach would be to set all disappear through PageManagement class.
+    //     if (!this.pageManagement.doesPageSelectorDenoteCurrentPage(this.page.getSelector())) {
+    //     }
+    // }
     setScrollChevronsToAppear() {
         const self = this;
         self.xScrollEdgeResponse(self.scrollChevronLeftSelector, ScrollDirection.LEFT);

@@ -15,6 +15,7 @@ export class CubicXAxisTransition extends Transition {
         throw new Error("Method not implemented.");
     }
     executeScrollUp(pageAtTop, pageAtBottom, pageManagement) {
+        console.log('scroll up');
         $(function () {
             const divScene = document.createElement('div');
             const divPan = document.createElement('div');
@@ -51,6 +52,7 @@ export class CubicXAxisTransition extends Transition {
         });
     }
     executeScrollDown(pageAtTop, pageAtBottom, pageManagement) {
+        console.log('scroll dwn');
         $(function () {
             const divScene = document.createElement('div');
             const divPan = document.createElement('div');

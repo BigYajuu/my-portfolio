@@ -5,13 +5,8 @@ import {AnimatedXScrollable} from "./components/animated-x-scrollable.js";
 import {Selectors} from "./constants.js";
 import { FluxDynamicBackgrounds } from "./components/flux-dynamic-background.js";
 
-const page1 = new Page(Selectors.PAGE_1, new CubicXAxisTransition());
-const page2 = new Page(Selectors.PAGE_2, new CubicXAxisTransition());
-
-const pageManagement = new PageManagement(Selectors.PAGE_MANAGEMENT_CONTAINER, [page1, page2]);
-
-const page1_bg = new FluxDynamicBackgrounds(Selectors.PAGE_1, page1, pageManagement).build();
-// const page2_bg = new FluxDynamicBackgrounds(Selectors.PAGE_2, page2, pageManagement, undefined, "bg1-normal").build();
+const page1_bg = new FluxDynamicBackgrounds(Selectors.PAGE_1, undefined, "bg0-blank");
+const page2_bg = new FluxDynamicBackgrounds(Selectors.PAGE_2, undefined, "bg1-saturate");
 
 const sectionProjectItems2 = new AnimatedXScrollable(
     `
@@ -37,9 +32,8 @@ const sectionProjectItems2 = new AnimatedXScrollable(
         </div>
     </div>`,
     "section-projects-items-2", 
-    page2, 
-    pageManagement
-).build();
+    Selectors.PAGE_2
+);
 
 const sectionProjectItems3 = new AnimatedXScrollable(
     `
@@ -100,7 +94,15 @@ const sectionProjectItems3 = new AnimatedXScrollable(
         </div>
     </div>`,
     "section-projects-items-3", 
-    page2, 
-    pageManagement
-).build();
+    Selectors.PAGE_2
+);
+
+
+
+const page1 = new Page(Selectors.PAGE_1, new CubicXAxisTransition(), [page1_bg]);
+const page2 = new Page(Selectors.PAGE_2, new CubicXAxisTransition(), [page2_bg, sectionProjectItems2, sectionProjectItems3]);
+
+const pageManagement = new PageManagement(Selectors.PAGE_MANAGEMENT_CONTAINER, [page1, page2]);
+
+
 

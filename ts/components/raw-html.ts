@@ -6,8 +6,8 @@ class RawHtml extends Component {
 
     private htmlString: string;
 
-    constructor(selector: string, page: Page, pageManagement: PageManagement, htmlString: string) {
-        super(selector, page, pageManagement);
+    constructor(selector: string, htmlString: string) {
+        super(selector);
         this.htmlString = htmlString;
     }
 
