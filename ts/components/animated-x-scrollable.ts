@@ -102,6 +102,7 @@ export class AnimatedXScrollable extends Component {
             // 5) Make Chevrons to follow scroll
             self.setScrollChevronVPositionEventListeners();
         }
+        console.log(`onInitialBuildBeforeScrollIn completes`);
     }
 
     private buildScrollChevrons = (height: number) => {
@@ -128,15 +129,13 @@ export class AnimatedXScrollable extends Component {
         // Attaches mouse event to only ONE scroll chevron.
         // Manages scroll animation's speed, acceleration and chevron's state of opacity.
         const self = this;
-        
-        // Set Chevron's initial state
-        self.xScrollEdgeResponse(scrollChevronSelector, direction);
         // Update Chevron's state whenever scroll is triggered
         $(`#${self.scrollableSelector}`).on('scroll', function () {
             self.xScrollEdgeResponse(scrollChevronSelector, direction);
         })
         // Updates chevrons when window resizes
         $(window).on('resize', function() {
+            self.updateScrollChevronVPositions();
             self.xScrollEdgeResponse(scrollChevronSelector, direction);
         });
         $(`#${scrollChevronSelector}`).on('mouseenter', function() {  // When mouse enters chevron
@@ -186,6 +185,7 @@ export class AnimatedXScrollable extends Component {
     }
     
     private customAnimation(scrollChevronSelector: string, newScrollChevronState: ScrollChevronState, direction: ScrollDirection) {
+        console.log(`customAnimation ${scrollChevronSelector} ${newScrollChevronState}`);
         if (direction === ScrollDirection.LEFT) {
             if (this.scrollChevronStateLeft != newScrollChevronState) {
                 $(`#${scrollChevronSelector}`).stop();
@@ -206,7 +206,6 @@ export class AnimatedXScrollable extends Component {
         // Set Chevron's state to available/blank depending on whether the edge is reached on either side.
         if (direction == ScrollDirection.LEFT) {
             if ($(`#${self.scrollableSelector}`).scrollLeft() == (0)) {
-                // console.log(`LEFTEDGE ${currentScrollAnimationStyle?.opacity} ${`#${self.xScrollChevronMouseStateLeft}`}`);
                 self.customAnimation(scrollChevronSelector, ScrollChevronState.BLANK, direction);
             } else if (self.scrollChevronStateLeft != ScrollChevronState.HOVERING) {
                 self.customAnimation(scrollChevronSelector, ScrollChevronState.AVAILABLE, direction);
@@ -239,6 +238,7 @@ export class AnimatedXScrollable extends Component {
     }
 
     public onScrollIn(): void {
+        console.log('onScrollIn');
         this.updateScrollChevronVPositions();
         this.setScrollChevronsToAppear();
     }
@@ -246,18 +246,6 @@ export class AnimatedXScrollable extends Component {
     public onScrollOut(): void {
         this.setScrollChevronsToDisappear();
     }
-
-
-
-    // private setFixedItemsToDisappearInitially(): void {
-    //     // To avoid fixed items (i.e. chevrons) from appearing on other pages initially,
-    //     // it is necessary to hide them beforehand to avoid buggy behaviour.
-    //     // EBI: This solution only makes sense if the components of all pages were pre-built and loaded.
-    //     //      A better approach would be to set all disappear through PageManagement class.
-    //     if (!this.pageManagement.doesPageSelectorDenoteCurrentPage(this.page.getSelector())) {
-            
-    //     }
-    // }
 
     private setScrollChevronsToAppear() {
         const self = this;

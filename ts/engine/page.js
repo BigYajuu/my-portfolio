@@ -1,13 +1,6 @@
 import $ from "jquery";
-var ScrollEdgeDetection;
-(function (ScrollEdgeDetection) {
-    ScrollEdgeDetection[ScrollEdgeDetection["AT_TOP"] = 0] = "AT_TOP";
-    ScrollEdgeDetection[ScrollEdgeDetection["AT_BOTTOM"] = 1] = "AT_BOTTOM";
-    ScrollEdgeDetection[ScrollEdgeDetection["NONE"] = 2] = "NONE";
-})(ScrollEdgeDetection || (ScrollEdgeDetection = {}));
 export class Page {
     constructor(selector, scrollTransition, components = []) {
-        this.pageScrollEdgeDetection = ScrollEdgeDetection.NONE;
         this.components = [];
         this.selector = selector;
         this.transitionScrollUp = scrollTransition;
@@ -54,7 +47,6 @@ export class Page {
     }
     conditionalOnInitialBuildBeforeScrollIn() {
         for (var i = 0; i < this.components.length; i++) {
-            console.log(`onInitialBuildBeforeScrollIn: ${this.components[i].constructor.name}`);
             this.components[i].conditionalOnInitialBuildBeforeScrollIn();
         }
     }

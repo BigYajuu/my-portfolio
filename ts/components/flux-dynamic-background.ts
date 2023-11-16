@@ -23,6 +23,8 @@ const SVGFilm1: Array<SVGSetClasses> = [
 
 export class FluxDynamicBackgrounds extends Component {
 
+    private FADE_DURATION: number = 3300;
+
     private imageMode: ImageMode = ImageMode.SATURATED;
     private currentImageIndex: number = 0;
     private currentFilm: Array<SVGSetClasses> = SVGFilm1;
@@ -46,7 +48,6 @@ export class FluxDynamicBackgrounds extends Component {
     public build(): void {}
 
     public onInitialBuildBeforeScrollIn(): void {
-        console.log('onInitialBuildBeforeScrollIn');
         const self = this;
         // 1) Clone all children of page div
         const $childrenClones = $(`#${self.selector}`).children().clone(true, true);
@@ -85,8 +86,7 @@ export class FluxDynamicBackgrounds extends Component {
         $(`#${this.foregroundSelector}`).addClass(lastBackgroundClass);
         $(`#${this.backgroundSelector}`).addClass(newBackgroundClass);
         $(`#${this.foregroundSelector}`).css('opacity', 1);
-        $(`#${this.foregroundSelector}`).animate({opacity: 0}, 500, function() {
-            console.log(`currentImageIndex: ${self.currentImageIndex}`);
+        $(`#${this.foregroundSelector}`).animate({opacity: 0}, self.FADE_DURATION, function() {
             self.runNextFadeTransition();
         });
     }
@@ -97,7 +97,6 @@ export class FluxDynamicBackgrounds extends Component {
     }
 
     public onScrollIn(): void {
-        console.log('onScrollIn');
         this.clearAllImageClasses();
         this.setForegroundToAppear();
         this.setForegroundAnimationToRunning();

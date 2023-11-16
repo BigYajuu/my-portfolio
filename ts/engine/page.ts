@@ -3,19 +3,12 @@ import PageManagement from "./page-management";
 import Transition from "./transition";
 import Component from "./component";
 
-enum ScrollEdgeDetection {
-    AT_TOP,
-    AT_BOTTOM,
-    NONE
-}
-
 export class Page {
     private selector: string;
     private pageNext?: Page | null;
     private pagePrev?: Page | null;
     private transitionScrollUp: Transition;
     private transitionScrollDown: Transition;
-    private pageScrollEdgeDetection: ScrollEdgeDetection = ScrollEdgeDetection.NONE;
     private components: Component[] = [];
 
     constructor(selector: string, scrollTransition: Transition, components: Component[] = []) {
@@ -73,7 +66,6 @@ export class Page {
 
     public conditionalOnInitialBuildBeforeScrollIn() {
         for (var i=0; i<this.components.length; i++) {
-            console.log(`onInitialBuildBeforeScrollIn: ${this.components[i].constructor.name}`);
             this.components[i].conditionalOnInitialBuildBeforeScrollIn();
         }
     }
