@@ -1,0 +1,70 @@
+.flux-foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.flux-content {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  width: 100%;
+}
+
+.bg0-blank {
+  background-color: white;
+}
+
+.bg1-normal {
+  background-image: url("/img/flux/bg1-normal.svg");
+}
+
+.bg1-saturate {
+  background-image: url("/img/flux/bg1-saturate.svg");
+}
+
+.bg2-normal {
+  background-image: url("/img/flux/bg2-normal.svg");
+}
+
+.bg2-saturate {
+  background-image: url("/img/flux/bg2-saturate.svg");
+}
+
+.bg3-normal {
+  background-image: url("/img/flux/bg3-normal.svg");
+}
+
+.bg3-saturate {
+  background-image: url("/img/flux/bg3-saturate.svg");
+}
+
+.bg4-normal {
+  background-image: url("/img/flux/bg4-normal.svg");
+}
+
+.bg4-saturate {
+  background-image: url("/img/flux/bg4-saturate.svg");
+}
+
+.bg5-normal {
+  background-image: url("/img/flux/bg5-normal.svg");
+}
+
+.bg5-saturate {
+  background-image: url("/img/flux/bg5-saturate.svg");
+}
+
+.bg6-normal {
+  background-image: url("/img/flux/bg6-normal.svg");
+}
+
+.bg6-saturate {
+  background-image: url("/img/flux/bg6-saturate.svg");
+}
+
+/*# sourceMappingURL=flux.css.map */

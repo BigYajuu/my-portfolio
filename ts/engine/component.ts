@@ -4,22 +4,26 @@ import PageManagement from "./page-management";
 export abstract class Component {
 
     protected selector: string;
-    protected page: Page;
-    protected pageManagement: PageManagement;
+    protected hasInitiallyScrolledIn: boolean = false;
 
-    constructor(selector: string, page: Page, pageManagement: PageManagement) {
+    constructor(selector: string) {
         this.selector = selector;
-        this.page = page;
-        this.pageManagement = pageManagement;
-        this.page.appendComponent(this);
     }
 
     public abstract build(): void;
 
-    public abstract setFixedItemsToDissapear() : void;
-    
-    public abstract setFixedItemsToAppear() : void;
+    public onInitialBuildBeforeScrollIn(): void {};
 
+    public onScrollIn(): void {};
+
+    public onScrollOut(): void {};
+
+    public conditionalOnInitialBuildBeforeScrollIn(): void {
+        if (!this.hasInitiallyScrolledIn) {
+            this.onInitialBuildBeforeScrollIn();
+            this.hasInitiallyScrolledIn = true;
+        }
+    }
 }
 
 export default Component;

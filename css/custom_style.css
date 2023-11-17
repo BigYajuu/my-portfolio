@@ -2,6 +2,8 @@
 /* Display and Page Margins */
 /* Elemental Paddings and Curves*/
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -11,11 +13,16 @@ body {
   font-style: normal;
   overscroll-behavior-x: none;
   position: relative;
+  overflow: hidden;
 }
 
 .main-scaffold {
   height: 100vh;
   overflow-y: auto;
+}
+
+.main-scaffold::-webkit-scrollbar {
+  width: 0px;
 }
 
 .header {
@@ -40,7 +47,7 @@ body {
   width: 100%;
   box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
   border-radius: 24px;
-  background: url("../img/noise.svg");
+  background: url("/img/noise.svg");
   background-blend-mode: soft-light;
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(5px);
@@ -74,8 +81,12 @@ body {
   padding-left: 24px;
 }
 
+.row:before {
+  content: "";
+}
+
 .row:after {
-  content: " ";
+  content: "";
   clear: both;
   display: table;
 }
@@ -91,38 +102,56 @@ p {
 }
 
 .paragraph-margin {
-  margin-top: 24px;
+  padding-top: 24px;
 }
 
 .section-margin {
-  margin-top: 48px;
-  margin-bottom: 12px;
+  padding-top: 48px;
+  padding-bottom: 12px;
 }
 
-/* Background Colour Schemes */
-.entire-window {
+/* Backgrounds */
+.background-window {
   height: 100vh;
   width: 100%;
   overflow-y: auto;
-}
-
-.dynamic-bg {
-  background: linear-gradient(to right, #ff7e00, #ebff10), linear-gradient(to top, #ff0042, #f72ddd);
-  background-blend-mode: lighten;
   background-size: cover;
-  background-attachment: fixed;
+  background-position: center;
 }
 
-.dynamic-bg:before dynamic-bg:after {
+.background-window:before background-window:after {
   display: block;
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
 }
 
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-button:single-button {
+  display: block;
+  border-style: solid;
+  border-color: transparent;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Components */
 .scroll-chevron-left {
   position: fixed;
   display: flex;
@@ -131,7 +160,7 @@ p {
   /* Height is detected by JQuery's outerHeight() */
   width: 0%;
   opacity: 0;
-  z-index: 1;
+  z-index: 2;
   left: 0;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 100%);
 }
@@ -143,7 +172,7 @@ p {
   /* Height is detected by JQuery's outerHeight() */
   width: 0%;
   opacity: 0;
-  z-index: 1;
+  z-index: 2;
   right: 0;
   background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 100%);
 }

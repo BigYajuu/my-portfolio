@@ -3,29 +3,33 @@ import PageManagement from "./page-management";
 import Transition from "./transition";
 import Component from "./component";
 
-enum ScrollEdgeDetection {
-    AT_TOP,
-    AT_BOTTOM,
-    NONE
-}
-
 export class Page {
     private selector: string;
     private pageNext?: Page | null;
     private pagePrev?: Page | null;
     private transitionScrollUp: Transition;
     private transitionScrollDown: Transition;
-    private pageScrollEdgeDetection: ScrollEdgeDetection = ScrollEdgeDetection.NONE;
     private components: Component[] = [];
 
-    constructor(selector: string, scrollTransition: Transition) {
+    constructor(selector: string, scrollTransition: Transition, components: Component[] = []) {
         this.selector = selector;
         this.transitionScrollUp = scrollTransition;
         this.transitionScrollDown = scrollTransition;
+        this.components = components;
     }
 
     public appendComponent(component: Component) {
         this.components.push(component);
+    }
+
+    public initializePage() {
+        this.buildComponents();
+    }
+
+    public buildComponents() {
+        for (var i=0; i<this.components.length; i++) {
+            this.components[i].build();
+        }
     }
 
     public getSelector() {
@@ -60,15 +64,21 @@ export class Page {
         this.pagePrev = pagePrev;
     }
 
-    public setAllFixedItemsToAppear() {
+    public conditionalOnInitialBuildBeforeScrollIn() {
         for (var i=0; i<this.components.length; i++) {
-            this.components[i].setFixedItemsToAppear();
+            this.components[i].conditionalOnInitialBuildBeforeScrollIn();
         }
     }
 
-    public setAllFixedItemsToDisappear() {
+    public onScrollIn() {
         for (var i=0; i<this.components.length; i++) {
-            this.components[i].setFixedItemsToDissapear();
+            this.components[i].onScrollIn();
+        }
+    }
+
+    public onScrollOut() {
+        for (var i=0; i<this.components.length; i++) {
+            this.components[i].onScrollOut();
         }
     }
 }
