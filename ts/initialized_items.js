@@ -7,7 +7,7 @@ import { FluxDynamicBackgrounds } from "./components/flux-dynamic-background.js"
 const page1_bg = new FluxDynamicBackgrounds(Selectors.PAGE_1, undefined, "bg0-blank");
 const page2_bg = new FluxDynamicBackgrounds(Selectors.PAGE_2, undefined, "bg1-saturate");
 const sectionProjectItems2 = new AnimatedXScrollable(`
-    <div class="col-abs-width col-default-padding">
+    <div class="x-scrollable-item col-abs-width col-default-padding">
         <div class="container">
             <h1>Item 1</h1>
             <p>Item 1</p>
@@ -15,14 +15,14 @@ const sectionProjectItems2 = new AnimatedXScrollable(`
         </div>
     </div>
     
-    <div class="col-abs-width col-default-padding">
+    <div class="x-scrollable-item col-abs-width col-default-padding">
         <div class="container">
             <h1>Item 2</h1>
             <p>Item 2</p>
         </div>
     </div>
     
-    <div class="col-abs-width col-default-padding">
+    <div class="x-scrollable-item col-abs-width col-default-padding">
         <div class="container">
             <h1>Item 3</h1>
             <p>Item 3</p>
@@ -30,7 +30,7 @@ const sectionProjectItems2 = new AnimatedXScrollable(`
     </div>
     `, "section-projects-items-2", Selectors.PAGE_2);
 const sectionProjectItems3 = new AnimatedXScrollable(`
-    <div class="col-abs-width col-default-padding">
+    <div class="x-scrollable-item col-abs-width col-default-padding">
         <div class="container">
             <h1>Item 1</h1>
             <p>Item 1</p>
@@ -38,49 +38,49 @@ const sectionProjectItems3 = new AnimatedXScrollable(`
         </div>
     </div>
     
-    <div class="col-abs-width col-default-padding">
+    <div class="x-scrollable-item col-abs-width col-default-padding">
         <div class="container">
             <h1>Item 2</h1>
             <p>Item 2</p>
         </div>
     </div>
 
-    <div class="col-abs-width col-default-padding">
+    <div class="x-scrollable-item col-abs-width col-default-padding">
         <div class="container">
             <h1>Item 2</h1>
             <p>Item 2</p>
         </div>
     </div>
 
-    <div class="col-abs-width col-default-padding">
+    <div class="x-scrollable-item col-abs-width col-default-padding">
         <div class="container">
             <h1>Item 2</h1>
             <p>Item 2</p>
         </div>
     </div>
 
-    <div class="col-abs-width col-default-padding">
+    <div class="x-scrollable-item col-abs-width col-default-padding">
         <div class="container">
             <h1>Item 2</h1>
             <p>Item 2</p>
         </div>
     </div>
 
-    <div class="col-abs-width col-default-padding">
+    <div class="x-scrollable-item col-abs-width col-default-padding">
         <div class="container">
             <h1>Item 2</h1>
             <p>Item 2</p>
         </div>
     </div>
 
-    <div class="col-abs-width col-default-padding">
+    <div class="x-scrollable-item col-abs-width col-default-padding">
         <div class="container">
             <h1>Item 2</h1>
             <p>Item 2</p>
         </div>
     </div>
     
-    <div class="col-abs-width col-default-padding">
+    <div class="x-scrollable-item col-abs-width col-default-padding">
         <div class="container">
             <h1>Item 3</h1>
             <p>Item 3</p>

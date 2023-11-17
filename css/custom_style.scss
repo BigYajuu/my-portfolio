@@ -304,7 +304,7 @@ p {
     float: left;
 }
 
-.x-scrollable [class*="col-"] {
+.x-scrollable [class*="x-scrollable-item"] {
     float: none;
     display: inline-flex;
 }
@@ -316,8 +316,12 @@ p {
     white-space: nowrap;
     padding: 0 0 0 $page-margin-desktop;
     @media (max-width: $viewport-min-width) {
-        padding: 0 0 0 $page-margin-mobile;
+        padding: 0 8px 0 $page-margin-mobile;
     }
+}
+
+.x-scrollable-item-rightmost-whitespace {
+    width: 4px;
 }
 
 .float-right {

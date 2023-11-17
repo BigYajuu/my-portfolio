@@ -94,6 +94,7 @@ export class AnimatedXScrollable extends Component {
                 <div class="x-scrollable" id="${self.scrollableSelector}">
                     ${self.buildScrollChevrons(height)}
                     ${self.content}
+                    ${self.buildRightmostWhitespace()}
                 </div>
                 `
             );
@@ -116,6 +117,10 @@ export class AnimatedXScrollable extends Component {
                     </div>
                 </div>
                 `;
+    }
+
+    private buildRightmostWhitespace = () => {
+        return `<div class="x-scrollable-item x-scrollable-item-rightmost-whitespace"></div>`;
     }
 
     private setXScrollMouseEvents = () => {

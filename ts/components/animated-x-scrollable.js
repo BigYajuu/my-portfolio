@@ -42,6 +42,9 @@ export class AnimatedXScrollable extends Component {
                 </div>
                 `;
         };
+        this.buildRightmostWhitespace = () => {
+            return `<div class="x-scrollable-item x-scrollable-item-rightmost-whitespace"></div>`;
+        };
         this.setXScrollMouseEvents = () => {
             const self = this;
             self.setXScrollMouseEvent(self.scrollChevronLeftSelector, ScrollDirection.LEFT);
@@ -167,6 +170,7 @@ export class AnimatedXScrollable extends Component {
                 <div class="x-scrollable" id="${self.scrollableSelector}">
                     ${self.buildScrollChevrons(height)}
                     ${self.content}
+                    ${self.buildRightmostWhitespace()}
                 </div>
                 `);
             // 4) Setup Mouse Scroll Events
