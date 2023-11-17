@@ -30,7 +30,8 @@ const sectionProjectItems2 = new AnimatedXScrollable(
             <h1>Item 3</h1>
             <p>Item 3</p>
         </div>
-    </div>`,
+    </div>
+    `,
     "section-projects-items-2", 
     Selectors.PAGE_2
 );
@@ -92,7 +93,8 @@ const sectionProjectItems3 = new AnimatedXScrollable(
             <h1>Item 3</h1>
             <p>Item 3</p>
         </div>
-    </div>`,
+    </div>
+    `,
     "section-projects-items-3", 
     Selectors.PAGE_2
 );

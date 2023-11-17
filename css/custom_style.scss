@@ -139,11 +139,11 @@ p {
     width: 0px;
     height: 8px;
 }
-::-webkit-scrollbar-button:single-button {
+::-webkit-scrollbar-button {
     display: block;
     border-style: solid;
     border-color: transparent;
-    width: $container-margin;
+    width: 8px;
 }
 ::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.2);
@@ -310,12 +310,13 @@ p {
 }
 
 .x-scrollable {
+    width: 100%;
     position: relative;
     overflow-x: auto;
     white-space: nowrap;
-    padding-left: $page-margin-desktop;
+    padding: 0 0 0 $page-margin-desktop;
     @media (max-width: $viewport-min-width) {
-        padding-left: $page-margin-mobile;
+        padding: 0 0 0 $page-margin-mobile;
     }
 }
 

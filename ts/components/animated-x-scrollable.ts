@@ -80,7 +80,7 @@ export class AnimatedXScrollable extends Component {
         // 1) Make scrollable div with populated content
         $(`#${self.selector}`).html(
             `
-            <div class="row x-scrollable">
+            <div class="x-scrollable">
                 ${self.content}
             </div>
             `
@@ -91,7 +91,7 @@ export class AnimatedXScrollable extends Component {
             // 3) Recreate scrollable div and chevrons w/ corrent heights
             $(`#${self.selector}`).html(
                 `
-                <div class="row x-scrollable" id="${self.scrollableSelector}">
+                <div class="x-scrollable" id="${self.scrollableSelector}">
                     ${self.buildScrollChevrons(height)}
                     ${self.content}
                 </div>

@@ -135,7 +135,7 @@ p {
   height: 8px;
 }
 
-::-webkit-scrollbar-button:single-button {
+::-webkit-scrollbar-button {
   display: block;
   border-style: solid;
   border-color: transparent;
@@ -335,14 +335,15 @@ p {
 }
 
 .x-scrollable {
+  width: 100%;
   position: relative;
   overflow-x: auto;
   white-space: nowrap;
-  padding-left: 8.33%;
+  padding: 0 0 0 8.33%;
 }
 @media (max-width: 1000px) {
   .x-scrollable {
-    padding-left: 2%;
+    padding: 0 0 0 2%;
   }
 }
 
