@@ -18,7 +18,9 @@ const SVGFilm1: Array<SVGSetClasses> = [
     {normal: "bg1-normal", saturated: "bg1-saturate"},
     {normal: "bg2-normal", saturated: "bg2-saturate"},
     {normal: "bg3-normal", saturated: "bg3-saturate"},
-    {normal: "bg4-normal", saturated: "bg4-saturate"}
+    {normal: "bg4-normal", saturated: "bg4-saturate"},
+    {normal: "bg5-normal", saturated: "bg5-saturate"},
+    {normal: "bg6-normal", saturated: "bg6-saturate"}
 ]
 
 export class FluxDynamicBackgrounds extends Component {

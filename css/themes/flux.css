@@ -5,6 +5,7 @@
   height: 100vh;
   width: 100%;
   background-size: cover;
+  background-position: center;
 }
 
 .flux-content {
@@ -48,6 +49,22 @@
 
 .bg4-saturate {
   background-image: url("/img/flux/bg4-saturate.svg");
+}
+
+.bg5-normal {
+  background-image: url("/img/flux/bg5-normal.svg");
+}
+
+.bg5-saturate {
+  background-image: url("/img/flux/bg5-saturate.svg");
+}
+
+.bg6-normal {
+  background-image: url("/img/flux/bg6-normal.svg");
+}
+
+.bg6-saturate {
+  background-image: url("/img/flux/bg6-saturate.svg");
 }
 
 /*# sourceMappingURL=flux.css.map */

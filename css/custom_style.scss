@@ -8,6 +8,7 @@ $element-offset-left: 24px;
 $border-radius-standard: 24px;
 $container-margin: 8px;
 $container-padding: 16px;
+$hover-transition-time: 0.4s;
 $scroll-transition-time: 0.6s;
 $scroll-transition-time-debug: 3s;
 
@@ -121,6 +122,7 @@ p {
     width: 100%;
     overflow-y: auto;
     background-size: cover;
+    background-position: center;
 }
 
 .background-window:before background-window:after {
@@ -140,8 +142,15 @@ p {
     width: $container-margin;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
+    transition: 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Components */
