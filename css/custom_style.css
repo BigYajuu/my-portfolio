@@ -85,6 +85,11 @@ body {
   content: "";
 }
 
+.row {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .row:after {
   content: "";
   clear: both;
@@ -130,7 +135,7 @@ p {
   height: 8px;
 }
 
-::-webkit-scrollbar-button:single-button {
+::-webkit-scrollbar-button {
   display: block;
   border-style: solid;
   border-color: transparent;
@@ -324,21 +329,26 @@ p {
   float: left;
 }
 
-.x-scrollable [class*=col-] {
+.x-scrollable [class*=x-scrollable-item] {
   float: none;
   display: inline-flex;
 }
 
 .x-scrollable {
+  width: 100%;
   position: relative;
   overflow-x: auto;
   white-space: nowrap;
-  padding-left: 8.33%;
+  padding: 0 0 0 8.33%;
 }
 @media (max-width: 1000px) {
   .x-scrollable {
-    padding-left: 2%;
+    padding: 0 8px 0 2%;
   }
+}
+
+.x-scrollable-item-rightmost-whitespace {
+  width: 4px;
 }
 
 .float-right {
