@@ -28,7 +28,7 @@ body {
 }
 
 .main-scaffold{
-    height: 100vh;
+    height: 100dvh;
     overflow-y: auto;
 }
 .main-scaffold::-webkit-scrollbar{
@@ -118,7 +118,7 @@ p {
 
 /* Backgrounds */
 .background-window {
-    height: 100vh;
+    height: 100dvh;
     width: 100%;
     overflow-y: auto;
     background-size: cover;
