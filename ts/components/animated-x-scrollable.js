@@ -43,6 +43,7 @@ export class AnimatedXScrollable extends Component {
                 `;
         };
         this.buildRightmostWhitespace = () => {
+            // When div lacks the rightmost whitespace, this layer compensates.
             return `<div class="x-scrollable-item x-scrollable-item-rightmost-whitespace"></div>`;
         };
         this.setXScrollMouseEvents = () => {

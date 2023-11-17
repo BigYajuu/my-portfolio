@@ -1,6 +1,3 @@
-import Page from "./page";
-import PageManagement from "./page-management";
-
 export abstract class Component {
 
     protected selector: string;

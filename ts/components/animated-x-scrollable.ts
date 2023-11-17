@@ -1,8 +1,6 @@
 import $ from "jquery";
-import PageManagement from '../engine/page-management.js';
 import Component from '../engine/component.js';
 import {Utility, DeviceType} from '../utility.js';
-import Page from '../engine/page.js';
 import { Constants } from '../constants.js';
 
 enum ScrollDirection {
@@ -120,6 +118,7 @@ export class AnimatedXScrollable extends Component {
     }
 
     private buildRightmostWhitespace = () => {
+        // When div lacks the rightmost whitespace, this layer compensates.
         return `<div class="x-scrollable-item x-scrollable-item-rightmost-whitespace"></div>`;
     }
 

@@ -1,7 +1,5 @@
 import $ from "jquery";
 import Component from "../engine/component";
-import Page from "../engine/page";
-import PageManagement from "../engine/page-management";
 
 interface SVGSetClasses {
     normal: string;
