@@ -14,7 +14,7 @@ $element-offset-left: 24px;
 $border-radius-standard: 24px;
 $container-margin: 8px;
 $container-padding: 16px;
-$hover-transition-time: 0.4s;
+$hover-transition-time: 0.2s;
 $scroll-transition-time: 0.6s;
 $scroll-transition-time-debug: 3s;
 
@@ -70,6 +70,7 @@ body {
     height: 24px;
     width: 24px;
     margin: 0 16px 0 16px;
+    transition: $hover-transition-time;
 }
 .header-item-icon:hover {
     opacity: 0.6;
@@ -176,7 +177,6 @@ p {
 ::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    transition: 0.3s;
 }
 ::-webkit-scrollbar-thumb:hover {
     background-color: $transparent-colour;
