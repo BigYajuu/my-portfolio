@@ -1,6 +1,6 @@
 import $ from "jquery";
 import Component from '../engine/component.js';
-import {Utility, DeviceType} from '../utility.js';
+import {Utility, DeviceType} from '../engine/utility.js';
 import { Constants } from '../constants.js';
 
 enum ScrollDirection {
