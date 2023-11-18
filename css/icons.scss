@@ -1,0 +1,16 @@
+.icon-linked-in {
+    background-image: url('/img/icons/linkedin-in.svg');
+}
+
+.icon-mail {
+    background-image: url('/img/icons/envelope-solid.svg');
+}
+
+.icon-github {
+    background-image: url('/img/icons/github.svg');
+}
+
+[class*="icon-"] {
+    background-repeat: no-repeat;
+    background-position: center;
+}

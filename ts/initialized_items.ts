@@ -5,6 +5,7 @@ import {AnimatedXScrollable} from "./components/animated-x-scrollable.js";
 import {Selectors} from "./constants.js";
 import { FluxDynamicBackgrounds } from "./components/flux-dynamic-background.js";
 
+
 const page1_bg = new FluxDynamicBackgrounds(Selectors.PAGE_1, undefined, "bg0-blank");
 const page2_bg = new FluxDynamicBackgrounds(Selectors.PAGE_2, undefined, "bg1-saturate");
 
@@ -98,8 +99,6 @@ const sectionProjectItems3 = new AnimatedXScrollable(
     "section-projects-items-3", 
     Selectors.PAGE_2
 );
-
-
 
 const page1 = new Page(Selectors.PAGE_1, new CubicXAxisTransition(), [page1_bg]);
 const page2 = new Page(Selectors.PAGE_2, new CubicXAxisTransition(), [page2_bg, sectionProjectItems2, sectionProjectItems3]);
