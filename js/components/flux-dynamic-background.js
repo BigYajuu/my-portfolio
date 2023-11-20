@@ -1,5 +1,7 @@
 import $ from "jquery";
 import Component from "../engine/component";
+import { ProviderKeys } from "../constants";
+import StateManager from "../engine/state-management.ts/state-manager";
 var ImageMode;
 (function (ImageMode) {
     ImageMode[ImageMode["NORMAL"] = 0] = "NORMAL";
@@ -14,7 +16,7 @@ const SVGFilm1 = [
     { normal: "bg5-normal", saturated: "bg5-saturate" },
     { normal: "bg6-normal", saturated: "bg6-saturate" }
 ];
-export class FluxDynamicBackgrounds extends Component {
+export class FluxDynamicBackground extends Component {
     constructor(selector, imageMode, initialImageClass) {
         super(selector);
         this.FADE_DURATION = 3300;
@@ -23,6 +25,7 @@ export class FluxDynamicBackgrounds extends Component {
         this.currentFilm = SVGFilm1;
         this.initialImageClass = "";
         this.hasInitialImageClassAnimated = false;
+        this.backgroundProvider = StateManager.getInstance(ProviderKeys.BACKGROUND, { currentBackground: this });
         imageMode ? this.imageMode = imageMode : null;
         if (initialImageClass) {
             this.initialImageClass = initialImageClass;
@@ -79,6 +82,7 @@ export class FluxDynamicBackgrounds extends Component {
         this.clearAllImageClasses();
         this.setForegroundToAppear();
         this.setForegroundAnimationToRunning();
+        this.setThisBackgroundInProvider();
     }
     onScrollOut() {
         this.setForegroundToDisappear();
@@ -110,5 +114,14 @@ export class FluxDynamicBackgrounds extends Component {
     }
     setForegroundAnimationToRunning() {
         this.runNextFadeTransition();
+    }
+    setToFocus() {
+        throw new Error("Method not implemented.");
+    }
+    setToDistracted() {
+        throw new Error("Method not implemented.");
+    }
+    setThisBackgroundInProvider() {
+        this.backgroundProvider.setState({ currentBackground: this });
     }
 }

@@ -3,6 +3,10 @@ export class Constants {
     
 }
 
+export class ProviderKeys {
+    static BACKGROUND = "background";
+}
+
 export class Selectors {
     static PAGE_1 = "page-1";
     static PAGE_2 = "page-2";

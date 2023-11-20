@@ -1,5 +1,10 @@
 import $ from "jquery";
 import Component from "../engine/component";
+import Provider from "../engine/state-management.ts/provider";
+import BackgroundProvider from "../providers/background-provider";
+import { ProviderKeys } from "../constants";
+import StateManager from "../engine/state-management.ts/state-manager";
+import FloatingDialog from "./floating-dialog";
 
 interface SVGSetClasses {
     normal: string;
@@ -21,7 +26,9 @@ const SVGFilm1: Array<SVGSetClasses> = [
     {normal: "bg6-normal", saturated: "bg6-saturate"}
 ]
 
-export class FluxDynamicBackgrounds extends Component {
+export class FluxDynamicBackground extends Component implements Background {
+
+    private backgroundProvider: BackgroundProvider<any>;
 
     private FADE_DURATION: number = 3300;
 
@@ -36,6 +43,7 @@ export class FluxDynamicBackgrounds extends Component {
 
     constructor(selector: string, imageMode?: ImageMode, initialImageClass?: string) {
         super(selector);
+        this.backgroundProvider = StateManager.getInstance(ProviderKeys.BACKGROUND, { currentBackground : this });
         imageMode ? this.imageMode = imageMode : null;
         if (initialImageClass) {
             this.initialImageClass = initialImageClass;
@@ -100,6 +108,7 @@ export class FluxDynamicBackgrounds extends Component {
         this.clearAllImageClasses();
         this.setForegroundToAppear();
         this.setForegroundAnimationToRunning();
+        this.setThisBackgroundInProvider();
     }
 
     public onScrollOut(): void {
@@ -141,4 +150,15 @@ export class FluxDynamicBackgrounds extends Component {
         this.runNextFadeTransition();
     }
 
+    public setToFocus(): void {
+        throw new Error("Method not implemented.");
+    }
+
+    public setToDistracted(): void {
+        throw new Error("Method not implemented.");
+    }
+
+    public setThisBackgroundInProvider(): void {
+        this.backgroundProvider.setState({ currentBackground : this });
+    }
 }
