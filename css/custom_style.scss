@@ -1,9 +1,12 @@
 /* Constants */
-/* Colours */
+/* Colours and Filters */
 $primary-colour: #10069F;
 $secondary-colour: #202020;
-$transparent-colour: rgba(255, 255, 255, 0.75);
+$opaque-colour: rgba(255, 255, 255, 0.75);
 $box-shadow-colour: rgba(0, 0, 0, 0.2);
+$primary-glass-colour: rgba(255, 255, 255, 0.5);
+$secondary-glass-colour: rgba(255, 255, 255, 0.15);
+$backdrop-filter: blur(5px);
 
 /* Display and Page Margins */
 $viewport-min-width: 1000px;
@@ -34,12 +37,62 @@ body {
     color: $secondary-colour;
 }
 
-.main-scaffold{
-    height: 100vh;
-    overflow-y: auto;
+.col-default-padding {
+    // For horizontal padding only
+    padding-left: $container-margin;
+    padding-right: $container-margin;
 }
-.main-scaffold::-webkit-scrollbar{
-    width: 0px;
+
+.container {
+    width: 100%;
+    box-shadow: 0 0 0.5rem 0 $box-shadow-colour;
+    border-radius: $border-radius-standard;
+    background: url('/img/noise.svg');
+    background-blend-mode: soft-light;
+    // background-color: $secondary-glass-colour;
+    backdrop-filter: $backdrop-filter;
+    display: inline-block;
+    padding: $container-padding;
+    margin-top: $container-margin;    // For vertical margin only
+    margin-bottom: $container-margin;
+    overflow-wrap: normal;
+}
+
+.dialog-element {
+    position: fixed;
+    box-shadow: 0 0 0.5rem 0 $box-shadow-colour;
+    background: url('/img/noise.svg');
+    background-blend-mode: soft-light;
+    background-color: $primary-glass-colour;
+    backdrop-filter: $backdrop-filter;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 24px;
+    padding: 20px;
+    z-index: 1000;
+}
+.dialog-element label {
+    display: block;
+    padding-top: 16px;
+}
+.dialog-element .row-group {
+    display: flex;
+    flex-direction: row;
+}
+.dialog-element .input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 4px;
+}
+.dialog-element .input-group label,
+.dialog-element .input-group input {
+    flex: 1;
+}
+.dialog-element input[type="submit"] {
+    width: 100%;
+    margin-bottom: 16px;
 }
 
 .header {
@@ -47,8 +100,8 @@ body {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 0 1rem 0 $box-shadow-colour;
-    background-color: $transparent-colour;
-    backdrop-filter: blur(5px);
+    background-color: $opaque-colour;
+    backdrop-filter: $backdrop-filter;
     display: flex;
     padding-top: 16px;
     padding-bottom: 12px;
@@ -79,25 +132,25 @@ body {
     opacity: 1;
 }
 
-.container {
-    width: 100%;
-    box-shadow: 0 0 0.5rem 0 $box-shadow-colour;
-    border-radius: $border-radius-standard;
-    background: url('/img/noise.svg');
-    background-blend-mode: soft-light;
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(5px);
-    display: inline-block;
-    padding: $container-padding;
-    margin-top: $container-margin;    // For vertical margin only
-    margin-bottom: $container-margin;
-    overflow-wrap: normal;
+.main-scaffold {
+    height: 100vh;
+    overflow-y: auto;
+}
+.main-scaffold::-webkit-scrollbar {
+    width: 0px;
 }
 
-.col-default-padding {
-    // For horizontal padding only
-    padding-left: $container-margin;
-    padding-right: $container-margin;
+.row:before{
+    content: "";
+}
+.row{
+    width: 100%;
+    overflow-x: auto;
+}
+.row:after{
+    content: "";
+    clear: both;
+    display: table;
 }
 
 .section{
@@ -114,19 +167,6 @@ body {
 
 .section-text{
     padding-left: $element-offset-left;
-}
-
-.row:before{
-    content: "";
-}
-.row{
-    width: 100%;
-    overflow-x: auto;
-}
-.row:after{
-    content: "";
-    clear: both;
-    display: table;
 }
 
 /* Text Styles and Paragraphs */
@@ -179,7 +219,7 @@ p {
     border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background-color: $transparent-colour;
+    background-color: $opaque-colour;
 }
 ::-webkit-scrollbar-thumb:active {
     background-color: rgba(0, 0, 0, 0.4);

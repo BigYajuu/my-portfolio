@@ -6,7 +6,7 @@ import { AnimatedXScrollable } from "./components/animated-x-scrollable.js";
 import { Selectors } from "./constants.js";
 import { FluxDynamicBackground } from "./components/flux-dynamic-background.js";
 import { Service } from "./engine/service.js";
-import { FloatingDialog } from "./components/floating-dialog.js";
+import { EmailFloatingDialog } from "./components/email-floating-dialog.js";
 const page1_bg = new FluxDynamicBackground(Selectors.PAGE_1, undefined, "bg0-blank");
 const page2_bg = new FluxDynamicBackground(Selectors.PAGE_2, undefined, "bg1-saturate");
 const sectionProjectItems2 = new AnimatedXScrollable(`
@@ -99,5 +99,4 @@ $(function () {
         // TODO: Add call for enquire
     }
 });
-const floating = new FloatingDialog("test", "chicken");
-floating.getBackgroundFromProvider();
+new EmailFloatingDialog().build();

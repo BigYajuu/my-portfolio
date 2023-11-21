@@ -1,7 +1,7 @@
 "use strict";
 class Background {
-    setToFocus() { }
+    setToFocused() { }
     ;
-    setToDistracted() { }
+    setToDefocused() { }
     ;
 }

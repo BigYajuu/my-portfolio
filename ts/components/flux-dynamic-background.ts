@@ -150,11 +150,11 @@ export class FluxDynamicBackground extends Component implements Background {
         this.runNextFadeTransition();
     }
 
-    public setToFocus(): void {
+    public setToFocused(): void {
         throw new Error("Method not implemented.");
     }
 
-    public setToDistracted(): void {
+    public setToDefocused(): void {
         throw new Error("Method not implemented.");
     }
 

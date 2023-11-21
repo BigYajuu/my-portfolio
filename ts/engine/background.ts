@@ -1,5 +1,5 @@
 abstract class Background {
-    public setToFocus(): void {};
+    public setToFocused(): void {};
 
-    public setToDistracted(): void {};
+    public setToDefocused(): void {};
 }

@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { ProviderKeys } from "../constants";
 import MixinComponent from "../engine/mixin-component";
 import StateManager from "../engine/state-management.ts/state-manager";
@@ -5,15 +6,13 @@ import BackgroundProvider from "../providers/background-provider";
 
 export class FloatingDialog extends MixinComponent {
 
-    private backgroundProvider: BackgroundProvider<any>;
+    protected backgroundProvider: BackgroundProvider<any>;
+    protected $dialogElement: JQuery<HTMLElement>;
 
-    constructor(selector: string, content: string) {
-        super(selector, content);
+    constructor(selector: string) {
+        super(selector);
         this.backgroundProvider = StateManager.getInstance(ProviderKeys.BACKGROUND, { currentBackground : this });
-    }
-
-    public build(): void {
-        
+        this.$dialogElement = $('<div>').addClass('dialog-element');
     }
     
     public getBackgroundFromProvider(): Background {
