@@ -1,6 +1,7 @@
 export class Constants {
 }
-Constants.DEFAULT_ANIMATION_DURATION = 140;
+Constants.ANIMATION_DURATION_SLOW = 400;
+Constants.ANIMATION_DURATION_DEFAULT = 140;
 export class ProviderKeys {
 }
 ProviderKeys.BACKGROUND = "background";

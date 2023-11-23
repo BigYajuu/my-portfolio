@@ -1,14 +1,13 @@
 import $ from 'jquery';
 import MixinComponent from "../engine/mixin-component";
 import Veil from './veil';
+import { Constants } from '../constants';
 
 export class DialogElement extends MixinComponent {
 
     protected title: string;
     protected veil: Veil = new Veil(`${this.selector}-veil`, this);
     protected $dialogElement: JQuery<HTMLElement>;
-
-    private ANIMATE_DURATION = 400;
 
     constructor(selector: string, title: string = '') {
         super(selector);
@@ -25,14 +24,16 @@ export class DialogElement extends MixinComponent {
         this.veil.onShow();
         this.$dialogElement.stop();
         this.$dialogElement.css('visibility', 'visible');
-        this.$dialogElement.animate({'opacity': 1}, this.ANIMATE_DURATION);
+        this.$dialogElement.animate({'opacity': 1}, Constants.ANIMATION_DURATION_SLOW);
     };
 
     public onHide(): void {
         this.veil.onHide();
         this.$dialogElement.stop();
-        this.$dialogElement.css('visibility', 'hidden');
-        this.$dialogElement.animate({'opacity': 0}, this.ANIMATE_DURATION);
+        this.$dialogElement.animate({'opacity': 0}, Constants.ANIMATION_DURATION_DEFAULT, () => {
+            this.$dialogElement.css('visibility', 'hidden');
+        
+        });
     };
 }
 

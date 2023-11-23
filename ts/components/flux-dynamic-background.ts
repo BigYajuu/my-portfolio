@@ -29,7 +29,7 @@ export class FluxDynamicBackground extends Component implements Background {
     private backgroundProvider: BackgroundProvider<any>;
 
     private FADE_DURATION: number = 3300;
-    private FADE_DURATION_FAST: number = 400;
+    private FADE_DURATION_FAST: number = 800;
 
     private imageMode: ImageMode = ImageMode.SATURATED;
     private currentImageIndex: number = 0;

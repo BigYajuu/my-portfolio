@@ -1,14 +1,11 @@
 import $ from "jquery";
 import DialogElement from "./dialog-element";
-import Veil from "./veil";
 import { Selectors } from "../constants";
 export class EmailFloatingDialog extends DialogElement {
     constructor() {
         super(Selectors.EMAIL_FLOATING_DIALOG, 'Contact the Creator');
     }
     build() {
-        // Form veil
-        new Veil(this.selector).build();
         // Create input fields
         this.$dialogElement.append(this.buildTitle());
         this.$dialogElement.append(this.buildLeadingSubtitle());

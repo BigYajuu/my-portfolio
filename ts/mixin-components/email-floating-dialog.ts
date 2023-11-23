@@ -10,9 +10,6 @@ export class EmailFloatingDialog extends DialogElement {
     }
 
     public build(): void {
-        // Form veil
-        new Veil(this.selector).build();
-
         // Create input fields
         this.$dialogElement.append(this.buildTitle());
         this.$dialogElement.append(this.buildLeadingSubtitle());

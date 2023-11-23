@@ -20,7 +20,7 @@ export class FluxDynamicBackground extends Component {
     constructor(selector, imageMode, initialImageClass) {
         super(selector);
         this.FADE_DURATION = 3300;
-        this.FADE_DURATION_FAST = 400;
+        this.FADE_DURATION_FAST = 800;
         this.imageMode = ImageMode.SATURATED;
         this.currentImageIndex = 0;
         this.currentFilm = SVGFilm1;

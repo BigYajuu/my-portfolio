@@ -1,5 +1,6 @@
 export class Constants {
-    static DEFAULT_ANIMATION_DURATION = 140;
+    static ANIMATION_DURATION_SLOW = 400;
+    static ANIMATION_DURATION_DEFAULT = 140;
     
 }
 
