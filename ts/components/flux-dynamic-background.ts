@@ -1,10 +1,8 @@
 import $ from "jquery";
 import Component from "../engine/component";
-import Provider from "../engine/state-management.ts/provider";
 import BackgroundProvider from "../providers/background-provider";
 import { ProviderKeys } from "../constants";
 import StateManager from "../engine/state-management.ts/state-manager";
-import FloatingDialog from "./floating-dialog";
 
 interface SVGSetClasses {
     normal: string;
@@ -31,6 +29,7 @@ export class FluxDynamicBackground extends Component implements Background {
     private backgroundProvider: BackgroundProvider<any>;
 
     private FADE_DURATION: number = 3300;
+    private FADE_DURATION_FAST: number = 400;
 
     private imageMode: ImageMode = ImageMode.SATURATED;
     private currentImageIndex: number = 0;
@@ -82,7 +81,21 @@ export class FluxDynamicBackground extends Component implements Background {
         `);
     }
 
-    public runFadeTransition(toClass: string): void {
+    public runFadeTransition(fromClass: string, toClass: string, duration: number, animationEndCallback: () => void): void {
+        const self = this;
+        this.clearAllImageClasses();
+        $(`#${this.foregroundSelector}`).addClass(fromClass);
+        $(`#${this.backgroundSelector}`).addClass(toClass);
+        $(`#${this.foregroundSelector}`).css('opacity', 1);
+        $(`#${this.foregroundSelector}`).animate({opacity: 0}, duration, () => {
+                if (typeof animationEndCallback === 'function') {
+                    animationEndCallback();
+                }   
+            }
+        );
+    }
+
+    public runNextFadeTransition(): void {
         const self = this;
         var lastBackgroundClass = this.getImageClassByIndex(this.currentImageIndex - 1);
         if (!this.hasInitialImageClassAnimated) {
@@ -90,18 +103,16 @@ export class FluxDynamicBackground extends Component implements Background {
             this.hasInitialImageClassAnimated = true;
         }
         const newBackgroundClass = this.getImageClassByIndex(this.currentImageIndex);
-        this.clearAllImageClasses();
-        $(`#${this.foregroundSelector}`).addClass(lastBackgroundClass);
-        $(`#${this.backgroundSelector}`).addClass(newBackgroundClass);
-        $(`#${this.foregroundSelector}`).css('opacity', 1);
-        $(`#${this.foregroundSelector}`).animate({opacity: 0}, self.FADE_DURATION, function() {
+        this.runFadeTransition(lastBackgroundClass, newBackgroundClass, self.FADE_DURATION, () => {
             self.runNextFadeTransition();
         });
+        this.updateNextImageIndex();
     }
 
-    public getImageClassByIndex(index: number): string {
+    public getImageClassByIndex(index: number, overrideImageMode?: ImageMode): string {
         var rectifiedIndex = ((index % this.currentFilm.length) + this.currentFilm.length) % this.currentFilm.length;
-        return this.imageMode == ImageMode.NORMAL ? this.currentFilm[rectifiedIndex].normal : this.currentFilm[rectifiedIndex].saturated;
+        var rectifiedImageMode = overrideImageMode !== undefined ? overrideImageMode : this.imageMode;
+        return rectifiedImageMode == ImageMode.NORMAL ? this.currentFilm[rectifiedIndex].normal : this.currentFilm[rectifiedIndex].saturated;
     }
 
     public onScrollIn(): void {
@@ -113,20 +124,21 @@ export class FluxDynamicBackground extends Component implements Background {
 
     public onScrollOut(): void {
         this.setForegroundToDisappear();
-        this.setForegroundAnimationToPaused();
+        this.setForegroundAnimationToStop();
     }
 
     public clearAllImageClasses(): void {
         $(`#${this.foregroundSelector}`).removeClass(this.initialImageClass);
         for (let i = 0; i < this.currentFilm.length; i++) {
-            $(`#${this.foregroundSelector}`).removeClass(this.getImageClassByIndex(i));
-            $(`#${this.backgroundSelector}`).removeClass(this.getImageClassByIndex(i));
+            $(`#${this.foregroundSelector}`).removeClass(this.getImageClassByIndex(i, ImageMode.NORMAL));
+            $(`#${this.backgroundSelector}`).removeClass(this.getImageClassByIndex(i, ImageMode.NORMAL));
+            $(`#${this.foregroundSelector}`).removeClass(this.getImageClassByIndex(i, ImageMode.SATURATED));
+            $(`#${this.backgroundSelector}`).removeClass(this.getImageClassByIndex(i, ImageMode.SATURATED));
         }
     }
 
-    public runNextFadeTransition(): void {
-        this.runFadeTransition(this.getImageClassByIndex(this.currentImageIndex));
-        this.updateNextImageIndex();
+    public decrementImageIndex(): void {
+        this.currentImageIndex = (this.currentImageIndex + 1) % this.currentFilm.length;
     }
 
     public updateNextImageIndex(): void {
@@ -142,7 +154,7 @@ export class FluxDynamicBackground extends Component implements Background {
         $(`#${this.foregroundSelector}`).css('visibility', 'hidden');
     }
 
-    public setForegroundAnimationToPaused(): void {
+    public setForegroundAnimationToStop(): void {
         $(`#${this.foregroundSelector}`).stop();
     }
 
@@ -151,11 +163,33 @@ export class FluxDynamicBackground extends Component implements Background {
     }
 
     public setToFocused(): void {
-        throw new Error("Method not implemented.");
+        this.setForegroundAnimationToStop();
+        this.runSaturatedImageTransition();
     }
 
     public setToDefocused(): void {
-        throw new Error("Method not implemented.");
+        this.setForegroundAnimationToStop();
+        this.runNormalImageTransition();
+    }
+
+    private runNormalImageTransition(): void {
+        const fromClass = this.getImageClassByIndex(this.currentImageIndex);    // Saturated img
+        this.imageMode = ImageMode.NORMAL; // As mode changes, the image would be in normal saturation.
+        const toClass = this.getImageClassByIndex(this.currentImageIndex);  // Normal img
+        this.runFadeTransition(fromClass, toClass, this.FADE_DURATION_FAST,
+        () => {});
+    }
+
+    private runSaturatedImageTransition(): void {
+        const self = this;
+        const fromClass = this.getImageClassByIndex(this.currentImageIndex);    // Normal img
+        this.imageMode = ImageMode.SATURATED;
+        const toClass = this.getImageClassByIndex(this.currentImageIndex);  // Saturated img
+        this.runFadeTransition(fromClass, toClass, this.FADE_DURATION_FAST,
+        () => {
+            self.decrementImageIndex();
+            self.runNextFadeTransition();
+        });
     }
 
     public setThisBackgroundInProvider(): void {

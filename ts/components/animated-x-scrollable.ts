@@ -2,7 +2,6 @@ import $ from "jquery";
 import Component from '../engine/component.js';
 import {Utility, DeviceType} from '../engine/utility.js';
 import { Constants } from '../constants.js';
-import FloatingDialog from "./floating-dialog.js";
 
 enum ScrollDirection {
     LEFT = 'left',
@@ -241,13 +240,11 @@ export class AnimatedXScrollable extends Component {
     }
 
     public onScrollIn(): void {
-        console.log('onScrollIn');
         this.updateScrollChevronVPositions();
         this.setScrollChevronsToAppear();
     }
 
     public onScrollOut(): void {
-        console.log('onScrollOut');
         this.setScrollChevronsToDisappear();
     }
 

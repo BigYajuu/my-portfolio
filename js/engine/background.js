@@ -1,7 +1,11 @@
 "use strict";
 class Background {
-    setToFocused() { }
+    setToFocused() {
+        // Background regains its normal transitory behaviour.
+    }
     ;
-    setToDefocused() { }
+    setToDefocused() {
+        // Background turns blurry, defocused, or something similar to that effect.
+    }
     ;
 }

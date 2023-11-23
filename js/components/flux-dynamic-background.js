@@ -20,6 +20,7 @@ export class FluxDynamicBackground extends Component {
     constructor(selector, imageMode, initialImageClass) {
         super(selector);
         this.FADE_DURATION = 3300;
+        this.FADE_DURATION_FAST = 400;
         this.imageMode = ImageMode.SATURATED;
         this.currentImageIndex = 0;
         this.currentFilm = SVGFilm1;
@@ -58,7 +59,19 @@ export class FluxDynamicBackground extends Component {
             </div>
         `);
     }
-    runFadeTransition(toClass) {
+    runFadeTransition(fromClass, toClass, duration, animationEndCallback) {
+        const self = this;
+        this.clearAllImageClasses();
+        $(`#${this.foregroundSelector}`).addClass(fromClass);
+        $(`#${this.backgroundSelector}`).addClass(toClass);
+        $(`#${this.foregroundSelector}`).css('opacity', 1);
+        $(`#${this.foregroundSelector}`).animate({ opacity: 0 }, duration, () => {
+            if (typeof animationEndCallback === 'function') {
+                animationEndCallback();
+            }
+        });
+    }
+    runNextFadeTransition() {
         const self = this;
         var lastBackgroundClass = this.getImageClassByIndex(this.currentImageIndex - 1);
         if (!this.hasInitialImageClassAnimated) {
@@ -66,17 +79,15 @@ export class FluxDynamicBackground extends Component {
             this.hasInitialImageClassAnimated = true;
         }
         const newBackgroundClass = this.getImageClassByIndex(this.currentImageIndex);
-        this.clearAllImageClasses();
-        $(`#${this.foregroundSelector}`).addClass(lastBackgroundClass);
-        $(`#${this.backgroundSelector}`).addClass(newBackgroundClass);
-        $(`#${this.foregroundSelector}`).css('opacity', 1);
-        $(`#${this.foregroundSelector}`).animate({ opacity: 0 }, self.FADE_DURATION, function () {
+        this.runFadeTransition(lastBackgroundClass, newBackgroundClass, self.FADE_DURATION, () => {
             self.runNextFadeTransition();
         });
+        this.updateNextImageIndex();
     }
-    getImageClassByIndex(index) {
+    getImageClassByIndex(index, overrideImageMode) {
         var rectifiedIndex = ((index % this.currentFilm.length) + this.currentFilm.length) % this.currentFilm.length;
-        return this.imageMode == ImageMode.NORMAL ? this.currentFilm[rectifiedIndex].normal : this.currentFilm[rectifiedIndex].saturated;
+        var rectifiedImageMode = overrideImageMode !== undefined ? overrideImageMode : this.imageMode;
+        return rectifiedImageMode == ImageMode.NORMAL ? this.currentFilm[rectifiedIndex].normal : this.currentFilm[rectifiedIndex].saturated;
     }
     onScrollIn() {
         this.clearAllImageClasses();
@@ -86,18 +97,19 @@ export class FluxDynamicBackground extends Component {
     }
     onScrollOut() {
         this.setForegroundToDisappear();
-        this.setForegroundAnimationToPaused();
+        this.setForegroundAnimationToStop();
     }
     clearAllImageClasses() {
         $(`#${this.foregroundSelector}`).removeClass(this.initialImageClass);
         for (let i = 0; i < this.currentFilm.length; i++) {
-            $(`#${this.foregroundSelector}`).removeClass(this.getImageClassByIndex(i));
-            $(`#${this.backgroundSelector}`).removeClass(this.getImageClassByIndex(i));
+            $(`#${this.foregroundSelector}`).removeClass(this.getImageClassByIndex(i, ImageMode.NORMAL));
+            $(`#${this.backgroundSelector}`).removeClass(this.getImageClassByIndex(i, ImageMode.NORMAL));
+            $(`#${this.foregroundSelector}`).removeClass(this.getImageClassByIndex(i, ImageMode.SATURATED));
+            $(`#${this.backgroundSelector}`).removeClass(this.getImageClassByIndex(i, ImageMode.SATURATED));
         }
     }
-    runNextFadeTransition() {
-        this.runFadeTransition(this.getImageClassByIndex(this.currentImageIndex));
-        this.updateNextImageIndex();
+    decrementImageIndex() {
+        this.currentImageIndex = (this.currentImageIndex + 1) % this.currentFilm.length;
     }
     updateNextImageIndex() {
         this.currentImageIndex = (this.currentImageIndex + 1) % this.currentFilm.length;
@@ -109,17 +121,35 @@ export class FluxDynamicBackground extends Component {
     setForegroundToDisappear() {
         $(`#${this.foregroundSelector}`).css('visibility', 'hidden');
     }
-    setForegroundAnimationToPaused() {
+    setForegroundAnimationToStop() {
         $(`#${this.foregroundSelector}`).stop();
     }
     setForegroundAnimationToRunning() {
         this.runNextFadeTransition();
     }
     setToFocused() {
-        throw new Error("Method not implemented.");
+        this.setForegroundAnimationToStop();
+        this.runSaturatedImageTransition();
     }
     setToDefocused() {
-        throw new Error("Method not implemented.");
+        this.setForegroundAnimationToStop();
+        this.runNormalImageTransition();
+    }
+    runNormalImageTransition() {
+        const fromClass = this.getImageClassByIndex(this.currentImageIndex); // Saturated img
+        this.imageMode = ImageMode.NORMAL; // As mode changes, the image would be in normal saturation.
+        const toClass = this.getImageClassByIndex(this.currentImageIndex); // Normal img
+        this.runFadeTransition(fromClass, toClass, this.FADE_DURATION_FAST, () => { });
+    }
+    runSaturatedImageTransition() {
+        const self = this;
+        const fromClass = this.getImageClassByIndex(this.currentImageIndex); // Normal img
+        this.imageMode = ImageMode.SATURATED;
+        const toClass = this.getImageClassByIndex(this.currentImageIndex); // Saturated img
+        this.runFadeTransition(fromClass, toClass, this.FADE_DURATION_FAST, () => {
+            self.decrementImageIndex();
+            self.runNextFadeTransition();
+        });
     }
     setThisBackgroundInProvider() {
         this.backgroundProvider.setState({ currentBackground: this });

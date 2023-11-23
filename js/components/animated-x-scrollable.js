@@ -217,12 +217,10 @@ export class AnimatedXScrollable extends Component {
         }
     }
     onScrollIn() {
-        console.log('onScrollIn');
         this.updateScrollChevronVPositions();
         this.setScrollChevronsToAppear();
     }
     onScrollOut() {
-        console.log('onScrollOut');
         this.setScrollChevronsToDisappear();
     }
     setScrollChevronsToAppear() {
