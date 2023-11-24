@@ -30,15 +30,13 @@ body {
   border-radius: 24px;
   background: url("/img/noise.svg");
   background-blend-mode: soft-light;
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   display: inline-block;
   padding: 16px;
   margin-top: 8px;
   margin-bottom: 8px;
   overflow-wrap: normal;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
 }
 
 .dialog-element {
@@ -47,6 +45,7 @@ body {
   background: url("/img/noise.svg");
   background-blend-mode: soft-light;
   background-color: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   width: 85%;
   top: 50%;
@@ -57,9 +56,6 @@ body {
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
 }
 @media (min-width: 1000px) {
   .dialog-element {

@@ -55,16 +55,13 @@ body {
     border-radius: $border-radius-standard;
     background: url('/img/noise.svg');
     background-blend-mode: soft-light;
-    // background-color: $secondary-glass-colour;
+    -webkit-backdrop-filter: $backdrop-filter;
     backdrop-filter: $backdrop-filter;
     display: inline-block;
     padding: $container-padding;
     margin-top: $container-margin;    // For vertical margin only
     margin-bottom: $container-margin;
     overflow-wrap: normal;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
 }
 
 .dialog-element {
@@ -73,6 +70,7 @@ body {
     background: url('/img/noise.svg');
     background-blend-mode: soft-light;
     background-color: $primary-glass-colour;
+    -webkit-backdrop-filter: $backdrop-filter;
     backdrop-filter: $backdrop-filter;
     width: 85%;
     @media (min-width: $viewport-min-width) {
@@ -86,9 +84,6 @@ body {
     z-index: $z-dialog-element;
     opacity: 0;
     visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
 }
 .dialog-element label {
     display: block;
