@@ -71,7 +71,10 @@ body {
     background-blend-mode: soft-light;
     background-color: $primary-glass-colour;
     backdrop-filter: $backdrop-filter;
-    width: 60%;
+    width: 85%;
+    @media (min-width: $viewport-min-width) {
+        width: 55%;
+    }
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -88,8 +91,12 @@ body {
 }
 .dialog-element .row-group {
     display: flex;
-    flex-direction: row;
     align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    @media (min-width: $viewport-min-width) {
+        flex-wrap: nowrap;
+    }
 }
 .dialog-element .input-group {
     display: flex;
@@ -173,6 +180,11 @@ body {
     width: 0px;
 }
 
+.required {
+    color: red;
+    margin-right: 4px;
+}
+
 .row:before {
     content: "";
 }
@@ -202,31 +214,19 @@ body {
     padding-left: $element-offset-left;
 }
 
-.text-icon {
+.text-icon, .text-icon-button{
     display: inline-flex;
     position: relative;
     align-self: center;
     top: .125em;
     height: 1em;
     width: 1em;
-    fill: $secondary-colour;
-}
-.text-icon-button {
-    display: inline-flex;
-    position: relative;
-    align-self: center;
-    top: .125em;
-    height: 1em;
-    width: 1em;
-    color: $secondary-colour;
 }
 .text-icon-button:hover {
     opacity: 0.6;
-    // fill: $secondary-colour;
 }
 .text-icon-button:active {
     opacity: 1;
-    // fill: $secondary-colour;
 }
 
 .veil {

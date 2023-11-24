@@ -26,7 +26,7 @@ export class EmailFloatingDialog extends DialogElement {
         $subtitle.append($('<p>').text(`
             Thank you for your interest in reaching out! 
             You may use the following form to send a personal email to me 
-            (Fill in all fields).`));
+            .`));
         $subtitle.append($('<p>').text(`
             A response should be expected shortly.`));
         const $lastParagraph = ($(`<p>`).text(`
@@ -52,15 +52,18 @@ export class EmailFloatingDialog extends DialogElement {
         })
       
         const nameGroup = $('<div>').addClass('input-group');
-        const nameLabel = $('<label>').text('Name or Organization');
+        const nameRequired = $('<span>').addClass('required').text('*');
+        const nameLabel = $('<label>').append(nameRequired).append('Name or Organization');
         const nameInput = $('<input>').attr({ type: 'text', id: 'name', required: true });
 
         const emailGroup = $('<div>').addClass('input-group');
-        const emailLabel = $('<label>').text('Email');
+        const emailRequired = $('<span>').addClass('required').text('*');
+        const emailLabel = $('<label>').append(emailRequired).append('Email');
         const emailInput = $('<input>').attr({ type: 'email', id: 'email', required: true });
 
         const messageGroup = $('<div>').addClass('input-group');
-        const messageLabel = $('<label>').text('Message');
+        const messageRequired = $('<span>').addClass('required').text('*');
+        const messageLabel = $('<label>').append(messageRequired).append('Message');
         const messageInput = $('<textarea>').attr({ name: 'body', id: 'message', rows: '4', required: true });
 
         const submitRow = $('<div>').addClass('row-group');
