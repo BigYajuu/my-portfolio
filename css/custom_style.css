@@ -36,6 +36,9 @@ body {
   margin-top: 8px;
   margin-bottom: 8px;
   overflow-wrap: normal;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
 }
 
 .dialog-element {
@@ -54,6 +57,9 @@ body {
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
 }
 @media (min-width: 1000px) {
   .dialog-element {

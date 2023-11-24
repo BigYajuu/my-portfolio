@@ -62,6 +62,9 @@ body {
     margin-top: $container-margin;    // For vertical margin only
     margin-bottom: $container-margin;
     overflow-wrap: normal;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
 }
 
 .dialog-element {
@@ -83,6 +86,9 @@ body {
     z-index: $z-dialog-element;
     opacity: 0;
     visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
 }
 .dialog-element label {
     display: block;
