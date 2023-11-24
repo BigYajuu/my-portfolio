@@ -14,17 +14,26 @@ export class EmailFloatingDialog extends DialogElement {
         $('body').append(this.$dialogElement);
     }
     buildLeadingSubtitle() {
-        const subtitle = $('<div>');
-        subtitle.append($('<p>').text(`
+        const $subtitle = $('<div>');
+        $subtitle.append($('<p>').text(`
             Thank you for your interest in reaching out! 
             You may use the following form to send a personal email to me 
             (Fill in all fields).`));
-        subtitle.append($('<p>').text(`
+        $subtitle.append($('<p>').text(`
             A response should be expected shortly.`));
-        subtitle.append($('<p>').text(`\
+        const $lastParagraph = ($(`<p>`).text(`
             Alternatively, 
-            you may send to wuchuyue2014@gmail.com.`));
-        return subtitle;
+            you may send to wuchuyue2014@gmail.com
+        `));
+        const $icon = $('<div>').addClass(['text-icon-button', 'baseline', 'icon-copy']);
+        $icon.on('click', function () {
+            navigator.clipboard
+                .writeText("wuchuyue2014@gmail.com").then(() => { });
+        });
+        $lastParagraph.append($icon);
+        $lastParagraph.append(`.`);
+        $subtitle.append($lastParagraph);
+        return $subtitle;
     }
     buildForm() {
         const self = this;

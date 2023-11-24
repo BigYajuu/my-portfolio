@@ -192,6 +192,34 @@ body {
   padding-left: 24px;
 }
 
+.text-icon {
+  display: inline-flex;
+  position: relative;
+  align-self: center;
+  top: 0.125em;
+  height: 1em;
+  width: 1em;
+  fill: #202020;
+}
+
+.text-icon-button {
+  display: inline-flex;
+  position: relative;
+  align-self: center;
+  top: 0.125em;
+  height: 1em;
+  width: 1em;
+  color: #202020;
+}
+
+.text-icon-button:hover {
+  opacity: 0.6;
+}
+
+.text-icon-button:active {
+  opacity: 1;
+}
+
 .veil {
   position: fixed;
   height: 100dvh;

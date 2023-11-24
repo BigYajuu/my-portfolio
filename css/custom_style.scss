@@ -202,6 +202,33 @@ body {
     padding-left: $element-offset-left;
 }
 
+.text-icon {
+    display: inline-flex;
+    position: relative;
+    align-self: center;
+    top: .125em;
+    height: 1em;
+    width: 1em;
+    fill: $secondary-colour;
+}
+.text-icon-button {
+    display: inline-flex;
+    position: relative;
+    align-self: center;
+    top: .125em;
+    height: 1em;
+    width: 1em;
+    color: $secondary-colour;
+}
+.text-icon-button:hover {
+    opacity: 0.6;
+    // fill: $secondary-colour;
+}
+.text-icon-button:active {
+    opacity: 1;
+    // fill: $secondary-colour;
+}
+
 .veil {
     position: fixed;
     height: 100dvh;
