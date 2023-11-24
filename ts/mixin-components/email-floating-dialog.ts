@@ -12,7 +12,7 @@ export class EmailFloatingDialog extends DialogElement {
 
     public build(): void {
         // Create input fields
-        this.$dialogElement.append(this.buildTitle());
+        this.$dialogElement.append(this.buildTitleBar());
         this.$dialogElement.append(this.buildLeadingSubtitle());
         this.$dialogElement.append(this.buildForm());
         
