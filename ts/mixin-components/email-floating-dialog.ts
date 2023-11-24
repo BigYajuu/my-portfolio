@@ -4,6 +4,8 @@ import { Selectors } from "../constants";
 
 export class EmailFloatingDialog extends DialogElement {
 
+    private RECIPIENT_EMAIL = `wuchuyue2014@gmail.com`;
+
     constructor() {
         super(Selectors.EMAIL_FLOATING_DIALOG, 'Contact the Creator');
     }
@@ -19,6 +21,7 @@ export class EmailFloatingDialog extends DialogElement {
     }
 
     private buildLeadingSubtitle(): JQuery<HTMLElement> {
+        const self = this;
         const $subtitle = $('<div>')
         $subtitle.append($('<p>').text(`
             Thank you for your interest in reaching out! 
@@ -28,12 +31,12 @@ export class EmailFloatingDialog extends DialogElement {
             A response should be expected shortly.`));
         const $lastParagraph = ($(`<p>`).text(`
             Alternatively, 
-            you may send to wuchuyue2014@gmail.com
+            you may send to ${self.RECIPIENT_EMAIL}
         `));
         const $icon = $('<div>').addClass(['text-icon-button', 'baseline', 'icon-copy']);
         $icon.on('click', function() {
             navigator.clipboard
-            .writeText("wuchuyue2014@gmail.com").then(() => {})
+            .writeText(self.RECIPIENT_EMAIL).then(() => {})
         });
         $lastParagraph.append($icon);
         $lastParagraph.append(`.`);
@@ -43,21 +46,10 @@ export class EmailFloatingDialog extends DialogElement {
 
     private buildForm(): JQuery<HTMLElement> {
         const self = this;
-        const form = $('<form>').submit(function(e) {
-            e.preventDefault();
-            const name = $('#name').val();
-            const email = $('#email').val();
-            const message = $('#message').val();
-      
-            console.log('Name:', name);
-            console.log('Email:', email);
-            console.log('Items to send:', message);
-      
-            // Handle form submission or other actions here
-            
-            // Close the dialog after submission (you can modify this behavior)
-            self.$dialogElement.remove();
-        });
+        const form = $(`<form>`).attr({
+            action: `https://formspree.io/f/xyyqqypk`,
+            method: "POST"
+        })
       
         const nameGroup = $('<div>').addClass('input-group');
         const nameLabel = $('<label>').text('Name or Organization');
@@ -69,7 +61,7 @@ export class EmailFloatingDialog extends DialogElement {
 
         const messageGroup = $('<div>').addClass('input-group');
         const messageLabel = $('<label>').text('Message');
-        const messageInput = $('<textarea>').attr({ id: 'message', rows: '4', required: true });
+        const messageInput = $('<textarea>').attr({ name: 'body', id: 'message', rows: '4', required: true });
 
         const submitRow = $('<div>').addClass('row-group');
         const submitButton = $('<input>').attr({ type: 'submit', value: 'Submit' });
