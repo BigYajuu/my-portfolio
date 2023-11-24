@@ -1,10 +1,10 @@
 import $ from "jquery";
-import Transition from "./transition.js";
+import PageTransition from "./page-transition.js";
 import Page from "./page.js";
 import PageManagement from "./page-management.js";
 import { Selectors } from "../constants.js";
 
-export class CubicXAxisTransition extends Transition {
+export class CubicXAxisTransition extends PageTransition {
     
     /*  Follow the following div structure: (scrollDown)
         <div class="scene">

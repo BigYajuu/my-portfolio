@@ -1,17 +1,17 @@
 import $ from "jquery";
 import PageManagement from "./page-management";
-import Transition from "./transition";
+import PageTransition from "./page-transition";
 import Component from "./component";
 
 export class Page {
     private selector: string;
     private pageNext?: Page | null;
     private pagePrev?: Page | null;
-    private transitionScrollUp: Transition;
-    private transitionScrollDown: Transition;
+    private transitionScrollUp: PageTransition;
+    private transitionScrollDown: PageTransition;
     private components: Component[] = [];
 
-    constructor(selector: string, scrollTransition: Transition, components: Component[] = []) {
+    constructor(selector: string, scrollTransition: PageTransition, components: Component[] = []) {
         this.selector = selector;
         this.transitionScrollUp = scrollTransition;
         this.transitionScrollDown = scrollTransition;
