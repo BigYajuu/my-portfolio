@@ -1,4 +1,4 @@
-import { Utility, ScrollDirection } from "../utility.js";
+import { Utility, ScrollDirection } from "./utility.js";
 export class PageManagement {
     constructor(divID, pages) {
         this.currentPageIndex = 0;

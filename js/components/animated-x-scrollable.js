@@ -1,6 +1,6 @@
 import $ from "jquery";
 import Component from '../engine/component.js';
-import { Utility, DeviceType } from '../utility.js';
+import { Utility, DeviceType } from '../engine/utility.js';
 import { Constants } from '../constants.js';
 var ScrollDirection;
 (function (ScrollDirection) {
@@ -184,14 +184,14 @@ export class AnimatedXScrollable extends Component {
         if (direction === ScrollDirection.LEFT) {
             if (this.scrollChevronStateLeft != newScrollChevronState) {
                 $(`#${scrollChevronSelector}`).stop();
-                $(`#${scrollChevronSelector}`).animate(this.getScrollChevronStyleByState(newScrollChevronState), Constants.DEFAULT_ANIMATION_DURATION);
+                $(`#${scrollChevronSelector}`).animate(this.getScrollChevronStyleByState(newScrollChevronState), Constants.ANIMATION_DURATION_DEFAULT);
                 this.scrollChevronStateLeft = newScrollChevronState;
             }
         }
         else if (direction === ScrollDirection.RIGHT) {
             if (this.scrollChevronStateRight != newScrollChevronState) {
                 $(`#${scrollChevronSelector}`).stop();
-                $(`#${scrollChevronSelector}`).animate(this.getScrollChevronStyleByState(newScrollChevronState), Constants.DEFAULT_ANIMATION_DURATION);
+                $(`#${scrollChevronSelector}`).animate(this.getScrollChevronStyleByState(newScrollChevronState), Constants.ANIMATION_DURATION_DEFAULT);
                 this.scrollChevronStateRight = newScrollChevronState;
             }
         }
@@ -217,12 +217,10 @@ export class AnimatedXScrollable extends Component {
         }
     }
     onScrollIn() {
-        console.log('onScrollIn');
         this.updateScrollChevronVPositions();
         this.setScrollChevronsToAppear();
     }
     onScrollOut() {
-        console.log('onScrollOut');
         this.setScrollChevronsToDisappear();
     }
     setScrollChevronsToAppear() {
@@ -231,7 +229,7 @@ export class AnimatedXScrollable extends Component {
         self.xScrollEdgeResponse(self.scrollChevronRightSelector, ScrollDirection.RIGHT);
         $(`#${self.scrollChevronOpacityMaskSelector}`).animate({
             opacity: '1',
-        }, Constants.DEFAULT_ANIMATION_DURATION);
+        }, Constants.ANIMATION_DURATION_DEFAULT);
     }
     setScrollChevronsToDisappear() {
         const self = this;
