@@ -14,6 +14,18 @@
     background-image: url('/img/icons/copy.svg');
 }
 
+.icon-x {
+    background-image: url('/img/icons/x.svg');
+}
+
+.icon-x-circle {
+    background-image: url('/img/icons/x-circle.svg');
+}
+
+.icon-exit {
+    background-image: url('/img/icons/exit.svg');
+}
+
 [class*="icon-"] {
     background-repeat: no-repeat;
     background-position: center;

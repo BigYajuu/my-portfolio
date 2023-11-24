@@ -16,8 +16,16 @@ export class DialogElement extends MixinComponent {
         this.$dialogElement = $('<div>').addClass('dialog-element');
     }
     
-    public buildTitle() {
-        return $('<h1>').text(this.title);
+    public buildTitleBar() {
+        const $titleBar = $('<div>').addClass('title-bar');
+        const $title = $('<h1>').text(this.title);
+        const $closeIcon = $('<div>').addClass(['close-button', 'icon-x']);
+        // $closeIcon.attr('height', '1.2rem');
+        $closeIcon.on('click', () => {
+            this.onHide();
+        });
+        $titleBar.append([$title, $closeIcon]);
+        return $titleBar;
     }
 
     public onShow(): void {
