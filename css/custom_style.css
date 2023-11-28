@@ -225,6 +225,12 @@ body {
   padding-left: 24px;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 .text-icon, .text-icon-button {
   display: inline-flex;
   position: relative;
@@ -262,6 +268,7 @@ h1 {
 
 p {
   margin: 0;
+  font-size: 1.2em;
   padding-top: 4px;
   color: #202020;
 }
