@@ -48,7 +48,7 @@ class App {
                     <p>Item 3</p>
                 </div>
             </div>
-            `, "section-projects-items-2", Selectors.PAGE_2);
+            `, "section-projects-items-works", Selectors.PAGE_2);
         const sectionProjectItems3 = new AnimatedXScrollable(`
             <div class="x-scrollable-item col-abs-width col-default-padding">
                 <div class="container">
@@ -106,7 +106,7 @@ class App {
                     <p>Item 3</p>
                 </div>
             </div>
-            `, "section-projects-items-3", Selectors.PAGE_2);
+            `, "section-projects-items-involvements", Selectors.PAGE_2);
         const page1 = new Page(Selectors.PAGE_1, new CubicXAxisTransition(), [page1_bg]);
         const page2 = new Page(Selectors.PAGE_2, new CubicXAxisTransition(), [page2_bg, sectionProjectItems2, sectionProjectItems3]);
         const pageManagement = new PageManagement(Selectors.PAGE_MANAGEMENT_CONTAINER, [page1, page2]);

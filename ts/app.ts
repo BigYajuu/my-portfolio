@@ -60,7 +60,7 @@ class App {
                 </div>
             </div>
             `,
-            "section-projects-items-2",
+            "section-projects-items-works",
             Selectors.PAGE_2
         );
 
@@ -123,7 +123,7 @@ class App {
                 </div>
             </div>
             `,
-            "section-projects-items-3",
+            "section-projects-items-involvements",
             Selectors.PAGE_2
         );
 
