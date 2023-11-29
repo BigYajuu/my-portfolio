@@ -26,25 +26,24 @@ const ScrollChevronHoveringStyle = {
     width: '20%'
 };
 export class AnimatedXScrollable extends Component {
-    constructor(content, selector, pageSelector) {
+    constructor(selector, pageSelector, $content) {
         super(selector);
         this.build = () => { };
         this.buildScrollChevrons = (height) => {
             const self = this;
-            return `
-                <div id="${self.scrollChevronOpacityMaskSelector}">
-                    <div class="scroll-chevron-left" id="${self.scrollChevronLeftSelector}" style="height: ${height}px">
-                        <i class="fa-solid fa-arrow-left fa-fade fa-3x" style="color: #000000"></i>
-                    </div>
-                    <div class="scroll-chevron-right" id="${self.scrollChevronRightSelector}" style="height: ${height}px">
-                        <i class="fa-solid fa-arrow-right fa-fade fa-3x" style="color: #000000"></i>
-                    </div>
-                </div>
-                `;
+            const $scrollChevronLeft = $(`<div id="${self.scrollChevronLeftSelector}">`)
+                .addClass('scroll-chevron-left')
+                .css('height', `${height}px`);
+            const $scrollChevronRight = $(`<div id="${self.scrollChevronRightSelector}">`)
+                .addClass('scroll-chevron-right')
+                .css('height', `${height}px`);
+            const $scrollChevronOpacityMask = $(`<div id="${self.scrollChevronOpacityMaskSelector}">`)
+                .append([$scrollChevronLeft, $scrollChevronRight]);
+            return $scrollChevronOpacityMask;
         };
         this.buildRightmostWhitespace = () => {
             // When div lacks the rightmost whitespace, this layer compensates.
-            return `<div class="x-scrollable-item x-scrollable-item-rightmost-whitespace"></div>`;
+            return $(`<div>`).addClass("x-scrollable-item x-scrollable-item-rightmost-whitespace");
         };
         this.setXScrollMouseEvents = () => {
             const self = this;
@@ -76,7 +75,7 @@ export class AnimatedXScrollable extends Component {
                 }
                 // Set scroll accel animation
                 self.xMovementIntervalHandler = setInterval(function () {
-                    if (self.xScrollSpeed < 12) {
+                    if (self.xScrollSpeed < AnimatedXScrollable.SCROLLABLE_MAX_DX) {
                         self.xScrollSpeed += 1;
                     }
                     if (direction === ScrollDirection.LEFT) {
@@ -140,7 +139,9 @@ export class AnimatedXScrollable extends Component {
             $(`#${self.scrollChevronLeftSelector}`).css('top', finalHeight);
             $(`#${self.scrollChevronRightSelector}`).css('top', finalHeight);
         };
-        this.content = content;
+        // Take content element from selector div's children or from the argument.
+        $content ? this.$content = $content : this.$content = $(`#${this.selector}`).children();
+        console.log(`${this.selector} content: , ${this.$content}`);
         this.pageSelector = pageSelector;
         this.scrollableSelector = `${this.selector}-scrollable`; // For the scrollable div encompassing the containers
         this.scrollChevronLeftSelector = `${this.selector}-scroll-chevron-left`; // Chevron on the left
@@ -156,24 +157,19 @@ export class AnimatedXScrollable extends Component {
     }
     onInitialBuildBeforeScrollIn() {
         const self = this;
-        var height;
         // 1) Make scrollable div with populated content
-        $(`#${self.selector}`).html(`
-            <div class="x-scrollable">
-                ${self.content}
-            </div>
-            `);
+        const $scrollable = $(`<div class="x-scrollable" id="${self.scrollableSelector}">`)
+            .append(self.$content);
+        $(`#${self.selector}`).append($scrollable);
         // 2) Get height of scrollable div
-        height = $(`#${self.selector}`).outerHeight();
+        var height = $(`#${self.scrollableSelector}`).outerHeight();
         if (Utility.determineDeviceType() === DeviceType.DESKTOP) {
-            // 3) Recreate scrollable div and chevrons w/ corrent heights
-            $(`#${self.selector}`).html(`
-                <div class="x-scrollable" id="${self.scrollableSelector}">
-                    ${self.buildScrollChevrons(height)}
-                    ${self.content}
-                    ${self.buildRightmostWhitespace()}
-                </div>
-                `);
+            // 3) Recreate scrollable div, chevrons 
+            // and additional whitespace w/ corrent heights
+            $(`#${self.selector}`).empty();
+            $scrollable.prepend(self.buildScrollChevrons(height));
+            $scrollable.append(self.buildRightmostWhitespace());
+            $(`#${self.selector}`).append($scrollable);
             // 4) Setup Mouse Scroll Events
             self.setXScrollMouseEvents();
             // 5) Make Chevrons to follow scroll
@@ -237,4 +233,5 @@ export class AnimatedXScrollable extends Component {
         $(`#${self.scrollChevronOpacityMaskSelector}`).css('opacity', '0');
     }
 }
+AnimatedXScrollable.SCROLLABLE_MAX_DX = 12;
 export default AnimatedXScrollable;

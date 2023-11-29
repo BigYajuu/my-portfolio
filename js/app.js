@@ -26,89 +26,14 @@ class App {
         const self = this;
         const page1_bg = new FluxDynamicBackground(Selectors.PAGE_1, undefined, "bg0-blank");
         const page2_bg = new FluxDynamicBackground(Selectors.PAGE_2, undefined, "bg1-saturate");
-        const sectionProjectItems2 = new AnimatedXScrollable(`
-            <div class="x-scrollable-item col-abs-width col-default-padding">
-                <div class="container">
-                    <h1>Item 1</h1>
-                    <p>Item 1</p>
-                    <p>Item 1</p>
-                </div>
-            </div>
-            
-            <div class="x-scrollable-item col-abs-width col-default-padding">
-                <div class="container">
-                    <h1>Item 2</h1>
-                    <p>Item 2</p>
-                </div>
-            </div>
-            
-            <div class="x-scrollable-item col-abs-width col-default-padding">
-                <div class="container">
-                    <h1>Item 3</h1>
-                    <p>Item 3</p>
-                </div>
-            </div>
-            `, "section-projects-items-works", Selectors.PAGE_2);
-        const sectionProjectItems3 = new AnimatedXScrollable(`
-            <div class="x-scrollable-item col-abs-width col-default-padding">
-                <div class="container">
-                    <h1>Item 1</h1>
-                    <p>Item 1</p>
-                    <p>Item 1</p>
-                </div>
-            </div>
-            
-            <div class="x-scrollable-item col-abs-width col-default-padding">
-                <div class="container">
-                    <h1>Item 2</h1>
-                    <p>Item 2</p>
-                </div>
-            </div>
-
-            <div class="x-scrollable-item col-abs-width col-default-padding">
-                <div class="container">
-                    <h1>Item 2</h1>
-                    <p>Item 2</p>
-                </div>
-            </div>
-
-            <div class="x-scrollable-item col-abs-width col-default-padding">
-                <div class="container">
-                    <h1>Item 2</h1>
-                    <p>Item 2</p>
-                </div>
-            </div>
-
-            <div class="x-scrollable-item col-abs-width col-default-padding">
-                <div class="container">
-                    <h1>Item 2</h1>
-                    <p>Item 2</p>
-                </div>
-            </div>
-
-            <div class="x-scrollable-item col-abs-width col-default-padding">
-                <div class="container">
-                    <h1>Item 2</h1>
-                    <p>Item 2</p>
-                </div>
-            </div>
-
-            <div class="x-scrollable-item col-abs-width col-default-padding">
-                <div class="container">
-                    <h1>Item 2</h1>
-                    <p>Item 2</p>
-                </div>
-            </div>
-            
-            <div class="x-scrollable-item col-abs-width col-default-padding">
-                <div class="container">
-                    <h1>Item 3</h1>
-                    <p>Item 3</p>
-                </div>
-            </div>
-            `, "section-projects-items-involvements", Selectors.PAGE_2);
+        const sectionWorksScrollable = new AnimatedXScrollable("section-works-scrollable", Selectors.PAGE_2);
+        const sectionExperiencesScrollable = new AnimatedXScrollable("section-experiences-scrollable", Selectors.PAGE_2);
         const page1 = new Page(Selectors.PAGE_1, new CubicXAxisTransition(), [page1_bg]);
-        const page2 = new Page(Selectors.PAGE_2, new CubicXAxisTransition(), [page2_bg, sectionProjectItems2, sectionProjectItems3]);
+        const page2 = new Page(Selectors.PAGE_2, new CubicXAxisTransition(), [
+            page2_bg,
+            sectionWorksScrollable,
+            sectionExperiencesScrollable,
+        ]);
         const pageManagement = new PageManagement(Selectors.PAGE_MANAGEMENT_CONTAINER, [page1, page2]);
         // Mixins and links
         this.buildMixins();
