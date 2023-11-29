@@ -13,7 +13,7 @@ $viewport-min-width: 1000px;
 $page-margin-desktop: 8.33%;
 $page-margin-mobile: 2%;
 /* Elemental Paddings and Curves*/
-$element-offset-left: 24px;
+$element-offset-horizontal: 24px;
 $border-radius-small: 12px;
 $border-radius-standard: 24px;
 $container-margin: 8px;
@@ -161,11 +161,11 @@ body {
     display: flex;
     padding-top: 16px;
     padding-bottom: 12px;
-    padding-left: calc($page-margin-mobile + $element-offset-left);
-    padding-right: calc($page-margin-mobile + $element-offset-left);
+    padding-left: calc($page-margin-mobile + $element-offset-horizontal);
+    padding-right: calc($page-margin-mobile + $element-offset-horizontal);
     @media (min-width: $viewport-min-width) {
-        padding-left: calc($page-margin-desktop + $element-offset-left);
-        padding-right: calc($page-margin-desktop + $element-offset-left);
+        padding-left: calc($page-margin-desktop + $element-offset-horizontal);
+        padding-right: calc($page-margin-desktop + $element-offset-horizontal);
     }
 }
 
@@ -227,7 +227,9 @@ body {
 }
 
 .section-text {
-    padding-left: $element-offset-left;
+    padding-left: $element-offset-horizontal;
+    padding-right: $element-offset-horizontal;
+    box-sizing: border-box;
 }
 
 .sticky {
