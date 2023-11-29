@@ -479,7 +479,7 @@ p {
 }
 
 .col-abs-width {
-  width: 400px;
+  width: 500px;
 }
 
 .col-page-margin {
@@ -513,8 +513,18 @@ p {
   }
 }
 
+.x-scrollable-item {
+  white-space: normal;
+}
+
 .x-scrollable-item-rightmost-whitespace {
   width: 8px;
+}
+
+.x-scrollable-image {
+  height: calc(5.8em + 8px);
+  padding: 0 12px 4px 0;
+  float: left;
 }
 
 .float-right {
