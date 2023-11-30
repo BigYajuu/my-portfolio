@@ -48,7 +48,7 @@ class App {
                             title: "Project Intervene (Provisional)",
                             dateBegun: "Jun 2022",
                             imageClass: "image-project-intervene",
-                            imageTitle: "Logo of EMCB HD",
+                            imageTitle: "Placeholder Logo for Project Intervene",
                             imageHeight: "7.2em",
                             overview:
                                 `Work in progress. This simple app 
@@ -90,14 +90,52 @@ class App {
                                 with real-world textures.`
                         }
                     ),
+                    new ScrollableOverviewContainer(
+                        "soc-e-texture",
+                        {
+                            title: "E-Texture",
+                            dateBegun: "Jul 2019",
+                            dateEnded: "Nov 2019",
+                            imageClass: "image-e-texture-1",
+                            imageTitle: "Showcase of E-Texture Signboard Designs",
+                            imageWidth: "150px",
+                            overview:
+                                `As I began working on a new city project in Minecraft, 
+                                I built this signboard extension for 
+                                a popular mod.
+                                These signs can be placed
+                                within the station perimeters 
+                                to simulate real pedistrian experiences.`
+                        }
+                    ),
                 ]
             }
         );
 
-        const sectionExperiencesScrollable = new AnimatedXScrollable(
-            "section-experiences-scrollable",
+        const sectionExperienceScrollable = new AnimatedXScrollable(
+            "section-experience-scrollable",
             Selectors.PAGE_2,
-            {}
+            {
+                children: [
+                    new ScrollableOverviewContainer(
+                        "soc-agmo-studio",
+                        {
+                            title: "Agmo Studio",
+                            subtitle: "Mobile Dev Intern (iOS/Flutter Team)",
+                            dateBegun: "Nov 2022",
+                            dateEnded: "Jan 2023",
+                            imageClass: "image-agmo-1",
+                            imageTitle: "Agmo Studio",
+                            overview:
+                                `For 3-months of my university's industrial training,
+                                I have the opportunity to work on mobile
+                                app dev projects using Flutter 
+                                and experiment with many proof-of-concept features.
+                                `
+                        }
+                    ),
+                ]
+            }
         );
 
 
@@ -108,7 +146,7 @@ class App {
             [
                 page2_bg, 
                 sectionWorksScrollable, 
-                sectionExperiencesScrollable,
+                sectionExperienceScrollable,
             ]);
 
         const pageManagement = new PageManagement(Selectors.PAGE_MANAGEMENT_CONTAINER, [page1, page2]);
@@ -116,7 +154,7 @@ class App {
         // Mixins and links
         this.buildMixins();
 
-        $('#header-icon-mail').on('click', function(event) {
+        $('#header-icon-mail, #footnote-mail').on('click', function(event) {
             self.getEmailFloatingDialog().onShow();
         });
 
