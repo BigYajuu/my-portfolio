@@ -1,6 +1,6 @@
 import $ from "jquery";
 import DialogElement from "./dialog-element";
-import { Selectors } from "../constants";
+import { Selectors } from "../static/constants";
 
 export class EmailFloatingDialog extends DialogElement {
 

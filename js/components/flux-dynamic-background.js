@@ -1,6 +1,6 @@
 import $ from "jquery";
 import Component from "../engine/component";
-import { ProviderKeys } from "../constants";
+import { ProviderKeys } from "../static/constants";
 import StateManager from "../engine/state-management.ts/state-manager";
 var ImageMode;
 (function (ImageMode) {

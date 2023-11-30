@@ -2,7 +2,7 @@ import $ from "jquery";
 import MixinComponent from "../engine/mixin-component";
 import BackgroundProvider from "../providers/background-provider";
 import StateManager from "../engine/state-management.ts/state-manager";
-import { ProviderKeys } from "../constants";
+import { ProviderKeys } from "../static/constants";
 
 export class Veil extends MixinComponent {
 

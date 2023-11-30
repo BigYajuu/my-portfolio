@@ -1,7 +1,7 @@
 import $ from "jquery";
 import Component from "../engine/component";
 import BackgroundProvider from "../providers/background-provider";
-import { ProviderKeys } from "../constants";
+import { ProviderKeys } from "../static/constants";
 import StateManager from "../engine/state-management.ts/state-manager";
 
 interface SVGSetClasses {

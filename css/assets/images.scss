@@ -1,0 +1,17 @@
+.image-project-intervene {
+    background-image: url('/img/works/project-intervene.png');
+}
+
+.image-emcb-hd {
+    background-image: url('/img/works/emcb_hd.png');
+}
+
+.image-emcb32 {
+    background-image: url('/img/works/emcb32.png');
+}
+
+[class*="image-"] {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}

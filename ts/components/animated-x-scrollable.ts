@@ -1,7 +1,7 @@
 import $ from "jquery";
 import Component from '../engine/component.js';
 import {Utility, DeviceType} from '../engine/utility.js';
-import { Constants } from '../constants.js';
+import { Constants } from '../static/constants.js';
 
 enum ScrollDirection {
     LEFT = 'left',
@@ -34,6 +34,7 @@ const ScrollChevronHoveringStyle: ScrollChevronStyle = {
     width: '20%'
 };
 
+
 export class AnimatedXScrollable extends Component {
 
     private static SCROLLABLE_MAX_DX: number = 12;
@@ -54,11 +55,12 @@ export class AnimatedXScrollable extends Component {
     private scrollChevronStateRight: ScrollChevronState;
     private scrollChevronOpacityMaskSelector: string;
 
-    constructor(selector: string, pageSelector: string, $content?: JQuery<HTMLElement>) {
+    constructor(selector: string, pageSelector: string, 
+            {children=[], $content}: {children?: Component[], $content?: JQuery<HTMLElement>}) {
         super(selector);
         // Take content element from selector div's children or from the argument.
+        this.children = children;
         $content ? this.$content = $content : this.$content = $(`#${this.selector}`).children();
-        console.log(`${this.selector} content: , ${this.$content}`)
         this.pageSelector = pageSelector;
         this.scrollableSelector = `${this.selector}-scrollable`;    // For the scrollable div encompassing the containers
         this.scrollChevronLeftSelector = `${this.selector}-scroll-chevron-left`;    // Chevron on the left
@@ -81,6 +83,7 @@ export class AnimatedXScrollable extends Component {
         const self = this;
         // 1) Make scrollable div with populated content
         const $scrollable = $(`<div class="x-scrollable" id="${self.scrollableSelector}">`)
+            .append(self.getChildrenConstructedElements())
             .append(self.$content);
         $(`#${self.selector}`).append($scrollable);
         // 2) Get height of scrollable div

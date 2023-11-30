@@ -85,12 +85,6 @@ body {
     opacity: 0;
     visibility: hidden;
 }
-.dialog-element .title-bar {
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    display: flex;
-}
 .dialog-element .close-button {
     display: inline-flex;
     align-self: center;
@@ -232,12 +226,6 @@ body {
     box-sizing: border-box;
 }
 
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%
-}
-
 .text-icon, .text-icon-button{
     display: inline-flex;
     position: relative;
@@ -251,6 +239,12 @@ body {
 }
 .text-icon-button:active {
     opacity: 1;
+}
+
+.title-bar {
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
 }
 
 .veil {
@@ -276,6 +270,17 @@ p {
     font-size: 1.2em;
     padding-top: 4px;
     color: $secondary-colour;
+}
+p.i {
+    font-style: italic;
+}
+
+.timestamp {
+    position: relative;
+    text-align: right;
+    font-size: small;
+    font-weight: 500;
+    top: -0.4em; 
 }
 
 .paragraph-margin {
@@ -495,8 +500,9 @@ p {
 }
 
 .x-scrollable-image {
-    height: calc(5.8em + 8px);
-    padding: 0 12px 4px 0;
+    height: calc(5.5em + 8px);
+    width: calc(5.5em + 8px);
+    margin: 0 12px 4px 0;
     float: left;
 }
 

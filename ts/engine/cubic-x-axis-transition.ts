@@ -2,7 +2,7 @@ import $ from "jquery";
 import PageTransition from "./page-transition.js";
 import Page from "./page.js";
 import PageManagement from "./page-management.js";
-import { Selectors } from "../constants.js";
+import { Selectors } from "../static/constants.js";
 
 export class CubicXAxisTransition extends PageTransition {
     
