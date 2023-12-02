@@ -141,13 +141,15 @@ class App {
 
         // Pages and Manager
         const page1 = new Page(Selectors.PAGE_1, new CubicXAxisTransition(), 
-            [page1_bg]);
+            [page1_bg]
+        );
         const page2 = new Page(Selectors.PAGE_2, new CubicXAxisTransition(), 
             [
                 page2_bg, 
                 sectionWorksScrollable, 
                 sectionExperienceScrollable,
-            ]);
+            ]
+        );
 
         const pageManagement = new PageManagement(Selectors.PAGE_MANAGEMENT_CONTAINER, [page1, page2]);
 

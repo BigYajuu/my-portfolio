@@ -233,6 +233,14 @@ body {
   opacity: 1;
 }
 
+.landing-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
 .main-scaffold {
   height: 100vh;
   overflow-y: auto;
@@ -322,6 +330,12 @@ body {
 
 /* Text Styles and Paragraphs */
 /* Set All Text Margin to Zero as Default */
+h0 {
+  font-weight: bold;
+  font-size: 8vw;
+  line-height: 1.1em;
+}
+
 h1 {
   margin: 0;
 }
