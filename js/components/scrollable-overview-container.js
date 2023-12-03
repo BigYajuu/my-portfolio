@@ -6,37 +6,35 @@ export class ScrollableOverviewContainer extends Component {
     constructor(selector, { title, subtitle, dateBegun, dateEnded = "", imageClass, imageHeight, imageWidth, imageTitle, overview }) {
         super(selector);
         const self = this;
-        $(document).ready(function () {
-            const $timestamp = $(`<div>`).html(`<p class="i timestamp">${dateBegun}<br>- ${dateEnded}<p>`);
-            const $image = $(`<div title="${imageTitle}">`).addClass(`${imageClass} x-scrollable-image`);
-            if (imageHeight) {
-                $image.css("height", imageHeight);
-            }
-            if (imageWidth) {
-                $image.css("width", imageWidth);
-            }
-            const $titleBar = $(`<div>`).addClass("title-bar")
-                .append($(`<h1>`).text(title))
-                .append($timestamp);
-            const $subtitle = $(`<p class="i">`)
-                .css({
-                "margin": "0",
-                "padding": "0"
-            })
-                .text(subtitle ? subtitle : "");
-            const $overview = $(`<p>`).text(overview);
-            const $container = $(`<div>`)
-                .addClass("container")
-                .append($image)
-                .append($titleBar)
-                .append($subtitle)
-                .append($overview);
-            self.$constructedElement = $(`<div id=${selector}>`)
-                .addClass("x-scrollable-item")
-                .addClass("col-abs-width")
-                .addClass("col-default-padding")
-                .append($container);
-        });
+        const $timestamp = $(`<div>`).html(`<p class="i timestamp">${dateBegun}<br>- ${dateEnded}<p>`);
+        const $image = $(`<div title="${imageTitle}">`).addClass(`${imageClass} x-scrollable-image`);
+        if (imageHeight) {
+            $image.css("height", imageHeight);
+        }
+        if (imageWidth) {
+            $image.css("width", imageWidth);
+        }
+        const $titleBar = $(`<div>`).addClass("title-bar")
+            .append($(`<h1>`).text(title))
+            .append($timestamp);
+        const $subtitle = $(`<p class="i">`)
+            .css({
+            "margin": "0",
+            "padding": "0"
+        })
+            .text(subtitle ? subtitle : "");
+        const $overview = $(`<p>`).text(overview);
+        const $container = $(`<div>`)
+            .addClass("container")
+            .append($image)
+            .append($titleBar)
+            .append($subtitle)
+            .append($overview);
+        self.$constructedElement = $(`<div id=${selector}>`)
+            .addClass("x-scrollable-item")
+            .addClass("col-abs-width")
+            .addClass("col-default-padding")
+            .append($container);
     }
 }
 export default ScrollableOverviewContainer;

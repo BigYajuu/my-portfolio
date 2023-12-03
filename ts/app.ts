@@ -10,6 +10,9 @@ import { EmailFloatingDialog } from "./mixin-components/email-floating-dialog.js
 import EmailDialogProvider from "./providers/email-dialog-provider.js";
 import StateManager from "./engine/state-management.ts/state-manager.js";
 import ScrollableOverviewContainer from "./components/scrollable-overview-container.js";
+import LandingContent from "./components/landing-content";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faCircleDown, faCircleLeft, faCircleRight, faCircleUp } from "@fortawesome/free-regular-svg-icons";
 
 class App {
 
@@ -28,18 +31,26 @@ class App {
         this.getEmailFloatingDialog().build();
     }
 
+    private fontIconSetup() {
+        library.add({faCircleDown, faCircleLeft, faCircleRight, faCircleUp})
+    }
+
     public build() {
         if (this.appBuilt) {
             return;
         }
         const self = this;
 
+        this.fontIconSetup();
+
         const page1_bg = new FluxDynamicBackground(Selectors.PAGE_1, undefined, "bg0-blank");
         const page2_bg = new FluxDynamicBackground(Selectors.PAGE_2, undefined, "bg1-saturate");
 
+        const landingContent = new LandingContent("landing-content");
+
         const sectionWorksScrollable = new AnimatedXScrollable(
             "section-works-scrollable",
-            Selectors.PAGE_2,
+            "page-2-content",
             {
                 children: [
                     new ScrollableOverviewContainer(
@@ -114,7 +125,7 @@ class App {
 
         const sectionExperienceScrollable = new AnimatedXScrollable(
             "section-experience-scrollable",
-            Selectors.PAGE_2,
+            "page-2-content",
             {
                 children: [
                     new ScrollableOverviewContainer(
@@ -141,7 +152,10 @@ class App {
 
         // Pages and Manager
         const page1 = new Page(Selectors.PAGE_1, new CubicXAxisTransition(), 
-            [page1_bg]
+            [
+                page1_bg,
+                landingContent,
+            ]
         );
         const page2 = new Page(Selectors.PAGE_2, new CubicXAxisTransition(), 
             [
@@ -166,6 +180,13 @@ class App {
               // TODO: Add call for enquire
               self.getEmailFloatingDialog().onShow();
             }
+        });
+
+        // Animation (TODO: turn it to a component)
+        $(function() {
+            $('#section-landing-title').animate({'opacity': 1}, Constants.ANIMATION_DURATION_SLOWER, () => {
+                $('#section-landing-subtitle').animate({'opacity': 1}, Constants.ANIMATION_DURATION_SLOWER);
+            });
         });
 
         this.appBuilt = true;

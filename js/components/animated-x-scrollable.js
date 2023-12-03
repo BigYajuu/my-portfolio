@@ -2,6 +2,7 @@ import $ from "jquery";
 import Component from '../engine/component.js';
 import { Utility, DeviceType } from '../engine/utility.js';
 import { Constants } from '../static/constants.js';
+import { icon } from "@fortawesome/fontawesome-svg-core";
 var ScrollDirection;
 (function (ScrollDirection) {
     ScrollDirection["LEFT"] = "left";
@@ -31,12 +32,16 @@ export class AnimatedXScrollable extends Component {
         this.build = () => { };
         this.buildScrollChevrons = (height) => {
             const self = this;
+            const scrollLeftIcon = icon({ prefix: 'far', iconName: 'circle-left' });
+            const scrollRightIcon = icon({ prefix: 'far', iconName: 'circle-right' });
             const $scrollChevronLeft = $(`<div id="${self.scrollChevronLeftSelector}">`)
                 .addClass('scroll-chevron-left')
-                .css('height', `${height}px`);
+                .css('height', `${height}px`)
+                .append(scrollLeftIcon.node[0]);
             const $scrollChevronRight = $(`<div id="${self.scrollChevronRightSelector}">`)
                 .addClass('scroll-chevron-right')
-                .css('height', `${height}px`);
+                .css('height', `${height}px`)
+                .append(scrollRightIcon.node[0]);
             const $scrollChevronOpacityMask = $(`<div id="${self.scrollChevronOpacityMaskSelector}">`)
                 .append([$scrollChevronLeft, $scrollChevronRight]);
             return $scrollChevronOpacityMask;

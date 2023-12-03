@@ -26,6 +26,26 @@
     background-image: url('/img/icons/exit.svg');
 }
 
+.icon-circle-up {
+    background-image: url('/img/icons/circle-up.svg');
+}
+
+.icon-circle-down {
+    background-image: url('/img/icons/circle-down.svg');
+}
+
+.icon-circle-left {
+    background-image: url('/img/icons/circle-left.svg');
+}
+
+.icon-circle-right {
+    background-image: url('/img/icons/circle-right.svg');
+}
+
+.icon-chevron-down {
+    background-image: url('/img/icons/circle-right.svg');
+}
+
 [class*="icon-"] {
     background-repeat: no-repeat;
     background-position: center;

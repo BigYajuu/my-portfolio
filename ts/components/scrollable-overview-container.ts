@@ -20,7 +20,6 @@ export class ScrollableOverviewContainer extends Component {
     ) {
         super(selector);
         const self = this;
-        $(document).ready(function() {
         const $timestamp = $(`<div>`).html(`<p class="i timestamp">${dateBegun}<br>- ${dateEnded}<p>`);
         const $image = $(`<div title="${imageTitle}">`).addClass(`${imageClass} x-scrollable-image`);
         if (imageHeight) {
@@ -51,7 +50,6 @@ export class ScrollableOverviewContainer extends Component {
             .addClass("col-abs-width")
             .addClass("col-default-padding")
             .append($container);
-        });
     }    
 }
 

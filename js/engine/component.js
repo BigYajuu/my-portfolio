@@ -1,3 +1,4 @@
+import $ from "jquery";
 export class Component {
     constructor(selector) {
         this.hasInitiallyScrolledIn = false;

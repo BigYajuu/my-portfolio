@@ -24,6 +24,10 @@ $container-padding: 16px;
 $hover-transition-time: 0.1s;
 $scroll-transition-time: 0.6s;
 $scroll-transition-time-debug: 3s;
+/* Icons and font */
+$icon-size-larger: 64px;
+$icon-size-large: 40px;
+$icon-size-normal: 32px;
 
 /* Z-Indices */
 $z-scroll-chevron: 2;
@@ -238,7 +242,7 @@ body {
 .landing-screen {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: center;
     height: 100vh
 }
@@ -267,6 +271,16 @@ body {
     content: "";
     clear: both;
     display: table;
+}
+
+.scroll-down-icon {
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: $icon-size-large;
+    color: $opaque-colour;
+    filter: drop-shadow(0 0 24px black);
 }
 
 .section {
@@ -327,12 +341,22 @@ body {
 /* Set All Text Margin to Zero as Default */
 h0 {
     font-weight: bold;
-    font-size: 8vw;
+    font-size: 16dvw;
+    @media (min-width: $viewport-min-width) {
+        font-size: 10dvw;
+    }
     line-height: 1.1em;
 }
 
 h1 {
     margin: 0;
+}
+
+p0 {
+    font-size: 5dvw;
+    @media (min-width: $viewport-min-width) {
+        font-size: 4dvw;
+    }
 }
 
 p {
@@ -401,29 +425,30 @@ p.i {
 }
 
 /* Components */
-
+@mixin scroll-chevron-styles {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Height is detected by JQuery's outerHeight() */
+    width: 0%;
+    opacity: 0;
+    z-index: $z-scroll-chevron;
+    @media (min-width: $viewport-min-width) {
+        font-size: $icon-size-larger;
+    }
+    font-size: $icon-size-large;
+    color: $opaque-colour;
+    background-clip: text;
+}
 .scroll-chevron {
     &-left {
-        position: fixed;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* Height is detected by JQuery's outerHeight() */
-        width: 0%;
-        opacity: 0;
-        z-index: $z-scroll-chevron;
+        @include scroll-chevron-styles;
         left: 0;
         background-image: linear-gradient(to right, rgba(0, 0, 0, 0.70) 25%, rgba(0, 0, 0, 0) 100%);
     }
     &-right {
-        position: fixed;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /* Height is detected by JQuery's outerHeight() */
-        width: 0%;
-        opacity: 0;
-        z-index: $z-scroll-chevron;
+        @include scroll-chevron-styles;
         right: 0;
         background-image: linear-gradient(to left, rgba(0, 0, 0, 0.70) 25%, rgba(0, 0, 0, 0) 100%);
     }

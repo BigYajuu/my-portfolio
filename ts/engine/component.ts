@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 export abstract class Component {
 
     protected selector: string;

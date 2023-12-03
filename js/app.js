@@ -3,12 +3,15 @@ import { Page } from "./engine/page";
 import { PageManagement } from "./engine/page-management";
 import { CubicXAxisTransition } from "./engine/cubic-x-axis-transition.js";
 import { AnimatedXScrollable } from "./components/animated-x-scrollable.js";
-import { ProviderKeys, Selectors } from "./static/constants.js";
+import { Constants, ProviderKeys, Selectors } from "./static/constants.js";
 import { FluxDynamicBackground } from "./components/flux-dynamic-background.js";
 import { Service } from "./engine/service.js";
 import { EmailFloatingDialog } from "./mixin-components/email-floating-dialog.js";
 import StateManager from "./engine/state-management.ts/state-manager.js";
 import ScrollableOverviewContainer from "./components/scrollable-overview-container.js";
+import LandingContent from "./components/landing-content";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faCircleDown, faCircleLeft, faCircleRight, faCircleUp } from "@fortawesome/free-regular-svg-icons";
 class App {
     constructor() {
         this.appBuilt = false;
@@ -20,14 +23,19 @@ class App {
     buildMixins() {
         this.getEmailFloatingDialog().build();
     }
+    fontIconSetup() {
+        library.add({ faCircleDown, faCircleLeft, faCircleRight, faCircleUp });
+    }
     build() {
         if (this.appBuilt) {
             return;
         }
         const self = this;
+        this.fontIconSetup();
         const page1_bg = new FluxDynamicBackground(Selectors.PAGE_1, undefined, "bg0-blank");
         const page2_bg = new FluxDynamicBackground(Selectors.PAGE_2, undefined, "bg1-saturate");
-        const sectionWorksScrollable = new AnimatedXScrollable("section-works-scrollable", Selectors.PAGE_2, {
+        const landingContent = new LandingContent("landing-content");
+        const sectionWorksScrollable = new AnimatedXScrollable("section-works-scrollable", "page-2-content", {
             children: [
                 new ScrollableOverviewContainer("soc-project-intervene", {
                     title: "Project Intervene (Provisional)",
@@ -81,7 +89,7 @@ class App {
                 }),
             ]
         });
-        const sectionExperienceScrollable = new AnimatedXScrollable("section-experience-scrollable", Selectors.PAGE_2, {
+        const sectionExperienceScrollable = new AnimatedXScrollable("section-experience-scrollable", "page-2-content", {
             children: [
                 new ScrollableOverviewContainer("soc-agmo-studio", {
                     title: "Agmo Studio",
@@ -99,7 +107,10 @@ class App {
             ]
         });
         // Pages and Manager
-        const page1 = new Page(Selectors.PAGE_1, new CubicXAxisTransition(), [page1_bg]);
+        const page1 = new Page(Selectors.PAGE_1, new CubicXAxisTransition(), [
+            page1_bg,
+            landingContent,
+        ]);
         const page2 = new Page(Selectors.PAGE_2, new CubicXAxisTransition(), [
             page2_bg,
             sectionWorksScrollable,
@@ -117,6 +128,12 @@ class App {
                 // TODO: Add call for enquire
                 self.getEmailFloatingDialog().onShow();
             }
+        });
+        // Animation (TODO: turn it to a component)
+        $(function () {
+            $('#section-landing-title').animate({ 'opacity': 1 }, Constants.ANIMATION_DURATION_SLOWER, () => {
+                $('#section-landing-subtitle').animate({ 'opacity': 1 }, Constants.ANIMATION_DURATION_SLOWER);
+            });
         });
         this.appBuilt = true;
     }

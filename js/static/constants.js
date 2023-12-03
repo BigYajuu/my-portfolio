@@ -1,5 +1,6 @@
 export class Constants {
 }
+Constants.ANIMATION_DURATION_SLOWER = 1200;
 Constants.ANIMATION_DURATION_SLOW = 400;
 Constants.ANIMATION_DURATION_DEFAULT = 140;
 export class ProviderKeys {

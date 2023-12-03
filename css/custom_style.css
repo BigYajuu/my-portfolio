@@ -2,6 +2,7 @@
 /* Colours and Filters */
 /* Display and Page Margins */
 /* Elemental Paddings and Curves*/
+/* Icons and font */
 /* Z-Indices */
 * {
   margin: 0;
@@ -236,7 +237,7 @@ body {
 .landing-screen {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   height: 100vh;
 }
@@ -268,6 +269,16 @@ body {
   content: "";
   clear: both;
   display: table;
+}
+
+.scroll-down-icon {
+  position: fixed;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  color: rgba(255, 255, 255, 0.75);
+  filter: drop-shadow(0 0 24px black);
 }
 
 .section {
@@ -332,12 +343,26 @@ body {
 /* Set All Text Margin to Zero as Default */
 h0 {
   font-weight: bold;
-  font-size: 8vw;
+  font-size: 16dvw;
   line-height: 1.1em;
+}
+@media (min-width: 1000px) {
+  h0 {
+    font-size: 10dvw;
+  }
 }
 
 h1 {
   margin: 0;
+}
+
+p0 {
+  font-size: 5dvw;
+}
+@media (min-width: 1000px) {
+  p0 {
+    font-size: 4dvw;
+  }
 }
 
 p {
@@ -418,8 +443,16 @@ p.i {
   width: 0%;
   opacity: 0;
   z-index: 2;
+  font-size: 40px;
+  color: rgba(255, 255, 255, 0.75);
+  background-clip: text;
   left: 0;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 100%);
+}
+@media (min-width: 1000px) {
+  .scroll-chevron-left {
+    font-size: 64px;
+  }
 }
 .scroll-chevron-right {
   position: fixed;
@@ -430,8 +463,16 @@ p.i {
   width: 0%;
   opacity: 0;
   z-index: 2;
+  font-size: 40px;
+  color: rgba(255, 255, 255, 0.75);
+  background-clip: text;
   right: 0;
   background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 100%);
+}
+@media (min-width: 1000px) {
+  .scroll-chevron-right {
+    font-size: 64px;
+  }
 }
 
 /* 3D Transitions */
