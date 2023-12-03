@@ -62,7 +62,6 @@ export class LandingContent extends Component {
     }
     setScrollDownIconToDisappear() {
         $(`#${this.scrollDownIconSelector}`).stop();
-        console.log("disappear");
         $(`#${this.scrollDownIconSelector}`).css({ "visibility": "hidden" });
     }
     setScrollDownIconToAppear() {
