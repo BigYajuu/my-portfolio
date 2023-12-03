@@ -8,10 +8,10 @@ export class Provider {
     }
     setState(newState) {
         if (typeof newState === 'function') {
-            this.state = Object.assign(Object.assign({}, this.state), newState(this.state));
+            this.state = { ...this.state, ...newState(this.state) };
         }
         else {
-            this.state = Object.assign(Object.assign({}, this.state), newState);
+            this.state = { ...this.state, ...newState };
         }
         this.notifyListeners();
     }

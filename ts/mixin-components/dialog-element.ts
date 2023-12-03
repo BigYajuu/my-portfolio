@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import MixinComponent from "../engine/mixin-component";
 import Veil from './veil';
-import { Constants } from '../constants';
+import { Constants } from '../static/constants';
 
 export class DialogElement extends MixinComponent {
 

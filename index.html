@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Chuyue's Portfolio</title>
+  <title>Chuyue's Portfolio Page</title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1.25">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta property="og:title" content="">
   <meta property="og:type" content="">
@@ -20,72 +20,121 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/font-faces.css">
   <link rel="stylesheet" href="css/custom_style.css">
-  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/assets/icons.css">
+  <link rel="stylesheet" href="css/assets/images.css">
   <link rel="stylesheet" href="css/themes/flux.css">
 
   <meta name="theme-color" content="#fafafa">
-  <!-- FontAwesome -->
-  <!-- <script src="https://kit.fontawesome.com/33c5cad846.js" crossorigin="anonymous"></script> -->
 </head>
 
 <body class="dynamic-bg">
 
   <div class="main-scaffold" id="page-management-container">
 
-    <div class="background-window" id="page-1">
-
-      <!-- Section 1 - Projects -->
-      <div class="section-default-page-margin" id="section-projects"> 
-        <div class="row">
-          <div class="section-text">
-            <h1 class="section-margin">Projects Projects Projects Projects Projects Projects Projects</h1>
-          </div>
-        </div>
-      </div>
-  
+    <div class="landing-screen" id="page-1">
+      <div id="landing-content"></div>
     </div>
 
-    <div class="background-window" id="page-2">
+
+    <div id="page-2">
       <div class="header">
         <div class="header-group">
         </div>
         <div class="header-group">
-          <a id="header-icon-mail"><div class="header-item-icon icon-mail"></div></a>
-          <a target="_blank" href="https://www.linkedin.com/in/chuyue-wu-0a6563214/"><div class="header-item-icon icon-linked-in"></div></a>
-          <a target="_blank" href="https://github.com/BigYajuu"><div class="header-item-icon icon-github"></div></a>
+          <a id="header-icon-mail"><div class="header-item-icon icon-mail" title="Contact the Creator"></div></a>
+          <a target="_blank" href="https://www.linkedin.com/in/chuyue-wu-0a6563214/" title="To my LinkedIn Page (External)"><div class="header-item-icon icon-linked-in"></div></a>
+          <a target="_blank" href="https://github.com/BigYajuu"><div class="header-item-icon icon-github" title="To my GitHub Page (External)"></div></a>
         </div>
       </div>
   
-      <div class="section-default-page-margin" id="section-projects">
-        <div class="row">
-          <div class="section-text">
-            <h1 class="section-margin">Projects Projects Projects Projects Projects Projects Projects</h1>
+      <div class="section-default-page-margin" id="section-introductions">
+
+        <div class="col-10 row-covering">
+          <div class="col-5 row-covering row">
+            <div class="section-text">
+              <h1 class="section-margin">About the Author</h1>
+            </div>
+            <div class="section-text">
+              <p>Having just graduated from Monash University as a 
+                Software Engineer undergrad,
+                I find myself in a position where I can make use of 
+                my creativity into something
+                applicable in real-life by delivering things that, 
+                be it in any form of media, display 
+                prominent design language and aesthetics
+                which can be found pleasing to look at, consistent in design,
+                and efficient in terms of access.
+            </div>
+          </div>
+          <div class="col-7 row-covering row">
+            <div class="section-text">
+              <h1 class="section-margin">About this Website</h1>
+            </div>
+            <div class="section-text">
+              <p>This portfolio website that I created showcases a bunch of things 
+                of which I have worked and am still working on in their chronological order. 
+                But the website 
+                itself is also quite a big deal,
+                for it uses a framework that I have engineered by me using 
+                HTML, CSS, TypeScript and jQuery. 
+                <br><br>This resulted a prolonged development period before its first release. 
+                And yet the high maneuverability of the web elements 
+                makes it irresistible to have more new things added in the coming days, 
+                and I hope that stays true for a long time.
+            </div>
           </div>
         </div>
       </div>
       
-      <div class="section-default-page-margin" id="section-about">
+      <!-- Works -->
+      <div class="section-default-page-margin" id="section-works">
         <div class="row">
-          <div class="col-abs-width col-default-padding">
-            <div class="container">
-              <h1>Item 3</h1>
-              <p>Item 3</p>
-            </div>
+          <div class="section-text">
+            <h1 class="section-margin">Works</h1>
           </div>
         </div>
       </div>
+      <div class="section" id="section-works-scrollable"></div>
 
-      <div class="section" id="section-projects-items-2"></div>
-
-      <div class="section" id="section-projects-items-3"></div>
-  
-      <div class="section-default-page-margin" id="section-about">
+      <!-- Experience -->
+      <div class="section-default-page-margin" id="section-works">
         <div class="row">
-          <div class="col-abs-width row-covering col-default-padding">
-            <div class="container">
-              <h1>Item 3</h1>
-              <p>Item 3</p>
-            </div>
+          <div class="section-text">
+            <h1 class="section-margin">Experience</h1>
+          </div>
+        </div>
+      </div>
+      <div class="section" id="section-experience-scrollable"></div>
+
+      <!-- Footnote -->
+      <div class="footnote">
+
+        <div class="description">
+          <h1>my-portfolio</h1>
+          <p>Built with homemade HTML-CSS-TS-jQuery framework.<br>
+            Source code is available on the public repository.<br>
+            All uses of company names and logos on this website are for informational purposes only.<br>
+            Made by ©Chuyue Wu MMXXIII. All Rights Reserved.
+          </p>
+        </div>
+        
+        <div class="link-pillars">
+          <div class="link-pillar">
+            <a id="footnote-mail" title="Contact the Creator">
+              <p>Contact the Creator</p>
+            </a>
+            <a target="_blank" href="https://www.linkedin.com/in/chuyue-wu-0a6563214/" title="To my LinkedIn Page (External)">
+              <p>LinkedIn Page</p>
+            </a>
+          </div>
+          
+          <div class="link-pillar">
+            <a target="_blank" href="https://github.com/BigYajuu/my-portfolio" title="To Repository of this Site (External)">
+              <p>Source Code</p>
+            </a>
+            <a target="_blank" href="https://github.com/BigYajuu" title="To my GitHub Page (External)">
+              <p>GitHub Page</p>
+            </a>
           </div>
         </div>
       </div>

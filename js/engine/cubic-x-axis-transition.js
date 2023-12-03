@@ -1,6 +1,6 @@
 import $ from "jquery";
 import PageTransition from "./page-transition.js";
-import { Selectors } from "../constants.js";
+import { Selectors } from "../static/constants.js";
 export class CubicXAxisTransition extends PageTransition {
     /*  Follow the following div structure: (scrollDown)
         <div class="scene">
@@ -41,8 +41,8 @@ export class CubicXAxisTransition extends PageTransition {
             divCube.addEventListener("animationend", (event) => {
                 divScene.replaceWith(divBody);
                 const targetToScroll = document.getElementById(pageAtTop.getSelector());
-                targetToScroll === null || targetToScroll === void 0 ? void 0 : targetToScroll.scrollIntoView();
-                pageManagement === null || pageManagement === void 0 ? void 0 : pageManagement.updatePageEvents();
+                targetToScroll?.scrollIntoView();
+                pageManagement?.updatePageEvents();
                 // Make all fixed items at Top Page to appear
                 pageAtTop.onScrollIn();
             });
@@ -77,8 +77,8 @@ export class CubicXAxisTransition extends PageTransition {
             divCube.addEventListener("animationend", (event) => {
                 divScene.replaceWith(divBody);
                 const targetToScroll = document.getElementById(pageAtBottom.getSelector());
-                targetToScroll === null || targetToScroll === void 0 ? void 0 : targetToScroll.scrollIntoView();
-                pageManagement === null || pageManagement === void 0 ? void 0 : pageManagement.updatePageEvents();
+                targetToScroll?.scrollIntoView();
+                pageManagement?.updatePageEvents();
                 // Make all fixed items at Bottom Page to appear
                 pageAtBottom.onScrollIn();
             });

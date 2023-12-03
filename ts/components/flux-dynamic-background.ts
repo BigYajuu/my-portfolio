@@ -1,7 +1,7 @@
 import $ from "jquery";
 import Component from "../engine/component";
 import BackgroundProvider from "../providers/background-provider";
-import { ProviderKeys } from "../constants";
+import { ProviderKeys } from "../static/constants";
 import StateManager from "../engine/state-management.ts/state-manager";
 
 interface SVGSetClasses {
@@ -55,20 +55,31 @@ export class FluxDynamicBackground extends Component implements Background {
     public build(): void {}
 
     public onInitialBuildBeforeScrollIn(): void {
+        // Reforms mark-up page div into a background/foreground structure
+        // with an augmented content div for children elem from within 
+        // the original page div.
+        // div background (this.backgroundSelector)
+        //   |__ div foreground (this.foregroundSelector)
+        //   |__ div content (this.contentSelector)
         const self = this;
         // 1) Clone all children of page div
         const $childrenClones = $(`#${self.selector}`).children().clone(true, true);
+        // 1.5) Obtain mark-up classes of the page div
+        const predefinedPageClassList = $(`#${self.selector}`)[0].classList;
         // 2) Set-up back/foregrounds
-        const foregroundSelector = self.foregroundSelector;
-        const contentSelector = self.contentSelector;
+        $(`#${self.selector}`).addClass("background-window");
         $(`#${self.selector}`).html(
             `
-            <div id=${foregroundSelector} class="flux-foreground"></div>
-            <div id=${contentSelector} class="flux-content"></div>
+            <div id=${self.foregroundSelector} class="flux-foreground"></div>
+            <div id=${self.contentSelector} class="flux-content"></div>
             `
         );
+        // 2.5) Add classes from step 1.5) to content div
+        $.each(predefinedPageClassList, function(index, className) {
+            $(`#${self.contentSelector}`).addClass(className); // Output each class name
+        });
         // 3) Append children to content
-        $(`#${contentSelector}`).append($childrenClones);
+        $(`#${self.contentSelector}`).append($childrenClones);
         // 4) Set-up initial background
         $(`#${self.backgroundSelector}`).addClass(self.initialImageClass);
     }

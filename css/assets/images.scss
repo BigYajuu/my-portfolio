@@ -1,0 +1,25 @@
+.image-project-intervene {
+    background-image: url('/img/works/project-intervene.png');
+}
+
+.image-emcb-hd {
+    background-image: url('/img/works/emcb_hd.png');
+}
+
+.image-emcb32 {
+    background-image: url('/img/works/emcb32.png');
+}
+
+.image-e-texture-1 {
+    background-image: url('/img/works/e-texture-1.png');
+}
+
+.image-agmo-1 {
+    background-image: url('/img/experience/agmo-1.jpeg');
+}
+
+[class*="image-"] {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
