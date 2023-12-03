@@ -1,9 +1,7 @@
 import $ from "jquery";
 import Component from "../engine/component";
 import { Constants } from "../static/constants";
-import Utility, { DeviceType } from "../engine/utility";
-import { library, icon } from '@fortawesome/fontawesome-svg-core';
-import { faCircleDown } from '@fortawesome/free-regular-svg-icons'
+import { icon } from '@fortawesome/fontawesome-svg-core';
 
 
 export class LandingContent extends Component {
