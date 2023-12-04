@@ -5,14 +5,20 @@ import { Constants } from '../static/constants';
 export class DialogElement extends MixinComponent {
     constructor(selector, title = '') {
         super(selector);
-        this.veil = new Veil(`${this.selector}-veil`, this);
+        this.veil = new Veil(`${this.selector}-veil`, () => {
+            this.onHide();
+        });
         this.title = title;
-        this.veil.build();
         this.$dialogElement = $('<div>').addClass('dialog-element');
         this.$dialogElement.append(this.buildTitleBar());
     }
     build() {
+        this.veil.build();
         $('body').append(this.$dialogElement);
+    }
+    remove() {
+        this.veil.remove();
+        this.$dialogElement.remove();
     }
     buildTitleBar() {
         const $titleBar = $('<div>').addClass('title-bar');

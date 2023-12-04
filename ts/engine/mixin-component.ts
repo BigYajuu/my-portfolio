@@ -14,6 +14,10 @@ export abstract class MixinComponent {
         // or in onShow() of the mixin class itself.
     };
 
+    public remove(): void {
+        // Used to remove the element from DOM.
+    }
+
     public onShow(): void {
         // This consequently defocuses the background
         // and the mixin shows.

@@ -12,6 +12,9 @@ export class MixinComponent {
         // or in onShow() of the mixin class itself.
     }
     ;
+    remove() {
+        // Used to remove the element from DOM.
+    }
     onShow() {
         // This consequently defocuses the background
         // and the mixin shows.

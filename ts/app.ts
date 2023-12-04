@@ -3,7 +3,7 @@ import {Page} from "./engine/page";
 import {PageManagement} from "./engine/page-management";
 import {CubicXAxisTransition} from "./engine/cubic-x-axis-transition.js";
 import {AnimatedXScrollable} from "./components/animated-x-scrollable.js";
-import {Constants, ProviderKeys, Selectors} from "./static/constants.js";
+import {ProviderKeys, Selectors} from "./static/constants.js";
 import { FluxDynamicBackground } from "./components/flux-dynamic-background.js";
 import { Service } from "./engine/service.js";
 import { EmailFloatingDialog } from "./mixin-components/email-floating-dialog.js";
@@ -13,6 +13,7 @@ import ScrollableOverviewContainer from "./components/scrollable-overview-contai
 import LandingContent from "./components/landing-content";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCircleDown, faCircleLeft, faCircleRight, faCircleUp } from "@fortawesome/free-regular-svg-icons";
+import { OverviewDialog } from "./mixin-components/overview-dialog";
 
 class App {
 
@@ -54,11 +55,11 @@ class App {
             {
                 children: [
                     new ScrollableOverviewContainer(
-                        "soc-project-intervene",
+                        Selectors.DIALOG_WORKS_PROJECT_INTERVENE,
                         {
                             title: "Project Intervene (Provisional)",
                             dateBegun: "Jun 2022",
-                            imageClass: "image-project-intervene",
+                            imageClass: "image-project-intervene-1",
                             imageTitle: "Placeholder Logo for Project Intervene",
                             imageHeight: "7.2em",
                             overview:
@@ -66,15 +67,19 @@ class App {
                                 aims to keep users from using other apps, 
                                 like social medias,
                                 and puts them back on track during work.`
-                        }
+                        },
+                        new OverviewDialog(
+                            Selectors.DIALOG_WORKS_PROJECT_INTERVENE,
+                            "Project Intervene (Provisional)",
+                        ),
                     ),
                     new ScrollableOverviewContainer(
-                        "soc-emcb32",
+                        Selectors.DIALOG_WORKS_EMCB32,
                         {
                             title: "EMCB32",
                             dateBegun: "Sep 2020",
                             dateEnded: "Sep 2021",
-                            imageClass: "image-emcb32",
+                            imageClass: "image-emcb32-1",
                             imageTitle: "Logo of EMCB32",
                             overview:
                                 `The release of the HD mod
@@ -85,12 +90,12 @@ class App {
                         }
                     ),
                     new ScrollableOverviewContainer(
-                        "soc-emcb-hd",
+                        Selectors.DIALOG_WORKS_EMCB_HD,
                         {
                             title: "EMCB HD",
                             dateBegun: "Jun 2020",
                             dateEnded: "Sep 2021",
-                            imageClass: "image-emcb-hd",
+                            imageClass: "image-emcb-hd-1",
                             imageTitle: "Logo of EMCB HD",
                             overview:
                                 `My growing desire to build a realistic, 
@@ -102,7 +107,7 @@ class App {
                         }
                     ),
                     new ScrollableOverviewContainer(
-                        "soc-e-texture",
+                        Selectors.DIALOG_WORKS_E_TEXTURE,
                         {
                             title: "E-Texture",
                             dateBegun: "Jul 2019",
@@ -129,7 +134,7 @@ class App {
             {
                 children: [
                     new ScrollableOverviewContainer(
-                        "soc-agmo-studio",
+                        Selectors.SOC_EXPERIENCE_AGMO_STUDIO,
                         {
                             title: "Agmo Studio",
                             subtitle: "Mobile Dev Intern (iOS/Flutter Team)",
@@ -170,7 +175,7 @@ class App {
         // Mixins and links
         this.buildMixins();
 
-        $('#header-icon-mail, #footnote-mail').on('click', function(event) {
+        $('#header-icon-mail, #footnote-mail').on('click', function() {
             self.getEmailFloatingDialog().onShow();
         });
 
@@ -181,7 +186,6 @@ class App {
               self.getEmailFloatingDialog().onShow();
             }
         });
-
         this.appBuilt = true;
     }
 }

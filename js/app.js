@@ -12,6 +12,7 @@ import ScrollableOverviewContainer from "./components/scrollable-overview-contai
 import LandingContent from "./components/landing-content";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCircleDown, faCircleLeft, faCircleRight, faCircleUp } from "@fortawesome/free-regular-svg-icons";
+import { OverviewDialog } from "./mixin-components/overview-dialog";
 class App {
     constructor() {
         this.appBuilt = false;
@@ -37,22 +38,22 @@ class App {
         const landingContent = new LandingContent("landing-content");
         const sectionWorksScrollable = new AnimatedXScrollable("section-works-scrollable", "page-2-content", {
             children: [
-                new ScrollableOverviewContainer("soc-project-intervene", {
+                new ScrollableOverviewContainer(Selectors.DIALOG_WORKS_PROJECT_INTERVENE, {
                     title: "Project Intervene (Provisional)",
                     dateBegun: "Jun 2022",
-                    imageClass: "image-project-intervene",
+                    imageClass: "image-project-intervene-1",
                     imageTitle: "Placeholder Logo for Project Intervene",
                     imageHeight: "7.2em",
                     overview: `Work in progress. This simple app 
                                 aims to keep users from using other apps, 
                                 like social medias,
                                 and puts them back on track during work.`
-                }),
-                new ScrollableOverviewContainer("soc-emcb32", {
+                }, new OverviewDialog(Selectors.DIALOG_WORKS_PROJECT_INTERVENE, "Project Intervene (Provisional)")),
+                new ScrollableOverviewContainer(Selectors.DIALOG_WORKS_EMCB32, {
                     title: "EMCB32",
                     dateBegun: "Sep 2020",
                     dateEnded: "Sep 2021",
-                    imageClass: "image-emcb32",
+                    imageClass: "image-emcb32-1",
                     imageTitle: "Logo of EMCB32",
                     overview: `The release of the HD mod
                                 inspired me to make another version
@@ -60,11 +61,11 @@ class App {
                                 that blends in more with the organic,
                                 pixelated feel of the Minecraft world.`
                 }),
-                new ScrollableOverviewContainer("soc-emcb-hd", {
+                new ScrollableOverviewContainer(Selectors.DIALOG_WORKS_EMCB_HD, {
                     title: "EMCB HD",
                     dateBegun: "Jun 2020",
                     dateEnded: "Sep 2021",
-                    imageClass: "image-emcb-hd",
+                    imageClass: "image-emcb-hd-1",
                     imageTitle: "Logo of EMCB HD",
                     overview: `My growing desire to build a realistic, 
                                 rail-transport city in Minecraft 
@@ -73,7 +74,7 @@ class App {
                                 a collection of HD building blocks 
                                 with real-world textures.`
                 }),
-                new ScrollableOverviewContainer("soc-e-texture", {
+                new ScrollableOverviewContainer(Selectors.DIALOG_WORKS_E_TEXTURE, {
                     title: "E-Texture",
                     dateBegun: "Jul 2019",
                     dateEnded: "Nov 2019",
@@ -91,7 +92,7 @@ class App {
         });
         const sectionExperienceScrollable = new AnimatedXScrollable("section-experience-scrollable", "page-2-content", {
             children: [
-                new ScrollableOverviewContainer("soc-agmo-studio", {
+                new ScrollableOverviewContainer(Selectors.SOC_EXPERIENCE_AGMO_STUDIO, {
                     title: "Agmo Studio",
                     subtitle: "Mobile Dev Intern (iOS/Flutter Team)",
                     dateBegun: "Nov 2022",
@@ -119,7 +120,7 @@ class App {
         const pageManagement = new PageManagement(Selectors.PAGE_MANAGEMENT_CONTAINER, [page1, page2]);
         // Mixins and links
         this.buildMixins();
-        $('#header-icon-mail, #footnote-mail').on('click', function (event) {
+        $('#header-icon-mail, #footnote-mail').on('click', function () {
             self.getEmailFloatingDialog().onShow();
         });
         $(function () {
