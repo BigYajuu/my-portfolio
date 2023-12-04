@@ -28,7 +28,7 @@ class App {
     }
 
     private buildMixins() {
-        this.getEmailFloatingDialog().build();
+        this.getEmailFloatingDialog();
     }
 
     private fontIconSetup() {
@@ -180,13 +180,6 @@ class App {
               // TODO: Add call for enquire
               self.getEmailFloatingDialog().onShow();
             }
-        });
-
-        // Animation (TODO: turn it to a component)
-        $(function() {
-            $('#section-landing-title').animate({'opacity': 1}, Constants.ANIMATION_DURATION_SLOWER, () => {
-                $('#section-landing-subtitle').animate({'opacity': 1}, Constants.ANIMATION_DURATION_SLOWER);
-            });
         });
 
         this.appBuilt = true;

@@ -9,6 +9,10 @@ export class DialogElement extends MixinComponent {
         this.title = title;
         this.veil.build();
         this.$dialogElement = $('<div>').addClass('dialog-element');
+        this.$dialogElement.append(this.buildTitleBar());
+    }
+    build() {
+        $('body').append(this.$dialogElement);
     }
     buildTitleBar() {
         const $titleBar = $('<div>').addClass('title-bar');

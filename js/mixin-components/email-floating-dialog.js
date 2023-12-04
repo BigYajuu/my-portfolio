@@ -5,14 +5,11 @@ export class EmailFloatingDialog extends DialogElement {
     constructor() {
         super(Selectors.EMAIL_FLOATING_DIALOG, 'Contact the Creator');
         this.RECIPIENT_EMAIL = `wuchuyue2014@gmail.com`;
-    }
-    build() {
         // Create input fields
-        this.$dialogElement.append(this.buildTitleBar());
         this.$dialogElement.append(this.buildLeadingSubtitle());
         this.$dialogElement.append(this.buildForm());
         // Append the dialog element to the body
-        $('body').append(this.$dialogElement);
+        this.build();
     }
     buildLeadingSubtitle() {
         const self = this;

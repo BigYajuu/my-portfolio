@@ -3,7 +3,7 @@ import { Page } from "./engine/page";
 import { PageManagement } from "./engine/page-management";
 import { CubicXAxisTransition } from "./engine/cubic-x-axis-transition.js";
 import { AnimatedXScrollable } from "./components/animated-x-scrollable.js";
-import { Constants, ProviderKeys, Selectors } from "./static/constants.js";
+import { ProviderKeys, Selectors } from "./static/constants.js";
 import { FluxDynamicBackground } from "./components/flux-dynamic-background.js";
 import { Service } from "./engine/service.js";
 import { EmailFloatingDialog } from "./mixin-components/email-floating-dialog.js";
@@ -21,7 +21,7 @@ class App {
         return this.emailMixinProvider.getState().get;
     }
     buildMixins() {
-        this.getEmailFloatingDialog().build();
+        this.getEmailFloatingDialog();
     }
     fontIconSetup() {
         library.add({ faCircleDown, faCircleLeft, faCircleRight, faCircleUp });
@@ -128,12 +128,6 @@ class App {
                 // TODO: Add call for enquire
                 self.getEmailFloatingDialog().onShow();
             }
-        });
-        // Animation (TODO: turn it to a component)
-        $(function () {
-            $('#section-landing-title').animate({ 'opacity': 1 }, Constants.ANIMATION_DURATION_SLOWER, () => {
-                $('#section-landing-subtitle').animate({ 'opacity': 1 }, Constants.ANIMATION_DURATION_SLOWER);
-            });
         });
         this.appBuilt = true;
     }
