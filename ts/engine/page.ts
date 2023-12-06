@@ -28,7 +28,7 @@ export class Page {
 
     public buildComponents() {
         for (var i=0; i<this.components.length; i++) {
-            this.components[i].build();
+            this.components[i].attach();
         }
     }
 

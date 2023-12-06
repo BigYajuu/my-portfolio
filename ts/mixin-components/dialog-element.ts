@@ -18,8 +18,8 @@ export class DialogElement extends MixinComponent {
         this.$dialogElement.append(this.buildTitleBar());
     }
 
-    public build() {
-        this.veil.build();
+    public attach() {
+        this.veil.attach();
         $('body').append(this.$dialogElement);
     }
 

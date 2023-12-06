@@ -9,7 +9,7 @@ export class EmailFloatingDialog extends DialogElement {
         this.$dialogElement.append(this.buildLeadingSubtitle());
         this.$dialogElement.append(this.buildForm());
         // Append the dialog element to the body
-        this.build();
+        this.attach();
     }
     buildLeadingSubtitle() {
         const self = this;

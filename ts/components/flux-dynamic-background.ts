@@ -52,9 +52,9 @@ export class FluxDynamicBackground extends Component implements Background {
         this.contentSelector = `${this.selector}-content`;
     }
 
-    public build(): void {}
+    public attach(): void {}
 
-    public onInitialBuildBeforeScrollIn(): void {
+    public onAttachBeforeScrollIn(): void {
         // Reforms mark-up page div into a background/foreground structure
         // with an augmented content div for children elem from within 
         // the original page div.

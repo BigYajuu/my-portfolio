@@ -16,7 +16,7 @@ export class Veil extends MixinComponent {
         this.correlatedMixinOnHideCallback = correlatedMixinOnHideCallback;
     }
 
-    public build(): void {
+    public attach(): void {
         const self = this;
         this.$veil.on('click', () => {
             // Doesn't call veil's onHide. Runs onHide on the correlated mixin side.

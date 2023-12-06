@@ -1,4 +1,10 @@
 var _a;
+export class Paths {
+}
+Paths.ROOT = "/";
+Paths.IMG = `${Paths.ROOT}img/`;
+Paths.IMG_WORKS = `${Paths.IMG}works/`;
+Paths.IMG_EXPERIENCE = `${Paths.IMG}experience/`;
 export class Constants {
 }
 Constants.ANIMATION_DURATION_SLOWER = 1200;

@@ -2,7 +2,7 @@ export class MixinComponent {
     constructor(selector) {
         this.selector = selector;
     }
-    build() {
+    attach() {
         // As the component is built it is usually not active in the beginning.
         // The built component preserves input data, 
         // such as the text in the input field.

@@ -1,8 +1,14 @@
+export class Paths {
+    static ROOT = "/";
+    static IMG = `${Paths.ROOT}img/`;
+    static IMG_WORKS = `${Paths.IMG}works/`;
+    static IMG_EXPERIENCE = `${Paths.IMG}experience/`;
+}
+
 export class Constants {
     static ANIMATION_DURATION_SLOWER = 1200;
     static ANIMATION_DURATION_SLOW = 400;
-    static ANIMATION_DURATION_DEFAULT = 140;
-    
+    static ANIMATION_DURATION_DEFAULT = 140;   
 }
 
 export class ProviderKeys {

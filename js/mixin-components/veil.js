@@ -9,7 +9,7 @@ export class Veil extends MixinComponent {
         this.backgroundProvider = StateManager.getInstance(ProviderKeys.BACKGROUND, { currentBackground: this });
         this.correlatedMixinOnHideCallback = correlatedMixinOnHideCallback;
     }
-    build() {
+    attach() {
         const self = this;
         this.$veil.on('click', () => {
             // Doesn't call veil's onHide. Runs onHide on the correlated mixin side.

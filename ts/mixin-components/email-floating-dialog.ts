@@ -13,7 +13,7 @@ export class EmailFloatingDialog extends DialogElement {
         this.$dialogElement.append(this.buildForm());
         
         // Append the dialog element to the body
-        this.build();
+        this.attach();
     }
 
     private buildLeadingSubtitle(): JQuery<HTMLElement> {

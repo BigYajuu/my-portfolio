@@ -14,6 +14,7 @@ import LandingContent from "./components/landing-content";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCircleDown, faCircleLeft, faCircleRight, faCircleUp } from "@fortawesome/free-regular-svg-icons";
 import { OverviewDialog } from "./mixin-components/overview-dialog";
+import { WorksProjectInterveneOverviewDialog } from "./mixin-components/overview-dialog/works-project-intervene-overview-dialogs";
 
 class App {
 
@@ -68,10 +69,7 @@ class App {
                                 like social medias,
                                 and puts them back on track during work.`
                         },
-                        new OverviewDialog(
-                            Selectors.DIALOG_WORKS_PROJECT_INTERVENE,
-                            "Project Intervene (Provisional)",
-                        ),
+                        new WorksProjectInterveneOverviewDialog(),
                     ),
                     new ScrollableOverviewContainer(
                         Selectors.DIALOG_WORKS_EMCB32,

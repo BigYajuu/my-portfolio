@@ -12,7 +12,7 @@ import ScrollableOverviewContainer from "./components/scrollable-overview-contai
 import LandingContent from "./components/landing-content";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCircleDown, faCircleLeft, faCircleRight, faCircleUp } from "@fortawesome/free-regular-svg-icons";
-import { OverviewDialog } from "./mixin-components/overview-dialog";
+import { WorksProjectInterveneOverviewDialog } from "./mixin-components/overview-dialog/works-project-intervene-overview-dialogs";
 class App {
     constructor() {
         this.appBuilt = false;
@@ -48,7 +48,7 @@ class App {
                                 aims to keep users from using other apps, 
                                 like social medias,
                                 and puts them back on track during work.`
-                }, new OverviewDialog(Selectors.DIALOG_WORKS_PROJECT_INTERVENE, "Project Intervene (Provisional)")),
+                }, new WorksProjectInterveneOverviewDialog()),
                 new ScrollableOverviewContainer(Selectors.DIALOG_WORKS_EMCB32, {
                     title: "EMCB32",
                     dateBegun: "Sep 2020",

@@ -47,7 +47,7 @@ export class LandingContent extends Component {
             .append($scrollDownIcon);
     }
 
-    public onInitialBuildBeforeScrollIn(): void {
+    public onAttachBeforeScrollIn(): void {
         $(`#${this.titleSelector}`).animate({"opacity": "1"}, Constants.ANIMATION_DURATION_SLOWER, () => {
             $(`#${this.subtitleSelector}`).animate({"opacity": "1"}, Constants.ANIMATION_DURATION_SLOWER, () => {
                 $(`#${this.scrollDownIconSelector}`).delay(1000).animate({"opacity": "1"}, Constants.ANIMATION_DURATION_SLOWER);

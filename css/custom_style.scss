@@ -79,10 +79,13 @@ body {
     background-color: $primary-glass-colour;
     -webkit-backdrop-filter: $backdrop-filter;
     backdrop-filter: $backdrop-filter;
-    width: 85%;
+    width: 90%;
     @media (min-width: $viewport-min-width) {
-        width: 55%;
+        width: 60%;
     }
+    max-height: 90%;
+    overflow-y: auto;
+    overflow-x: hidden;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -434,6 +437,7 @@ p.i {
     width: 0%;
     opacity: 0;
     z-index: $z-scroll-chevron;
+    pointer-events: none;
     @media (min-width: $viewport-min-width) {
         font-size: $icon-size-larger;
     }
@@ -567,7 +571,6 @@ p.i {
         width: $page-margin-desktop;
     }
 }
-
 [class*="col-"] {
     float: left;
 }
@@ -576,9 +579,9 @@ p.i {
     float: none;
     display: inline-flex;
 }
-
 .x-scrollable {
-    width: 100%;
+    max-width: max-content;
+    // min-width: min-content;
     position: relative;
     overflow-x: auto;
     white-space: nowrap;    // This disables wrapping of items
@@ -587,15 +590,23 @@ p.i {
         padding: 0 8px 0 $page-margin-mobile;
     }
 }
-
 .x-scrollable-item {
     white-space: normal // This enfores wrapping item content
 }
-
+.x-scrollable-item-slideshow {
+    border-radius: $border-radius-small;
+    margin: 8px 16px 0 16px;
+    height: 12em;
+}
+.x-scrollable-item-slideshow:first-child {
+    margin-left: 0;
+}
+.x-scrollable-item-slideshow:last-child {
+    margin-left: 0;
+}
 .x-scrollable-item-rightmost-whitespace {
     width: 8px;
 }
-
 .x-scrollable-image {
     height: calc(5.5em + 8px);
     width: calc(5.5em + 8px);

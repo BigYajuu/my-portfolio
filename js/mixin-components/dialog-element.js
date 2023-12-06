@@ -12,8 +12,8 @@ export class DialogElement extends MixinComponent {
         this.$dialogElement = $('<div>').addClass('dialog-element');
         this.$dialogElement.append(this.buildTitleBar());
     }
-    build() {
-        this.veil.build();
+    attach() {
+        this.veil.attach();
         $('body').append(this.$dialogElement);
     }
     remove() {

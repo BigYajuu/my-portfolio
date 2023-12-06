@@ -9,7 +9,7 @@ class RawHtml extends Component {
         this.htmlString = htmlString;
     }
 
-    public build(): void {
+    public attach(): void {
         $(`#${this.selector}`).html(this.htmlString);
     }
     public onScrollOut(): void {
