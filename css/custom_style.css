@@ -649,9 +649,13 @@ p.i {
   white-space: normal;
 }
 
+.x-scrollable-item:last-child {
+  margin-right: 4px;
+}
+
 .x-scrollable-item-slideshow {
   border-radius: 12px;
-  margin: 8px 16px 0 16px;
+  margin: 16px 16px 8px 16px;
   height: 12em;
 }
 
@@ -661,10 +665,6 @@ p.i {
 
 .x-scrollable-item-slideshow:last-child {
   margin-left: 0;
-}
-
-.x-scrollable-item-rightmost-whitespace {
-  width: 8px;
 }
 
 .x-scrollable-image {

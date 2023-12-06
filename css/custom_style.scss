@@ -593,9 +593,12 @@ p.i {
 .x-scrollable-item {
     white-space: normal // This enfores wrapping item content
 }
+.x-scrollable-item:last-child {
+    margin-right: 4px
+}
 .x-scrollable-item-slideshow {
     border-radius: $border-radius-small;
-    margin: 8px 16px 0 16px;
+    margin: 16px 16px 8px 16px;
     height: 12em;
 }
 .x-scrollable-item-slideshow:first-child {
@@ -603,9 +606,6 @@ p.i {
 }
 .x-scrollable-item-slideshow:last-child {
     margin-left: 0;
-}
-.x-scrollable-item-rightmost-whitespace {
-    width: 8px;
 }
 .x-scrollable-image {
     height: calc(5.5em + 8px);

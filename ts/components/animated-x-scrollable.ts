@@ -75,10 +75,8 @@ export class AnimatedXScrollable extends Component {
             return;
         }
         if (Utility.determineDeviceType() === DeviceType.DESKTOP) {
-            // 3) Recreate scrollable div, chevrons 
-            // and additional whitespace w/ corrent heights
+            // 3) Regenerate scrollable content and chevrons 
             self.$constructedElement.prepend(self.buildScrollChevrons(self.getConstructedElementHeight()));
-            self.$constructedElement.append(self.buildRightmostWhitespace());
             $(`#${self.selector}`).replaceWith(self.$constructedElement);
             // 4) Setup Mouse Scroll Events
             self.setXScrollMouseEvents();
@@ -118,11 +116,6 @@ export class AnimatedXScrollable extends Component {
         const $scrollChevronOpacityMask = $(`<div id="${self.scrollChevronOpacityMaskSelector}">`)
             .append([$scrollChevronLeft, $scrollChevronRight]);
         return $scrollChevronOpacityMask;
-    }
-
-    private buildRightmostWhitespace = () => {
-        // When div lacks the rightmost whitespace, this layer compensates.
-        return $(`<div>`).addClass("x-scrollable-item x-scrollable-item-rightmost-whitespace");
     }
 
     private setXScrollMouseEvents = () => {
