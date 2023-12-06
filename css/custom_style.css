@@ -137,6 +137,10 @@ body {
   font-weight: 500;
 }
 
+.dialog-element ::-webkit-scrollbar-button {
+  width: 0;
+}
+
 .footnote {
   margin-top: 32px;
   padding: 32px calc(2% + 24px);
@@ -664,7 +668,7 @@ p.i {
 }
 
 .x-scrollable-item-slideshow:last-child {
-  margin-left: 0;
+  margin-right: 16px;
 }
 
 .x-scrollable-image {

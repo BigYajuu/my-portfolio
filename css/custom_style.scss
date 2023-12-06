@@ -155,6 +155,9 @@ body {
     font-size: large;
     font-weight: 500;
 }
+.dialog-element ::-webkit-scrollbar-button {
+    width: 0;
+}
 
 .footnote {
     margin-top: 32px;
@@ -605,7 +608,7 @@ p.i {
     margin-left: 0;
 }
 .x-scrollable-item-slideshow:last-child {
-    margin-left: 0;
+    margin-right: 16px;
 }
 .x-scrollable-image {
     height: calc(5.5em + 8px);

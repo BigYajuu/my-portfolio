@@ -9,6 +9,7 @@ interface OverviewImageData {
 
 export class OverviewDialog extends DialogElement {
     protected images: OverviewImageData[] = [];
+    protected $scrollableWrapper?: JQuery<HTMLElement>;
     protected scrollableComponent: AnimatedXScrollable;
     protected scrollableSelector: string = `${this.selector}-scrollable`;
     protected isScrollableAttached: boolean = false;
@@ -32,23 +33,38 @@ export class OverviewDialog extends DialogElement {
         // Where slideshow image items are filled
         const self = this;
         const $scrollable = $(`<div id=${self.scrollableSelector}>`);
-        const $scrollableWrapper = $(`<div>`).css({
-            'float': 'left',
+        this.$scrollableWrapper = $(`<div>`).css({
             'max-width': '100%'
-        })
-            .append($scrollable);
-        return $scrollableWrapper;
+        }).append($scrollable);
+        return this.$scrollableWrapper;
     }
 
-    private buildBody(): JQuery<HTMLElement> {
-        // Where body content is filled
-        return $(`<div>`).html("<p>Lorem Ipsum Loremmmmm Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </p>").css({
-
-        });
+    protected buildBody(): JQuery<HTMLElement> {
+        // Where body textual content is filled
+        return $(`<div>`);
     }
 
-    private attachImageXScrollable() {
+    private attachScrollable() {
         this.scrollableComponent.attachExternally();
+        this.updateScrollableFloatStatus();
+    }
+
+    private updateScrollableFloatStatus() {
+        // After attaching scrollable, check if scrollable width exceeds threshold.
+        // If it does, do not set the scrollable to float.
+        const self = this;
+        var targetWidth = this.$scrollableWrapper!.width();
+        var parentWidth = this.$scrollableWrapper!.parent().parent().width();
+        // Either exceeding 0.6 of parent width or 250px.
+        if (targetWidth! > 0.6 * parentWidth! || parentWidth! - targetWidth! < 250) {
+            this.$scrollableWrapper!.css({
+                'float': 'none'
+            })
+        } else {
+            this.$scrollableWrapper!.css({
+                'float': 'left'
+            })
+        }
     }
 
     private buildImageContent(): JQuery<HTMLElement> {
@@ -70,8 +86,9 @@ export class OverviewDialog extends DialogElement {
     public onBuildAndShow(): void {
         this.onShow();
         if (!this.isScrollableAttached) {
-            this.attachImageXScrollable();
+            this.attachScrollable();
             this.isScrollableAttached = true;
         }
+        this.updateScrollableFloatStatus();
     }
 }
