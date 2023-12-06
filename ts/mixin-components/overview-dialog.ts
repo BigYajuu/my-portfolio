@@ -25,7 +25,9 @@ export class OverviewDialog extends DialogElement {
             }
         );
         this.$dialogElement.append(this.buildImageXScrollable());
-        this.$dialogElement.append(this.buildBody());
+        this.$dialogElement.append(this.buildBody().css(
+            {'margin-top': '16px'}
+        ));
         this.attach();        
     }
 
