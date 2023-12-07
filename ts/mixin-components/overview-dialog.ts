@@ -25,9 +25,7 @@ export class OverviewDialog extends DialogElement {
             }
         );
         this.$dialogElement.append(this.buildImageXScrollable());
-        this.$dialogElement.append(this.buildBody().css(
-            {'margin-top': '16px'}
-        ));
+        this.$dialogElement.append(this.buildBody().addClass('body'));
         this.attach();        
     }
 
@@ -36,7 +34,8 @@ export class OverviewDialog extends DialogElement {
         const self = this;
         const $scrollable = $(`<div id=${self.scrollableSelector}>`);
         this.$scrollableWrapper = $(`<div>`).css({
-            'max-width': '100%'
+            'max-width': '100%',
+            'padding-bottom': '16px',
         }).append($scrollable);
         return this.$scrollableWrapper;
     }

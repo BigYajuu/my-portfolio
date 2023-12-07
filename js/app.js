@@ -14,6 +14,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCircleDown, faCircleLeft, faCircleRight, faCircleUp } from "@fortawesome/free-regular-svg-icons";
 import { WorksProjectInterveneOverviewDialog } from "./mixin-components/overview-dialog/works-project-intervene-overview-dialogs";
 import { WorksEMCB32OverviewDialog } from "./mixin-components/overview-dialog/works-emcb32-overview-dialog";
+import { WorksEMCBHDOverviewDialog } from "./mixin-components/overview-dialog/works-emcb-hd-overview-dialog";
 class App {
     constructor() {
         this.appBuilt = false;
@@ -74,7 +75,7 @@ class App {
                                 to create a mod that introduces
                                 a collection of HD building blocks 
                                 with real-world textures.`
-                }),
+                }, new WorksEMCBHDOverviewDialog()),
                 new ScrollableOverviewContainer(Selectors.DIALOG_WORKS_E_TEXTURE, {
                     title: "E-Texture",
                     dateBegun: "Jul 2019",

@@ -16,6 +16,7 @@ import { faCircleDown, faCircleLeft, faCircleRight, faCircleUp } from "@fortawes
 import { OverviewDialog } from "./mixin-components/overview-dialog";
 import { WorksProjectInterveneOverviewDialog } from "./mixin-components/overview-dialog/works-project-intervene-overview-dialogs";
 import { WorksEMCB32OverviewDialog } from "./mixin-components/overview-dialog/works-emcb32-overview-dialog";
+import { WorksEMCBHDOverviewDialog } from "./mixin-components/overview-dialog/works-emcb-hd-overview-dialog";
 
 class App {
 
@@ -104,7 +105,8 @@ class App {
                                 to create a mod that introduces
                                 a collection of HD building blocks 
                                 with real-world textures.`
-                        }
+                        },
+                        new WorksEMCBHDOverviewDialog(),
                     ),
                     new ScrollableOverviewContainer(
                         Selectors.DIALOG_WORKS_E_TEXTURE,

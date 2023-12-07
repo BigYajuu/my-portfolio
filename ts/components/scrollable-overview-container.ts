@@ -64,7 +64,6 @@ export class ScrollableOverviewContainer extends Component {
         if (this.overviewDialog) {
             $(document).on('click', `#${self.selector}`, () => {
                 self.onClick();
-                console.log("click");
             });
             this.$container.addClass("clickable");
         }

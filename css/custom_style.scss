@@ -100,6 +100,15 @@ body {
     opacity: 0;
     visibility: hidden;
 }
+.dialog-element ::-webkit-scrollbar-button {
+    width: 0;
+}
+.dialog-element .body {
+    padding: 0px;
+    @media (min-width: $viewport-min-width) {
+        padding: 24px;
+    }
+}
 .dialog-element .close-button {
     display: inline-flex;
     align-self: center;
@@ -108,20 +117,6 @@ body {
     &:hover {
         cursor: pointer;
         opacity: 0.8;
-    }
-}
-.dialog-element label {
-    display: block;
-    padding-top: 4px;
-    font-weight: 500;
-}
-.dialog-element .row-group {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    @media (min-width: $viewport-min-width) {
-        flex-wrap: nowrap;
     }
 }
 .dialog-element .input-group {
@@ -160,9 +155,22 @@ body {
     font-size: large;
     font-weight: 500;
 }
-.dialog-element ::-webkit-scrollbar-button {
-    width: 0;
+.dialog-element label {
+    display: block;
+    padding-top: 4px;
+    font-weight: 500;
 }
+.dialog-element .row-group {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    @media (min-width: $viewport-min-width) {
+        flex-wrap: nowrap;
+    }
+}
+
+
 
 .footnote {
     margin-top: 32px;
@@ -358,12 +366,13 @@ h0 {
     }
     line-height: 1.1em;
 }
-
 h1 {
     margin: 0;
 }
-
 h2 {
+    margin-top: 16px;
+}
+h3 {
     margin-top: 16px;
 }
 
@@ -373,7 +382,6 @@ p0 {
         font-size: 4dvw;
     }
 }
-
 p {
     font-size: 1.2em;
     padding-top: 4px;
