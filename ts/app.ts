@@ -17,6 +17,7 @@ import { OverviewDialog } from "./mixin-components/overview-dialog";
 import { WorksProjectInterveneOverviewDialog } from "./mixin-components/overview-dialog/works-project-intervene-overview-dialogs";
 import { WorksEMCB32OverviewDialog } from "./mixin-components/overview-dialog/works-emcb32-overview-dialog";
 import { WorksEMCBHDOverviewDialog } from "./mixin-components/overview-dialog/works-emcb-hd-overview-dialog";
+import { WorksETextureOverviewDialog } from "./mixin-components/overview-dialog/works-e-texture-overview-dialog";
 
 class App {
 
@@ -124,7 +125,8 @@ class App {
                                 These signs can be placed
                                 within the station perimeters 
                                 to simulate real pedistrian experiences.`
-                        }
+                        },
+                        new WorksETextureOverviewDialog(),
                     ),
                 ]
             }
