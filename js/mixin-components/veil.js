@@ -3,19 +3,22 @@ import MixinComponent from "../engine/mixin-component";
 import StateManager from "../engine/state-management.ts/state-manager";
 import { ProviderKeys } from "../static/constants";
 export class Veil extends MixinComponent {
-    constructor(selector, correlatedMixinComponents) {
+    constructor(selector, correlatedMixinOnHideCallback) {
         super(selector);
         this.$veil = $('<div>').addClass('veil');
         this.backgroundProvider = StateManager.getInstance(ProviderKeys.BACKGROUND, { currentBackground: this });
-        this.correlatedMixinComponent = correlatedMixinComponents;
+        this.correlatedMixinOnHideCallback = correlatedMixinOnHideCallback;
     }
-    build() {
+    attach() {
         const self = this;
         this.$veil.on('click', () => {
             // Doesn't call veil's onHide. Runs onHide on the correlated mixin side.
-            self.correlatedMixinComponent ? self.correlatedMixinComponent.onHide() : null;
+            self.correlatedMixinOnHideCallback ? self.correlatedMixinOnHideCallback() : null;
         });
         $('body').append(this.$veil);
+    }
+    remove() {
+        this.$veil.remove();
     }
     onShow() {
         this.getBackgroundFromProvider().setToDefocused();

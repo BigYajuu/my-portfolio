@@ -8,21 +8,25 @@ export class Veil extends MixinComponent {
 
     private backgroundProvider: BackgroundProvider<any>;
     private $veil: JQuery<HTMLElement> = $('<div>').addClass('veil');
-    private correlatedMixinComponent?: MixinComponent;
+    private correlatedMixinOnHideCallback?: () => void;
 
-    constructor(selector: string, correlatedMixinComponents?: MixinComponent) {
+    constructor(selector: string, correlatedMixinOnHideCallback?: () => void) {
         super(selector);
         this.backgroundProvider = StateManager.getInstance(ProviderKeys.BACKGROUND, { currentBackground : this });
-        this.correlatedMixinComponent = correlatedMixinComponents;
+        this.correlatedMixinOnHideCallback = correlatedMixinOnHideCallback;
     }
 
-    public build(): void {
+    public attach(): void {
         const self = this;
         this.$veil.on('click', () => {
             // Doesn't call veil's onHide. Runs onHide on the correlated mixin side.
-            self.correlatedMixinComponent ? self.correlatedMixinComponent.onHide() : null;
+            self.correlatedMixinOnHideCallback ? self.correlatedMixinOnHideCallback() : null;
         });
         $('body').append(this.$veil);
+    }
+
+    public remove(): void {
+        this.$veil.remove();
     }
 
     public onShow(): void {

@@ -12,19 +12,24 @@ export abstract class Component {
         this.selector = selector;
     }
 
-    public build(): void {
+    public attach(): void {
         // Assigns element to target selector div in HTML
         if (this.$constructedElement) {
-            $(`#${this.selector}`).append(this.$constructedElement);
+            $(`#${this.selector}`).replaceWith(this.$constructedElement);
         } else {
             throw new Error("Component not constructed.");
         }
     };
 
-    public buildChildren(): void {
+    public attachChildren(): void {
         for (const child of this.children) {
-            child.build();
+            child.attach();
         }
+    };
+
+    public build(): JQuery<HTMLElement> | undefined {
+        // Returns the constructed element that is stored as the component's state
+        return this.$constructedElement ? this.$constructedElement : undefined;
     }
 
     public getConstructedElement(): JQuery<HTMLElement> | undefined {
@@ -42,7 +47,7 @@ export abstract class Component {
         return childrenConstructedElements;
     }
 
-    public onInitialBuildBeforeScrollIn(): void {};
+    public onAttachBeforeScrollIn(): void {};
 
     public onScrollIn(): void {};
 
@@ -50,7 +55,7 @@ export abstract class Component {
 
     public conditionalOnInitialBuildBeforeScrollIn(): void {
         if (!this.hasInitiallyScrolledIn) {
-            this.onInitialBuildBeforeScrollIn();
+            this.onAttachBeforeScrollIn();
             this.hasInitiallyScrolledIn = true;
         }
     }

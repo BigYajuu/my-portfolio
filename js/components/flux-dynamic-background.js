@@ -35,8 +35,8 @@ export class FluxDynamicBackground extends Component {
         this.backgroundSelector = `${this.selector}`;
         this.contentSelector = `${this.selector}-content`;
     }
-    build() { }
-    onInitialBuildBeforeScrollIn() {
+    attach() { }
+    onAttachBeforeScrollIn() {
         // Reforms mark-up page div into a background/foreground structure
         // with an augmented content div for children elem from within 
         // the original page div.

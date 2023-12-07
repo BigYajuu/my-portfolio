@@ -25,6 +25,10 @@ body {
   padding-right: 12px;
 }
 
+.clickable {
+  transition-duration: 0.1s;
+}
+
 .container {
   width: 100%;
   box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
@@ -48,7 +52,10 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
-  width: 85%;
+  width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -60,7 +67,20 @@ body {
 }
 @media (min-width: 1000px) {
   .dialog-element {
-    width: 55%;
+    width: 60%;
+  }
+}
+
+.dialog-element ::-webkit-scrollbar-button {
+  width: 0;
+}
+
+.dialog-element .body {
+  padding: 0px;
+}
+@media (min-width: 1000px) {
+  .dialog-element .body {
+    padding: 24px;
   }
 }
 
@@ -73,24 +93,6 @@ body {
 .dialog-element .close-button:hover {
   cursor: pointer;
   opacity: 0.8;
-}
-
-.dialog-element label {
-  display: block;
-  padding-top: 4px;
-  font-weight: 500;
-}
-
-.dialog-element .row-group {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-@media (min-width: 1000px) {
-  .dialog-element .row-group {
-    flex-wrap: nowrap;
-  }
 }
 
 .dialog-element .input-group {
@@ -132,6 +134,24 @@ body {
   padding: 8px;
   font-size: large;
   font-weight: 500;
+}
+
+.dialog-element label {
+  display: block;
+  padding-top: 4px;
+  font-weight: 500;
+}
+
+.dialog-element .row-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+@media (min-width: 1000px) {
+  .dialog-element .row-group {
+    flex-wrap: nowrap;
+  }
 }
 
 .footnote {
@@ -356,6 +376,14 @@ h1 {
   margin: 0;
 }
 
+h2 {
+  margin-top: 16px;
+}
+
+h3 {
+  margin-top: 16px;
+}
+
 p0 {
   font-size: 5dvw;
 }
@@ -366,7 +394,6 @@ p0 {
 }
 
 p {
-  margin: 0;
   font-size: 1.2em;
   padding-top: 4px;
   color: #202020;
@@ -443,6 +470,7 @@ p.i {
   width: 0%;
   opacity: 0;
   z-index: 2;
+  pointer-events: none;
   font-size: 40px;
   color: rgba(255, 255, 255, 0.75);
   background-clip: text;
@@ -463,6 +491,7 @@ p.i {
   width: 0%;
   opacity: 0;
   z-index: 2;
+  pointer-events: none;
   font-size: 40px;
   color: rgba(255, 255, 255, 0.75);
   background-clip: text;
@@ -628,7 +657,7 @@ p.i {
 }
 
 .x-scrollable {
-  width: 100%;
+  max-width: max-content;
   position: relative;
   overflow-x: auto;
   white-space: nowrap;
@@ -644,8 +673,35 @@ p.i {
   white-space: normal;
 }
 
-.x-scrollable-item-rightmost-whitespace {
-  width: 8px;
+.x-scrollable-item:hover > .clickable {
+  cursor: pointer;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.35);
+  background-color: white;
+}
+
+.x-scrollable-item:active > .clickable {
+  cursor: pointer;
+  box-shadow: 0 0 0.2rem 0 rgba(0, 0, 0, 0.35);
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.x-scrollable-item:last-child {
+  margin-right: 4px;
+}
+
+.x-scrollable-item-slideshow {
+  border-radius: 12px;
+  margin: 16px 8px 8px 8px;
+  height: 12em;
+}
+
+.x-scrollable-item-slideshow:first-child {
+  margin-left: 0;
+}
+
+.x-scrollable-item-slideshow:last-child {
+  margin-right: 16px;
 }
 
 .x-scrollable-image {

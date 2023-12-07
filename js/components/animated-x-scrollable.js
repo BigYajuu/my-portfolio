@@ -16,20 +16,28 @@ var ScrollChevronState;
 })(ScrollChevronState || (ScrollChevronState = {}));
 const ScrollChevronBlankStyle = {
     opacity: '0',
-    width: '0%'
+    width: '0%',
 };
 const ScrollChevronAvailableStyle = {
     opacity: '0.5',
-    width: '15%'
+    width: '15%',
 };
 const ScrollChevronHoveringStyle = {
     opacity: '1',
-    width: '20%'
+    width: '20%',
 };
 export class AnimatedXScrollable extends Component {
     constructor(selector, pageSelector, { children = [], $content }) {
         super(selector);
-        this.build = () => { };
+        this.scrollableSelector = `${this.selector}-scrollable`; // For the scrollable div encompassing the containers
+        this.scrollChevronLeftSelector = `${this.selector}-scroll-chevron-left`; // Chevron on the left
+        this.scrollChevronRightSelector = `${this.selector}-scroll-chevron-right`; // Chevron on the right
+        this.scrollChevronOpacityMaskSelector = `${this.selector}-scroll-chevron-opacity-mask`; // An outer div that controls opacity for chevrons;
+        this.lastVPosition = 0;
+        this.xScrollPosition = 0;
+        this.xScrollSpeed = 0;
+        this.scrollChevronStateLeft = ScrollChevronState.BLANK;
+        this.scrollChevronStateRight = ScrollChevronState.BLANK;
         this.buildScrollChevrons = (height) => {
             const self = this;
             const scrollLeftIcon = icon({ prefix: 'far', iconName: 'circle-left' });
@@ -45,10 +53,6 @@ export class AnimatedXScrollable extends Component {
             const $scrollChevronOpacityMask = $(`<div id="${self.scrollChevronOpacityMaskSelector}">`)
                 .append([$scrollChevronLeft, $scrollChevronRight]);
             return $scrollChevronOpacityMask;
-        };
-        this.buildRightmostWhitespace = () => {
-            // When div lacks the rightmost whitespace, this layer compensates.
-            return $(`<div>`).addClass("x-scrollable-item x-scrollable-item-rightmost-whitespace");
         };
         this.setXScrollMouseEvents = () => {
             const self = this;
@@ -135,7 +139,7 @@ export class AnimatedXScrollable extends Component {
         this.updateScrollChevronVPositions = () => {
             const self = this;
             // offset() is applicable for divs relative to the parents
-            const scrollablePositions = $(`#${self.scrollableSelector}`).offset();
+            const scrollablePositions = $(`#${self.scrollableSelector}`).position();
             var finalHeight = self.lastVPosition;
             if (scrollablePositions) {
                 finalHeight = scrollablePositions.top;
@@ -144,58 +148,68 @@ export class AnimatedXScrollable extends Component {
             $(`#${self.scrollChevronLeftSelector}`).css('top', finalHeight);
             $(`#${self.scrollChevronRightSelector}`).css('top', finalHeight);
         };
+        const self = this;
         // Take content element from selector div's children or from the argument.
         this.children = children;
         $content ? this.$content = $content : this.$content = $(`#${this.selector}`).children();
         this.pageSelector = pageSelector;
-        this.scrollableSelector = `${this.selector}-scrollable`; // For the scrollable div encompassing the containers
-        this.scrollChevronLeftSelector = `${this.selector}-scroll-chevron-left`; // Chevron on the left
-        this.scrollChevronRightSelector = `${this.selector}-scroll-chevron-right`; // Chevron on the right
-        this.scrollChevronOpacityMaskSelector = `${this.selector}-scroll-chevron-opacity-mask`; // An outer div that controls opacity for chevrons
-        this.lastVPosition = 0;
-        this.xScrollPosition = 0;
-        this.xScrollSpeed = 0;
-        this.xMovementIntervalHandler = 0;
-        this.xAccelerationIntervalHandler = 0;
-        this.scrollChevronStateLeft = ScrollChevronState.BLANK;
-        this.scrollChevronStateRight = ScrollChevronState.BLANK;
-    }
-    onInitialBuildBeforeScrollIn() {
-        const self = this;
-        // 1) Make scrollable div with populated content
-        const $scrollable = $(`<div class="x-scrollable" id="${self.scrollableSelector}">`)
+        // Define constructed element.
+        this.$constructedElement = $(`<div class="x-scrollable" id="${self.scrollableSelector}">`)
             .append(self.getChildrenConstructedElements())
             .append(self.$content);
-        $(`#${self.selector}`).append($scrollable);
-        // 2) Get height of scrollable div
-        var height = $(`#${self.scrollableSelector}`).outerHeight();
+    }
+    onAttachBeforeScrollIn() {
+        const self = this;
+        if (!self.$constructedElement) {
+            return;
+        }
         if (Utility.determineDeviceType() === DeviceType.DESKTOP) {
-            // 3) Recreate scrollable div, chevrons 
-            // and additional whitespace w/ corrent heights
-            $(`#${self.selector}`).empty();
-            $scrollable.prepend(self.buildScrollChevrons(height));
-            $scrollable.append(self.buildRightmostWhitespace());
-            $(`#${self.selector}`).append($scrollable);
+            // 3) Regenerate scrollable content and chevrons 
+            self.$constructedElement.prepend(self.buildScrollChevrons(self.getConstructedElementHeight()));
+            $(`#${self.selector}`).replaceWith(self.$constructedElement);
             // 4) Setup Mouse Scroll Events
             self.setXScrollMouseEvents();
             // 5) Make Chevrons to follow scroll
             self.setScrollChevronVPositionEventListeners();
         }
+        else {
+            $(`#${self.selector}`).replaceWith(self.$constructedElement);
+        }
+    }
+    ;
+    attach() { }
+    ;
+    attachExternally() {
+        // This method is called from context other than page initialization.
+        // And extra pre-processings will be conducted.
+        this.onAttachBeforeScrollIn();
+        this.$constructedElement?.css({
+            'padding': '0',
+            'margin': '0',
+        });
+        this.setScrollChevronsToAppear();
     }
     customAnimation(scrollChevronSelector, newScrollChevronState, direction) {
+        const newStyle = this.getScrollChevronStyleByState(newScrollChevronState);
         if (direction === ScrollDirection.LEFT) {
             if (this.scrollChevronStateLeft != newScrollChevronState) {
                 $(`#${scrollChevronSelector}`).stop();
-                $(`#${scrollChevronSelector}`).animate(this.getScrollChevronStyleByState(newScrollChevronState), Constants.ANIMATION_DURATION_DEFAULT);
+                $(`#${scrollChevronSelector}`).animate(newStyle, Constants.ANIMATION_DURATION_DEFAULT);
                 this.scrollChevronStateLeft = newScrollChevronState;
             }
         }
         else if (direction === ScrollDirection.RIGHT) {
             if (this.scrollChevronStateRight != newScrollChevronState) {
                 $(`#${scrollChevronSelector}`).stop();
-                $(`#${scrollChevronSelector}`).animate(this.getScrollChevronStyleByState(newScrollChevronState), Constants.ANIMATION_DURATION_DEFAULT);
+                $(`#${scrollChevronSelector}`).animate(newStyle, Constants.ANIMATION_DURATION_DEFAULT);
                 this.scrollChevronStateRight = newScrollChevronState;
             }
+        }
+        if (newStyle === ScrollChevronBlankStyle) {
+            $(`#${scrollChevronSelector}`).css('pointer-events', 'none');
+        }
+        else {
+            $(`#${scrollChevronSelector}`).css('pointer-events', 'auto');
         }
     }
     xScrollEdgeResponse(scrollChevronSelector, direction) {
@@ -216,6 +230,20 @@ export class AnimatedXScrollable extends Component {
             else if (self.scrollChevronStateRight == ScrollChevronState.BLANK) {
                 self.customAnimation(scrollChevronSelector, ScrollChevronState.AVAILABLE, direction);
             } // Right Chevron edge detection
+        }
+    }
+    getConstructedElementHeight() {
+        // This method appends the constructed element temporarily to the body,
+        // reads the height, and removes the element.
+        const self = this;
+        if (self.$constructedElement) {
+            $(`body`).append(self.$constructedElement);
+            const height = self.$constructedElement.outerHeight();
+            self.$constructedElement.remove();
+            return height;
+        }
+        else {
+            return 0;
         }
     }
     onScrollIn() {

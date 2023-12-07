@@ -3,7 +3,7 @@ import {Page} from "./engine/page";
 import {PageManagement} from "./engine/page-management";
 import {CubicXAxisTransition} from "./engine/cubic-x-axis-transition.js";
 import {AnimatedXScrollable} from "./components/animated-x-scrollable.js";
-import {Constants, ProviderKeys, Selectors} from "./static/constants.js";
+import {ProviderKeys, Selectors} from "./static/constants.js";
 import { FluxDynamicBackground } from "./components/flux-dynamic-background.js";
 import { Service } from "./engine/service.js";
 import { EmailFloatingDialog } from "./mixin-components/email-floating-dialog.js";
@@ -13,6 +13,11 @@ import ScrollableOverviewContainer from "./components/scrollable-overview-contai
 import LandingContent from "./components/landing-content";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCircleDown, faCircleLeft, faCircleRight, faCircleUp } from "@fortawesome/free-regular-svg-icons";
+import { OverviewDialog } from "./mixin-components/overview-dialog";
+import { WorksProjectInterveneOverviewDialog } from "./mixin-components/overview-dialog/works-project-intervene-overview-dialogs";
+import { WorksEMCB32OverviewDialog } from "./mixin-components/overview-dialog/works-emcb32-overview-dialog";
+import { WorksEMCBHDOverviewDialog } from "./mixin-components/overview-dialog/works-emcb-hd-overview-dialog";
+import { WorksETextureOverviewDialog } from "./mixin-components/overview-dialog/works-e-texture-overview-dialog";
 
 class App {
 
@@ -28,7 +33,7 @@ class App {
     }
 
     private buildMixins() {
-        this.getEmailFloatingDialog().build();
+        this.getEmailFloatingDialog();
     }
 
     private fontIconSetup() {
@@ -54,11 +59,11 @@ class App {
             {
                 children: [
                     new ScrollableOverviewContainer(
-                        "soc-project-intervene",
+                        Selectors.DIALOG_WORKS_PROJECT_INTERVENE,
                         {
                             title: "Project Intervene (Provisional)",
                             dateBegun: "Jun 2022",
-                            imageClass: "image-project-intervene",
+                            imageClass: "image-project-intervene-1",
                             imageTitle: "Placeholder Logo for Project Intervene",
                             imageHeight: "7.2em",
                             overview:
@@ -66,15 +71,16 @@ class App {
                                 aims to keep users from using other apps, 
                                 like social medias,
                                 and puts them back on track during work.`
-                        }
+                        },
+                        new WorksProjectInterveneOverviewDialog(),
                     ),
                     new ScrollableOverviewContainer(
-                        "soc-emcb32",
+                        Selectors.DIALOG_WORKS_EMCB32,
                         {
                             title: "EMCB32",
                             dateBegun: "Sep 2020",
                             dateEnded: "Sep 2021",
-                            imageClass: "image-emcb32",
+                            imageClass: "image-emcb32-1",
                             imageTitle: "Logo of EMCB32",
                             overview:
                                 `The release of the HD mod
@@ -82,15 +88,16 @@ class App {
                                 with the same textures but in 32x32 resolution
                                 that blends in more with the organic,
                                 pixelated feel of the Minecraft world.`
-                        }
+                        },
+                        new WorksEMCB32OverviewDialog(),
                     ),
                     new ScrollableOverviewContainer(
-                        "soc-emcb-hd",
+                        Selectors.DIALOG_WORKS_EMCB_HD,
                         {
                             title: "EMCB HD",
                             dateBegun: "Jun 2020",
                             dateEnded: "Sep 2021",
-                            imageClass: "image-emcb-hd",
+                            imageClass: "image-emcb-hd-1",
                             imageTitle: "Logo of EMCB HD",
                             overview:
                                 `My growing desire to build a realistic, 
@@ -99,10 +106,11 @@ class App {
                                 to create a mod that introduces
                                 a collection of HD building blocks 
                                 with real-world textures.`
-                        }
+                        },
+                        new WorksEMCBHDOverviewDialog(),
                     ),
                     new ScrollableOverviewContainer(
-                        "soc-e-texture",
+                        Selectors.DIALOG_WORKS_E_TEXTURE,
                         {
                             title: "E-Texture",
                             dateBegun: "Jul 2019",
@@ -117,7 +125,8 @@ class App {
                                 These signs can be placed
                                 within the station perimeters 
                                 to simulate real pedistrian experiences.`
-                        }
+                        },
+                        new WorksETextureOverviewDialog(),
                     ),
                 ]
             }
@@ -129,7 +138,7 @@ class App {
             {
                 children: [
                     new ScrollableOverviewContainer(
-                        "soc-agmo-studio",
+                        Selectors.SOC_EXPERIENCE_AGMO_STUDIO,
                         {
                             title: "Agmo Studio",
                             subtitle: "Mobile Dev Intern (iOS/Flutter Team)",
@@ -170,7 +179,7 @@ class App {
         // Mixins and links
         this.buildMixins();
 
-        $('#header-icon-mail, #footnote-mail').on('click', function(event) {
+        $('#header-icon-mail, #footnote-mail').on('click', function() {
             self.getEmailFloatingDialog().onShow();
         });
 
@@ -181,14 +190,6 @@ class App {
               self.getEmailFloatingDialog().onShow();
             }
         });
-
-        // Animation (TODO: turn it to a component)
-        $(function() {
-            $('#section-landing-title').animate({'opacity': 1}, Constants.ANIMATION_DURATION_SLOWER, () => {
-                $('#section-landing-subtitle').animate({'opacity': 1}, Constants.ANIMATION_DURATION_SLOWER);
-            });
-        });
-
         this.appBuilt = true;
     }
 }

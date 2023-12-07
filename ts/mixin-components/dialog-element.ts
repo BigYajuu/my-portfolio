@@ -6,14 +6,26 @@ import { Constants } from '../static/constants';
 export class DialogElement extends MixinComponent {
 
     protected title: string;
-    protected veil: Veil = new Veil(`${this.selector}-veil`, this);
+    protected veil: Veil = new Veil(`${this.selector}-veil`, () => {
+        this.onHide();
+    });
     protected $dialogElement: JQuery<HTMLElement>;
 
     constructor(selector: string, title: string = '') {
         super(selector);
         this.title = title;
-        this.veil.build();
         this.$dialogElement = $('<div>').addClass('dialog-element');
+        this.$dialogElement.append(this.buildTitleBar());
+    }
+
+    public attach() {
+        this.veil.attach();
+        $('body').append(this.$dialogElement);
+    }
+
+    public remove() {
+        this.veil.remove();
+        this.$dialogElement.remove();
     }
     
     public buildTitleBar() {

@@ -6,20 +6,25 @@ export class Component {
         // Completes element construction
         this.selector = selector;
     }
-    build() {
+    attach() {
         // Assigns element to target selector div in HTML
         if (this.$constructedElement) {
-            $(`#${this.selector}`).append(this.$constructedElement);
+            $(`#${this.selector}`).replaceWith(this.$constructedElement);
         }
         else {
             throw new Error("Component not constructed.");
         }
     }
     ;
-    buildChildren() {
+    attachChildren() {
         for (const child of this.children) {
-            child.build();
+            child.attach();
         }
+    }
+    ;
+    build() {
+        // Returns the constructed element that is stored as the component's state
+        return this.$constructedElement ? this.$constructedElement : undefined;
     }
     getConstructedElement() {
         return this.$constructedElement;
@@ -35,7 +40,7 @@ export class Component {
         }
         return childrenConstructedElements;
     }
-    onInitialBuildBeforeScrollIn() { }
+    onAttachBeforeScrollIn() { }
     ;
     onScrollIn() { }
     ;
@@ -43,7 +48,7 @@ export class Component {
     ;
     conditionalOnInitialBuildBeforeScrollIn() {
         if (!this.hasInitiallyScrolledIn) {
-            this.onInitialBuildBeforeScrollIn();
+            this.onAttachBeforeScrollIn();
             this.hasInitiallyScrolledIn = true;
         }
     }

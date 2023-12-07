@@ -4,6 +4,7 @@ $primary-colour: #10069F;
 $secondary-colour: #202020;
 $opaque-colour: rgba(255, 255, 255, 0.75);
 $box-shadow-colour: rgba(0, 0, 0, 0.2);
+$box-shadow-colour-hover: rgba(0, 0, 0, 0.35);
 $primary-glass-colour: rgba(255, 255, 255, 0.5);
 $secondary-glass-colour: rgba(255, 255, 255, 0.15);
 $backdrop-filter: blur(5px);
@@ -56,6 +57,10 @@ body {
     padding-right: $container-margin;
 }
 
+.clickable {
+    transition-duration: $hover-transition-time;
+}
+
 .container {
     width: 100%;
     box-shadow: 0 0 0.5rem 0 $box-shadow-colour;
@@ -79,10 +84,13 @@ body {
     background-color: $primary-glass-colour;
     -webkit-backdrop-filter: $backdrop-filter;
     backdrop-filter: $backdrop-filter;
-    width: 85%;
+    width: 90%;
     @media (min-width: $viewport-min-width) {
-        width: 55%;
+        width: 60%;
     }
+    max-height: 90%;
+    overflow-y: auto;
+    overflow-x: hidden;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -92,6 +100,15 @@ body {
     opacity: 0;
     visibility: hidden;
 }
+.dialog-element ::-webkit-scrollbar-button {
+    width: 0;
+}
+.dialog-element .body {
+    padding: 0px;
+    @media (min-width: $viewport-min-width) {
+        padding: 24px;
+    }
+}
 .dialog-element .close-button {
     display: inline-flex;
     align-self: center;
@@ -100,20 +117,6 @@ body {
     &:hover {
         cursor: pointer;
         opacity: 0.8;
-    }
-}
-.dialog-element label {
-    display: block;
-    padding-top: 4px;
-    font-weight: 500;
-}
-.dialog-element .row-group {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    @media (min-width: $viewport-min-width) {
-        flex-wrap: nowrap;
     }
 }
 .dialog-element .input-group {
@@ -152,6 +155,22 @@ body {
     font-size: large;
     font-weight: 500;
 }
+.dialog-element label {
+    display: block;
+    padding-top: 4px;
+    font-weight: 500;
+}
+.dialog-element .row-group {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    @media (min-width: $viewport-min-width) {
+        flex-wrap: nowrap;
+    }
+}
+
+
 
 .footnote {
     margin-top: 32px;
@@ -347,9 +366,14 @@ h0 {
     }
     line-height: 1.1em;
 }
-
 h1 {
     margin: 0;
+}
+h2 {
+    margin-top: 16px;
+}
+h3 {
+    margin-top: 16px;
 }
 
 p0 {
@@ -358,9 +382,7 @@ p0 {
         font-size: 4dvw;
     }
 }
-
 p {
-    margin: 0;
     font-size: 1.2em;
     padding-top: 4px;
     color: $secondary-colour;
@@ -434,6 +456,7 @@ p.i {
     width: 0%;
     opacity: 0;
     z-index: $z-scroll-chevron;
+    pointer-events: none;
     @media (min-width: $viewport-min-width) {
         font-size: $icon-size-larger;
     }
@@ -567,7 +590,6 @@ p.i {
         width: $page-margin-desktop;
     }
 }
-
 [class*="col-"] {
     float: left;
 }
@@ -576,9 +598,9 @@ p.i {
     float: none;
     display: inline-flex;
 }
-
 .x-scrollable {
-    width: 100%;
+    max-width: max-content;
+    // min-width: min-content;
     position: relative;
     overflow-x: auto;
     white-space: nowrap;    // This disables wrapping of items
@@ -587,15 +609,34 @@ p.i {
         padding: 0 8px 0 $page-margin-mobile;
     }
 }
-
 .x-scrollable-item {
     white-space: normal // This enfores wrapping item content
 }
-
-.x-scrollable-item-rightmost-whitespace {
-    width: 8px;
+.x-scrollable-item:hover > .clickable {
+    cursor: pointer;
+    box-shadow: 0 0 1rem 0 $box-shadow-colour-hover;
+    background-color: white;
 }
-
+.x-scrollable-item:active > .clickable {
+    cursor: pointer;
+    box-shadow: 0 0 0.2rem 0 $box-shadow-colour-hover;
+    background-color: $primary-glass-colour;
+    backdrop-filter: blur(2px);
+}
+.x-scrollable-item:last-child {
+    margin-right: 4px
+}
+.x-scrollable-item-slideshow {
+    border-radius: $border-radius-small;
+    margin: 16px 8px 8px 8px;
+    height: 12em;
+}
+.x-scrollable-item-slideshow:first-child {
+    margin-left: 0;
+}
+.x-scrollable-item-slideshow:last-child {
+    margin-right: 16px;
+}
 .x-scrollable-image {
     height: calc(5.5em + 8px);
     width: calc(5.5em + 8px);
