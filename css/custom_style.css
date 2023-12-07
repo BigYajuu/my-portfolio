@@ -367,6 +367,10 @@ h1 {
   margin: 0;
 }
 
+h2 {
+  margin-top: 16px;
+}
+
 p0 {
   font-size: 5dvw;
 }
@@ -377,7 +381,6 @@ p0 {
 }
 
 p {
-  margin: 0;
   font-size: 1.2em;
   padding-top: 4px;
   color: #202020;
@@ -674,7 +677,7 @@ p.i {
 
 .x-scrollable-item-slideshow {
   border-radius: 12px;
-  margin: 16px 16px 8px 16px;
+  margin: 16px 8px 8px 8px;
   height: 12em;
 }
 

@@ -363,6 +363,10 @@ h1 {
     margin: 0;
 }
 
+h2 {
+    margin-top: 16px;
+}
+
 p0 {
     font-size: 5dvw;
     @media (min-width: $viewport-min-width) {
@@ -371,7 +375,6 @@ p0 {
 }
 
 p {
-    margin: 0;
     font-size: 1.2em;
     padding-top: 4px;
     color: $secondary-colour;
@@ -615,7 +618,7 @@ p.i {
 }
 .x-scrollable-item-slideshow {
     border-radius: $border-radius-small;
-    margin: 16px 16px 8px 16px;
+    margin: 16px 8px 8px 8px;
     height: 12em;
 }
 .x-scrollable-item-slideshow:first-child {

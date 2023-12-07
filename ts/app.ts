@@ -15,6 +15,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCircleDown, faCircleLeft, faCircleRight, faCircleUp } from "@fortawesome/free-regular-svg-icons";
 import { OverviewDialog } from "./mixin-components/overview-dialog";
 import { WorksProjectInterveneOverviewDialog } from "./mixin-components/overview-dialog/works-project-intervene-overview-dialogs";
+import { WorksEMCB32OverviewDialog } from "./mixin-components/overview-dialog/works-emcb32-overview-dialog";
 
 class App {
 
@@ -85,7 +86,8 @@ class App {
                                 with the same textures but in 32x32 resolution
                                 that blends in more with the organic,
                                 pixelated feel of the Minecraft world.`
-                        }
+                        },
+                        new WorksEMCB32OverviewDialog(),
                     ),
                     new ScrollableOverviewContainer(
                         Selectors.DIALOG_WORKS_EMCB_HD,

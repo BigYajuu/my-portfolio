@@ -17,11 +17,11 @@ export class WorksProjectInterveneOverviewDialog extends OverviewDialog {
     protected buildBody(): JQuery<HTMLElement> {
         const $body = $(`<div>`)
             .append($(`<h2>`)
-            .append(`Overview`))
+                .append(`Overview`))
             .append($(`<p>`)
-            .append(`Project Intervene is a work-in-progress app
-            that aims to keep users from distracted by
-            other apps or websites at an alarmingly continuous period.`));
+                .append(`Project Intervene is a work-in-progress app
+                    that aims to keep users from distracted by
+                    other apps or websites at an alarmingly continuous period.`));
         return $body;
     }
 }
