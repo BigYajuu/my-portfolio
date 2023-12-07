@@ -7,11 +7,9 @@
   "author": "",
   "scripts": {
     "build": "parcel build index.html",
-    "clear_dist": "rm -rf dist && mkdir dist",
-    "copy_img": "cp -vR ./img ./dist",
-    "live": "npm run build && npm run open",
     "open": "parcel index.html --open",
-    "predeploy": "npm run copy_img && parcel build index.html --public-url ./",
+    "live": "npm run build && npm run open",
+    "predeploy": "rm -rf dist && parcel build index.html --public-url ./",
     "sass": "sass --watch css",
     "tsc_watch": "tsc -w"
   },
@@ -19,10 +17,12 @@
     "@babel/cli": "^7.22.10",
     "@babel/core": "^7.22.11",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@parcel/packager-raw-url": "^2.10.3",
+    "@parcel/transformer-webmanifest": "^2.10.3",
     "@types/jquery": "^3.5.18",
     "@types/node": "^20.10.3",
     "gh-pages": "^6.0.0",
-    "parcel-bundler": "^1.12.4",
+    "parcel": "^2.10.3",
     "parcel-reporter-static-files-copy": "^1.5.3",
     "sass": "^1.69.5",
     "typescript": "^5.2.2"
@@ -36,11 +36,9 @@
     "jquery": "^3.7.1",
     "systemjs": "^6.14.2"
   },
-  "workspaces": ["node_modules/*"],
   "staticFiles": {
-    "staticPath": [
-      "img/**"
-    ]
+    "staticPath": "img",
+    "staticOutPath": "img"
   },
   "homepage": "http://bigyajuu.github.io/my-portfolio/"
 }

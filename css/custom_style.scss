@@ -417,7 +417,7 @@ p.i {
     background-position: center;
 }
 
-.background-window:before background-window:after {
+.background-window:before, :after {
     display: block;
     position: relative;
 }
