@@ -9,7 +9,7 @@
     "build": "parcel build index.html img/**",
     "live": "npm run build && npm run open",
     "open": "parcel index.html --open",
-    "predeploy": "rm -rf dist && npm run build && parcel build index.html --public-url ./ img/** ",
+    "predeploy": "rm -rf dist && parcel build index.html --public-url ./ --reporter parcel-reporter-static-files-copy img/** ",
     "sass": "sass --watch css",
     "tsc_watch": "tsc -w"
   },
