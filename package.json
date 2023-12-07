@@ -7,9 +7,11 @@
   "author": "",
   "scripts": {
     "build": "parcel build index.html img/**",
+    "clear_dist": "rm -rf dist && mkdir dist",
+    "copy_img": "cp -vR ./img ./dist",
     "live": "npm run build && npm run open",
     "open": "parcel index.html --open",
-    "predeploy": "rm -rf dist && parcel img/** && parcel build index.html --public-url ./",
+    "predeploy": "npm run clear_dist && npm run copy_img && parcel build index.html --public-url",
     "sass": "sass --watch css",
     "tsc_watch": "tsc -w"
   },
