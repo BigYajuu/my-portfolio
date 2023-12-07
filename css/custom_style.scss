@@ -4,6 +4,7 @@ $primary-colour: #10069F;
 $secondary-colour: #202020;
 $opaque-colour: rgba(255, 255, 255, 0.75);
 $box-shadow-colour: rgba(0, 0, 0, 0.2);
+$box-shadow-colour-hover: rgba(0, 0, 0, 0.35);
 $primary-glass-colour: rgba(255, 255, 255, 0.5);
 $secondary-glass-colour: rgba(255, 255, 255, 0.15);
 $backdrop-filter: blur(5px);
@@ -54,6 +55,10 @@ body {
     // For horizontal padding only
     padding-left: $container-margin;
     padding-right: $container-margin;
+}
+
+.clickable {
+    transition-duration: $hover-transition-time;
 }
 
 .container {
@@ -595,6 +600,15 @@ p.i {
 }
 .x-scrollable-item {
     white-space: normal // This enfores wrapping item content
+}
+.x-scrollable-item:hover > .clickable {
+    box-shadow: 0 0 1rem 0 $box-shadow-colour-hover;
+    background-color: white;
+}
+.x-scrollable-item:active > .clickable {
+    box-shadow: 0 0 0.2rem 0 $box-shadow-colour-hover;
+    background-color: $primary-glass-colour;
+    backdrop-filter: blur(2px);
 }
 .x-scrollable-item:last-child {
     margin-right: 4px

@@ -9,7 +9,7 @@ export class Component {
     attach() {
         // Assigns element to target selector div in HTML
         if (this.$constructedElement) {
-            $(`#${this.selector}`).append(this.$constructedElement);
+            $(`#${this.selector}`).replaceWith(this.$constructedElement);
         }
         else {
             throw new Error("Component not constructed.");

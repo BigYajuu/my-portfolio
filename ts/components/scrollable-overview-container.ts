@@ -7,6 +7,8 @@ export class ScrollableOverviewContainer extends Component {
     // along the scrollable component.
 
     private overviewDialog?: OverviewDialog;
+    private containerSelector: string = `${this.selector}-container`;
+    private $container: JQuery<HTMLElement>;
 
     constructor(selector: string, {title, subtitle, dateBegun, dateEnded="", imageClass, imageHeight, imageWidth, imageTitle, overview
     } : {
@@ -22,6 +24,7 @@ export class ScrollableOverviewContainer extends Component {
     }, overviewDialog?: OverviewDialog, 
     ) {
         super(selector);
+        const self = this;
         this.overviewDialog = overviewDialog;
         const $timestamp = $(`<div>`).html(`<p class="i timestamp">${dateBegun}<br>- ${dateEnded}<p>`);
         const $image = $(`<div title="${imageTitle}">`).addClass(`${imageClass} x-scrollable-image`);
@@ -42,7 +45,7 @@ export class ScrollableOverviewContainer extends Component {
             })
             .text(subtitle ? subtitle : "");
         const $overview = $(`<p>`).text(overview);
-        const $container = $(`<div id=${selector}-container>`)
+        this.$container = $(`<div id=${self.containerSelector}>`)
             .addClass("container")
             .append($image)
             .append($titleBar)
@@ -52,23 +55,24 @@ export class ScrollableOverviewContainer extends Component {
             .addClass("x-scrollable-item")
             .addClass("col-abs-width")
             .addClass("col-default-padding")
-            .append($container);
+            .append(this.$container);
         this.setUpOnClick();
     }
 
     private setUpOnClick() {
         const self = this;
-        $(document).on('click', `#${self.selector}`, () => {
-            self.onClick();
-        });
+        if (this.overviewDialog) {
+            $(document).on('click', `#${self.selector}`, () => {
+                self.onClick();
+                console.log("click");
+            });
+            this.$container.addClass("clickable");
+        }
     }
 
     private onClick() {
         // Display corresponding overview dialog.
-        if (!this.overviewDialog) {
-            return;
-        }
-        this.overviewDialog.onBuildAndShow();
+        this.overviewDialog!.onBuildAndShow();
     }
 }
 

@@ -9,17 +9,19 @@ export class WorksProjectInterveneOverviewDialog extends OverviewDialog {
             "Project Intervene (Provisional)",
             [
                 {path: `${Paths.IMG_WORKS}project-intervene-1.png`, title: "Logo"},
-                {path: `${Paths.IMG_WORKS}project-intervene-2.png`, title: "A Sneak Peek"}
+                {path: `${Paths.IMG_WORKS}project-intervene-2.png`, title: "A Peek on Styles"}
             ]
         );
     }
 
     protected buildBody(): JQuery<HTMLElement> {
         const $body = $(`<div>`)
+            .append($(`<h2>`)
+            .append(`Overview`))
             .append($(`<p>`)
             .append(`Project Intervene is a work-in-progress app
-            that aims to keep users from continuously, decadently indulging in
-            other apps or websites.`))
+            that aims to keep users from distracted by
+            other apps or websites at an alarmingly continuous period.`));
         return $body;
     }
 }
