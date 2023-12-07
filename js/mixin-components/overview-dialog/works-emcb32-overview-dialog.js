@@ -40,7 +40,7 @@ export class WorksEMCB32OverviewDialog extends OverviewDialog {
                     </a><br>
                     Link to Planet Minecraft page: 
                     <a target="_blank" href="https://www.planetminecraft.com/mod/essential-modern-construction-block-32px-edition-emcb32-enhanced-creative-constructions/" title="To Planet Minecraft Page">
-                    https://www.planetminecraft.com/mod/essential-modern-construction-block-32px-edition-emcb32-enhanced-creative-constructions/
+                        https://www.planetminecraft.com/mod/essential-modern-construction-block-32px-edition-emcb32-enhanced-creative-constructions/
                     </a>`));
         return $body;
     }
