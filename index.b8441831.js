@@ -121,4 +121,4 @@ function e(e){return e&&e.__esModule?e.default:e}var t,n,r,i,a,o,s,l,c,u,f,d,p,h
                                 app dev projects using Flutter 
                                 and experiment with many proof-of-concept features.
                                 `})]}),s=new S(O.PAGE_1,new N,[n,i]),l=new S(O.PAGE_2,new N,[r,a,o]);new C(O.PAGE_MANAGEMENT_CONTAINER,[s,l]),this.buildMixins(),e(w)("#header-icon-mail, #footnote-mail").on("click",function(){t.getEmailFloatingDialog().onShow()}),e(w)(function(){"1"===nn.getParameterByName("enquire",window.location.href)&&t.getEmailFloatingDialog().onShow()}),this.appBuilt=!0}}().build();
-//# sourceMappingURL=index.a3ad9e0e.js.map
+//# sourceMappingURL=index.b8441831.js.map
