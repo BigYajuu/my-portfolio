@@ -7,10 +7,9 @@
   "author": "",
   "scripts": {
     "build": "parcel build src/index.html",
-    "serve": "parcel serve",
     "open": "parcel src/index.html --open",
-    "live": "npm run build -- && npm run open",
-    "predeploy": "parcel build src/index.html --public-url ./",
+    "live": "npm run build && npm run open",
+    "predeploy": "parcel build src/index.html --public-url ./ && cp src/.htaccess dist",
     "sass": "sass --watch css",
     "tsc_watch": "tsc -w"
   },
