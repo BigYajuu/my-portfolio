@@ -1,5 +1,5 @@
 export class Paths {
-    static ROOT = "/";
+    static ROOT = "/my-portfolio/";
     static IMG = `${Paths.ROOT}img/`;
     static IMG_WORKS = `${Paths.IMG}works/`;
     static IMG_EXPERIENCE = `${Paths.IMG}experience/`;
