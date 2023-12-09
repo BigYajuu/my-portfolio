@@ -9,7 +9,7 @@
     "build": "parcel build src/index.html",
     "open": "parcel src/index.html --open",
     "live": "npm run build && npm run open",
-    "predeploy": "rm -rf dist && rm -rf .parcel-cache && parcel build src/index.html --public-url ./ --no-optimize",
+    "predeploy": "rm -rf dist && rm -rf .parcel-cache && parcel build src/index.html --public-url /my-portfolio/ --no-optimize",
     "sass": "sass --watch css",
     "tsc_watch": "tsc -w"
   },
