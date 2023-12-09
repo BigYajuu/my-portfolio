@@ -71,6 +71,7 @@ export class OverviewDialog extends DialogElement {
     private buildImageContent(): JQuery<HTMLElement> {
         const $slideshow = $(`<div>`);
         for (var i=0; i<this.images.length; i++) {
+            console.log(this.images[i].path);
             $slideshow
                 .append(
                     $('<img>')
