@@ -39,7 +39,7 @@
   },
   "staticFiles": {
     "staticPath": "img",
-    "staticOutDir": "img"
+    "staticOutPath": "img"
   },
   "homepage": "http://bigyajuu.github.io/my-portfolio/"
 }
