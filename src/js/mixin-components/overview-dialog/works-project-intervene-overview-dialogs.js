@@ -4,7 +4,7 @@ import { OverviewDialog } from "../overview-dialog";
 export class WorksProjectInterveneOverviewDialog extends OverviewDialog {
     constructor() {
         super(Selectors.DIALOG_WORKS_PROJECT_INTERVENE, "Project Intervene (Provisional)", [
-            { path: `${Paths.IMG_WORKS}project-intervene-1.png`, title: "Logo" },
+            { path: `my-portfolio/img/works/project-intervene-1.png`, title: "Logo" },
             { path: `${Paths.IMG_WORKS}project-intervene-2.png`, title: "A Peek on Styles" }
         ]);
     }

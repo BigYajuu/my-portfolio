@@ -1,7 +1,7 @@
 var _a;
 export class Paths {
 }
-Paths.ROOT = "/";
+Paths.ROOT = "./";
 Paths.IMG = `${Paths.ROOT}img/`;
 Paths.IMG_WORKS = `${Paths.IMG}works/`;
 Paths.IMG_EXPERIENCE = `${Paths.IMG}experience/`;

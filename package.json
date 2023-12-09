@@ -11,7 +11,7 @@
     "open": "parcel src/index.html --open",
     "live": "npm run build && npm run open",
     "predeploy": "rm -rf dist && rm -rf .parcel-cache && parcel build src/index.html --public-url ./",
-    "sass": "sass --watch css",
+    "sass": "sass --watch src/css",
     "tsc_watch": "tsc -w"
   },
   "devDependencies": {
@@ -26,7 +26,7 @@
     "parcel": "^2.10.3",
     "parcel-reporter-static-files-copy": "^1.5.3",
     "sass": "^1.69.5",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "@egjs/jquery-pauseresume": "^2.0.1",
