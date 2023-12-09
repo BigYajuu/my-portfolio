@@ -1,0 +1,70 @@
+.flux-foreground {
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.flux-content {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.bg0-blank {
+  background-color: #fff;
+}
+
+.bg1-normal {
+  background-image: url("bg1-normal.c4fbf0d8.svg");
+}
+
+.bg1-saturate {
+  background-image: url("bg1-saturate.7729961b.svg");
+}
+
+.bg2-normal {
+  background-image: url("bg2-normal.fc8bd300.svg");
+}
+
+.bg2-saturate {
+  background-image: url("bg2-saturate.3715c8e9.svg");
+}
+
+.bg3-normal {
+  background-image: url("bg3-normal.76e7acb2.svg");
+}
+
+.bg3-saturate {
+  background-image: url("bg3-saturate.ffa48c57.svg");
+}
+
+.bg4-normal {
+  background-image: url("bg4-normal.728d994d.svg");
+}
+
+.bg4-saturate {
+  background-image: url("bg4-saturate.5036ff74.svg");
+}
+
+.bg5-normal {
+  background-image: url("bg5-normal.041ab293.svg");
+}
+
+.bg5-saturate {
+  background-image: url("bg5-saturate.bb1b589f.svg");
+}
+
+.bg6-normal {
+  background-image: url("bg6-normal.eacb213e.svg");
+}
+
+.bg6-saturate {
+  background-image: url("bg6-saturate.78b13e84.svg");
+}
+
+/*# sourceMappingURL=index.e09e4872.css.map */
