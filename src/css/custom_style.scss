@@ -45,7 +45,7 @@ body {
     font-family: 'BauPro', Helvetica, Arial, sans-serif;
     font-weight: normal;
     font-style: normal;
-    overscroll-behavior-x: none;
+    overscroll-behavior: auto;
     position: relative;
     overflow: hidden;
     color: $secondary-colour;
@@ -462,7 +462,6 @@ p.i {
     }
     font-size: $icon-size-large;
     color: $opaque-colour;
-    background-clip: text;
 }
 .scroll-chevron {
     &-left {
@@ -581,8 +580,12 @@ p.i {
 .col-12 {
     width: 100%;
 }
-.col-abs-width {
-    width: 500px;
+.col-container {
+    min-width: 400px;
+    max-width: 100%;
+    @media (min-width: 500px) {
+        width: 500px;
+    }
 }
 .col-page-margin {
     width: $page-margin-mobile;

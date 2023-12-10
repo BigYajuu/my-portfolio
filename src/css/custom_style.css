@@ -14,7 +14,7 @@ body {
   font-family: "BauPro", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
-  overscroll-behavior-x: none;
+  overscroll-behavior: auto;
   position: relative;
   overflow: hidden;
   color: #202020;
@@ -473,7 +473,6 @@ p.i {
   pointer-events: none;
   font-size: 40px;
   color: rgba(255, 255, 255, 0.75);
-  background-clip: text;
   left: 0;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 100%);
 }
@@ -494,7 +493,6 @@ p.i {
   pointer-events: none;
   font-size: 40px;
   color: rgba(255, 255, 255, 0.75);
-  background-clip: text;
   right: 0;
   background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 100%);
 }
@@ -634,8 +632,14 @@ p.i {
   width: 100%;
 }
 
-.col-abs-width {
-  width: 500px;
+.col-container {
+  min-width: 400px;
+  max-width: 100%;
+}
+@media (min-width: 500px) {
+  .col-container {
+    width: 500px;
+  }
 }
 
 .col-page-margin {

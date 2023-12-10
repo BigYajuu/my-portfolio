@@ -70,7 +70,8 @@ export class WorksEMCBHDOverviewDialog extends OverviewDialog {
                 .append(`Prior to the development of the final version of EMCB,
                     I sought serious notes 
                     on how the real-life surface would look like.
-                    And for that I would mimic the walls and tiles from Japan, 
+                    And for that I would mimic the walls and tiles 
+                    from modern Japan, 
                     as well as many exuberant European architectures. 
                     I also did my research on how 
                     to maximize the colour combinations 
@@ -81,9 +82,9 @@ export class WorksEMCBHDOverviewDialog extends OverviewDialog {
                     what the fans really wanted in the next update.<br><br> 
                     The finalized version 1.2 released on 28-Jul-2021 
                     has brought forth tremendous improvements
-                    on how the world can be built. 
-                    And the new colour system elevated the usefulness 
-                    of all blocks.<br>
+                    on how the world can be built, 
+                    with staggering 680+ new blocks 
+                    and a new colour system.<br>
                     `))
             .append($(`<h2>`)
                 .append(`Download`))
