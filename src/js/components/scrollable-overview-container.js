@@ -32,7 +32,7 @@ export class ScrollableOverviewContainer extends Component {
             .append($overview);
         this.$constructedElement = $(`<div id=${selector}>`)
             .addClass("x-scrollable-item")
-            .addClass("col-abs-width")
+            .addClass("col-container")
             .addClass("col-default-padding")
             .append(this.$container);
         this.setUpOnClick();

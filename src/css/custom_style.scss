@@ -580,8 +580,12 @@ p.i {
 .col-12 {
     width: 100%;
 }
-.col-abs-width {
-    width: 500px;
+.col-container {
+    min-width: 400px;
+    max-width: 100%;
+    @media (min-width: 500px) {
+        width: 500px;
+    }
 }
 .col-page-margin {
     width: $page-margin-mobile;

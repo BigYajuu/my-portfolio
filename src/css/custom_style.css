@@ -632,8 +632,14 @@ p.i {
   width: 100%;
 }
 
-.col-abs-width {
-  width: 500px;
+.col-container {
+  min-width: 400px;
+  max-width: 100%;
+}
+@media (min-width: 500px) {
+  .col-container {
+    width: 500px;
+  }
 }
 
 .col-page-margin {
