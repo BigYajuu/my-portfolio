@@ -113,9 +113,17 @@ export class AnimatedXScrollable extends Component {
             .addClass('scroll-chevron-right')
             .css('height', `${height}px`)
             .append(scrollRightIcon.node[0]);
+        this.updateScrollChevronsHeight();
         const $scrollChevronOpacityMask = $(`<div id="${self.scrollChevronOpacityMaskSelector}">`)
             .append([$scrollChevronLeft, $scrollChevronRight]);
         return $scrollChevronOpacityMask;
+    }
+
+    private updateScrollChevronsHeight() {
+        const self = this;
+        const height = this.getConstructedElementHeight();
+        $(`#${self.scrollChevronLeftSelector}`).css('height', `${height}px`);
+        $(`#${self.scrollChevronRightSelector}`).css('height', `${height}px`);
     }
 
     private setXScrollMouseEvents = () => {
@@ -135,6 +143,7 @@ export class AnimatedXScrollable extends Component {
         // Updates chevrons when window resizes
         $(window).on('resize', function() {
             self.updateScrollChevronVPositions();
+            self.updateScrollChevronsHeight();
             self.xScrollEdgeResponse(scrollChevronSelector, direction);
         });
         $(`#${scrollChevronSelector}`).on('mouseenter', function() {  // When mouse enters chevron
