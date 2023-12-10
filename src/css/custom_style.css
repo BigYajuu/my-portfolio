@@ -473,7 +473,6 @@ p.i {
   pointer-events: none;
   font-size: 40px;
   color: rgba(255, 255, 255, 0.75);
-  background-clip: text;
   left: 0;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 100%);
 }
@@ -494,7 +493,6 @@ p.i {
   pointer-events: none;
   font-size: 40px;
   color: rgba(255, 255, 255, 0.75);
-  background-clip: text;
   right: 0;
   background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 100%);
 }
