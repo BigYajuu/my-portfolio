@@ -45,7 +45,7 @@ body {
     font-family: 'BauPro', Helvetica, Arial, sans-serif;
     font-weight: normal;
     font-style: normal;
-    overscroll-behavior-x: none;
+    overscroll-behavior: auto;
     position: relative;
     overflow: hidden;
     color: $secondary-colour;
