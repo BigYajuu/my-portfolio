@@ -1,7 +1,13 @@
 export class Paths {
     static ROOT = "./";
     static IMG = `${Paths.ROOT}img/`;
+    
     static IMG_WORKS = `${Paths.IMG}works/`;
+    static IMG_WORKS_PROJECT_INTERVENE = `${Paths.IMG_WORKS}project-intervene/`;
+    static IMG_WORKS_EMCB32 = `${Paths.IMG_WORKS}emcb32/`;
+    static IMG_WORKS_EMCB_HD = `${Paths.IMG_WORKS}emcb-hd/`;
+    static IMG_WORKS_E_TEXTURE = `${Paths.IMG_WORKS}e-texture/`;
+
     static IMG_EXPERIENCE = `${Paths.IMG}experience/`;
 }
 

@@ -4,11 +4,10 @@ import { OverviewDialog } from "../overview-dialog";
 export class WorksEMCB32OverviewDialog extends OverviewDialog {
     constructor() {
         super(Selectors.DIALOG_WORKS_EMCB32, "EMCB32", [
-            { path: `${Paths.IMG_WORKS}emcb32-1.png`, title: "Logo" },
-            { path: `${Paths.IMG_WORKS}emcb32-2.png`, title: "v1.1 Update" },
-            { path: `${Paths.IMG_WORKS}emcb32-3.png`, title: "v1.2 Update" },
-            { path: `${Paths.IMG_WORKS}emcb32-4.png`, title: "Test Demo 1 (w/ other mods)" },
-            { path: `${Paths.IMG_WORKS}emcb32-5.png`, title: "Test Demo 2 (w/ other mods)" }
+            { path: `${Paths.IMG_WORKS_EMCB32}03.png`, title: "v1.1 Update" },
+            { path: `${Paths.IMG_WORKS_EMCB32}04.png`, title: "v1.2 Update" },
+            { path: `${Paths.IMG_WORKS_EMCB32}05.png`, title: "Test Demo 1 (w/ other mods)" },
+            { path: `${Paths.IMG_WORKS_EMCB32}10.png`, title: "Promotional Image for Reverse Compatibility" }
         ]);
     }
     buildBody() {
