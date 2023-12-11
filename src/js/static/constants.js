@@ -4,6 +4,10 @@ export class Paths {
 Paths.ROOT = "./";
 Paths.IMG = `${Paths.ROOT}img/`;
 Paths.IMG_WORKS = `${Paths.IMG}works/`;
+Paths.IMG_WORKS_PROJECT_INTERVENE = `${Paths.IMG_WORKS}project-intervene/`;
+Paths.IMG_WORKS_EMCB32 = `${Paths.IMG_WORKS}emcb32/`;
+Paths.IMG_WORKS_EMCB_HD = `${Paths.IMG_WORKS}emcb-hd/`;
+Paths.IMG_WORKS_E_TEXTURE = `${Paths.IMG_WORKS}e-texture/`;
 Paths.IMG_EXPERIENCE = `${Paths.IMG}experience/`;
 export class Constants {
 }

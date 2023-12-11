@@ -77,7 +77,6 @@ export class OverviewDialog extends DialogElement {
                         .attr({
                             'src': this.images[i].path,
                             'title': this.images[i].title,
-                            'loading': 'lazy',
                         })
                         .addClass('x-scrollable-item-slideshow')
                 );

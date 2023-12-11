@@ -4,15 +4,18 @@ import { OverviewDialog } from "../overview-dialog";
 export class WorksEMCBHDOverviewDialog extends OverviewDialog {
     constructor() {
         super(Selectors.DIALOG_WORKS_EMCB_HD, "EMCB HD", [
-            { path: `${Paths.IMG_WORKS}emcb-hd-1.png`, title: "Logo" },
-            { path: `${Paths.IMG_WORKS}emcb-hd-2.png`, title: "v1.1 Update" },
-            { path: `${Paths.IMG_WORKS}emcb-hd-3.png`, title: "v1.2 Update" },
-            { path: `${Paths.IMG_WORKS}emcb-hd-4.png`, title: "v1.0 Bricks Showcase" },
-            { path: `${Paths.IMG_WORKS}emcb-hd-5.png`, title: "v1.0 Wood Showcase" },
-            { path: `${Paths.IMG_WORKS}emcb-hd-6.png`, title: "v1.0 Tile Showcase" },
-            { path: `${Paths.IMG_WORKS}emcb-hd-7.png`, title: "v1.0 Pavement Showcase" },
-            { path: `${Paths.IMG_WORKS}emcb-hd-8.png`, title: "v1.0 Test Environment Demo (w/ other mods)" },
-            { path: `${Paths.IMG_WORKS}emcb-hd-9.png`, title: "Promotional Image for Reverse Compatibility Release" },
+            { path: `${Paths.IMG_WORKS_EMCB_HD}03.png`, title: "Promotional Image for v1.1 Update" },
+            { path: `${Paths.IMG_WORKS_EMCB_HD}04.png`, title: "Promotional Image for v1.2 Update" },
+            { path: `${Paths.IMG_WORKS_EMCB_HD}05.png`, title: "v1.0 Bricks Showcase" },
+            { path: `${Paths.IMG_WORKS_EMCB_HD}06.png`, title: "v1.0 Wood Showcase" },
+            { path: `${Paths.IMG_WORKS_EMCB_HD}08.png`, title: "v1.0 Test World Demo (incl. other mods)" },
+            { path: `${Paths.IMG_WORKS_EMCB_HD}09.png`, title: "Angular City" },
+            { path: `${Paths.IMG_WORKS_EMCB_HD}10.png`, title: "Angular City" },
+            { path: `${Paths.IMG_WORKS_EMCB_HD}11.png`, title: "Angular City" },
+            { path: `${Paths.IMG_WORKS_EMCB_HD}12.png`, title: "Angular City" },
+            { path: `${Paths.IMG_WORKS_EMCB_HD}13.png`, title: "Angular City" },
+            { path: `${Paths.IMG_WORKS_EMCB_HD}14.png`, title: "Angular City" },
+            { path: `${Paths.IMG_WORKS_EMCB_HD}15.png`, title: "Angular City" },
         ]);
     }
     buildBody() {

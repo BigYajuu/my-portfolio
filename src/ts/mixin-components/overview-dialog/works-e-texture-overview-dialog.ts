@@ -8,10 +8,12 @@ export class WorksETextureOverviewDialog extends OverviewDialog {
             Selectors.DIALOG_WORKS_E_TEXTURE,
             "E-Texture",
             [
-                {path: `${Paths.IMG_WORKS}e-texture-2.png`, title: "Showcase 1"},
-                {path: `${Paths.IMG_WORKS}e-texture-3.png`, title: "Showcase 2"},
-                {path: `${Paths.IMG_WORKS}e-texture-4.png`, title: "Real World Demonstration"},
-                {path: `${Paths.IMG_WORKS}e-texture-5.png`, title: "All Signs"},
+                {path: `${Paths.IMG_WORKS_E_TEXTURE}02.png`, title: "Test Showcase"},
+                {path: `${Paths.IMG_WORKS_E_TEXTURE}03.png`, title: "Test Showcase"},
+                {path: `${Paths.IMG_WORKS_E_TEXTURE}04.png`, title: "Angular City"},
+                {path: `${Paths.IMG_WORKS_E_TEXTURE}05.png`, title: "Angular City"},
+                {path: `${Paths.IMG_WORKS_E_TEXTURE}06.png`, title: "Angular City"},
+                {path: `${Paths.IMG_WORKS_E_TEXTURE}07.png`, title: "Angular City"},
             ]
         );
     }
