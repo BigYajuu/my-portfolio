@@ -227,7 +227,6 @@ export class AnimatedXScrollable extends Component {
                 self.customAnimation(scrollChevronSelector, ScrollChevronState.AVAILABLE, direction);
             } // Left Chevron edge detection
         } else if (direction == ScrollDirection.RIGHT) {
-            console.log(`${this.scrollChevronStateLeft} - ${Math.round($(`#${self.scrollableSelector}`).scrollLeft()!)} - ${$(`#${self.scrollableSelector}`).prop('scrollWidth')! - $(`#${self.scrollableSelector}`).prop('clientWidth')!}`)
             if (Utility.isScrollToPosition(
                 Math.round($(`#${self.scrollableSelector}`).scrollLeft()!), 
                 $(`#${self.scrollableSelector}`).prop('scrollWidth')! - $(`#${self.scrollableSelector}`).prop('clientWidth')!
@@ -314,7 +313,6 @@ export class AnimatedXScrollable extends Component {
             return;
         }
         let resizeObserver = new ResizeObserver(() => { 
-            console.log("The element was resized");
             this.xScrollEdgeResponse(this.scrollChevronLeftSelector, ScrollDirection.LEFT);
             this.xScrollEdgeResponse(this.scrollChevronRightSelector, ScrollDirection.RIGHT);
         }); 
