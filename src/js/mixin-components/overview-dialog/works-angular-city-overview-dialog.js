@@ -33,12 +33,26 @@ export class WorksAngularCityOverviewDialog extends OverviewDialog {
             .append($(`<p>`)
             .append(`Over the course of 2 years, 
                     Angular City bloomed to its shape
-                    as dwellings and flats fell in place,
-                    surrounding the rail-tracks.<br><br>
+                    as dwellings and flats fell in place
+                    around the backbone of this city - 
+                    rail-tracks.<br><br>
+
                     The city is heavily inspired from 
-                    modern Japanese cities, and it is
-                    achieved through self-made textures, 
-                    as well as assets borrowed from other mods.<br><br>
+                    modern Japanese cities, and the key aesthetics 
+                    is achieved by adding in 
+                    self-made building textures, 
+                    as well as assets borrowed from other mods
+                    like vending machines, various vehicles, 
+                    and scaffoldings.<br><br>
+
+                    Unlike any typical commuter train travel,
+                    the positioning of the train tracks in Angular City
+                    brings the riders as closely
+                    to the nearby structures as possible,
+                    so that the transitions between different precincts
+                    as the train shifts its place
+                    adds up to the immersion.<br><br>
+
                     City planning and urban designs 
                     have been one of my favourite topics, 
                     and as such, building a city at this scale
@@ -52,13 +66,13 @@ export class WorksAngularCityOverviewDialog extends OverviewDialog {
             .append(`
                     Land Area: ~~120*25 chunks<br>
                     Over 300 buildings/structures of various sizes, 
-                    number of storeys and functions<br>
-                    3 stations built. Standard Gauge.<br>
+                    number of storeys and functions.<br>
+                    3 stations built (all accessible by wheelchair). Standard Gauge.<br>
                 `))
             .append($(`<h3>`)
             .append(`Major Mods Used (dependencies non-inclusive)`))
             .append($(`<h4>`)
-            .append(`For Building Blocks and Extra Texture`))
+            .append(`For Building Blocks and Textures`))
             .append($(`<p>`)
             .append(`
                     - EMCB HD / EMCB32<br>

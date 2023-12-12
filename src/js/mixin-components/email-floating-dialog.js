@@ -16,7 +16,8 @@ export class EmailFloatingDialog extends DialogElement {
         const $subtitle = $('<div>');
         $subtitle.append($('<p>').text(`
             Thank you for your interest in reaching out! 
-            Please use the following form to send a personal email to me.`));
+            If you have any questions,
+            please use the following form to send a personal email to me.`));
         const $lastParagraph = ($(`<p>`).text(`
             Alternatively, 
             you may send to ${self.RECIPIENT_EMAIL}
