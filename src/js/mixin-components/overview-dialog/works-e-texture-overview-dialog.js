@@ -17,14 +17,21 @@ export class WorksETextureOverviewDialog extends OverviewDialog {
             .append($(`<h2>`)
             .append(`Overview`))
             .append($(`<p>`)
-            .append(`As a part of the plan 
+            .append(`As a part of the major scheme 
                     to build a railway-themed city in Minecraft,
                     I made this mod extension 
                     for RealTrainMod - a popular railway mod 
                     made by a Japanese developer.<br><br>
+
                     It covers a wide range of signboards, 
-                    and it is used to simulate pedestrian experience 
-                    in Minecraft.<br>`))
+                    for various uses
+                    and it is mainly used for guiding riders
+                    within the station perimeters
+                    to their destinations.<br><br>
+
+                    The effects of these signboard placements 
+                    can be seen in the screenshots above.<br>
+                `))
             .append($(`<h2>`)
             .append(`Download`))
             .append($(`<p>`)
@@ -33,7 +40,7 @@ export class WorksETextureOverviewDialog extends OverviewDialog {
                     Link: 
                     <a target="_blank" href="https://www.planetminecraft.com/mod/rtm-add-ons-e-texture-extra-signboard-textures-for-realtrainmod/" title="To Planet Minecraft Page">
                     https://www.planetminecraft.com/mod/rtm-add-ons-e-texture-extra-signboard-textures-for-realtrainmod/
-                    </a>`));
+                </a>`));
         return $body;
     }
 }
