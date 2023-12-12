@@ -38,6 +38,7 @@ export class AnimatedXScrollable extends Component {
         this.xScrollSpeed = 0;
         this.scrollChevronStateLeft = ScrollChevronState.BLANK;
         this.scrollChevronStateRight = ScrollChevronState.BLANK;
+        this.createdResizeObserver = false;
         this.buildScrollChevrons = (height) => {
             const self = this;
             const scrollLeftIcon = icon({ prefix: 'far', iconName: 'circle-left' });
@@ -71,7 +72,7 @@ export class AnimatedXScrollable extends Component {
             // Updates chevrons when window resizes
             $(window).on('resize', function () {
                 self.updateScrollChevronVPositions();
-                self.updateScrollChevronsHeight();
+                // self.updateScrollChevronsHeight();
                 self.xScrollEdgeResponse(scrollChevronSelector, direction);
             });
             $(`#${scrollChevronSelector}`).on('mouseenter', function () {
@@ -190,6 +191,7 @@ export class AnimatedXScrollable extends Component {
             'margin': '0',
         });
         this.setScrollChevronsToAppear();
+        this.setResizeObserver();
     }
     updateScrollChevronsHeight() {
         const self = this;
@@ -232,6 +234,7 @@ export class AnimatedXScrollable extends Component {
             } // Left Chevron edge detection
         }
         else if (direction == ScrollDirection.RIGHT) {
+            console.log(`${this.scrollChevronStateLeft} - ${Math.round($(`#${self.scrollableSelector}`).scrollLeft())} - ${$(`#${self.scrollableSelector}`).prop('scrollWidth') - $(`#${self.scrollableSelector}`).prop('clientWidth')}`);
             if (Utility.isScrollToPosition(Math.round($(`#${self.scrollableSelector}`).scrollLeft()), $(`#${self.scrollableSelector}`).prop('scrollWidth') - $(`#${self.scrollableSelector}`).prop('clientWidth'))) {
                 self.customAnimation(scrollChevronSelector, ScrollChevronState.BLANK, direction);
             }
@@ -257,6 +260,7 @@ export class AnimatedXScrollable extends Component {
     onScrollIn() {
         this.updateScrollChevronVPositions();
         this.setScrollChevronsToAppear();
+        this.setResizeObserver();
     }
     onScrollOut() {
         this.setScrollChevronsToDisappear();
@@ -273,6 +277,18 @@ export class AnimatedXScrollable extends Component {
         const self = this;
         $(`#${self.scrollChevronOpacityMaskSelector}`).stop();
         $(`#${self.scrollChevronOpacityMaskSelector}`).css('opacity', '0');
+    }
+    setResizeObserver() {
+        if (this.createdResizeObserver) {
+            return;
+        }
+        let resizeObserver = new ResizeObserver(() => {
+            console.log("The element was resized");
+            this.xScrollEdgeResponse(this.scrollChevronLeftSelector, ScrollDirection.LEFT);
+            this.xScrollEdgeResponse(this.scrollChevronRightSelector, ScrollDirection.RIGHT);
+        });
+        resizeObserver.observe(this.$constructedElement[0]);
+        this.createdResizeObserver = true;
     }
 }
 AnimatedXScrollable.SCROLLABLE_MAX_DX = 12;
