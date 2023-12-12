@@ -166,7 +166,7 @@ class App {
                                 `For 3-months of my university's industrial training,
                                 I have the opportunity to work on mobile
                                 app dev projects using Flutter 
-                                and experiment with many proof-of-concept features.
+                                and experiment with cool proof-of-concept features.
                                 `
                         }
                     ),
