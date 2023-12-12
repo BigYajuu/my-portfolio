@@ -3,7 +3,7 @@ import {Page} from "./engine/page";
 import {PageManagement} from "./engine/page-management";
 import {CubicXAxisTransition} from "./engine/cubic-x-axis-transition.js";
 import {AnimatedXScrollable} from "./components/animated-x-scrollable.js";
-import {ProviderKeys, Selectors} from "./static/constants.js";
+import {Paths, ProviderKeys, Selectors} from "./static/constants.js";
 import { FluxDynamicBackground } from "./components/flux-dynamic-background.js";
 import { Service } from "./engine/service.js";
 import { EmailFloatingDialog } from "./mixin-components/email-floating-dialog.js";
@@ -18,6 +18,7 @@ import { WorksProjectInterveneOverviewDialog } from "./mixin-components/overview
 import { WorksEMCB32OverviewDialog } from "./mixin-components/overview-dialog/works-emcb32-overview-dialog";
 import { WorksEMCBHDOverviewDialog } from "./mixin-components/overview-dialog/works-emcb-hd-overview-dialog";
 import { WorksETextureOverviewDialog } from "./mixin-components/overview-dialog/works-e-texture-overview-dialog";
+import { WorksAngularCityOverviewDialog } from "./mixin-components/overview-dialog/works-angular-city-overview-dialog";
 
 class App {
 
@@ -63,9 +64,8 @@ class App {
                         {
                             title: "Project Intervene (Provisional)",
                             dateBegun: "Jun 2022",
-                            imageClass: "image-project-intervene-1",
+                            imagePath: `${Paths.IMG_WORKS_PROJECT_INTERVENE}/01.png`,
                             imageTitle: "Placeholder Logo for Project Intervene",
-                            imageHeight: "7.2em",
                             overview:
                                 `Work in progress. This simple app 
                                 aims to keep users from using other apps, 
@@ -75,12 +75,29 @@ class App {
                         new WorksProjectInterveneOverviewDialog(),
                     ),
                     new ScrollableOverviewContainer(
+                        Selectors.DIALOG_WORKS_ANGULAR_CITY,
+                        {
+                            title: "Angular City",
+                            dateBegun: "May 2020",
+                            dateEnded: "(On Hiatus)",
+                            imagePath: `${Paths.IMG_WORKS_ANGULAR_CITY}/01.png`,
+                            overview:
+                                `A railroad world 
+                                built with Minecraft and mods.
+                                While the city undergoes its development,
+                                other projects were underway to
+                                completely change the looks of the textures
+                                and aesthetics.`
+                        },
+                        new WorksAngularCityOverviewDialog(),
+                    ),
+                    new ScrollableOverviewContainer(
                         Selectors.DIALOG_WORKS_EMCB32,
                         {
                             title: "EMCB32",
                             dateBegun: "Sep 2020",
                             dateEnded: "Sep 2021",
-                            imageClass: "image-emcb32-1",
+                            imagePath: `${Paths.IMG_WORKS_EMCB32}/01.png`,
                             imageTitle: "Logo of EMCB32",
                             overview:
                                 `The release of the HD mod
@@ -97,15 +114,15 @@ class App {
                             title: "EMCB HD",
                             dateBegun: "Jun 2020",
                             dateEnded: "Sep 2021",
-                            imageClass: "image-emcb-hd-1",
+                            imagePath: `${Paths.IMG_WORKS_EMCB_HD}/01.png`,
                             imageTitle: "Logo of EMCB HD",
                             overview:
-                                `My growing desire to build a realistic, 
-                                rail-transport city in Minecraft 
-                                at the time puts me on a journey
+                                `My growing desire to build a 
+                                city based on reality in Minecraft 
+                                puts me on a journey
                                 to create a mod that introduces
-                                a collection of HD building blocks 
-                                with real-world textures.`
+                                a huge collection of HD building blocks 
+                                with immersive textures.`
                         },
                         new WorksEMCBHDOverviewDialog(),
                     ),
@@ -115,9 +132,8 @@ class App {
                             title: "E-Texture",
                             dateBegun: "Jul 2019",
                             dateEnded: "Nov 2019",
-                            imageClass: "image-e-texture-1",
+                            imagePath: `${Paths.IMG_WORKS_E_TEXTURE}/01.png`,
                             imageTitle: "Showcase of E-Texture Signboard Designs",
-                            imageWidth: "150px",
                             overview:
                                 `As I began working on a new city project in Minecraft, 
                                 I built this signboard extension for 
@@ -144,7 +160,7 @@ class App {
                             subtitle: "Mobile Dev Intern (iOS/Flutter Team)",
                             dateBegun: "Nov 2022",
                             dateEnded: "Jan 2023",
-                            imageClass: "image-agmo-1",
+                            imagePath: `${Paths.IMG_EXPERIENCE_AGMO_STUDIO}/01.jpeg`,
                             imageTitle: "Agmo Studio",
                             overview:
                                 `For 3-months of my university's industrial training,
