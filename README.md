@@ -1,7 +1,8 @@
 <a name="readme-top"></a>
 (C) MMXXIII Chuyue Wu
 
-Website Link: [https://github.com/BigYajuu/my-portfolio](https://github.com/BigYajuu/my-portfolio)
+Website Link: [https://bigyajuu.github.io/my-portfolio/](https://bigyajuu.github.io/my-portfolio/)
+Repo Link: [https://github.com/BigYajuu/my-portfolio](https://github.com/BigYajuu/my-portfolio)
 
 ## Built With
 Built with homemade HTML-CSS-TS/JS framework. Work files bundled using Parcel.
