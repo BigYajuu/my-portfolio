@@ -7,7 +7,8 @@ function e(e){return e&&e.__esModule?e.default:e}var t,n,r,i,a,o,s,l,c,u,f,d,p,h
             </div>
         `)}runFadeTransition(t,n,r,i){this.clearAllImageClasses(),e(w)(`#${this.foregroundSelector}`).addClass(t),e(w)(`#${this.backgroundSelector}`).addClass(n),e(w)(`#${this.foregroundSelector}`).css("opacity",1),e(w)(`#${this.foregroundSelector}`).animate({opacity:0},r,()=>{"function"==typeof i&&i()})}runNextFadeTransition(){let e=this;var t=this.getImageClassByIndex(this.currentImageIndex-1);this.hasInitialImageClassAnimated||(t=this.initialImageClass,this.hasInitialImageClassAnimated=!0);let n=this.getImageClassByIndex(this.currentImageIndex);this.runFadeTransition(t,n,e.FADE_DURATION,()=>{e.runNextFadeTransition()}),this.updateNextImageIndex()}getImageClassByIndex(e,t){var n=(e%this.currentFilm.length+this.currentFilm.length)%this.currentFilm.length;return(void 0!==t?t:this.imageMode)==x.NORMAL?this.currentFilm[n].normal:this.currentFilm[n].saturated}onScrollIn(){this.clearAllImageClasses(),this.setForegroundToAppear(),this.setForegroundAnimationToRunning(),this.setThisBackgroundInProvider()}onScrollOut(){this.setForegroundToDisappear(),this.setForegroundAnimationToStop()}clearAllImageClasses(){e(w)(`#${this.foregroundSelector}`).removeClass(this.initialImageClass);for(let t=0;t<this.currentFilm.length;t++)e(w)(`#${this.foregroundSelector}`).removeClass(this.getImageClassByIndex(t,x.NORMAL)),e(w)(`#${this.backgroundSelector}`).removeClass(this.getImageClassByIndex(t,x.NORMAL)),e(w)(`#${this.foregroundSelector}`).removeClass(this.getImageClassByIndex(t,x.SATURATED)),e(w)(`#${this.backgroundSelector}`).removeClass(this.getImageClassByIndex(t,x.SATURATED))}decrementImageIndex(){this.currentImageIndex=(this.currentImageIndex+1)%this.currentFilm.length}updateNextImageIndex(){this.currentImageIndex=(this.currentImageIndex+1)%this.currentFilm.length}setForegroundToAppear(){e(w)(`#${this.foregroundSelector}`).css("visibility","visible"),e(w)(`#${this.foregroundSelector}`).css("opacity","0")}setForegroundToDisappear(){e(w)(`#${this.foregroundSelector}`).css("visibility","hidden")}setForegroundAnimationToStop(){e(w)(`#${this.foregroundSelector}`).stop()}setForegroundAnimationToRunning(){this.runNextFadeTransition()}setToFocused(){this.setForegroundAnimationToStop(),this.runSaturatedImageTransition()}setToDefocused(){this.setForegroundAnimationToStop(),this.runNormalImageTransition()}runNormalImageTransition(){let e=this.getImageClassByIndex(this.currentImageIndex);this.imageMode=x.NORMAL;let t=this.getImageClassByIndex(this.currentImageIndex);this.runFadeTransition(e,t,this.FADE_DURATION_FAST,()=>{})}runSaturatedImageTransition(){let e=this,t=this.getImageClassByIndex(this.currentImageIndex);this.imageMode=x.SATURATED;let n=this.getImageClassByIndex(this.currentImageIndex);this.runFadeTransition(t,n,this.FADE_DURATION_FAST,()=>{e.decrementImageIndex(),e.runNextFadeTransition()})}setThisBackgroundInProvider(){this.backgroundProvider.setState({currentBackground:this})}}class nn{static getParameterByName(e,t){t||(t=window.location.href);var n=RegExp("[?&]"+(e=e.replace(/[[\]]/g,"\\$&"))+"(=([^&#]*)|&|#|$)").exec(t);return n?n[2]?decodeURIComponent(n[2].replace(/\+/g," ")):"":null}}var nr=class{constructor(e){this.selector=e}attach(){}remove(){}onShow(){}onHide(){}onReset(){}},ni=class extends nr{constructor(t,n){super(t),this.$veil=e(w)("<div>").addClass("veil"),this.backgroundProvider=t8.getInstance(I.BACKGROUND,{currentBackground:this}),this.correlatedMixinOnHideCallback=n}attach(){let t=this;this.$veil.on("click",()=>{t.correlatedMixinOnHideCallback&&t.correlatedMixinOnHideCallback()}),e(w)("body").append(this.$veil)}remove(){this.$veil.remove()}onShow(){this.getBackgroundFromProvider().setToDefocused(),this.$veil.stop(),this.$veil.css("visibility","visible"),this.$veil.css("opacity",1)}onHide(){this.getBackgroundFromProvider().setToFocused(),this.$veil.stop(),this.$veil.css("visibility","hidden"),this.$veil.css("opacity",0)}getBackgroundFromProvider(){return this.backgroundProvider.getState().currentBackground}},na=class extends nr{constructor(t,n=""){super(t),this.veil=new ni(`${this.selector}-veil`,()=>{this.onHide()}),this.title=n,this.$dialogElement=e(w)("<div>").addClass("dialog-element"),this.$dialogElement.append(this.buildTitleBar())}attach(){this.veil.attach(),e(w)("body").append(this.$dialogElement)}remove(){this.veil.remove(),this.$dialogElement.remove()}buildTitleBar(){let t=e(w)("<div>").addClass("title-bar"),n=e(w)("<h1>").text(this.title),r=e(w)("<div>").addClass(["close-button","icon-x"]);return r.on("click",()=>{this.onHide()}),t.append([n,r]),t}onShow(){this.veil.onShow(),this.$dialogElement.stop(),this.$dialogElement.css("visibility","visible"),this.$dialogElement.animate({opacity:1},T.ANIMATION_DURATION_SLOW)}onHide(){this.veil.onHide(),this.$dialogElement.stop(),this.$dialogElement.animate({opacity:0},T.ANIMATION_DURATION_DEFAULT,()=>{this.$dialogElement.css("visibility","hidden")})}};class no extends na{constructor(){super(O.EMAIL_FLOATING_DIALOG,"Contact the Creator"),this.RECIPIENT_EMAIL="wuchuyue2014@gmail.com",this.$dialogElement.append(this.buildLeadingSubtitle()),this.$dialogElement.append(this.buildForm()),this.attach()}buildLeadingSubtitle(){let t=this,n=e(w)("<div>");n.append(e(w)("<p>").text(`
             Thank you for your interest in reaching out! 
-            Please use the following form to send a personal email to me.`));let r=e(w)("<p>").text(`
+            If you have any questions,
+            please use the following form to send a personal email to me.`));let r=e(w)("<p>").text(`
             Alternatively, 
             you may send to ${t.RECIPIENT_EMAIL}
         `),i=e(w)("<div>").addClass(["text-icon-button","baseline","icon-copy"]);return i.on("click",function(){navigator.clipboard.writeText(t.RECIPIENT_EMAIL).then(()=>{})}),r.append(i),r.append("."),n.append(r),n}buildForm(){let t=e(w)("<form>").attr({action:"https://formspree.io/f/xyyqqypk",method:"POST"}),n=e(w)("<div>").addClass("input-group"),r=e(w)("<span>").addClass("required").text("*"),i=e(w)("<label>").append(r).append("Name or Organization"),a=e(w)("<input>").attr({type:"text",id:"name",required:!0}),o=e(w)("<div>").addClass("input-group"),s=e(w)("<span>").addClass("required").text("*"),l=e(w)("<label>").append(s).append("Email"),c=e(w)("<input>").attr({type:"email",id:"email",required:!0}),u=e(w)("<div>").addClass("input-group"),f=e(w)("<span>").addClass("required").text("*"),d=e(w)("<label>").append(f).append("Message"),p=e(w)("<textarea>").attr({name:"body",id:"message",rows:"4",required:!0}),h=e(w)("<div>").addClass("row-group"),m=e(w)("<input>").attr({type:"submit",value:"Submit"});n.append(i,a),o.append(l,c),u.append(d,p),h.append(m);let g=e(w)("<div>").addClass("row-group");return g.append(n,o),t.append(g,u,h),t}}var ns=class extends R{constructor(t,{title:n,subtitle:r,dateBegun:i,dateEnded:a="",imagePath:o,imageTitle:s,overview:l},c){super(t),this.containerSelector=`${this.selector}-container`,this.overviewDialog=c;let u=e(w)("<div>").html(`<p class="i timestamp">${i}<br>- ${a}<p>`);var f=e(w)("<div>");o&&(f=e(w)("<img>").attr({src:`${o}`,title:`${s}`,loading:"lazy"}).addClass("x-scrollable-image"));let d=e(w)("<div>").addClass("title-bar").append(e(w)("<h1>").text(n)).append(u),p=e(w)('<p class="i">').css({margin:"0",padding:"0"}).text(r||""),h=e(w)("<p>").text(l);this.$container=e(w)(`<div id=${this.containerSelector}>`).addClass("container").append(f).append(d).append(p).append(h),this.$constructedElement=e(w)(`<div id=${t}>`).addClass("x-scrollable-item").addClass("col-container").addClass("col-default-padding").append(this.$container),this.setUpOnClick()}setUpOnClick(){let t=this;this.overviewDialog&&(e(w)(document).on("click",`#${t.selector}`,()=>{t.onClick()}),this.$container.addClass("clickable"))}onClick(){this.overviewDialog.onBuildAndShow()}},nl=class extends R{constructor(t){super(t),this.firstScrollInComplete=!1,this.titleSelector=`${this.selector}-title`,this.subtitleSelector=`${this.selector}-subtitle`,this.scrollDownIconSelector=`${this.selector}-scroll-down-icon`;let n=e(w)(`<div id="${this.titleSelector}">`).html(`
@@ -103,12 +104,26 @@ function e(e){return e&&e.__esModule?e.default:e}var t,n,r,i,a,o,s,l,c,u,f,d,p,h
                     </a>`))}}class nb extends np{constructor(){super(O.DIALOG_WORKS_ANGULAR_CITY,"Angular City",[{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"16.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"15.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"02.png",title:"Map View"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"10.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"11.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"12.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"13.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"14.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"17.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"18.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"19.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"20.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"21.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"22.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"23.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"24.png",title:"Screenshot"},{folderPath:`${A.IMG_WORKS_ANGULAR_CITY}`,imageName:"25.png",title:"Screenshot"}])}buildBody(){return e(w)("<div>").append(e(w)("<p>").append(`Please enjoy the view of the city 
                     from the screenshots above.<br>`)).append(e(w)("<h2>").append("Overview")).append(e(w)("<p>").append(`Over the course of 2 years, 
                     Angular City bloomed to its shape
-                    as dwellings and flats fell in place,
-                    surrounding the rail-tracks.<br><br>
+                    as dwellings and flats fell in place
+                    around the backbone of this city - 
+                    rail-tracks.<br><br>
+
                     The city is heavily inspired from 
-                    modern Japanese cities, and it is
-                    achieved through self-made textures, 
-                    as well as assets borrowed from other mods.<br><br>
+                    modern Japanese cities, and the key aesthetics 
+                    is achieved by adding in 
+                    self-made building textures, 
+                    as well as assets borrowed from other mods
+                    like vending machines, various vehicles, 
+                    and scaffoldings.<br><br>
+
+                    Unlike any typical commuter train travel,
+                    the positioning of the train tracks in Angular City
+                    brings the riders as closely
+                    to the nearby structures as possible,
+                    so that the transitions between different precincts
+                    as the train shifts its place
+                    adds up to the immersion.<br><br>
+
                     City planning and urban designs 
                     have been one of my favourite topics, 
                     and as such, building a city at this scale
@@ -116,9 +131,9 @@ function e(e){return e&&e.__esModule?e.default:e}var t,n,r,i,a,o,s,l,c,u,f,d,p,h
                 `)).append(e(w)("<h2>").append("Composition")).append(e(w)("<h3>").append("City")).append(e(w)("<p>").append(`
                     Land Area: ~~120*25 chunks<br>
                     Over 300 buildings/structures of various sizes, 
-                    number of storeys and functions<br>
-                    3 stations built. Standard Gauge.<br>
-                `)).append(e(w)("<h3>").append("Major Mods Used (dependencies non-inclusive)")).append(e(w)("<h4>").append("For Building Blocks and Extra Texture")).append(e(w)("<p>").append(`
+                    number of storeys and functions.<br>
+                    3 stations built (all accessible by wheelchair). Standard Gauge.<br>
+                `)).append(e(w)("<h3>").append("Major Mods Used (dependencies non-inclusive)")).append(e(w)("<h4>").append("For Building Blocks and Textures")).append(e(w)("<p>").append(`
                     - EMCB HD / EMCB32<br>
                     - E-Texture<br>
                     - Realistic Road Mod<br>
@@ -153,12 +168,12 @@ function e(e){return e&&e.__esModule?e.default:e}var t,n,r,i,a,o,s,l,c,u,f,d,p,h
                                 puts me on a journey
                                 to create a mod that introduces
                                 a huge collection of HD building blocks 
-                                with immersive textures.`},new ng),new ns(O.DIALOG_WORKS_ANGULAR_CITY,{title:"Angular City",dateBegun:"May 2020",dateEnded:"(On Hiatus)",imagePath:`${A.IMG_WORKS_ANGULAR_CITY}/01.png`,overview:`A railroad world 
+                                with immersive textures.`},new ng),new ns(O.DIALOG_WORKS_ANGULAR_CITY,{title:"Angular City",dateBegun:"May 2020",dateEnded:"(On Hiatus)",imagePath:`${A.IMG_WORKS_ANGULAR_CITY}/01.png`,overview:`A rail-based world 
                                 built with Minecraft and mods.
                                 While the city undergoes its development,
-                                other projects were underway to
-                                completely change the looks of the textures
-                                and aesthetics.`},new nb),new ns(O.DIALOG_WORKS_E_TEXTURE,{title:"E-Texture",dateBegun:"Jul 2019",dateEnded:"Nov 2019",imagePath:`${A.IMG_WORKS_E_TEXTURE}/01.png`,imageTitle:"Showcase of E-Texture Signboard Designs",overview:`As I began working on a new city project in Minecraft, 
+                                other mod projects were underway to
+                                completely change the looks of 
+                                the building textures.`},new nb),new ns(O.DIALOG_WORKS_E_TEXTURE,{title:"E-Texture",dateBegun:"Jul 2019",dateEnded:"Nov 2019",imagePath:`${A.IMG_WORKS_E_TEXTURE}/01.png`,imageTitle:"Showcase of E-Texture Signboard Designs",overview:`As I began working on a new city project in Minecraft, 
                                 I built this signboard extension for 
                                 a popular mod.
                                 These signs can be placed
@@ -168,4 +183,4 @@ function e(e){return e&&e.__esModule?e.default:e}var t,n,r,i,a,o,s,l,c,u,f,d,p,h
                                 app dev projects using Flutter 
                                 and experiment with many proof-of-concept features.
                                 `})]}),s=new S(O.PAGE_1,new N,[n,i]),l=new S(O.PAGE_2,new N,[r,a,o]);new E(O.PAGE_MANAGEMENT_CONTAINER,[s,l]),this.buildMixins(),e(w)("#header-icon-mail, #footnote-mail").on("click",function(){t.getEmailFloatingDialog().onShow()}),e(w)(function(){"1"===nn.getParameterByName("enquire",window.location.href)&&t.getEmailFloatingDialog().onShow()}),this.appBuilt=!0}}().build();
-//# sourceMappingURL=index.948889b2.js.map
+//# sourceMappingURL=index.098e80db.js.map
