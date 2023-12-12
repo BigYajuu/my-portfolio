@@ -10,15 +10,13 @@ export class ScrollableOverviewContainer extends Component {
     private containerSelector: string = `${this.selector}-container`;
     private $container: JQuery<HTMLElement>;
 
-    constructor(selector: string, {title, subtitle, dateBegun, dateEnded="", imageClass, imageHeight, imageWidth, imageTitle, overview
+    constructor(selector: string, {title, subtitle, dateBegun, dateEnded="", imagePath, imageTitle, overview
     } : {
         title: string,
         subtitle?: string,
         dateBegun: string,
         dateEnded?: string,
-        imageClass?: string,
-        imageHeight?: string,
-        imageWidth?: string,
+        imagePath?: string,
         imageTitle?: string,
         overview: string
     }, overviewDialog?: OverviewDialog, 
@@ -27,12 +25,15 @@ export class ScrollableOverviewContainer extends Component {
         const self = this;
         this.overviewDialog = overviewDialog;
         const $timestamp = $(`<div>`).html(`<p class="i timestamp">${dateBegun}<br>- ${dateEnded}<p>`);
-        const $image = $(`<div title="${imageTitle}">`).addClass(`${imageClass} x-scrollable-image`);
-        if (imageHeight) {
-            $image.css("height", imageHeight);
-        }
-        if (imageWidth) {
-            $image.css("width", imageWidth);
+        var $image = $(`<div>`);
+        if (imagePath) {
+            $image = $(`<img>`)
+                .attr({
+                    'src': `${imagePath}`,
+                    'title': `${imageTitle}`,
+                    'loading': 'lazy',
+                })
+                .addClass(`x-scrollable-image`);
         }
 
         const $titleBar = $(`<div>`).addClass("title-bar")

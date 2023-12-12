@@ -64,16 +64,6 @@ export class OverviewDialog extends DialogElement {
                 'loading': 'lazy',
             }).addClass('x-scrollable-item-slideshow');
             $slideshow.append($a.append($img));
-            // $slideshow
-            //     .append(
-            //         $('<img>')
-            //             .attr({
-            //                 'src': this.images[i].path,
-            //                 'title': this.images[i].title,
-            //                 'loading': 'lazy',
-            //             })
-            //             .addClass('x-scrollable-item-slideshow')
-            //     );
         }
         return $slideshow;
     }

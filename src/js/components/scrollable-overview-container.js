@@ -1,18 +1,21 @@
 import $ from "jquery";
 import Component from "../engine/component";
 export class ScrollableOverviewContainer extends Component {
-    constructor(selector, { title, subtitle, dateBegun, dateEnded = "", imageClass, imageHeight, imageWidth, imageTitle, overview }, overviewDialog) {
+    constructor(selector, { title, subtitle, dateBegun, dateEnded = "", imagePath, imageTitle, overview }, overviewDialog) {
         super(selector);
         this.containerSelector = `${this.selector}-container`;
         const self = this;
         this.overviewDialog = overviewDialog;
         const $timestamp = $(`<div>`).html(`<p class="i timestamp">${dateBegun}<br>- ${dateEnded}<p>`);
-        const $image = $(`<div title="${imageTitle}">`).addClass(`${imageClass} x-scrollable-image`);
-        if (imageHeight) {
-            $image.css("height", imageHeight);
-        }
-        if (imageWidth) {
-            $image.css("width", imageWidth);
+        var $image = $(`<div>`);
+        if (imagePath) {
+            $image = $(`<img>`)
+                .attr({
+                'src': `${imagePath}`,
+                'title': `${imageTitle}`,
+                'loading': 'lazy',
+            })
+                .addClass(`x-scrollable-image`);
         }
         const $titleBar = $(`<div>`).addClass("title-bar")
             .append($(`<h1>`).text(title))
