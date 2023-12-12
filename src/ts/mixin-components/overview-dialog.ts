@@ -3,7 +3,8 @@ import DialogElement from "./dialog-element";
 import AnimatedXScrollable from "../components/animated-x-scrollable";
 
 interface OverviewImageData {
-    path: string;
+    folderPath: string;
+    imageName: string;
     title: string;
 }
 
@@ -71,16 +72,26 @@ export class OverviewDialog extends DialogElement {
     private buildImageContent(): JQuery<HTMLElement> {
         const $slideshow = $(`<div>`);
         for (var i=0; i<this.images.length; i++) {
-            $slideshow
-                .append(
-                    $('<img>')
-                        .attr({
-                            'src': this.images[i].path,
-                            'title': this.images[i].title,
-                            'loading': 'lazy',
-                        })
-                        .addClass('x-scrollable-item-slideshow')
-                );
+            const $a = $('<a>').attr({
+                'href': `${this.images[i].folderPath}${this.images[i].imageName}`,
+                'target': '_blank',
+            });
+            const $img = $('<img>').attr({
+                'src': `${this.images[i].folderPath}/thumbnails/${this.images[i].imageName}`,
+                'title': this.images[i].title,
+                'loading': 'lazy',
+            }).addClass('x-scrollable-item-slideshow');
+            $slideshow.append($a.append($img));
+            // $slideshow
+            //     .append(
+            //         $('<img>')
+            //             .attr({
+            //                 'src': this.images[i].path,
+            //                 'title': this.images[i].title,
+            //                 'loading': 'lazy',
+            //             })
+            //             .addClass('x-scrollable-item-slideshow')
+            //     );
         }
         return $slideshow;
     }

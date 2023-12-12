@@ -4,18 +4,18 @@ import { OverviewDialog } from "../overview-dialog";
 export class WorksEMCBHDOverviewDialog extends OverviewDialog {
     constructor() {
         super(Selectors.DIALOG_WORKS_EMCB_HD, "EMCB HD", [
-            { path: `${Paths.IMG_WORKS_EMCB_HD}03.png`, title: "Promotional Image for v1.1 Update" },
-            { path: `${Paths.IMG_WORKS_EMCB_HD}04.png`, title: "Promotional Image for v1.2 Update" },
-            { path: `${Paths.IMG_WORKS_EMCB_HD}05.png`, title: "v1.0 Bricks Showcase" },
-            { path: `${Paths.IMG_WORKS_EMCB_HD}06.png`, title: "v1.0 Wood Showcase" },
-            { path: `${Paths.IMG_WORKS_EMCB_HD}08.png`, title: "v1.0 Test World Demo (incl. other mods)" },
-            { path: `${Paths.IMG_WORKS_EMCB_HD}09.png`, title: "Angular City" },
-            { path: `${Paths.IMG_WORKS_EMCB_HD}10.png`, title: "Angular City" },
-            { path: `${Paths.IMG_WORKS_EMCB_HD}11.png`, title: "Angular City" },
-            { path: `${Paths.IMG_WORKS_EMCB_HD}12.png`, title: "Angular City" },
-            { path: `${Paths.IMG_WORKS_EMCB_HD}13.png`, title: "Angular City" },
-            { path: `${Paths.IMG_WORKS_EMCB_HD}14.png`, title: "Angular City" },
-            { path: `${Paths.IMG_WORKS_EMCB_HD}15.png`, title: "Angular City" },
+            { folderPath: `${Paths.IMG_WORKS_EMCB_HD}`, imageName: `03.png`, title: "Promotional Image for v1.1 Update" },
+            { folderPath: `${Paths.IMG_WORKS_EMCB_HD}`, imageName: `04.png`, title: "Promotional Image for v1.2 Update" },
+            { folderPath: `${Paths.IMG_WORKS_EMCB_HD}`, imageName: `05.png`, title: "v1.0 Bricks Showcase" },
+            { folderPath: `${Paths.IMG_WORKS_EMCB_HD}`, imageName: `06.png`, title: "v1.0 Wood Showcase" },
+            { folderPath: `${Paths.IMG_WORKS_EMCB_HD}`, imageName: `08.png`, title: "v1.0 Test World Demo (incl. other mods)" },
+            { folderPath: `${Paths.IMG_WORKS_EMCB_HD}`, imageName: `09.png`, title: "Angular City" },
+            { folderPath: `${Paths.IMG_WORKS_EMCB_HD}`, imageName: `10.png`, title: "Angular City" },
+            { folderPath: `${Paths.IMG_WORKS_EMCB_HD}`, imageName: `11.png`, title: "Angular City" },
+            { folderPath: `${Paths.IMG_WORKS_EMCB_HD}`, imageName: `12.png`, title: "Angular City" },
+            { folderPath: `${Paths.IMG_WORKS_EMCB_HD}`, imageName: `13.png`, title: "Angular City" },
+            { folderPath: `${Paths.IMG_WORKS_EMCB_HD}`, imageName: `14.png`, title: "Angular City" },
+            { folderPath: `${Paths.IMG_WORKS_EMCB_HD}`, imageName: `15.png`, title: "Angular City" },
         ]);
     }
     buildBody() {

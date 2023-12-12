@@ -4,12 +4,12 @@ import { OverviewDialog } from "../overview-dialog";
 export class WorksETextureOverviewDialog extends OverviewDialog {
     constructor() {
         super(Selectors.DIALOG_WORKS_E_TEXTURE, "E-Texture", [
-            { path: `${Paths.IMG_WORKS_E_TEXTURE}02.png`, title: "Test Showcase" },
-            { path: `${Paths.IMG_WORKS_E_TEXTURE}03.png`, title: "Test Showcase" },
-            { path: `${Paths.IMG_WORKS_E_TEXTURE}04.png`, title: "Angular City" },
-            { path: `${Paths.IMG_WORKS_E_TEXTURE}05.png`, title: "Angular City" },
-            { path: `${Paths.IMG_WORKS_E_TEXTURE}06.png`, title: "Angular City" },
-            { path: `${Paths.IMG_WORKS_E_TEXTURE}07.png`, title: "Angular City" },
+            { folderPath: `${Paths.IMG_WORKS_E_TEXTURE}`, imageName: "02.png", title: "Test Showcase" },
+            { folderPath: `${Paths.IMG_WORKS_E_TEXTURE}`, imageName: "03.png", title: "Test Showcase" },
+            { folderPath: `${Paths.IMG_WORKS_E_TEXTURE}`, imageName: "04.png", title: "Angular City" },
+            { folderPath: `${Paths.IMG_WORKS_E_TEXTURE}`, imageName: "05.png", title: "Angular City" },
+            { folderPath: `${Paths.IMG_WORKS_E_TEXTURE}`, imageName: "06.png", title: "Angular City" },
+            { folderPath: `${Paths.IMG_WORKS_E_TEXTURE}`, imageName: "07.png", title: "Angular City" },
         ]);
     }
     buildBody() {

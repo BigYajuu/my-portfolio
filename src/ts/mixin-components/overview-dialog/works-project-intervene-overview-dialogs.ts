@@ -8,8 +8,8 @@ export class WorksProjectInterveneOverviewDialog extends OverviewDialog {
             Selectors.DIALOG_WORKS_PROJECT_INTERVENE,
             "Project Intervene (Provisional)",
             [
-                {path: `${Paths.IMG_WORKS_PROJECT_INTERVENE}01.png`, title: "Logo"},
-                {path: `${Paths.IMG_WORKS_PROJECT_INTERVENE}02.png`, title: "A Peek on Styles"}
+                {folderPath: `${Paths.IMG_WORKS_PROJECT_INTERVENE}`, imageName: "01.png", title: "Logo"},
+                {folderPath: `${Paths.IMG_WORKS_PROJECT_INTERVENE}`, imageName: "02.png", title: "A Peek on Styles"}
             ]
         );
     }
