@@ -55,6 +55,8 @@ export class AnimatedXScrollable extends Component {
     private scrollChevronStateLeft: ScrollChevronState = ScrollChevronState.BLANK;
     private scrollChevronStateRight: ScrollChevronState = ScrollChevronState.BLANK;
 
+    private createdResizeObserver: boolean = false;
+
     constructor(selector: string, pageSelector: string, 
             {children=[], $content}: {children?: Component[], $content?: JQuery<HTMLElement>}) {
         super(selector);
@@ -99,6 +101,7 @@ export class AnimatedXScrollable extends Component {
                 'margin': '0',
             });
         this.setScrollChevronsToAppear();
+        this.setResizeObserver();
     }
 
     private buildScrollChevrons = (height: number) => {
@@ -143,7 +146,7 @@ export class AnimatedXScrollable extends Component {
         // Updates chevrons when window resizes
         $(window).on('resize', function() {
             self.updateScrollChevronVPositions();
-            self.updateScrollChevronsHeight();
+            // self.updateScrollChevronsHeight();
             self.xScrollEdgeResponse(scrollChevronSelector, direction);
         });
         $(`#${scrollChevronSelector}`).on('mouseenter', function() {  // When mouse enters chevron
@@ -270,6 +273,7 @@ export class AnimatedXScrollable extends Component {
     public onScrollIn(): void {
         this.updateScrollChevronVPositions();
         this.setScrollChevronsToAppear();
+        this.setResizeObserver();
     }
 
     public onScrollOut(): void {
@@ -302,6 +306,18 @@ export class AnimatedXScrollable extends Component {
         }
         $(`#${self.scrollChevronLeftSelector}`).css('top', finalHeight);
         $(`#${self.scrollChevronRightSelector}`).css('top', finalHeight);
+    }
+
+    private setResizeObserver() {
+        if (this.createdResizeObserver) {
+            return;
+        }
+        let resizeObserver = new ResizeObserver(() => { 
+            this.xScrollEdgeResponse(this.scrollChevronLeftSelector, ScrollDirection.LEFT);
+            this.xScrollEdgeResponse(this.scrollChevronRightSelector, ScrollDirection.RIGHT);
+        }); 
+        resizeObserver.observe(this.$constructedElement![0]);
+        this.createdResizeObserver = true;
     }
 }
 

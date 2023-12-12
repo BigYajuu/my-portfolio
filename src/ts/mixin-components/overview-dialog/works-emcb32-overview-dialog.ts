@@ -8,10 +8,10 @@ export class WorksEMCB32OverviewDialog extends OverviewDialog {
             Selectors.DIALOG_WORKS_EMCB32,
             "EMCB32",
             [
-                {path: `${Paths.IMG_WORKS_EMCB32}03.png`, title: "v1.1 Update"},
-                {path: `${Paths.IMG_WORKS_EMCB32}04.png`, title: "v1.2 Update"},
-                {path: `${Paths.IMG_WORKS_EMCB32}05.png`, title: "Test Demo 1 (w/ other mods)"},
-                {path: `${Paths.IMG_WORKS_EMCB32}10.png`, title: "Promotional Image for Reverse Compatibility"}
+                {folderPath: `${Paths.IMG_WORKS_EMCB32}`, imageName: "03.png", title: "v1.1 Update"},
+                {folderPath: `${Paths.IMG_WORKS_EMCB32}`, imageName: "04.png", title: "v1.2 Update"},
+                {folderPath: `${Paths.IMG_WORKS_EMCB32}`, imageName: "05.png", title: "Test Demo 1 (w/ other mods)"},
+                {folderPath: `${Paths.IMG_WORKS_EMCB32}`, imageName: "10.png", title: "Promotional Image for Reverse Compatibility"}
             ]
         );
     }
