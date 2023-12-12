@@ -75,23 +75,6 @@ class App {
                         new WorksProjectInterveneOverviewDialog(),
                     ),
                     new ScrollableOverviewContainer(
-                        Selectors.DIALOG_WORKS_ANGULAR_CITY,
-                        {
-                            title: "Angular City",
-                            dateBegun: "May 2020",
-                            dateEnded: "(On Hiatus)",
-                            imagePath: `${Paths.IMG_WORKS_ANGULAR_CITY}/01.png`,
-                            overview:
-                                `A railroad world 
-                                built with Minecraft and mods.
-                                While the city undergoes its development,
-                                other projects were underway to
-                                completely change the looks of the textures
-                                and aesthetics.`
-                        },
-                        new WorksAngularCityOverviewDialog(),
-                    ),
-                    new ScrollableOverviewContainer(
                         Selectors.DIALOG_WORKS_EMCB32,
                         {
                             title: "EMCB32",
@@ -125,6 +108,23 @@ class App {
                                 with immersive textures.`
                         },
                         new WorksEMCBHDOverviewDialog(),
+                    ),
+                    new ScrollableOverviewContainer(
+                        Selectors.DIALOG_WORKS_ANGULAR_CITY,
+                        {
+                            title: "Angular City",
+                            dateBegun: "May 2020",
+                            dateEnded: "(On Hiatus)",
+                            imagePath: `${Paths.IMG_WORKS_ANGULAR_CITY}/01.png`,
+                            overview:
+                                `A railroad world 
+                                built with Minecraft and mods.
+                                While the city undergoes its development,
+                                other projects were underway to
+                                completely change the looks of the textures
+                                and aesthetics.`
+                        },
+                        new WorksAngularCityOverviewDialog(),
                     ),
                     new ScrollableOverviewContainer(
                         Selectors.DIALOG_WORKS_E_TEXTURE,
