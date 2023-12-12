@@ -82,12 +82,12 @@ class App {
                     dateBegun: "May 2020",
                     dateEnded: "(On Hiatus)",
                     imagePath: `${Paths.IMG_WORKS_ANGULAR_CITY}/01.png`,
-                    overview: `A railroad world 
+                    overview: `A rail-based world 
                                 built with Minecraft and mods.
                                 While the city undergoes its development,
-                                other projects were underway to
-                                completely change the looks of the textures
-                                and aesthetics.`
+                                other mod projects were underway to
+                                completely change the looks of 
+                                the building textures.`
                 }, new WorksAngularCityOverviewDialog()),
                 new ScrollableOverviewContainer(Selectors.DIALOG_WORKS_E_TEXTURE, {
                     title: "E-Texture",

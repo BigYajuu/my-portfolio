@@ -384,6 +384,10 @@ h3 {
   margin-top: 16px;
 }
 
+h4 {
+  margin-top: 4px;
+}
+
 p0 {
   font-size: 5dvw;
 }
@@ -710,7 +714,6 @@ p.i {
 
 .x-scrollable-image {
   height: calc(5.5em + 8px);
-  width: calc(5.5em + 8px);
   margin: 0 12px 4px 0;
   float: left;
 }
