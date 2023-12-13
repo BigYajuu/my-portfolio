@@ -128,10 +128,10 @@ function e(e){return e&&e.__esModule?e.default:e}var t,n,r,i,a,o,s,l,c,u,f,d,p,h
                     Unlike any typical commuter train travel,
                     the positioning of the train tracks in Angular City
                     brings the riders as closely
-                    to the nearby structures as possible,
-                    so that the transitions between different precincts
-                    as the train shifts its place
-                    adds up to the immersion.<br><br>
+                    to the local environment as possible,
+                    so that as the train meanders through 
+                    different precincts and groups of buildings,
+                    the immersion always stay at max.<br><br>
 
                     City planning and urban designs 
                     are some of my favourite topics to explore, 
@@ -206,4 +206,4 @@ function e(e){return e&&e.__esModule?e.default:e}var t,n,r,i,a,o,s,l,c,u,f,d,p,h
                                 app dev projects using Flutter 
                                 and experiment with cool proof-of-concept features.
                                 `})]}),s=new S(O.PAGE_1,new N,[n,i]),l=new S(O.PAGE_2,new N,[r,a,o]);new E(O.PAGE_MANAGEMENT_CONTAINER,[s,l]),this.buildMixins(),e(w)("#header-icon-mail, #footnote-mail").on("click",function(){t.getEmailFloatingDialog().onShow()}),e(w)(function(){"1"===nn.getParameterByName("enquire",window.location.href)&&t.getEmailFloatingDialog().onShow()}),this.appBuilt=!0}}().build();
-//# sourceMappingURL=index.ecbdba9b.js.map
+//# sourceMappingURL=index.7426513a.js.map
