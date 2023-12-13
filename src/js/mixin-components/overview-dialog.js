@@ -54,7 +54,7 @@ export class OverviewDialog extends DialogElement {
     buildImageContent() {
         const $slideshow = $(`<div>`);
         for (var i = 0; i < this.images.length; i++) {
-            const loadingMode = i < 5 ? 'eager' : 'lazy'; // Load first 5 images eagerly
+            const loadingMode = i < 3 ? 'eager' : 'lazy'; // Load first 5 images eagerly
             const $a = $('<a>').attr({
                 'href': `${this.images[i].folderPath}${this.images[i].imageName}`,
                 'target': '_blank',
