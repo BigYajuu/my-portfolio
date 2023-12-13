@@ -39,17 +39,19 @@ export class WorksAngularCityOverviewDialog extends OverviewDialog {
             .append($(`<p>`)
                 .append(`Over the course of 2 years, 
                     Angular City bloomed to its shape
-                    as dwellings and flats fell in place
+                    as dwellings and flats fell in places
                     around the backbone of this city - 
                     rail-tracks.<br><br>
 
-                    The city is heavily inspired from 
-                    modern Japanese cities, and the key aesthetics 
-                    is achieved by adding in 
+                    Being heavily inspired from 
+                    modern Japanese metropolis and suburbs,
+                    this city has the prominent key aesthetics 
+                    achieved by the usages of
                     self-made building textures, 
-                    as well as assets borrowed from other mods
-                    like vending machines, various vehicles, 
-                    and scaffoldings.<br><br>
+                    as well as assets borrowed from RealTrainMod's
+                    community-made addons
+                    like vending machines, various vehicle props, 
+                    steel pipes, signboards and scaffoldings.<br><br>
 
                     Unlike any typical commuter train travel,
                     the positioning of the train tracks in Angular City
@@ -60,7 +62,7 @@ export class WorksAngularCityOverviewDialog extends OverviewDialog {
                     adds up to the immersion.<br><br>
 
                     City planning and urban designs 
-                    have been one of my favourite topics, 
+                    are some of my favourite topics to explore, 
                     and as such, building a city at this scale
                     has always been a great interest of mine.<br>
                 `))
@@ -73,7 +75,8 @@ export class WorksAngularCityOverviewDialog extends OverviewDialog {
                     Land Area: ~~120*25 chunks<br>
                     Over 300 buildings/structures of various sizes, 
                     number of storeys and functions.<br>
-                    3 stations built (all accessible by wheelchair). Standard Gauge.<br>
+                    ~~300++ chunks in length of standard gauge tracks laid and partially electrified.<br>
+                    3 stations built (all accessible by wheelchair).<br>
                 `))
             .append($(`<h3>`)
                 .append(`Major Mods Used (dependencies non-inclusive)`))
@@ -82,7 +85,6 @@ export class WorksAngularCityOverviewDialog extends OverviewDialog {
             .append($(`<p>`)
                 .append(`
                     - EMCB HD / EMCB32<br>
-                    - E-Texture<br>
                     - Realistic Road Mod<br>
                     - Chisel and Bits<br>
                     - Decocraft<br>
@@ -93,7 +95,21 @@ export class WorksAngularCityOverviewDialog extends OverviewDialog {
             .append($(`<p>`)
                 .append(`
                     - RealTrainMod (and core NGTLib)<br>
-                    - Many, many RTM addons built by passionate community members<br>
+                    - Many, many RTM addons built by passionate community members:<br>
+                    &emsp;(<a href="https://rtmaddon-search.com/">https://rtmaddon-search.com/</a>)<br>
+                    &emsp;&emsp;- E-Texture by me<br>
+                    &emsp;&emsp;- Train models by Triple-Zeta(瀬田車両)<br>
+                    &emsp;&emsp;- Train models by @aomiya3000(戸波重工)<br>
+                    &emsp;&emsp;- Train models by @minatosyaryo(水音車両)<br>
+                    &emsp;&emsp;- Train models by @ZZZgundam2001<br>
+                    &emsp;&emsp;- Train models and vehicular props by @seiyassaMC(筑紫車輌)<br>
+                    &emsp;&emsp;- JNR Signboard by Pawe<br>
+                    &emsp;&emsp;- nabe_signal (Train signaling) by @team_NABE<br>
+                    &emsp;&emsp;- Saracalia's Pack (Road structures) by Saracalia<br>
+                    &emsp;&emsp;- GrilledBeefPack (Various structures) by @ruthenium_mola2(七色重工業)<br>
+                    &emsp;&emsp;- Variety by @Yuzuho_RTM(柚穂車輌)<br>
+                    &emsp;&emsp;- Variety by @hi03(城田重工)<br>
+                    &emsp;&emsp;- Variety by @hojyo_michiru(宝条工廠)<br>
                 `))
             .append($(`<h4>`)
                 .append(`Construction Tools`))
