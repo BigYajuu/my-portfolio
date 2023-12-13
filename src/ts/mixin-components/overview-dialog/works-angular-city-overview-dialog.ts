@@ -85,7 +85,6 @@ export class WorksAngularCityOverviewDialog extends OverviewDialog {
             .append($(`<p>`)
                 .append(`
                     - EMCB HD / EMCB32<br>
-                    - E-Texture<br>
                     - Realistic Road Mod<br>
                     - Chisel and Bits<br>
                     - Decocraft<br>
@@ -98,6 +97,7 @@ export class WorksAngularCityOverviewDialog extends OverviewDialog {
                     - RealTrainMod (and core NGTLib)<br>
                     - Many, many RTM addons built by passionate community members:<br>
                     &emsp;(<a href="https://rtmaddon-search.com/">https://rtmaddon-search.com/</a>)<br>
+                    &emsp;&emsp;- E-Texture by me<br>
                     &emsp;&emsp;- Train models by Triple-Zeta(瀬田車両)<br>
                     &emsp;&emsp;- Train models by @aomiya3000(戸波重工)<br>
                     &emsp;&emsp;- Train models by @minatosyaryo(水音車両)<br>
