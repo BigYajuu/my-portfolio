@@ -62,7 +62,7 @@ export class WorksAngularCityOverviewDialog extends OverviewDialog {
                     adds up to the immersion.<br><br>
 
                     City planning and urban designs 
-                    have been one of my favourite topics, 
+                    are some of my favourite topics to explore, 
                     and as such, building a city at this scale
                     has always been a great interest of mine.<br>
                 `))
