@@ -72,6 +72,7 @@ export class OverviewDialog extends DialogElement {
     private buildImageContent(): JQuery<HTMLElement> {
         const $slideshow = $(`<div>`);
         for (var i=0; i<this.images.length; i++) {
+            const loadingMode = i < 5 ? 'eager' : 'lazy';   // Load first 5 images eagerly
             const $a = $('<a>').attr({
                 'href': `${this.images[i].folderPath}${this.images[i].imageName}`,
                 'target': '_blank',
@@ -79,7 +80,7 @@ export class OverviewDialog extends DialogElement {
             const $img = $('<img>').attr({
                 'src': `${this.images[i].folderPath}/thumbnails/${this.images[i].imageName}`,
                 'title': this.images[i].title,
-                'loading': 'lazy',
+                'loading': loadingMode,
             }).addClass('x-scrollable-item-slideshow');
             $slideshow.append($a.append($img));
         }
