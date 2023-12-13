@@ -56,10 +56,10 @@ export class WorksAngularCityOverviewDialog extends OverviewDialog {
                     Unlike any typical commuter train travel,
                     the positioning of the train tracks in Angular City
                     brings the riders as closely
-                    to the nearby structures as possible,
-                    so that the transitions between different precincts
-                    as the train shifts its place
-                    adds up to the immersion.<br><br>
+                    to the local environment as possible,
+                    so that as the train meanders through 
+                    different precincts and groups of buildings,
+                    the immersion always stay at max.<br><br>
 
                     City planning and urban designs 
                     are some of my favourite topics to explore, 
