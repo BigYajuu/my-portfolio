@@ -44,7 +44,7 @@ class App {
             children: [
                 new ScrollableOverviewContainer(Selectors.DIALOG_WORKS_PROJECT_INTERVENE, {
                     title: "Project Intervene (Provisional)",
-                    dateBegun: "Jun 2022",
+                    dateBegun: "Jun 2023",
                     imagePath: `${Paths.IMG_WORKS_PROJECT_INTERVENE}/01.png`,
                     imageTitle: "Placeholder Logo for Project Intervene",
                     overview: `Work in progress. This simple app 
