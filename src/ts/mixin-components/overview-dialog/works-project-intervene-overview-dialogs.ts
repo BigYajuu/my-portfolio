@@ -9,6 +9,10 @@ export class WorksProjectInterveneOverviewDialog extends OverviewDialog {
             "FocusNPlay",
             [
                 {folderPath: `${Paths.IMG_WORKS_PROJECT_INTERVENE}`, imageName: "01.png", title: "Logo"},
+                {folderPath: `${Paths.IMG_WORKS_PROJECT_INTERVENE}`, imageName: "03.png", title: "Early Release Promo"},
+                {folderPath: `${Paths.IMG_WORKS_PROJECT_INTERVENE}`, imageName: "04.png", title: "Early Concept Art"},
+                {folderPath: `${Paths.IMG_WORKS_PROJECT_INTERVENE}`, imageName: "05.png", title: "Early Store Listing Art 1"},
+                {folderPath: `${Paths.IMG_WORKS_PROJECT_INTERVENE}`, imageName: "06.png", title: "Early Store Listing Art 2"},
                 {folderPath: `${Paths.IMG_WORKS_PROJECT_INTERVENE}`, imageName: "02.png", title: "A Peek on Styles"},
             ]
         );
