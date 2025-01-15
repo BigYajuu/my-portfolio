@@ -62,15 +62,14 @@ class App {
                     new ScrollableOverviewContainer(
                         Selectors.DIALOG_WORKS_PROJECT_INTERVENE,
                         {
-                            title: "Project Intervene (Provisional)",
+                            title: "FocusNPlay",
                             dateBegun: "Jun 2023",
                             imagePath: `${Paths.IMG_WORKS_PROJECT_INTERVENE}/01.png`,
                             imageTitle: "Placeholder Logo for Project Intervene",
                             overview:
-                                `Work in progress. This simple app 
-                                aims to keep users from using other apps, 
-                                like social medias,
-                                and puts them back on track during work.`
+                                `Released on Google Play. This simple app 
+                                aims to keep users from doom-scrolling on distractive apps, 
+                                with the help of Phase-Driven Timer.`
                         },
                         new WorksProjectInterveneOverviewDialog(),
                     ),

@@ -53,7 +53,7 @@ export class WorksAngularCityOverviewDialog extends OverviewDialog {
                     to the local environment as possible,
                     so that as the train meanders through 
                     different precincts and groups of buildings,
-                    the immersion always stay at max.<br><br>
+                    the immersion always stays at max.<br><br>
 
                     City planning and urban designs 
                     are some of my favourite topics to explore, 
