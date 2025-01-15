@@ -26,6 +26,8 @@ export class WorksEMCBHDOverviewDialog extends OverviewDialog {
 
     protected buildBody(): JQuery<HTMLElement> {
         const $body = $(`<div>`)
+            .append($(`<p>`)
+                .append(`*Some of the screenshots were taken from the world of Angular City.<br>`))
             .append($(`<h2>`)
                 .append(`Overview`))
             .append($(`<p>`)
